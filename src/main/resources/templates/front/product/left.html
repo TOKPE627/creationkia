@@ -1,0 +1,9 @@
+<div class="col-xs-2">
+  	<h3><label for="category">Magasin</label></h3>
+	<div class="list-group" id="store">
+		<a th:href="@{/products/productList}" th:classappend="${activeAll}? 'active'" class="list-group-item">Toutes les produits</a>
+		<a th:href="@{/products/commercialList}" th:classappend="${activeCommercial}? 'active'" class="list-group-item">Produits commerciaux</a>
+		<a th:href="@{/products/multiserviceList}" th:classappend="${activeMultiservice}? 'active'" class="list-group-item">Produits multiservices</a>
+	</div>   
+</div>
+	

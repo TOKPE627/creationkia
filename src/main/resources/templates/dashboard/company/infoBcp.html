@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerNewCompany :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/company/updateCompany?id=}+${company.id}">Editer</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${company.imagePath}}" /> 
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-7">
+			    <h4><strong>Compagnie: </strong><span th:text="${company.name}"></span></h4>
+				
+				<div class="row">
+				   	<div class="panel panel-default" style="border-width: 5px;width: 100%;">
+   					    <div class="panel-body">
+   						  	<div class="col-xs-6">	
+								<p><strong>Ville: </strong><span th:text="${company.town}"></span> </p>
+								 <p><strong>Quartier: </strong><span th:text="${company.district}"></span> </p>
+								 <p><strong>Adresse: </strong><span th:text="${company.address}"></span></p>
+<!-- 								<p><strong>Abonne depuis: </strong><span th:text="${company.publicationDate}"></span></p>
+ -->   						   </div> 
+
+			               <fieldset><legend style="font-size: medium;">Contacts</legend></fieldset>
+			               <div class="col-xs-6">
+	   						 <p><strong>T&eacute;l&eacute;phone: </strong> <span th:text="${company.phone}"></span> </p>
+					    	 <p><strong>Email: </strong><span th:text="${company.email}"></span></p>
+						     <p><strong>Whatsapp: </strong><span th:text="${company.whatsapp}"></span></p>
+							 <p><strong>Facebook: </strong><a><span style="cursor: pointer;" th:text="${company.facebook}" ></span></a></p>
+						     <p><strong>Instagram: </strong><a><span style="cursor: pointer;" th:text="${company.instagram}"> </span></a></p>	
+	   				         <p><strong>Twitter: </strong><a><span style="cursor: pointer;" th:text="${company.twitter}" ></span></a></p>
+							 <p><strong>Linkedin: </strong><a><span style="cursor: pointer;" th:text="${company.linkedin}"> </span></a></p>	
+	   					    	    
+			               </div>
+			           </div>
+		          	</div>          
+				</div>
+			</div>
+		</div>
+	   
+	   <fieldset><legend style="font-size: medium;">Description</legend></fieldset>
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+                <span th:utext="${company.description}"></span>
+		   </div>
+	   </div>  
+       <fieldset><legend style="font-size: medium;">Localisation</legend></fieldset>
+	   <div class="row">
+			<div class="col-xs-6">
+			   <h4><strong>Vue de face </strong></h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${company.geolocateImagePath1}}" /> 
+					</div>
+				</div>
+			</div>
+		    <div class="col-xs-6">
+				<h4><strong>Vue de loin </strong></h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${company.geolocateImagePath2}}" /> 
+					</div>
+				</div>
+			</div>
+	    </div> 
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+		
+</body>
+</html>

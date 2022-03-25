@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"/><head>
+<style type="text/css">
+  @media screen and (min-width:1025px) {
+     .bookingForm{
+       margin-left: 22rem; 
+       width: 36rem;
+     }
+	.companyLogo{
+	 width: 30%;
+	}
+  }
+ 
+ @media screen and (max-width:456px) {
+ 	 .companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+	 .cat{
+	   padding-left: 1rem;
+	 }
+	 .bookingForm{
+	  margin-left: 1rem;
+	  width: 26rem;
+	 }
+  } 
+  	.btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+   .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }
+</style>
+
+<body style="background-color: #e8e8e8 !important; ">	
+     <div th:replace="include/navbar"></div>
+     <div class="container bookingForm">
+          <fieldset>
+			<legend class="center-block">
+			   <span style="font-size: small"> * Informations de la vente</span>
+		  	   <img th:if="${product.category.title =='shop'}" width="100%" height="300rem"
+                    class="img-responsive"
+	                  th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+               />
+               <img th:if="${product.category.title == 'groupSale'}" width="100%" height="300rem"
+                    class="img-responsive"
+	                  th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+               />
+		  	   <img th:if="${product.category.title =='store'}" width="100%" height="300rem"
+                    class="img-responsive"
+	                  th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+               /> 
+			</legend>
+		     <div class="form-group">
+		        <label>Nom du produit</label>
+		       <input class="form-control" th:value="${product.name}" disabled="disabled">
+		     </div>
+		    
+		      <div class="form-group">
+		        <label>Prix unitaire</label>
+		       <input class="form-control" th:value="${product.price}" disabled="disabled">
+		     </div>
+		      <div class="form-group">
+		        <label>Quantite disponible</label>
+		       <input class="form-control" th:value="${product.quantity}" disabled="disabled">
+		     </div>
+		     <div th:if="${product.closedDate !=null}" class="form-group">
+		        <label>Date de cloture</label>
+		       <input class="form-control" th:value="${product.closedDate}" disabled="disabled">
+		     </div>
+		      <div class="form-group">
+		        <label>Prix de livraison</label>
+		       <input class="form-control" th:value="${product.deliveryPrice}" disabled="disabled">
+		     </div> 
+         </fieldset>
+         <hr>
+         <div class="container">
+           <a th:href="@{/login}"> 
+             <span class="colorText">
+              <strong>
+               <i class="fa fa-user"></i>
+               Je possède déjà un compte</strong>
+             </span>           
+           </a>
+         </div>
+         <hr>
+          <fieldset>
+			<legend class="center-block">	    
+				Renseignez ces champs					
+				<span style="font-size: small"> * Champ obligatoire</span>
+			</legend>
+		     <div class="container">
+		        <form th:action="@{/booking/add}"  method="post">
+			          <input type="hidden" name="product_id" th:value="${product.id}">
+			      
+					   <div class="form-group">
+					       <input type="hidden" name="role" class="form-control" value="ROLE_CUSTOMER">
+				      </div>
+				  
+					    <div class="form-group">
+							<label for="userName">Saisir votre quantit&eacute;</label><br>
+							    <span
+									style="color: red;" th:if="${quantityGreather}">La quantite saisie 
+									  est sup&eacute;rieure &agrave; la quantit&eacute; disponible!
+									Choisissez-en un autre.
+								</span>
+							  <input type="number"
+								class="form-control" name="quantity" required="required"
+								placeholder="Quantité"
+								 />
+						 </div>
+				      <div class="form-group">
+							<label for="lastName">Nom</label> 
+							<input type="text" required="required" placeholder="Votre nom"
+								class="form-control" id="lastName" name="lastName"
+								 />
+						</div>
+				      <div class="form-group">
+							<label for="firstName">Pr&eacute;nom(s)</label>
+							 <input
+								type="text" class="form-control" id="firstName" required="required"
+								name="firstName" placeholder="Votre(vos) Pr&eacute;nom(s)" />
+						</div>
+				 
+				       <div class="form-group">
+					   	 <label> S&eacute;lectionner la ville de livraison</label>
+						<select name="town" class="form-control">
+					       <option data-th-each="town : ${townList}" th:value="${town.name}" th:text="${town.name}">
+					       </option>
+					    </select>
+				       </div>
+				    
+			    	<div class="form-group">
+						<label>Quartier de livraison</label>
+						<input type="text" placeholder="Precisier le quartier de livraison"
+							class="form-control" name="district" required="required"
+						 />
+					</div>
+								
+					<div class="form-group">
+						<label>Adresse de livraison</label>
+						  <textarea  placeholder="Precisier l'adresse de livraison"
+							class="form-control" name="address" required="required"
+							 ></textarea>
+					</div>
+									
+					  <div class="form-group">
+							<label for="userName">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+							  <input type="text"
+								class="form-control" id="userPhone" name="phone" required="required"
+								placeholder="Numéro de téléphone "
+								 />
+					 </div>
+			         <div class="form-group">
+					    <label for="exampleFormControlInput1">Nom d'utilisateur</label><br>
+					    <span
+							style="color: red;" th:if="${usernameExists}">Ce nom d'utilisateur existe d&eacute;j&agrave;.
+							Choisissez-en un autre.
+						</span>
+					    <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       placeholder="Nom d'utilisateur" name="username" required="required">
+					  </div>
+					  <div class="form-group">
+					    <label for="exampleFormControlInput1">Adresse email</label><br>
+					    <span
+							style="color: red;" th:if="${emailExists}">Email
+							d&eacute;j&agrave; existant. Choisissez-en un autre.
+						</span> <br>
+					    <input type="email" class="form-control" id="exampleFormControlInput1" 
+					       placeholder="nom@example.com" name="email"> 
+					  </div>
+						<div class="form-group">
+							<label for="txtNewPassword">Mot de passe</label>&nbsp;<span
+								id="checkPasswordMatch" style="color: red;"></span> 
+								<input required="required" placeholder="Mot de passe"
+								type="password" class="form-control" id="txtNewPassword"
+								name="password" 
+								pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                   title="Doit contenir au minimum un nombre, une lettre majuscule, une lettre minuscule et au moins 8 charactères"/>
+						</div>
+			  
+					     <div style="margin-bottom: 3rem;" >
+					          <button type="submit" class="btn btn-success btn-block" style="margin-top: 1rem;">
+							         Valider
+							  </button>
+					     </div>
+			     </form> 
+		       </div>
+		     </fieldset>    
+         </div>
+     <div style="margin-top: 3rem;"></div>
+         
+            
+       <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	
+	
+	
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+	
+		<!--footer-area end-->
+</body>
+</html>

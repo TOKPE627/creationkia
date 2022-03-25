@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+	     
+		<div class="row">
+			<h4><strong>Categorie: </strong><span th:text="${category.name}"></span></h4>
+			<hr>
+	
+			<form class="form-horizontal" th:action="@{/subCategory/add}" method="post">
+				<fieldset>
+					<legend class="center-block">
+						Ajout d'une sous-categorie					
+						<span style="font-size: small"> * Champ obligatoire</span>
+					</legend>
+						<input type="hidden" name="idCategory" th:value="${category.id}" />
+				
+					<!-- Type d'annonce -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="name">*
+							Nom</label>
+						<div class="col-md-8">
+							<input
+								   type="text" name="name"  required="required"
+									class="form-control" id="name" placeholder="Precisier le nom de la sous-categorie" />
+							<span class="help-block">Nom de la sous-categorie</span>
+						</div>
+					</div>
+					
+                    	<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label">* Description</label>
+						<div class="col-md-8">
+							<textarea rows="5" name="description" required="required" class="form-control" 
+								placeholder="Preciser la description"></textarea>
+							<span class="help-block">Description</span>
+						</div>
+					</div>
+						<!-- description -->
+					
+				<!-- 	End Contacts -->
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+</body>
+</html>

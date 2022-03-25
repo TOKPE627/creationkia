@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/speciality/updateSpeciality}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						<span>Editer la spécialité</span>
+					</legend>
+					<input hidden="hidden" name="id" th:value="${speciality.id}" />
+		           
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="name">
+							Nom</label>
+						<div class="col-md-8">
+							<input
+								   type="text" name="name" th:value="${speciality.name}"
+									class="form-control" id="name" placeholder="Precisier le nom" />
+							<span class="help-block">Nom</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="district"> Details</label>
+						<div class="col-md-8">
+							<input
+									type="text" name="detail" th:value="${speciality.detail}"
+									class="form-control" id="detail" placeholder="Precisier les details" />
+							<span class="help-block">Details</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	</script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"/><head>
+<style type="text/css">
+   .btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+    .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }
+
+	@media screen and (min-width:1025px) {
+	  .form-group > input{
+	    width: 22rem;
+	   }
+       .form-group  .formEmail{
+		  margin-left: 4px;
+		}
+	 .infoResponsive{
+	      margin-top: 3rem;
+	      margin-left: 4rem;
+	  }	
+	  .contactResponsive {
+	    margin-left: 4rem;
+	  }
+	 .contactResponsive > form{
+	      margin-top: 1px;
+	      margin-left: 1rem;
+	  }	
+    }
+    
+    @media screen and (max-width:456px) {
+       .form-group > input{
+		  width: 20.5rem;
+		}
+
+	 .infoResponsive{
+	   margin-top: 3rem;
+	   margin-left: 1rem; 
+	   margin-right: 1rem;
+	 }	
+
+    .contactResponsive > form{
+ 	      width: 20.5rem;
+	  }	
+      .submitResponsive > button {
+       margin-left: 35% !important;
+     } 
+  } 
+	
+</style>
+
+<body style="background-color: #e8e8e8 !important; ">	
+     <div th:replace="include/navbar"></div>
+     <div class="row infoResponsive"> 
+         <div>
+               <span> Contactez-nous et nous vous répondrons dans les 24 heures</span> <br>
+               <i class="fa fa-map-marker" aria-hidden="true"></i> <span> Dakar, Sénégal</span>  <br>         
+               <i class="fa fa-phone" aria-hidden="true"></i><span>+221 70 151 15 15 </span>     <br>
+               <i class="fa fa-envelope" aria-hidden="true"></i> <span>attoly@gmail.com</span> 
+         </div>
+      
+         <div class="contactResponsive">
+             <div>
+                 <h3><span style="color: #6FB70F;"> CONTACT</span></h3>  
+             </div>
+            <form  class="container" method="post">
+	            <div class="row">
+	        		<div class="form-group">
+	        		  	  <input type="text" name="name" class="form-control"
+							placeholder="Nom" />
+					</div>	    
+				    <div class="form-group formEmail">
+						<input type="text" name="name" class="form-control" 
+							placeholder="Email" required="required">
+			       </div>
+         	    </div>
+		    	<div class="row">
+		        	<textarea rows="4" cols="50" class="form-control" name="message" placeholder="Ecrivez le message.."
+		        	  required="required" style="width: 44.2rem;"
+		        	></textarea>
+				</div> 
+			</form>
+			 <div class="container submitResponsive" style="margin-top: 6px; margin-bottom: 5rem;">
+				   <button type="submit" class="btn btn-sm btn-success" style="margin-left: 90%;
+">
+				   <i class="fa fa-paper-plane" aria-hidden="true"></i>Envoyer</button>
+			 </div>
+         </div>
+       </div>
+       
+       <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+	
+		<!--footer-area end-->
+</body>
+</html>

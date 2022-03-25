@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+ 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <title>Attoly</title>
+</head>
+<style>
+  @media screen and (min-width:1025px) {
+     .nav-item dropdown{
+      text-align: right; 
+    }
+  }
+  @media screen and (max-width:456px) {
+    .nav-item dropdown{
+      text-align: left; 
+    }
+  }
+  
+</style>
+<body style="background-color: #e8e8e8;">
+   <nav class="navbar navbar-expand-lg" style="background-color: #2F2F2C;">
+     <a th:href="@{/dashboard}" class="navbar-brand"> 
+         <img src="/assets/images/logos/logo.png" alt="logo" height="39px;" />
+     </a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul th:if="${userRole1}" class="navbar-nav mr-auto">
+	      <li class="nav-item dropdown" style="text-align: right;">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Catégorie
+	        </a>
+	         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" th:href="@{/category/add}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Ajouter une catégorie</a>
+	          <a class="dropdown-item" th:href="@{/category/categoryList}"><i class="fa fa-user-o"></i> Liste des catégories</a>
+	        </div>
+	       </li>
+	  
+	    </ul>
+	    <ul th:if="${userRole2}" class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" th:href="@{/company/companyInfo}">Magasin</a>
+	      </li>
+	      <li class="nav-item dropdown">
+	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+	          Produit
+	        </a>
+	         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+	          <a class="dropdown-item" th:href="@{/product/add}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Ajouter un produit</a>
+	          <a class="dropdown-item" th:href="@{/product/productList}"><i class="fa fa-user-o"></i> Catalogue de produits</a>
+	        </div>
+	       </li>
+	       <li class="nav-item">
+	        <a class="nav-link" th:href="@{/order/all}">Commandes</a>
+	      </li>
+	    </ul>
+	    
+	      <ul th:if="${userRole3}" class="navbar-nav mr-auto">
+		      <li class="nav-item">
+		        <a class="nav-link" th:href="@{/company/companyInfo}">Service</a>
+		      </li>
+		      <li class="nav-item dropdown">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Produit
+		        </a>
+		         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" th:href="@{/product/add}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Ajouter un produit</a>
+		          <a class="dropdown-item" th:href="@{/product/productList}"><i class="fa fa-user-o"></i> Catalogue de produits</a>
+		        </div>
+		       </li>
+		       <li class="nav-item dropdown" style="text-align: right;">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Spécialités
+		        </a>
+		         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" th:href="@{/speciality/add}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Ajouter une spécialité</a>
+		          <a class="dropdown-item" th:href="@{/speciality/specialityList}"><i class="fa fa-user-o"></i> Toutes les spécialités</a>
+		        </div>
+		       </li>
+		       <li class="nav-item">
+		        <a class="nav-link" th:href="@{/order/all}">Commandes</a>
+		      </li>
+	       </ul>
+	       <ul th:if="${userRole4}" class="navbar-nav mr-auto">
+		   
+		      <li class="nav-item dropdown" style="text-align: right;">
+		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		          Mon espace
+		        </a>
+		         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		          <a class="dropdown-item" th:href="@{/product/add}"> <i class="fa fa-sign-in" aria-hidden="true"></i> Mails</a>
+		          <a class="dropdown-item" th:href="@{/product/productList}"><i class="fa fa-user-o"></i> Demandes</a>
+		        </div>
+		       </li>
+	      </ul>
+	      <ul class="navbar-nav mr-auto">
+		       <li class="nav-item">
+		        <a class="nav-link">
+		          <span style="color: blue;" th:utext="${user} "></span>
+		        </a>
+		      </li>
+		       <li class="nav-item">
+		        <a class="nav-link" th:href="@{/logout}">Déconnexion</a>
+		      </li>
+	      </ul>
+	  </div>
+   </nav>
+</body>
+</html>

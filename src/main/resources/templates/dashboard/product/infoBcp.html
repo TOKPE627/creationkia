@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/product/update?id=}+${product.id}">Editer</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${product.imagePath1}}" /> 
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-8">
+			    <h4><strong>Nom: </strong><span th:text="${product.name}"></span></h4>
+				
+				<div class="row">
+				   	<div class="panel panel-default" style="border-width: 5px;width: 100%;">
+   						<div class="panel-body">
+   						  	<div class="col-xs-6">	
+<!-- 								<p><strong>Magasin: </strong><span th:text="${product.store.name}"></span></p>
+ -->								<p><strong>Cat&eacute;gorie: </strong><span th:text="${product.subCategory.category.name}"></span>
+								 </p> 
+								 <p><strong>Sous-cat&eacute;gorie: </strong><span th:text="${product.subCategory.name}"></span>
+								 </p>
+								<p><strong>Date de publication: </strong><span th:text="${product.publicationDate}"></span></p>
+   						   </div> 
+			           <!--      <hr/> -->
+			               <div class="col-xs-6">
+							   <p><strong>Marque: </strong><span th:text="${product.brand}" ></span></p>
+	   					       <p><strong>Prix initial: </strong><span th:text="${product.upPrice}"></span> </p>
+							   <p><strong>Prix Promotion: </strong><span th:text="${product.price}"></span></p>
+							   <p><strong>Pourcentage de r&eacute;duction: </strong><span th:text="${product.downsale}"></span></p>
+							   <p><strong>Quantit&eacute; disponible: </strong><span th:text="${product.quantity}"></span></p>
+			               </div>
+			           </div>    
+		          	</div>          
+				</div>
+			</div>
+		</div>
+		<hr/>
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+				<Strong style="color: black;">D&eacute;tails: </Strong><br/> <br/>
+                <span th:utext="${product.detail}"></span>
+		   </div>
+	   </div>  
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+				<Strong style="color: black;">Sp&eacute;cificit&eacute;s: </Strong><br/> <br/>
+                <span th:utext="${product.specificity}"></span>
+		   </div>
+	   </div>
+	
+	    <div class="row">
+		    <div class="col-xs-6">
+				 <div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${product.imagePath2}}" /> 
+					</div>
+				 </div>
+		    </div>
+		    <div class="col-xs-6">
+				 <div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${product.imagePath3}}" /> 
+					</div>
+				 </div>
+		    </div>
+		</div>
+		<div class="row">
+		    <div class="col-xs-6">
+				 <div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${product.imagePath4}}" /> 
+					</div>
+				 </div>
+		    </div>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+		
+</body>
+</html>

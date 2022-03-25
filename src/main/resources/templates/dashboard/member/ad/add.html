@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/ad/add}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						Ajout de l'annonce <span style="font-size: small"> * Champ obligatoire</span>
+					</legend>
+				
+					<!-- Type d'annonce -->
+			<!-- 		<div class="form-group">
+						<label class="col-md-2 control-label" for="type">*
+							Type d'annonce</label>
+						<div class="col-md-8">
+							<div class="input-group">
+								<input
+								   type="text" name="type" 
+									class="form-control" id="type" placeholder="Precisier le type d'annonce" />
+							</div>
+							<span class="help-block">Type d'annonce</span>
+						</div>
+					</div>
+ -->
+             		<div class="form-group">
+						<label class="col-md-2 control-label">* Type d'annonce</label>
+						<div class="col-md-8">
+							<select  name="type"
+								class="form-control" required="required">
+								<option value="purchase">Achat</option>
+								<option value="housesearch">Recherche de maison</option>
+								<option value="rental">Mise en location</option>
+							</select>
+						</div>
+					</div>
+             
+					
+					<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="description">* Description</label>
+						<div class="col-md-8">
+							<textarea name="description" rows="5" class="form-control"
+								id="description" 
+								placeholder="Description"></textarea>
+							<span class="help-block">Description de l'annonce</span>
+						</div>
+					</div>
+
+					<!-- upload image -->
+				    <div  class="container" style="margin-left: 10%;">
+				      <div class="row">
+				                      
+	                   <div class="form-group">
+                            <p>
+                               <img alt="Visualiser la photo principale" id="thumbnail0"/>
+                            </p>
+                            <p>
+                               <label>* Photo principale</label>  
+                            </p>
+                            <div class="col-xs-3">
+                                <input type="file"
+                                   name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+                            </div>
+                       
+					   </div>
+                 
+                     <div class="col-md-6">
+                       <!-- Photo 2 -->
+					   <div class="form-group">
+                           <div class="row">
+	                           <p>
+	                               <img alt="Visualiser la photo 1" id="thumbnail1"/>
+	                            </p>
+	                            <p>
+	                               <label>* Photo 1</label>  
+	                            </p>
+	                            <div class="col-xs-3">
+	                                <input type="file"
+	                                   name="extraImageFile" required="required" accept="image/png, image/jpeg" /> 
+	                            </div>
+	                           
+                            </div>
+					    </div>
+                      </div>
+                      <div class="col-md-6">
+                       <!-- Photo 3 -->
+					    <div class="form-group">
+                           <div class="row">
+                             <p>
+                               <img alt="Visualiser la photo 2" id="thumbnail2"/>
+                             </p>
+                             <p>
+                               <label>* Photo 2</label>  
+                             </p>
+                             <div class="col-xs-3">
+                                <input type="file"
+                                  name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+                             </div>
+                           </div>
+					     </div>
+                      </div>
+                   </div>
+					<div class="row">
+                     <div class="col-md-6">
+                       <!-- Photo 4 -->
+					   <div class="form-group">
+                           <div class="row">
+	                           <p>
+	                               <img alt="Visualiser la photo 3" id="thumbnail3"/>
+	                            </p>
+	                            <p>
+	                               <label>* Photo 3</label>  
+	                            </p>
+	                            <div class="col-xs-3">
+	                                <input type="file"
+	                                   name="extraImageFile" required="required" accept="image/png, image/jpeg" /> 
+	                            </div>
+	                           
+                            </div>
+					      </div>
+                      </div>
+                      <div class="col-md-6">
+                       <!-- Photo 5 -->
+					    <div class="form-group">
+                           <div class="row">
+                             <p>
+                               <img alt="Visualiser la photo4" id="thumbnail4"/>
+                             </p>
+                             <p>
+                               <label>* Photo 4</label>  
+                             </p>
+                             <div class="col-xs-3">
+                                <input type="file"
+                                  name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+                             </div>
+                           </div>
+					     </div>
+                      </div>
+                   </div>
+				    </div>
+                    <!--End Upload --->
+                        	<!-- Contacts -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="phone">* Telephone</label>
+						<div class="col-md-8">
+								<input
+								    type="text" name="phone" 
+									class="form-control" id="phone" placeholder="Precisier le numero de telephone" />
+							<span class="help-block">Numero de telephone</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="phone">* Email</label>
+						<div class="col-md-8">
+								<input
+									type="email" name="email" 
+									class="form-control" id="email" placeholder="Precisier l'email" />
+							<span class="help-block">Email</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="whatsapp">* Whatsapp</label>
+						<div class="col-md-8">
+								<input
+								    type="text" name="whatsapp" 
+									class="form-control" id="whatsapp" placeholder="Precisier le numero Whatsapp" />
+							<span class="help-block">Numero Whatsapp</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="facebook">* Facebook</label>
+						<div class="col-md-8">
+								<input
+									type="text" name="facebook" 
+									class="form-control" id="facebook" placeholder="Precisier le lien Facebook" />
+							<span class="help-block">Lien Facebook</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="instagram">* Instagram</label>
+						<div class="col-md-8">
+								<input
+								    type="text" name="instagram" 
+									class="form-control" id="instagram" placeholder="Precisier le lien Instagram" />
+														<span class="help-block">Lien Instagram</span>
+							
+							</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="twitter">* Twitter</label>
+						<div class="col-md-8">
+								<input
+									type="text" name="twitter" 
+									class="form-control" id="twitter" placeholder="Precisier le lien Twitter" />
+							<span class="help-block">Lien Twitter</span>
+						</div>
+					</div>
+				<!-- 	End Contacts -->
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		   /* 	
+			$('#mainImage').change(function(){
+				showImageThumbnail(this);
+			}); */ 
+			
+			$("input[name='extraImageFile']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			});
+			function showImageThumbnail(fileInput){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+			function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+		})
+	</script>
+</body>
+</html>

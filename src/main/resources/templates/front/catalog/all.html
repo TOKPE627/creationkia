@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"/><head>
+<style type="text/css">
+  @media screen and (min-width:1025px) { 
+	.companyLogo{
+	 width: 30%;
+	}
+  }
+ 
+ @media screen and (max-width:456px) {
+ 	 .companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+	 .cat{
+	   padding-left: 1rem;
+	 }
+  } 
+</style>
+
+<body style="background-color: #e8e8e8 !important; ">	
+     <div th:replace="include/navbar"></div>
+     <div class="row" th:if="${catalogListExit==true}">
+               <div th:replace="include/companyHead"></div>    
+     </div>
+     <div class="row" style="margin-top: 8px; margin-left: 3.6rem;" th:if="${catalogListExit==true}">
+       	<div th:replace="include/companyLeft"></div>
+		<div class="col-md-9 row">
+			   <div  data-th-each="catalog : ${catalogList}">
+			     <div class="product-single" style="background-color: white !important;
+			       width: 10rem;margin-left: 10px;
+			     ">
+				    <div class="product-thumb">
+			         	<a th:href="@{/catalog/info?id=}+${catalog.id}">
+						   <img width="100%" height="140rem" style="margin-top: 20px;"
+			                    class="img-responsive"
+                     th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
+			                /> 
+						 </a>
+					  </div>
+					  <div class="product-price-rating" id="service">
+							<div class="pull-left">
+								<span style="color: black;" th:text="${#strings.abbreviate(catalog.name,12)}"></span><br/>
+								<span th:text="${catalog.price}+ ' XOF'"> </span>
+							</div>
+						</div>
+			         </div>
+				</div>
+             </div>
+          </div>
+  
+     <div style="margin-top: 3rem;"></div>
+         
+            
+       <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+	
+		<!--footer-area end-->
+</body>
+</html>

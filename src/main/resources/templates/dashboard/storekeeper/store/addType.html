@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/store/addType}" method="post">
+				<fieldset>
+					<legend class="center-block">
+						Type de magasin <span style="font-size: small"></span>
+					</legend>
+					<!-- language -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="language">* Selectionner le type de magasin</label>
+						<div class="col-md-8">
+							<select th:value="${store.storetype}" name="storetype"
+								class="form-control" required="required">
+								<option value="1">Magasin commercial</option>
+								<option value="2">Magasin multi-service</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+	
+</body>
+</html>

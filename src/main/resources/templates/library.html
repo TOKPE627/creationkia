@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"/><head>
+
+
+<body>	
+    <!--header-->
+  	<header th:replace="include/header"></header>
+	<!--header-->
+	    	<!--slider-area start-->
+	<div class="slider-area">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xl-6 offset-xl-2">
+					<div class="main-slider mt-30 mt-sm-0">
+						<div class="slider-single bg-1">
+							<div class="d-table">
+								<div class="slider-caption">
+									<h4>clothing</h4>
+									<h2 class="cssanimation leDoorCloseLeft sequence">Men Collections</h2>
+									<p>The 10 Best Man Collection 2018</p>
+									<div class="slider-product-price">
+										<del>$120.00</del> 
+										<span>$295.00</span>
+									</div>
+									<a href="#" class="btn-common mt-43">acheter</a>
+								</div>
+							</div>
+						</div>
+						<div class="slider-single bg-2">
+							<div class="d-table">
+								<div class="slider-caption">
+									<h4>clothing</h4>
+									<h2 class="cssanimation leDoorCloseLeft sequence">Gadgets</h2>
+									<p>The 10 Best Man Collection 2018</p>
+									<div class="slider-product-price">
+										<del>$120.00</del> 
+										<span>$295.00</span>
+									</div>
+									<a href="#" class="btn-common mt-43">acheter</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Library-->
+	<div class="products-tab-area mt-45 mt-sm-45">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h3>Librairie </h3>
+						</div>
+					</div>
+				
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane fade in show active">
+						<div class="row product-carousel cv-visible">
+							<div class="col-lg-12" data-th-each="product : ${libraryList}">
+								<div class="product-single">
+									<div class="product-title">
+<!-- 										<small><a href="#" th:text="${product.subCategory.category.name}"></a></small>
+ -->										<h4><a href="#" th:text="${product.name}"></a></h4>
+									</div>
+									<div class="product-thumb">
+										<a href="#">
+										   <img width="100%" height="145rem"
+							                    class="img-responsive"
+							                    th:src="@{${product.imagePath1}}" alt=""
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												         th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												            th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a>
+												</div>
+									</div>
+									<div id="comic" class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}"></span>
+											<del th:text="${product.upPrice}"></del>
+										</div>
+									
+									</div>
+									<div  class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!--End Library-->
+	
+	
+	<!--Comics-->
+	<div class="products-tab-area mt-45 mt-sm-45" style="margin-top: 23%;">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h3>Bandes dessinées </h3>
+						</div>
+					</div>
+				
+				</div>
+				<div class="tab-content">
+					<div id="comic" class="tab-pane active">
+						<div class="row product-carousel-fullwidth cv-visible">
+							<div class="col-lg-12" data-th-each="product : ${comicList}">
+								<div class="product-single">
+									<div class="product-title">
+										<small><a href="#" th:text="${product.subCategory.category.name}"></a></small>
+										<h4><a href="#" th:text="${product.name}"></a></h4>
+									</div>
+									<div class="product-thumb">
+										<a href="#">
+										   <img width="100%;"
+							                    class="img-responsive"
+							                    th:src="@{${product.imagePath1}}" alt=""
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												         th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												        th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a>
+												</div>
+									</div>
+									<div id="science" class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}"></span>
+											<del th:text="${product.upPrice}"></del>
+										</div>
+									
+									</div>
+									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!--End Comics-->
+		
+		<!-- Sciences -->
+		<div class="products-tab-area mt-45 mt-sm-45" style="margin-top: 23%;">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h3>Sciences </h3>
+						</div>
+					</div>
+				
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane active">
+						<div class="row product-carousel-fullwidth cv-visible">
+							<div class="col-lg-12" data-th-each="product : ${scienceList}">
+								<div class="product-single">
+									<div class="product-title">
+										<small><a href="#" th:text="${product.subCategory.category.name}"></a></small>
+										<h4><a href="#" th:text="${product.name}"></a></h4>
+									</div>
+									<div class="product-thumb">
+										<a href="#">
+										   <img width="100%;"
+							                    class="img-responsive"
+							                    th:src="@{${product.imagePath1}}" alt=""
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												       th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+										     th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a>
+												</div>
+									</div>
+									<div id="technology" class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}"></span>
+											<del th:text="${product.upPrice}"></del>
+										</div>
+									
+									</div>
+									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!--End Sciences -->
+		<!-- Technologies -->
+		<div class="products-tab-area mt-45 mt-sm-45" style="margin-top: 23%;">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h3>Technologies </h3>
+						</div>
+					</div>
+				
+				</div>
+				<div class="tab-content">
+					<div class="tab-pane active">
+						<div class="row product-carousel-fullwidth cv-visible">
+							<div class="col-lg-12" data-th-each="product : ${technologyList}">
+								<div class="product-single">
+									<div class="product-title">
+										<small><a href="#" th:text="${product.subCategory.category.name}"></a></small>
+										<h4><a href="#" th:text="${product.name}"></a></h4>
+									</div>
+									<div class="product-thumb">
+										<a href="#">
+										   <img width="100%;"
+							                    class="img-responsive"
+							                    th:src="@{${product.imagePath1}}" alt=""
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+								     th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												         th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a>
+												</div>
+									</div>
+									<div id="math" class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}"></span>
+											<del th:text="${product.upPrice}"></del>
+										</div>
+									
+									</div>
+									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!-- End Technologies -->
+		
+		<!-- Mathématiques -->
+		<div class="products-tab-area mt-45 mt-sm-45" style="margin-top: 23%;">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h3>Mathématiques </h3>
+						</div>
+					</div>
+				
+				</div>
+				<div class="tab-content">
+					<div id="math" class="tab-pane active">
+						<div class="row product-carousel-fullwidth cv-visible">
+							<div class="col-lg-12" data-th-each="product : ${mathList}">
+								<div class="product-single">
+									<div class="product-title">
+										<small><a href="#" th:text="${product.subCategory.category.name}"></a></small>
+										<h4><a href="#" th:text="${product.name}"></a></h4>
+									</div>
+									<div class="product-thumb">
+										<a href="#">
+										   <img width="100%;"
+							                    class="img-responsive"
+							                    th:src="@{${product.imagePath1}}" alt=""
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												            th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+													       th:data-name        = "${product.name}"
+												       th:data-detail = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory    = "${product.subCategory.name}"												       
+												       th:data-image1   = "@{${product.imagePath1}}"
+												       th:data-image2   = "@{${product.imagePath2}}"
+												       th:data-image3   = "@{${product.imagePath3}}"
+												       th:data-image4   = "@{${product.imagePath4}}"
+												        th:data-companyimage = "@{${product.user.company.imagePath}}"				
+													   th:data-companyname = "@{${product.user.company.name}}"
+	
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a>
+												</div>
+									</div>
+									<div class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}"></span>
+											<del th:text="${product.upPrice}"></del>
+										</div>
+									
+									</div>
+									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+		<!--End Mathématiques -->
+		
+	<!-- JS  -->
+		
+<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	
+<script>
+    $(document).ready(function(){
+    	$("#quickViewModal").modal({
+            keyboard: true,
+            backdrop: "static",
+            show: false,
+            
+        }).on("show.bs.modal", function(event){
+        	var button        = $(event.relatedTarget);
+            var name          = button.data("name");
+            var detail        = button.data("detail");
+            var upprice       = button.data("upprice");
+            var price         = button.data("price");
+            var category      = button.data("category");
+            var subcategory   = button.data("subcategory");
+            var image1        = button.data('image1');
+            var image2        = button.data('image2');
+            var image3        = button.data('image3');
+            var image4        = button.data('image4');
+
+            var companyname   = button.data('companyname');
+            var companyimage  = button.data('companyimage');
+            var detail   = button.data("detail");
+            $(this).find("#name").html($("<b> " + name +"</b>"));
+            $(this).find("#detail").html($("<li> " + detail +"</li>"));
+            $(this).find("#upprice").html($("<b> " + upprice +"</b>"));
+            $(this).find("#price").html($("<b> " + price +"</b>"));
+            $(this).find("#category").html($("<span>" + category +"</span> "));
+            $(this).find("#subcategory").html($("<span>" + subcategory +"</span> "));
+
+            $(this).find("#image1").attr("src", image1);
+            $(this).find("#image2").attr("src", image2);
+            $(this).find("#image3").attr("src", image3);
+            $(this).find("#image4").attr("src", image4);
+
+            $(this).find("#companyimage").attr("src", companyimage);
+            $(this).find("#companyname").html($("<span>" + companyname + "</span>"));
+        })
+
+    });
+</script>
+<script type="text/javascript">
+function changeImage(a){
+    var idImage    = a.id;
+    var image = a.src;
+	$.ajax({
+		type: "GET",
+        contentType: "application/json",
+        url: '/product/changeImage?image='+image,
+        data: {},
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$("#image1").attr("src",data.brand);    
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+        }
+	});
+ }
+</script>
+<script type="text/javascript">
+   function companyImage(a){  
+	 var image = a.src;
+	 $.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/companyImage?image='+image,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+              window.location.href = data.name+'/company/info/'+data.id;
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});
+	}  
+</script> 
+	<!-- Modal -->
+	<div class="modal fade" id="quickViewModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="tab-content">
+								<div id="product-1" class="tab-pane fade in show active">
+									<div class="product-details-thumb">
+										<img id="image1" width="100%;" alt="" />
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs products-nav-tabs horizontal quick-view mt-10">
+								<li><a class="active" data-toggle="tab" href="#product-1">
+								     <img id="image2" width="100%;" alt="" onClick="changeImage(this)" /></a></li>
+								<li><a data-toggle="tab" href="#product-2">
+								<img id="image3" width="100%;" alt="" onClick="changeImage(this)" /></a></li>
+								<li><a data-toggle="tab" href="#product-3">
+								    <img id="image4" width="100%;" alt="" onClick="changeImage(this)" /></a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="product-details-desc">
+									   <h2 id="name"></h2>
+										<ul id="detail">
+										   <li></li>
+										</ul>
+										<div class="product-meta">
+											<ul class="list-none">
+<!-- 												<li>SKU: 00012 <span>|</span></li>
+ -->												<li>Categorie:
+													<a href="#" id="category"></a>
+												<!-- 	<a href="#">Macbook</a>
+													<a href="#">Laptop</a> -->
+<!-- 													<span>|</span>
+ -->												</li>
+											 	<li>Tag:
+													<a href="#" id="subcategory"></a>
+<!-- 													<a href="#">Apple</a>
+ -->												</li> 
+											</ul>
+										</div>
+										<div class="social-icons style-5">
+											<span>Partager sur:</span>
+											<a href="#"><i class="fa fa-facebook"></i></a>
+											<a href="#"><i class="fa fa-twitter"></i></a>
+											<a href="#"><i class="fa fa-google-plus"></i></a>
+											<a href="#"><i class="fa fa-rss"></i></a>
+										</div>
+										<div class="social-icons style-5" style="cursor: pointer;">
+										  <span>Compagnie:</span>
+										  <span>
+										      <img id="companyimage" width="10%;" alt=""  onClick="companyImage(this)">
+										  </span>                                          
+										</div> 
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="product-action stuck text-left">
+										<div class="free-delivery">
+											<a href="#"><i class="ti-truck"></i> Livraison gratuite</a>
+										</div>
+										<div class="product-price-rating">
+											<div>
+												<del id="upprice"></del>
+											</div>
+											<span id="price"></span>
+											<div class="pull-right">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+										</div>
+										<div class="product-colors mt-20">
+											<label>Sélectionner la couleur:</label>
+											<ul class="list-none">
+												<li>Red</li>
+												<li>Black</li>
+												<li>Blue</li>
+											</ul>
+											
+										</div>
+										<div class="product-quantity mt-15">
+											<label>Quantité:</label>
+											<input type="number" value="1" />
+										</div>
+										<div class="add-to-get mt-50">
+											<a href="#" class="add-to-cart">Ajouter à la carte</a>
+<!-- 											<a href="#" class="add-to-cart compare">+ Ajouter pour comparer</a>
+ -->										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+  	
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+	
+		<!--footer-area end-->
+</body>
+</html>

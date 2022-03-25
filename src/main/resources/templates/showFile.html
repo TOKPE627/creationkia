@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">	
+ <style type="text/css">
+ 	.btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+   .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }
+ </style>
+ <body style="background-color: #e8e8e8;">
+ 
+	  <div class="container container-fluid">
+	
+	    <div class="createAccount" style="margin-top: 15px;">
+	       <h4 style="margin-bottom: 4rem; text-align: center;">
+	            <span>Cr&eacute;ation d'un fichier pour exemple</span>
+	       </h4>
+	       
+		<!-- 	<form action="/testFile/uploadFileTest"  method="post" enctype="multipart/form-data">
+		    <input type="file" name="photo" /><br><br>
+		    <label for="text">Some Desc</label>
+		    <input type="text" name="desc" />
+		    <input type="submit" />
+		    </form> -->
+	       <form th:action="@{/testFile/uploadFile}" enctype="multipart/form-data"  method="post">
+			      <div class="form-group">
+                           <p>
+                              <label>* Votre photo</label>  
+                           </p>
+                           <div class="col-xs-3">
+                               <input type="file"
+                                  id="file" name="file"
+                                   required="required"/> 
+                           </div>
+				   </div>
+			  
+			     <div style="margin-bottom: 3rem;" >
+			          <button type="submit" class="btn btn-success btn-block" style="margin-top: 1rem;">
+					         Valider
+					  </button>
+			     </div>
+	     </form> 
+	    </div>
+	  </div>
+ 	   <div>
+	    <h1>Show image</h1>
+	       <img
+	            class="img-responsive" style="height: 250px;width: 100%;"
+	            src="https://attolystorage.s3.us-east-2.amazonaws.com/1641318258075_program4.PNG" /> 
+	  </div> 
+	</body> 
+</html>

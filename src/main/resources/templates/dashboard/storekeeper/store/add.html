@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/store/add}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						Ajout du magasin
+						<span th:if="${store_type_id == 1 }">Commercial</span>
+						<span th:if="${store_type_id == 2 }">Multi-Services</span>						
+						<span style="font-size: small"> * Champ obligatoire</span>
+					</legend>
+					<input type="hidden" name="id" th:value="${store.id}" />
+					<input type="hidden" name="store_type_id" th:value="${store_type_id}" />
+				
+					<!-- Type d'annonce -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="name">*
+							Nom du magasin</label>
+						<div class="col-md-8">
+							<input class="form-control"
+							   type="text" name="name" 
+								id="name" placeholder="Precisier le nom du magasin" />
+							<span class="help-block">Nom du magasin</span>
+						</div>
+					</div>
+
+      
+					<!-- upload image -->
+				    <div  class="container" style="margin-left: 10%;">
+				      <div class="row">           
+		                   <div class="form-group">
+	                            <p>
+	                               <img alt="Visualiser le logo" id="thumbnail0"/>
+	                            </p>
+	                            <p>
+	                               <label>* Logo</label>  
+	                            </p>
+	                            <div class="col-xs-3">
+	                                <input type="file"
+	                                   name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+	                            </div>
+						     </div>
+                          </div>
+				    </div>
+				      <div  class="container" style="margin-left: 10%;">
+				      <div class="row">           
+		                   <div class="form-group">
+	                            <p>
+	                               <img alt="Visualiser le logo" id="thumbnail1"/>
+	                            </p>
+	                            <p>
+	                               <label>* Image de geolocalisation</label>  
+	                            </p>
+	                            <div class="col-xs-3">
+	                                <input type="file"
+	                                   name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+	                            </div>
+						     </div>
+                          </div>
+				    </div>
+                    <!--End Upload --->
+                    	<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="slogan">* Slogan</label>
+						<div class="col-md-8">
+							<input name="slogan" class="form-control"
+								id="slogan" 
+								placeholder="Preciser le Slogan">
+							<span class="help-block">Slogan</span>
+						</div>
+					</div>
+						<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="manager">* Gestionnaire</label>
+						<div class="col-md-8">
+							<input name="manager" class="form-control"
+								id="manager" 
+								placeholder="Preciser le nom et prenom(s) du Gestionnaire"></textarea>
+							<span class="help-block">Nom et prenom(s) du Gestionnaire</span>
+						</div>
+					</div>
+			<!-- 		ADDRESS -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="town">* Ville</label>
+						<div class="col-md-8">
+							<input name="town" class="form-control"
+								id="town" 
+								placeholder="Preciser la ville"></textarea>
+							<span class="help-block">Ville</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="district">* Quartier</label>
+						<div class="col-md-8">
+							<input name="district" class="form-control"
+								id="district" 
+								placeholder="Preciser le quartier">
+							<span class="help-block">Quartier</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="town">* Adresse</label>
+						<div class="col-md-8">
+							<input name="address" class="form-control"
+								id="address" 
+								placeholder="Preciser l'adresse"></textarea>
+							<span class="help-block">Adresse</span>
+						</div>
+					</div>
+					
+						<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="detail">* D&eacute;tails:</label>
+						<div class="col-md-8">
+							<textarea name="detail" rows="5" class="form-control"
+								id="detail" 
+								placeholder="D&eacute;tails:"></textarea>
+							<span class="help-block">D&eacute;tails: du magasin</span>
+						</div>
+					</div>
+                        	<!-- Contacts -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="phone">* Telephone</label>
+						<div class="col-md-8">
+							<input
+								 type="text" name="phone" 
+							   	 class="form-control" id="phone" placeholder="Precisier le numero de telephone" />
+							<span class="help-block">Numero de telephone</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="phone">* Email</label>
+						<div class="col-md-8">
+							<input
+									type="email" name="email" 
+									class="form-control" id="email" placeholder="Precisier l'email" />
+							<span class="help-block">Email</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="whatsapp">* Whatsapp</label>
+						<div class="col-md-8">
+							<input
+								    type="text" name="whatsapp" 
+									class="form-control" id="whatsapp" placeholder="Precisier le numero Whatsapp" />
+							<span class="help-block">Numero Whatsapp</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="facebook">* Facebook</label>
+						<div class="col-md-8">
+								<input
+									type="text" name="facebook" 
+									class="form-control" id="facebook" placeholder="Precisier le lien Facebook" />
+							<span class="help-block">Lien Facebook</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="instagram">* Instagram</label>
+						<div class="col-md-8">
+							<input
+								    type="text" name="instagram" 
+									class="form-control" id="instagram" placeholder="Precisier le lien Instagram" />
+							<span class="help-block">Lien Instagram</span>
+						</div>
+					</div>
+	               <!-- Hours -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="start">* Heure d'ouverture</label>
+						<div class="col-md-8">
+							<input type="time" name="start" class="form-control"
+								id="start" 
+								placeholder="Heure d'ouverture">
+							<span class="help-block">Heure d'ouverture</span>
+						</div>
+					</div>	
+					        <!-- Hours -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="end">* Heure de fermeture</label>
+						<div class="col-md-8">
+							<input type="time" name="end" class="form-control"
+								id="end" 
+								placeholder="Heure de fermeture">
+							<span class="help-block">Heure de fermeture</span>
+						</div>
+					</div>			
+				<!-- 	End Contacts -->
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		   /* 	
+			$('#mainImage').change(function(){
+				showImageThumbnail(this);
+			}); */ 
+			
+			$("input[name='extraImageFile']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			});
+			function showImageThumbnail(fileInput){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+			function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+		})
+	</script>
+</body>
+</html>

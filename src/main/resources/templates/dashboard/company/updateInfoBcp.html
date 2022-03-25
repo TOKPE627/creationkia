@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+			<form class="form-horizontal" th:action="@{/company/updateCompany}" method="post"
+				enctype="multipart/form-data">
+				<fieldset>
+					<legend class="center-block">
+						<span>Editer la compagnie</span>
+					</legend>
+					<input hidden="hidden" name="id" th:value="${company.id}" />
+		           
+		           <!-- update Logo -->
+				
+					           	<!-- upload location 2 Far View -->
+				    <div class="form-group row">
+						<label class="col-md-2 control-label">Changer la photo</label>
+	                    <div class="col-md-10">
+	                        <div class="col-xs-5">       
+	                            <input type="file"
+	                                name="extraImageFile" accept="image/png, image/jpeg" /> 
+	                             <img class="img-responsive" style="height: 350px;width: 100%;"
+								           th:src="@{${company.imagePath}}" /> 
+	                         </div>
+	                         <div class="col-xs-5" style="margin-top: 3rem;">
+	                            <img style="height: 350px;width: 100%;" alt="Visualiser la photo" id="thumbnail0"/>
+                              </div>
+                         </div>
+				    </div>	
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="name">
+							Nom</label>
+						<div class="col-md-8">
+							<input
+								   type="text" name="name" th:value="${company.name}"
+									class="form-control" id="name" placeholder="Precisier le nom de la compagnie" />
+							<span class="help-block">Nom de la compagnie</span>
+						</div>
+					</div>
+
+                    <!--End Upload --->
+              
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="town"> Ville</label>
+						<div class="col-md-8">
+							<input
+									type="text" name="town" th:value="${company.town}"
+									class="form-control" id="town" placeholder="Precisier la ville" />
+							<span class="help-block">Ville de la compagnie</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="district"> Quartier</label>
+						<div class="col-md-8">
+							<input
+									type="text" name="district" th:value="${company.district}"
+									class="form-control" id="district" placeholder="Precisier le quartier" />
+							<span class="help-block">Quartier</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="address">Adresse</label>
+						<div class="col-md-8">
+							<input
+									type="text" name="address" th:value="${company.address}"
+									class="form-control" id="address" placeholder="Precisier l'adresse" />
+							<span class="help-block">Adresse exacte de la compagnie</span>
+						</div>
+					</div>
+						<!-- description -->
+					<div class="form-group">
+						<label class="col-md-2 control-label" for="description"> Description</label>
+						<div class="col-md-8">
+							<textarea name="description" rows="5" class="form-control" 
+							    th:value="${company.description}" th:text="${company.description}"
+								id="description" 
+								placeholder="Description"></textarea>
+							<span class="help-block">Description</span>
+						</div>
+					</div>
+      
+                	<!-- Contacts -->
+                	<fieldset>
+				      <legend><span style="font-size: small">Contacts de votre compagnie</span></legend>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="phone"> Telephone</label>
+							<div class="col-md-8">
+								<input
+									    type="text" name="phone" th:value="${company.phone}"
+										class="form-control" id="phone" placeholder="Precisier le numero de telephone" />
+								<span class="help-block">Numero de telephone</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" for="phone"> Email</label>
+							<div class="col-md-8">
+								<input
+										type="email" name="email" th:value="${company.email}"
+										class="form-control" id="email" placeholder="Precisier l'email" />
+								<span class="help-block">Email</span>
+							</div>
+						</div>
+						 <div class="form-group">
+							<label class="col-md-2 control-label">Whatsapp</label>
+							<div class="col-md-6">
+								<input
+									type="text" name="whatsapp" th:value="${company.whatsapp}"
+									class="form-control" id="whatsapp" placeholder="Precisier le numero whatsapp" />
+								<span class="help-block">Whatsapp</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label" > Facebook</label>
+							<div class="col-md-6">
+								<input
+									type="text" name="facebook" th:value="${company.facebook}"
+									class="form-control" id="facebook" placeholder="Precisier le lien Facebook" />
+								<span class="help-block">Facebook</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"> Instagram</label>
+							<div class="col-md-6">
+								<input
+									type="text" name="instagram" th:value="${company.instagram}"
+									class="form-control" id="instagram" placeholder="Precisier le lien Instagram" />
+								<span class="help-block">Instagram</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"> Twitter</label>
+							<div class="col-md-6">
+								<input
+									type="text" name="twitter" th:value="${company.twitter}"
+									class="form-control" id="twitter" placeholder="Precisier le lien Twitter" />
+								<span class="help-block">Twitter</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-2 control-label"> Linkedin</label>
+							<div class="col-md-6">
+								<input
+									type="text" name="linkedin" th:value="${company.linkedin}"
+									class="form-control" placeholder="Precisier le lien Linkedin" />
+								<span class="help-block">Linkedin</span>
+							</div>
+						</div> 
+					 </fieldset>
+					<fieldset>
+				      <legend><span style="font-size: small;">Localisation</span></legend>
+				       	<!-- upload location 1 Face View -->
+				      <div class="form-group row">
+						 <label class="col-md-2 control-label">Photo Vue de face</label>
+                         <div class="col-md-10">
+                            <div class="col-xs-5">       
+                                <input type="file"
+	                                 name="extraImageFile" accept="image/png, image/jpeg" /> 
+	                                <img class="img-responsive" style="height: 350px;width: 100%;"
+								           th:src="@{${company.geolocateImagePath1}}" /> 
+                            </div>
+                            <div class="col-xs-5" style="margin-top: 3rem;">
+                               <img style="height: 350px;width: 100%;" alt="Visualiser la localisation Vue de Face" 
+                                   id="thumbnail1"/>
+                            </div>
+                          </div>
+				      </div>
+				             	<!-- upload location 2 Far View -->
+				      <div class="form-group row">
+						 <label class="col-md-2 control-label">Photo Vue de loin</label>
+                         <div class="col-md-10">
+                            <div class="col-xs-5">       
+                                <input type="file"
+	                                 name="extraImageFile" accept="image/png, image/jpeg" /> 
+	                                <img class="img-responsive" style="height: 350px;width: 100%;"
+								           th:src="@{${company.geolocateImagePath2}}" /> 
+                            </div>
+                            <div class="col-xs-5" style="margin-top: 3rem;">
+                               <img style="height: 350px;width: 100%;" alt="Visualiser la localisation Vue de loin" id="thumbnail2"/>
+                            </div>
+                          </div>
+				      </div>
+				    </fieldset>
+      
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+							<a class="btn btn-danger" th:href="@{/}">Annuler</a>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+			<script type="text/javascript">
+		$(document).ready(function() {
+		   /* 	
+			$('#mainImage').change(function(){
+				showImageThumbnail(this);
+			}); */ 
+			
+			$("input[name='extraImageFile']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			});
+			function showImageThumbnail(fileInput){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				reader.onload = function(e){
+					$('#thumbnail').attr('src',e.target.result);
+				}
+				reader.onload = function(e){
+					$('#thumbnail1').attr('src',e.target.result);
+				}
+				reader.onload = function(e){
+					$('#thumbnail2').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+			function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+<body>
+<!-- 	<div th:replace="common/header :: navbar"></div>
+ -->
+	<div class="container">
+		<div class="row" style="margin-bottom: -20px;">
+			<div class="col-xs-8">
+				<h2 class="section-headline">
+					<h2 class="section-headline">
+						<span th:text="${#strings.toUpperCase(user.username)}"></span>
+					</h2>
+				</h2>
+			</div>
+		
+		</div>
+	
+
+		<div class="row" style="margin-top: 60px;">
+			<div class="col-xs-9 col-xs-offset-3">
+
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs">
+					<li th:classappend="${classActiveEdit}? 'active'"><a
+						href="#tab-1" data-toggle="tab"><span style="color: red;">Editer</span></a></li>
+			    </ul>
+
+				<!-- Tab panels -->
+				<div class="tab-content">
+
+					<!-- Edit user information -->
+					<div class="tab-pane fade" id="tab-1"
+						th:classappend="${classActiveEdit}? 'in active'">
+						<div class="panel-group">
+							<div class="panel panel-default" style="border: none;">
+								<div class="panel-body"
+									style="background-color: #ededed; margin-top: 20px;">
+
+									<div class="alert alert-danger" th:if="${incorrectPassword}">
+										<strong>Incorrecte Mot de passe!</strong>Veuillez entrer le bon mot de passe.
+									</div>
+
+									<div class="alert alert-succss" th:if="${updateSuccess}">
+										<strong>Mise &agrave; jour effectu&eacute;e avec succ&egrave;s!</strong>
+									    <div>
+									       <span>
+									          <a href="/login">Connectez-vous!</a>
+						                    </span>
+						                </div>
+									 </div>
+
+									<form th:action="@{/updateUserInfo}" method="post"
+										enctype="multipart/form-data">
+										<input type="hidden" name="id" th:value="${user.id}" />
+
+										<div class="bg-info" th:if="${updateUserInfo}">
+										  Mise &agrave; jour des informations de l'utilisateur effectu&eacute;es avec succ&egrave;s!</div>		
+										<div class="form-group">
+											<div class="row">
+											   <div class="col-xs-6">
+													<label for="lastName">Nom</label> 
+													<input type="text" required="required"
+														class="form-control" id="lastName" name="lastName"
+														th:value="${user.lastName}" />
+												</div>
+												<div class="col-xs-6">
+													<label for="firstName">Pr&eacute;nom(s)</label>
+													 <input
+														type="text" class="form-control" id="firstName" required="required"
+														name="firstName" th:value="${user.firstName}" />
+												</div>
+												
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label for="userName">Nom d'utilisateur</label>  <input type="text"
+												class="form-control" id="userName" name="username"
+												th:value="${user.username}" />
+										</div>
+										<div class="form-group">
+											<label for="userName">Num&eacute;ro de t&eacute;l&eacute;phone</label>
+											  <input type="text"
+												class="form-control" id="userPhone" name="phone" required="required"
+												th:value="${user.phone}" />
+										</div>
+									    <div class="form-group">
+											<label for="userName">Num&eacute;ro Whatsapp</label>
+											  <input type="text"
+												class="form-control" name="whatsapp" required="required"
+												th:value="${user.whatsapp}" />
+										</div>
+										<div class="form-group">
+											<label for="userName">Lien du profil Facebook</label>
+											  <input type="text"
+												class="form-control" name="facebook" required="required"
+												th:value="${user.facebook}" />
+										</div>
+										<div class="form-group">
+											<label for="userName">Lien du profil Instagram</label>
+											  <input type="text"
+												class="form-control" name="instagram" required="required"
+												th:value="${user.instagram}" />
+										</div>
+									    <div class="form-group">
+											<label for="userName">Lien du profil Twitter</label>
+											  <input type="text"
+												class="form-control" name="twitter" required="required"
+												th:value="${user.twitter}" />
+										</div>
+										<div class="form-group">
+											<label>Ville</label>
+											  <input type="text" placeholder="Dans quelle ville vivez-vous?"
+												class="form-control" name="town" required="required"
+												th:value="${user.town}" />
+										</div>
+										<div class="form-group">
+											<label>Adresse</label>
+											  <input type="text" placeholder="Precisier votre adresse"
+												class="form-control" name="address" required="required"
+												th:value="${user.address}" />
+										</div>
+										<div class="form-group">
+											<label for="currentPassword">Mot de passe courant</label>  <input
+												type="password" class="form-control" id="currentPassword"
+												name="password" th:value="${currentPassword}" />
+										</div>
+										<p style="color: #828282">Entrer votre mot de passe courant pour changer votre adresse email ou 
+										    votre mot de passe.
+										</p>
+
+										<div class="form-group">
+											<label for="email">* Adresse email</label>  <input
+												type="email" class="form-control" id="email" name="email" required="required"
+												th:value="${user.email}" />
+										</div>
+										<p style="color: #828282">
+											     Adresse Email valide.Tous les mails du syst&egrave;me seront envoy&eacute;s &agrave; cette adresse
+											     .L'adresse email ne doit pas &ecirc;tre rendu publique et doit &ecirc;tre utilis&eacute; uniquement
+												si vous souhaitez recevoir un nouveau mot de passe ou vous souhaitez recevoir 
+												certaines notifications.
+										</p>
+ 
+										<div class="form-group">
+											<label for="txtNewPassword">Mot de passe</label>&nbsp;<span
+												id="checkPasswordMatch" style="color: red;"></span> 
+												<input required="required"
+												type="password" class="form-control" id="txtNewPassword"
+												name="newPassword" />
+										</div>
+
+										<div class="form-group">
+											<label for="txtConfirmPassword">Confirmer le mot de passe</label> 
+											 <input required="required"
+												type="password" class="form-control" id="txtConfirmPassword" />
+										</div>
+										<p style="color: #828282">
+										  Pour changer le mot de passe actuel,entrer le nouveau mot de passe dans 
+										  les champs ci-dessus.
+										</p>
+									      <div class="form-group">
+					                            <p>
+					                               <img alt="Visualiser la photo" id="thumbnail0"/>
+					                            </p>
+					                            <p>
+					                               <label>* Votre photo</label>  
+					                            </p>
+					                            <div class="col-xs-3">
+					                                <input type="file"
+					                                   name="extraImageFile" required="required" accept="image/png, image/jpeg"/> 
+					                            </div>
+					                       
+										   </div>
+											 <button id="updateUserInfoButton" type="submit"
+											   class="btn btn-primary">Enregistrer les modifications</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of container -->
+<!-- <div th:replace="common/header :: footer"/>
+ -->
+	<div th:replace="common/header :: body-bottom-scripts"></div>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input[name='extraImageFile']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			});
+			function showImageThumbnail(fileInput){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail').attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+			function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			}
+			
+		})
+	</script>
+</body>
+</html>

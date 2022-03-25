@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"/><head>
+<style type="text/css">
+  @media screen and (min-width:1025px) { 
+	.companyLogo{
+	 width: 30%;
+	}
+  }
+ 
+ @media screen and (max-width:456px) {
+ 	 .companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+	 .cat{
+	   padding-left: 1rem;
+	 }
+  } 
+</style>
+
+<body style="background-color: #e8e8e8 !important; ">	
+     <div th:replace="include/navbar"></div>
+     <div class="row">
+      
+        <div th:replace="include/companyHead"></div>
+        
+        
+        <div style="display: inline; margin-top: 2rem; margin-left: 3rem;">
+<!--            <span><strong style="color: #6FB70F;">Spécialités</strong></span>
+ -->            <div class="container" style=" margin-left: 10px;"><!-- 
+               <div class="book-item" data-th-each="speciality : ${specialityList}">
+                  <div class="col-md-4 col-xs-4">
+				     <p class="panel-footer" style="width:190px;margin-left:14px;">
+					     <a th:href="@{/speciality/info?id=}+${speciality.id}">  
+				     	   <span th:text="${speciality.name}" style="font-size: 15px; color: #db3208;"></span> <br>							    
+						
+						</a>			
+				     </p> 
+			       </div>
+                </div> -->
+               	<ul class="book-item" data-th-each="sp : ${specialityList}" 
+				 	style="list-style-type: '-'; padding: 0; margin: 0;">
+		             <li th:text="${sp.name}" style="margin: 0 0 !important;"></li>
+				 	
+			    </ul>
+			</div>
+        </div>
+     </div>
+     <div  class="row" style="margin-top: 8px; margin-left: 3.6rem;">
+        <div th:replace="include/companyLeft"></div>       	
+		    <div class="col-md-9 row">
+		          <div style="margin-top: 13px;" class="container-fluid">
+			        <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 1</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day1List}">
+							
+								<td>
+								  <span th:text="${day.day1}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--  Day 2 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 2</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day2List}">
+							
+								<td>
+								  <span th:text="${day.day2}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+							    </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				   <!--  Day 3 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 3</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day3List}">
+							
+								<td>
+								  <span th:text="${day.day3}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+					   <!--  Day 4 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 4</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day4List}">
+							
+								<td>
+								  <span th:text="${day.day4}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>
+					   <!--  Day 5 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 5</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day5List}">
+							
+								<td>
+								  <span th:text="${day.day5}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+					   <!--  Day 6 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 6</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day6List}">
+							
+								<td>
+								  <span th:text="${day.day6}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+					   <!--  Day 7 -->
+				   <div class="table-responsive">
+					 <table class="table table-bordered table-hover table-striped">
+						<thead>
+							<tr>
+								 <th>Jour 7</th>
+								<th>Heure d'ouverture </th>
+								 <th>Heure de fermeture</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr data-th-each="day : ${day7List}">
+							
+								<td>
+								  <span th:text="${day.day7}" class="colorText"></span>
+								</td>
+				                <td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>	
+								<td>
+								  <span th:text="${day.closeHour}" class="colorText"></span>
+								</td>				
+							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			  </div>
+            </div>
+        </div>
+  
+     <div style="margin-top: 3rem;"></div>
+         
+            
+       <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+	
+		<!--footer-area end-->
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">	 
+ <div class="col-md-4">
+		<div class="product-single">
+			<div class="product-thumb">
+			  <a th:href="@{/company/info/}+${company.id}">
+			      <img width="36%" height="105rem"
+	                   class="img-responsive"
+	                   th:src="@{${company.imagePath}}" alt=""
+	              />
+	              <span><strong th:text="${company.name}"></strong></span>
+			  </a>								
+			</div>                     
+		</div>
+		<!-- Action-->
+	     <div class="row container" style="margin-top: 1rem;" >
+		    <div class="card col-md-5">
+			  <div class="container">
+			    <h5>
+			    <b>
+			     <a th:href="@{/catalog/all?company_id=}+${company.id}">
+			       <img src="/assets/images/icons/icon-grid.png" alt="Avatar" style="width:100%; height: 2%;">
+			       <span>Catalogue</span>
+			     </a>
+			    </b></h5> 
+			  </div>
+			</div>
+		    <div class="card col-md-5">
+			  <div class="container">
+			   <h5>
+			    <b> 
+				   <a href="#">
+				     <img src="/assets/images/icons/icon-list.png" alt="Avatar" style="width:100%;height: 2%;">
+				     <span>Commander</span>
+				   </a>
+			      </b>
+			     </h5> 
+			</div>
+			</div>
+		 </div>
+	     <div class="row container">
+		    <div class="card col-md-5">
+			  <div class="container">
+			    <h5>
+			     <b> 
+			       <a th:href="@{/geolocate/info?company_id=}+${company.id}">
+			        <img src="/assets/images/icons/icon-grid.png" alt="Avatar" style="width:100%; height: 2%;">
+			         <span>Localisation</span>    
+			        </a>
+			      </b>
+			    </h5> 
+			  </div>
+			</div>
+		   <div class="card col-md-5">
+			  <div class="container">
+			    <h5>
+			     <b>
+			       <a th:href="@{/contact/all?company_id=}+${company.id}">
+			  	     <img src="/assets/images/icons/bank-loan.png" alt="Avatar" style="width:100%; height:2%;">
+			           <span>Contacts</span>
+			       </a>
+			      </b>
+			     </h5> 
+			  </div>
+			</div>
+	     </div>
+                 <!-- End Action -->  
+	</div>

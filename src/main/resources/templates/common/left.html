@@ -1,0 +1,12 @@
+<div class="col-xs-2">
+  	<h3><label for="category">Cat&eacute;gorie</label></h3>
+	<div class="list-group" id="category">
+		<a th:href="@{/location/locationList}" th:classappend="${activeAll}? 'active'" class="list-group-item">Toutes cat&eacute;gories</a>
+		<a th:href="@{/searchByCategory(category='Immeuble')}" th:classappend="${activeImmeuble}? 'active'" class="list-group-item">Immeuble</a>
+		<a th:href="@{/searchByCategory(category='Maison')}" th:classappend="${activeMaison}? 'active'" class="list-group-item">Maison</a>
+		<a th:href="@{/searchByCategory(category='Studio')}" th:classappend="${activeStudio}? 'active'" class="list-group-item">Studio</a>
+		<a th:href="@{/searchByCategory(category='Appartement')}" th:classappend="${activeAppartement}? 'active'" class="list-group-item">Appartement</a>
+		<a th:href="@{/searchByCategory(category='Chambre')}" th:classappend="${activeChambre}? 'active'" class="list-group-item">Chambre</a>
+	</div>   
+</div>
+	

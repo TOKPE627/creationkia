@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+	
+		<div class="row">	
+			<div class="col-xs-8">
+			    <h4><strong>Categorie: </strong><span th:text="${subCategory.category.name}"></span></h4>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+		
+			<div class="col-xs-8">
+			    <h4><strong>Nom: </strong><span th:text="${subCategory.name}"></span></h4>
+			</div>
+		</div>
+		<hr/>
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+				<Strong style="color: black;">Description: </Strong><br/> <br/>
+                <span th:utext="${subCategory.description}"></span>
+		   </div>
+	   </div>  
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+		
+</body>
+</html>

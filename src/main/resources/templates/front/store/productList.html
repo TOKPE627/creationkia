@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+  <body>
+	<div th:replace="common/header :: navbar"></div>
+    <div class="container">
+       	<div class="row" style="margin-top: 10px;">
+		   <div th:replace="front/store/left"></div>
+ 		<div class="col-xs-9">
+				<div class="row">
+					<div th:if="${emptyList}">
+						<h5 style="font-style: italic;">Oops, aucun r&eacute;sultat retrouv&eacute;.Essayez autre chose ou 
+						   r&eacute;essayer plus tard.</h5>
+					</div>
+	                <div id="productList">
+	                    <div class="book-item" data-th-each="product : ${productList}">
+	                    	<div class="col-md-4 col-xs-4" style="height: 480px;">
+							   <div class="panel-body">
+							       <a th:href="@{/products/productInfo?id=}+${product.id}">
+								      <img
+							            class="img-responsive" style="height: 200px;width: 245px;"
+							            th:src="@{${product.imagePath1}}" />       
+								   </a>
+							    </div>
+							     <div class="panel-footer" style="width:245px;margin-left:14px;">
+                                    <a th:href="@{/products/productInfo?id=}+${product.id}">								    
+									   <p style="font-size: 107%; color: black;">
+									       <span th:text="${product.name}"></span>									    											
+									   	</p>
+									</a> 	
+								  <h5 style="font-size: 100%; color: green;">									    
+							  	     Magasin <span th:text="${product.store.name}" ></span>
+								  </h5>
+								   <p style="color: #000080; font-size: 99%;"><i class="fa fa-map-marker" aria-hidden="true"></i>
+									    <span th:text="${product.store.town}"></span>,
+									    <span th:text="${product.store.district}"></span>
+									    <span th:text="${product.store.address}"></span>
+								     </p>
+							    </div> 
+						    </div>
+	                    </div>
+	                </div>
+				</div>
+			</div>
+		</div>
+    </div>
+	    
+	<div th:replace="common/header :: footer">  </div>
+	<div th:replace="common/header :: body-bottom-scripts">  </div>
+  </body>
+</html>

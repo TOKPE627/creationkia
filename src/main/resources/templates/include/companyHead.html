@@ -1,0 +1,13 @@
+  
+  <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+  <div class="card companyLogo"
+         style="border-width: 3px; margin-left: 2rem; height:9rem;margin-top:2rem;
+                 border-radius: 13px ;border-color: #6FB70F;">					
+         <a href="#">      
+                <img style="width:36%; height:8rem;padding-top: 10px; padding-left: 10px;" 
+               class="img-responsive"
+           th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.companyImage}}" alt=""  
+           />
+           <span><strong th:text="${company.name}"></strong></span>
+        </a>	
+     </div>

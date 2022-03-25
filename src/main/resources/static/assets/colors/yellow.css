@@ -1,0 +1,169 @@
+a, a:hover {
+	color:#6FB70F;
+}
+.section-title h2 {
+	color:#eeeae2;
+}
+.section-title h3::before {
+	background-color:#eeeae2;
+}
+#scrollUp {
+	background-color:#6FB70F;
+}
+.btn-common {
+	border-color:#6FB70F;
+	color:#6FB70F;
+}
+.btn-common:hover {
+	background-color:#6FB70F;
+	border-color:#6FB70F;
+	color:#ffffff;
+}
+.header-top.style-2 {
+	background-color:#ffffff;
+	border-bottom-color:#ffffff;
+}
+.topbar-left ul li {
+	color:#eeeae2;
+}
+.topbar-left ul li span {
+	color:#6FB70F;
+}
+.currency-bar ul li span {
+	color:#303030;
+}
+.currency-bar > ul > li > a {
+	color:#eeeae2;
+}
+.social-icons a:hover {
+	color:#6FB70F;
+}
+.register-login a:hover  {
+	color:#6FB70F;
+}
+.mainmenu nav ul li a {
+	color:#eeeae2;
+}
+.mainmenu nav ul li a:hover {
+	color:#6FB70F;
+}
+.mini-cart ul li a {
+	color:#ffffff;
+}
+.mini-cart-heading span {
+	color:#6FB70F;
+}
+.minicart-total span {
+	color:#6FB70F;
+}
+.mini-cart-remove button:hover {
+	color:#868279;
+}
+.mini-cart-checkout a.view-cart:hover {
+    background-color: #6FB70F;
+    border-color: #6FB70F;
+}
+.mini-cart-checkout a.checkout {
+    background-color: #6FB70F;
+    border-color: #6FB70F;
+}
+.mini-cart-checkout a.checkout:hover {
+    background-color: #6FB70F;
+    border-color: #6FB70F;
+}
+.vertical-menu.style-2 ul li.menu-title::before {
+	display:none;
+}
+.vertical-menu.style-2 ul li::before {
+	background-color:#6FB70F;
+}
+.vertical-menu.style-2 ul li a:hover {
+	color:#6FB70F;
+}
+.slider-product-price span {
+	color:#6FB70F;
+}
+.slider-product-price del {
+	color:#999591;
+}
+.slider-caption {
+	color:#999591;
+}
+.slider-caption h2 {
+	color:#eeeae2;
+}
+.banner-info h4 {
+	color:#6FB70F;
+}
+.collapse-menu {
+	background-color:#ffffff;
+}
+.collapse-menu > ul > li > a {
+	background-color:#111111;
+}
+.search-box button {
+	background-color:#6FB70F;
+}
+.search-box button:hover {
+	background-color:#6FB70F;
+}
+.slider-caption h4 {
+	color:#6FB70F;
+}
+.mini-cart ul li a:hover {
+	color:#6FB70F;
+}
+.mini-cart ul li a span {
+	background-color:#6FB70F;
+}
+.product-title small a {
+	color:#6FB70F;
+}
+.product-title h4 a {
+	color:#eeeae2;
+}
+.product-title h4 a:hover {
+	color:#6FB70F;
+}
+.product-action a.add-to-cart {
+	background-color:#6FB70F;
+}
+.product-action a.add-to-cart:hover {
+	background-color:#6FB70F;
+}
+.product-action .product-compare:hover, .product-action .product-wishlist:hover {
+	background-color:#6FB70F;
+	border-color:#6FB70F;
+}
+.product-single.style-2:hover {
+	border-color:#6FB70F;
+}
+.slick-slider .slick-dots li.slick-active button {
+	background-color:#6FB70F;
+}
+.subscribe-form button {
+	background-color:#6FB70F;
+}
+.subscribe-form button:hover {
+	background-color:#6FB70F;
+}
+.product-countdown.style-2 .cdown {
+	border-color:#40351e;
+	color:#ffffff;
+}
+.product-countdown.style-2 .cdown span {
+	color:#ffffff;
+}
+@media (max-width: 991px) {
+.search-box select {
+    background-color: #111;
+    border: 0;
+	color:#ffffff;
+}
+.search-box input {
+    background-color: #111111;
+    color: #fff;
+    border: 0;
+}
+
+}

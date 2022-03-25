@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+<div th:replace="common/header :: navbar"></div>
+	<div class="container">
+	    <div>
+			<ol class="breadcrumb">
+			  <li><a th:href="@{/products/productInfo?id=}+${product.id}">Pr&eacute;c&eacute;dent</a></li>
+			</ol>
+		</div>							    
+		<hr
+			style="position: absolute; width: 100%; height: 6px; background-color: #333; z-index: -1; margin-top: -80px;" />
+		  
+		<div style="margin-top: 10px;">	
+			
+
+	                    <div class="book-item">
+                           <div class="row" style="margin-top: 15px;">
+                              <!-- Main image -->
+		                      <div class="col-md-6 col-xs-6" style="height: 400px;">
+								       <img 
+									          class="img-responsive shelf-location" style="height: 400px;width: 100%;"
+									          th:src="@{${product.imagePath2}}" />    
+						       </div>
+						       
+							    <!-- Extra Image 1  -->
+							    <div class="col-md-6 col-xs-6" style="height: 400px;">
+								       <img 
+									          class="img-responsive shelf-location" style="height: 400px;width: 100%;"
+									          th:src="@{${product.imagePath3}}" />
+							    </div>
+                           </div>
+	                    
+						  
+	                </div>
+	          </div>
+	</div>
+	<!-- end of container -->
+<div th:replace="common/header :: footer">  </div>
+
+<div th:replace="common/header :: body-bottom-scripts">  </div>
+</body>
+</html>

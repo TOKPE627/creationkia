@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div class="row">
+<!-- 			<form class="form-horizontal"  method="post">
+ -->				<select name="storeTypeId" id="storeTypeId">
+				   <option>------------</option>
+			       <option data-th-each="st : ${storeTypes}" th:value="${st.id}" th:text="${st.name}">
+			       </option>
+			    </select>
+<!-- 			</form>
+ -->		</div>
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+    <script type="text/javascript">
+		$(document).ready(function() {
+			  $('#storeTypeId').on('change', function() {
+				  var id=document.getElementById('storeTypeId').value;
+			   //alert(document.getElementById('storeTypeId').value);
+			    //var $form = $(this).closest('form');
+			   // $form.find('input[type=submit]').click();
+			    //var path = '/store/addType';
+				//url: '/store/addType?storeTypeId='+document.getElementById('storeTypeId').value
+				$.ajax({
+					type: 'POST',
+					data: {},
+					url: '/store/addType?id='+id,
+					contentType: "application/json",
+					success: function(res) {
+						alert("success")
+						//console.log(res);
+                        //window.location.href = data.redirect;							
+					},
+					error: function(res){
+						console.log(res); 
+				    }
+				});
+						
+			   }
+			  );
+	   });
+	</script> 
+</body>
+</html>
+
+
+
+

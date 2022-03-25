@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/catalog/updateCatalog?id=}+${catalog.id}">Editer</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-5">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${catalog.imagePath}}" /> 
+					</div>
+				</div>
+			       <p class="panel-footer" style="width:190px;margin-left:14px;">
+				     <a th:href="@{/catalog/info?id=}+${catalog.id}">  
+			     	   <span th:text="${catalog.name}" style="font-size: 15px; color: #db3208;"></span> <br>							    
+					    <i class="fa fa-money" aria-hidden="true">
+					      <span th:text="${catalog.price}" style="color: #000080; margin-left: 1rem;"></span>
+					    </i>
+					</a>			
+			    </p> 
+			</div>
+		
+		</div>
+	   
+	   <fieldset><legend style="font-size: medium;">Details</legend></fieldset>
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+                <span th:utext="${catalog.detail}"></span>
+		   </div>
+	   </div>  
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+		
+</body>
+</html>

@@ -1,0 +1,298 @@
+   <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml"> 
+    <section class="content">
+         <div th:if="${userRole1}" class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+    
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Boutique</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/shop/shopList}" class="small-box-footer">Tous les produits de la boutique<i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3></h3>
+                <p>Achat groupé</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a th:href="@{/groupSale/groupSaleList}" class="small-box-footer">Tous les achats groupés  <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+         
+    
+ 
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Affiche publicitaire</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/advertise/update}" class="small-box-footer">Voir l'affiche <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+                 <!-- ./col -->
+           <div class="col-lg-3 col-6">
+            
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/order/all}" class="small-box-footer">Toutes les commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+        <div class="row">
+              <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Historique des commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/order/historical}" class="small-box-footer">Historique des commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        
+        
+        <!-- Main row -->
+
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+      <div th:if="${userRole2}" class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3></h3>
+                <p>Magasin</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a th:href="@{/company/companyInfo}" class="small-box-footer">Mon magasin <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Produits</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/product/productList}" class="small-box-footer">Tous les produits <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/order/all}" class="small-box-footer">Toutes les commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Historique des commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/order/historical}" class="small-box-footer">Historique des commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+      
+      <div th:if="${userRole3}" class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3></h3>
+                <p>Service</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a th:href="@{/company/companyInfo}" class="small-box-footer">Mon Service <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+         
+        <div class="col-lg-3 col-6">
+            <!-- small box -->
+          <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Catalogues</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/catalog/catalogList}" class="small-box-footer">Tous les catalogues <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+            
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Spécialités</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/speciality/specialityList}" class="small-box-footer">Toutes les spécialités <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/order/all}" class="small-box-footer">Toutes les commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+           <div class="small-box bg-success">
+              <div class="inner">
+                <h3><sup style="font-size: 20px"></sup></h3>
+                <p>Historique des commandes</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a th:href="@{/order/historical}" class="small-box-footer">Historique des commandes <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Horaires de travail</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/workingHour/all}" class="small-box-footer">Les horaires de travail <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Villes de livraison</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/townAvailable/all}" class="small-box-footer">Les villes de livraison <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3></h3>
+                <p>Agenda</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a th:href="@{/agenda/all}" class="small-box-footer">Tout l'agenda <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <!-- /.row (main row) -->
+      </div><!-- /.container-fluid -->
+      
+     <!--    <div th:if="${userRole4}" class="container-fluid">
+          <div class="row">
+             <div class="col-lg-3 col-6">
+	            small box
+	            <div class="small-box bg-warning">
+	              <div class="inner">
+	                <h3></h3>
+	                <p>Commandes</p>
+	              </div>
+	              <div class="icon">
+	                <i class="ion ion-person-add"></i>
+	              </div>
+	              <a th:href="@{/order/all}" class="small-box-footer">Toutes les commandes <i class="fas fa-arrow-circle-right"></i></a>
+	            </div>
+	          </div>
+	       
+	         <div class="col-lg-3 col-6">
+	            small box
+	            <div class="small-box bg-success">
+	              <div class="inner">
+	                <h3></h3>
+	                <p>Historique des commandes</p>
+	              </div>
+	              <div class="icon">
+	                <i class="ion ion-person-add"></i>
+	              </div>
+	              <a th:href="@{/order/historical}" class="small-box-footer">Toutes les commandes <i class="fas fa-arrow-circle-right"></i></a>
+	            </div>
+	          </div>
+          </div>
+        </div> -->
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <!-- /.row (main row) -->
+    </section>

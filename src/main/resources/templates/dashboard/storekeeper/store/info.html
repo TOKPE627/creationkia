@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/headerDashboard :: common-header" />
+
+<body>
+	<div th:replace="common/headerDashboard :: navbar"></div>
+	<div class="container">
+		<div>
+			<ol class="breadcrumb">
+				<li><a th:href="@{/store/updateStore?id=}+${store.id}">Editer</a></li>
+			</ol>
+		</div>
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${store.logoPath}}" /> 
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-8">
+			    <h4><strong>Type de magasin: </strong><span th:text="${store.storetype.name}"></span></h4>
+				
+				<div class="row">
+				   	<div class="panel panel-default" style="border-width: 5px;width: 100%;">
+   						<div class="panel-body">
+   						  	<div class="col-xs-6">	
+								<p><strong>Ville: </strong><span th:text="${store.town}"></span>
+								 </p>
+								 <p><strong>Quartier: </strong><span th:text="${store.district}"></span>
+								 </p>
+								 <p><strong>Adresse: </strong><span th:text="${store.address}"></span>
+								 </p>
+								<p><strong>Date de publication: </strong><span th:text="${store.publicationDate}"></span></p>
+   						   </div> 
+			               <h4><strong><span> Contacts</span></strong></h4>
+			                <hr/>
+			               <div class="col-xs-6">
+	   						   <p><strong>T&eacute;l&eacute;phone: </strong> <span th:text="${store.phone}"></span> </p>
+							   <p><strong>Email: </strong><span th:text="${store.email}"></span></p>
+							    <p><strong>Whatsapp: </strong><span th:text="${store.whatsapp}"></span></p>
+							   <p><strong>Facebook: </strong><a><span style="cursor: pointer;" th:text="${store.facebook}" ></span></a></p>
+							   <p><strong>Instagram: </strong><a><span style="cursor: pointer;" th:text="${store.instagram}"> </span></a></p>	
+	   					    
+			               </div>
+			           </div>    
+		          	</div>          
+				</div>
+			</div>
+		</div>
+		<hr/>
+	   <div class="panel panel-default" style="border-width: 5px;width: 100%;">
+		   <div class="panel-body">  
+				<Strong style="color: black;">D&eacute;tails: </Strong><br/> <br/>
+                <span th:utext="${store.detail}"></span>
+		   </div>
+	   </div>  
+	   <div class="row">
+			<div class="col-xs-6">
+				<h4><strong>Localisation: </strong></h4>
+				<div class="panel panel-default">
+					<div class="panel-body">
+					  <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					            th:src="@{${store.geolocateImagePath}}" /> 
+					</div>
+				</div>
+			</div>
+	    </div> 
+	</div>
+	<div th:replace="common/headerDashboard :: body-bottom-scripts"></div>
+		
+</body>
+</html>

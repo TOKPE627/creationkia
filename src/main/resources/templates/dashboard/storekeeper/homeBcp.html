@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<body>
+	<div th:replace="common/headerDashboard"></div>
+	   <div class="row" style="margin-top: 33rem;">
+        <div class="col-md-3">
+          	<a th:href="@{/company/companyInfo}">Service</a>
+        </div>
+     
+	    <div class="col-md-3">
+	       <a th:href="@{/product/productList}"> <span>Produits</span></a>
+	    </div>
+	    <div class="col-md-3">
+	       <a th:href="@{/order/all}"> <span>Commandes</span> </a>
+	    </div>
+	</div>
+</body>
+</html>

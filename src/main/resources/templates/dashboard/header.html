@@ -1,0 +1,25 @@
+  <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+  
+   <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+             <h1 class="m-0">Bienvenue dans votre espace
+              <span th:if="${userRole1}">Admin</span> 
+              <span th:if="${userRole2}">Magasin</span>
+              <span th:if="${userRole3}">Service</span>
+<!--               <span th:if="${userRole4}">Client</span>
+ -->              
+            </h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item"><a th:href="@{/dashboard}"
+                 class="colorText"
+               >Tableau de bord</a></li>
+<!--                 <li class="breadcrumb-item active">Dashboard v1</li>
+ -->             </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
