@@ -11,6 +11,7 @@ cloud:
 application:
  bucket: 
    name: attolystorage
+   icon: attolyicon
    user: attolyuser
    company: attolycompany
    product: attolyproduct

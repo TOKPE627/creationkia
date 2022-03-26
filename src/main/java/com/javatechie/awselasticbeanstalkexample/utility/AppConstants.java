@@ -37,13 +37,14 @@ public class AppConstants {
    
 //   @Value("${application.bucket.user}")
 //   public static String awsBucketUser;
-    public static String awsBucketUser="https://attolyusers.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketCompany="https://attolycompanies.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketProduct="https://attolyproducts.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketShop ="https://attolyshops.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketGroupSale="https://attolygroupsales.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketAdvertise="https://attolyads.s3.us-east-2.amazonaws.com/";
-    public static String awsBucketCatalog ="https://attolycatalogs.s3.us-east-2.amazonaws.com/";
+   public static String awsBucketIcon="https://attolyicon.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketUser="https://attolyuser.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketCompany="https://attolycompany.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketProduct="https://attolyproduct.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketShop ="https://attolyshop.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketGroupSale="https://attolygroupsale.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketAdvertise="https://attolyad.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketCatalog ="https://attolycatalog.s3.us-east-1.amazonaws.com/";
 
 //   @Value("${application.bucket.product}")
 //   public static String awsBucketProduct;
@@ -102,7 +103,7 @@ public class AppConstants {
    public static final String SUB_STORE_2    = "breeding";
 
 
-   public static String imagePath="https://attolystorage.s3.us-east-2.amazonaws.com/1641297952199_library.png";
+   //public static String imagePath="https://attolystorage.s3.us-east-2.amazonaws.com/1641297952199_library.png";
    //public static String pathImg="/src/main/resources/static";
    //public static String pathImg ="/home/tokpe/development/jee/attol/src/main/resources/static";
    

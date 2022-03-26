@@ -138,6 +138,8 @@ public class HomeController {
 	public String login(
 			@ModelAttribute("type") String type,
 			Model model) throws UnknownHostException{
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 			if(!bookingsAddedToCart.isEmpty()) {
 		    	 model.addAttribute("bookingAddedToCartExist",true);
@@ -154,6 +156,7 @@ public class HomeController {
 	
 	@RequestMapping("/createAccount")
 	public String createAccount(Model model) throws UnknownHostException{
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 			if(!bookingsAddedToCart.isEmpty()) {

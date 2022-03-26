@@ -100,6 +100,7 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	@GetMapping("/")
 	public String welcome(Model model) throws UnknownHostException {
 		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);

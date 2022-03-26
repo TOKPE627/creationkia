@@ -536,7 +536,6 @@ function changeImage(a){
    
   
     function changeImageAttoly(a){
-    	
 	    var idImage    = a.id;
 	    var image = a.src;
 		
@@ -630,7 +629,9 @@ function changeImage(a){
 										<div class="social-icons style-5" style="cursor: pointer;">
 										  <span>Compagnie:</span>
 											  <span>
-										      <img src="/assets/images/logos/logo.png" width="30%;" alt=""  onClick="companyImage(this)">
+										      <img
+										         th:src="@{${awsBucketIcon}+'logo.png'}"
+										       width="30%;" alt=""  onClick="companyImage(this)">
 										  </span>                                        
 										</div> 
 									</div>
@@ -753,7 +754,7 @@ function changeImage(a){
 										<div class="social-icons style-5" style="cursor: pointer;">
 										  <span>Compagnie:</span>
 										  <span>
-										      <img src="/assets/images/logos/logo.png" width="30%;" alt=""  onClick="companyImage(this)">
+										      <img th:src="@{${awsBucketIcon}+'logo.png'}"  width="30%;" alt=""  onClick="companyImage(this)">
 										  </span>                                          
 										</div> 
 									</div>

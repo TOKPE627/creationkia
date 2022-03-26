@@ -27,6 +27,8 @@ public class ContactController {
 	private BookingService bookingService;
 	@GetMapping("")
 	public String index(Model model) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+
 	    List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);

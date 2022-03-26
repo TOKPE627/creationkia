@@ -55,6 +55,7 @@ public class CartController {
    
 	@RequestMapping("/all")
 	public String cart(Model model) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
@@ -74,6 +75,7 @@ public class CartController {
 	public String productInfo(
 			@RequestParam("id") Long id,Model model
 	 ) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);

@@ -161,6 +161,7 @@ public class BookingController {
     public String add(Model model,
     		@PathVariable Long product_id
     		) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketShop",    AppConstants.awsBucketShop);
@@ -212,7 +213,7 @@ public class BookingController {
 				@ModelAttribute("password")  String password,
 				Model model
 			) throws Exception{
-	
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketShop",    AppConstants.awsBucketShop);
