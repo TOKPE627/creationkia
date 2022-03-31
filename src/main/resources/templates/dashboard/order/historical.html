@@ -87,15 +87,16 @@
 					            <div class="col-md-2">
 					                <a th:href="@{/product/productInfo(id=${booking.product.id})}">
 								     <img th:if="${booking.product.category.title =='shop'}" width="2rem" height="40px"
+									 style="object-fit: contain;"
 							                    class="img-responsive"
 								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
 							               <img th:if="${booking.product.category.title == 'groupSale'}" width="2rem" height="40px"
-							                    class="img-responsive"
+							                    class="img-responsive" style="object-fit: contain;"
 								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
 									  	   <img th:if="${booking.product.category.title =='store'}" width="2rem" height="40px"
-							                    class="img-responsive"
+							                    class="img-responsive" style="object-fit: contain;"
 								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               /> 
 								    </a>

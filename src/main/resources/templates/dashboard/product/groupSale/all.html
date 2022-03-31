@@ -70,7 +70,7 @@
 					 	<td>
 						    <a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
 						      <img
-					            class="img-responsive" style="height: 250px;width: 100%;"
+					            class="img-responsive" style="height: 250px;width: 100%; object-fit: contain;"
 			                   th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 					             /> 
 						    </a>

@@ -3889,9 +3889,13 @@ a.value-decrease::before {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
+	
+	/* .categoryTypeContainer{
+		margin-top: 22rem !important;
+	}
   .categoryType{
     margin-top: 16rem;
-    width: 28rem;
+     width: 28rem; 
   }
   	.categoryType .cat{
 	   margin-left: 1rem;
@@ -3901,7 +3905,7 @@ a.value-decrease::before {
     .categoryType .catGroupSale{
       margin-left: 0.2rem;
       color: black;
-    }	
+    }	 */
 
 	#quickViewModal{
    width: 35.5rem;

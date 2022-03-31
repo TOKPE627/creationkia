@@ -63,7 +63,7 @@
 	                       border-radius: 13px ;border-color: #6FB70F;">
 	                 <a th:href="@{/company/info/}+${company.id}">
 					      <img style="width:36%; height:5rem !important; " 
-			                   class="img-responsive"
+			                   class="img-responsive"  style="object-fit: cover;"
 			                   th:src="@{${company.imagePath}}" alt=""
 			              />
 					  </a>	
@@ -98,12 +98,14 @@
 					  </div>
 					   <div class="form-group">
 					    <label for="exampleFormControlInput1">Vue de face</label>
-					    <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					    <img class="img-responsive center-block" 
+						style="height: 350px;width: 100%;object-fit: cover;"
 					            th:src="@{${company.geolocateImagePath1}}" /> 
 					  </div>
 					  <div class="form-group">
 					    <label for="exampleFormControlInput1">Vue de loin</label>
-					    <img class="img-responsive center-block" style="height: 350px;width: 100%;"
+					    <img class="img-responsive center-block" 
+						style="height: 350px;width: 100%; object-fit: cover;"
 					            th:src="@{${company.geolocateImagePath2}}" /> 
 					  </div>
 				   </fieldset>

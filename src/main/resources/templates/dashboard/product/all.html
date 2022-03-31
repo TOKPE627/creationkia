@@ -68,17 +68,18 @@
 						
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
 						    <a th:href="@{/product/productInfo(id=${product.id})}">
-						     <img th:if="${product.category.title =='shop'}" width="60%" height="200px"
+						     <img th:if="${product.category.title =='shop'}"
+							  width="60%" height="200px"  style="object-fit: cover;"
 		                    class="img-responsive" 
 			                  th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 		               />
 		               <img th:if="${product.category.title == 'groupSale'}" 
-		                   width="60%" height="200px"
+		                   width="60%" height="200px"  style="object-fit: cover;"
 		                    class="img-responsive"
 			                  th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 		               />
 				  	   <img th:if="${product.category.title =='store'}"
-				  	       width="60%" height="200px"
+				  	       width="60%" height="200px"  style="object-fit: cover;"
 		                    class="img-responsive"
 			                  th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 		               /> 

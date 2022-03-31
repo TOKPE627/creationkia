@@ -69,7 +69,7 @@
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
 						    <a th:href="@{/shop/shopInfo(id=${product.id})}">
 						      <img
-					            class="img-responsive" style="height: 200px;width: 60%;"
+					            class="img-responsive" style="height: 200px;width: 60%; object-fit: cover;"
 			                   th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 					             /> 
 						    </a>

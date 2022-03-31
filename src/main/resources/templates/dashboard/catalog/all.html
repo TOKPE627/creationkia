@@ -67,7 +67,8 @@
 						   <input th:id="'selected'+${catalog.id}" class="checkboxCatalog" type="checkbox" />
 						    <a th:href="@{/catalog/catalogInfo(id=${catalog.id})}">
 						      <img
-					            class="img-responsive" style="height: 200px;width: 60%;"
+					            class="img-responsive" 
+								style="height: 200px;width: 60%;object-fit: cover;"
 					             th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
 					             /> 
 						    </a>

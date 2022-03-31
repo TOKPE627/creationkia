@@ -275,6 +275,8 @@ public class CompanyController {
 		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
 		model.addAttribute("awsBucketProduct",AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+
 		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	       model.addAttribute("bookingBegunList",bookingsBegun);
 		Company company = companyService.findById(id);

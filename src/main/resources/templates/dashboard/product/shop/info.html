@@ -75,7 +75,7 @@
 	        <div class="container">
 	           <div class="product">					        
 			      <img
-		            class="img-responsive"
+		            class="img-responsive" style="object-fit: contain;"
 		            th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""
 		           /> 
 	           </div>
@@ -150,18 +150,18 @@
 			         <legend style="font-size: medium;color:  #6FB70F">Autres images <hr></legend>	
 			         <div class="product">					
 						  <img
-					            class="img-responsive" 
+					            class="img-responsive"  style="object-fit: contain;"
 					           th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image2}}" alt=""
 					             /> 
 			         </div>
 			         <div class="product">					
 						  <img
-					            class="img-responsive"
+					            class="img-responsive" style="object-fit: contain;"
 					 		    th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image3}}" alt=""/>
 			         </div>
 			         <div class="product">					
 					      <img
-				            class="img-responsive"
+				            class="img-responsive" style="object-fit: contain;"
 				             th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image4}}" alt="" />
 				            
 			          </div>

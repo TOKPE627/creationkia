@@ -108,9 +108,10 @@
 				   <div class="form-group">
 						<label class="col-md-2 control-label">Photo</label>
 			              <div class="col-md-6">
-				             <img
+				             <img 
 						        id="thumbnail0"
-						        class="img-responsive center-block" style="height: 350px;width: 100%;"
+						        class="img-responsive center-block"
+								 style="height: 350px;width: 100%; object-fit: cover;"
 				                   th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
 						   	   />
 			                <div class="col-xs-3">

@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
+<head th:replace="include/head"></head>
 <style type="text/css">
   @media screen and (min-width:1025px) {
      .bookingForm{
@@ -45,15 +45,15 @@
 			<legend class="center-block">
 			   <span style="font-size: small"> * Informations de la vente</span>
 		  	   <img th:if="${product.category.title =='shop'}" width="100%" height="300rem"
-                    class="img-responsive"
+                    class="img-responsive" style="object-fit: cover;"
 	                  th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
                />
                <img th:if="${product.category.title == 'groupSale'}" width="100%" height="300rem"
-                    class="img-responsive"
+                    class="img-responsive"  style="object-fit: cover;"
 	                  th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
                />
 		  	   <img th:if="${product.category.title =='store'}" width="100%" height="300rem"
-                    class="img-responsive"
+                    class="img-responsive"  style="object-fit: cover;"
 	                  th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
                /> 
 			</legend>

@@ -13,13 +13,17 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-              <img src="/assets/images/logos/logo.png" alt="Attoly Logo" 
+          <a th:href="@{/}">
+            <img src="/assets/images/logos/logo.png" alt="Attoly Logo" class="brand-image"
+               style="width: 65%; cursor: pointer;">
+          </a>
+           <!--    <img src="/assets/images/logos/logo.png" alt="Attoly Logo" 
                              
                class="brand-image"
                style="width: 65%; cursor: pointer;"
              	th:data-companyimage      = "@{/assets/images/logos/logo.png}"
              	 data-toggle="modal" data-target="#quickViewModal"
-               >
+               > -->
              <span style="color: white;" th:utext="${user.username}">
         </span>
       <!--     <img

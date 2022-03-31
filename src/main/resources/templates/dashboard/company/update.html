@@ -119,7 +119,8 @@
 		              style="border-width: 3px;
 		                       border-radius: 13px ;border-color: #6FB70F;">
 	 					      <img 
-				                   class="companyLogoImg" id="thumbnail0"
+				                   class="companyLogoImg" id="thumbnail0" 
+								    style="object-fit: contain;"
 				                   th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.companyImage}}" alt=""
 				            
 				              />
@@ -137,7 +138,8 @@
 						    <label for="exampleFormControlInput1">Vue de face</label><br>
 						     
 						    <img class="geolocateImg" 
-						       id="thumbnail1" 
+						       id="thumbnail1"   
+							   style="object-fit: contain; width: 39rem; height: 22rem;"
 						   	  th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage1}}" alt=""
 						    />					  
 						     <input type="file" name="files"/>
@@ -149,7 +151,8 @@
 						    <label for="exampleFormControlInput1">Vue de loin</label><br>
 						     
 						    <img class="geolocateImg"
-						       id="thumbnail2"
+						       id="thumbnail2" 		
+							   style="object-fit: contain; width: 39rem; height: 22rem;"
 							   	  th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage2}}" alt=""				   	  
 						   	   />
 						   	  <input type="file" name="files">

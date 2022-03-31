@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
+<head th:replace="include/head"></head>
 <style type="text/css">
    .btn-success {
 	  background-color: #6FB70F !important;
@@ -82,15 +82,15 @@
 						                <a th:href="@{/cart/productInfo(id=${booking.product.id})}">
 									    
 								            <img th:if="${booking.product.category.title =='shop'}" width="80%" height="60px"
-							                    class="img-responsive"
+							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
 							               <img th:if="${booking.product.category.title == 'groupSale'}" width="80%" height="60px"
-							                    class="img-responsive"
+							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
 									  	   <img th:if="${booking.product.category.title =='store'}" width="80%" height="60px"
-							                    class="img-responsive"
+							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               /> 
 									    </a>
