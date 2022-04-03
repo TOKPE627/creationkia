@@ -130,19 +130,22 @@ public class RestUploadCatalogController {
                 catalog.setName(name);
                 catalog.setPrice(price);
                 catalog.setDetail(detail);
+        		Catalog catalogUpdated = catalogService.update(catalog);
+
+                int count=0;
+       		    for(MultipartFile extraMultipart : uploadfiles) {
+       		      String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+           		  if(count == 0) {
+           			if(extraMultipart.getSize()>0) { 
+           				catalogUpdated.setImage(extraImageName);
+           				catalogService.update(catalogUpdated);
+       	               saveUploadedFiles(Arrays.asList(uploadfiles),catalog.getId());
+             		 }  
+           		  }
+       		   }
         	}
       
-            int count=0;
-   		    for(MultipartFile extraMultipart : uploadfiles) {
-   		      String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
-       		  if(count == 0) {
-       			if(extraMultipart.getSize()>0) { 
-   		           catalog.setImage(extraImageName);
-   	               saveUploadedFiles(Arrays.asList(uploadfiles),catalog.getId());
-         		 }  
-       		  }
-   		   }
-   		   catalogService.update(catalog);
+       
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

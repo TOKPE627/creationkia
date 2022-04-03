@@ -73,7 +73,7 @@ public class RestUploadAdvertiseController {
           		            //TODO
           				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
           		            if(advertiseSaved!=null) {
-          		              advertise.setImage(extraImageName);
+          		            	advertiseSaved.setImage(extraImageName);
           		              advertiseService.update(advertiseSaved);
           		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId());
                              }

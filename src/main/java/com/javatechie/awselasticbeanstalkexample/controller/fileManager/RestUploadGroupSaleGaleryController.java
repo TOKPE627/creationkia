@@ -62,23 +62,25 @@ public class RestUploadGroupSaleGaleryController {
             Product product= productService.findById(Long.parseLong(extraField));
             
             ProductGalery galery = new ProductGalery();
-            
-    		for(MultipartFile extraMultipart : uploadfiles) {
-    			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
-
-    			if(count == 0) galery.setImage1(extraImageName);
-    		    if(count == 1) galery.setImage2(extraImageName);
-    		    if(count == 2) galery.setImage3(extraImageName);
-    		    if(count == 3) galery.setImage4(extraImageName);
-    		    count++;
-    		} 	    	
 	 	    ProductGalery galerySaved = productGaleryService.save(galery);
-	 	    if(galerySaved !=null) {
-	 	    	product.setGalery(galerySaved);
+	 	   if(galerySaved !=null) {
+	 			for(MultipartFile extraMultipart : uploadfiles) {
+	    			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+
+	    			if(count == 0) galerySaved.setImage1(extraImageName);
+	    		    if(count == 1) galerySaved.setImage2(extraImageName);
+	    		    if(count == 2) galerySaved.setImage3(extraImageName);
+	    		    if(count == 3) galerySaved.setImage4(extraImageName);
+	    		    count++;
+	    		} 	    
+	 			productGaleryService.update(galerySaved);
+	 			product.setGalery(galerySaved);
 	 	    	productService.update(product);
+	            saveUploadedFiles(Arrays.asList(uploadfiles),galery.getId());
+	 	    
 	 	    }
 	 	    
-            saveUploadedFiles(Arrays.asList(uploadfiles),galery.getId());
+    	
 
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

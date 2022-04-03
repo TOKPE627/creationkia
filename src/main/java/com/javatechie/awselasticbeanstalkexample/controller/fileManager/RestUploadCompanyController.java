@@ -73,23 +73,22 @@ public class RestUploadCompanyController {
             Company company= companyService.findById(Long.parseLong(extraField));
             
             CompanyGalery galery = new CompanyGalery();
-            
-    		for(MultipartFile extraMultipart : uploadfiles) {
-    			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
-
-    			if(count == 0) galery.setCompanyImage(extraImageName);
-    		    if(count == 1) galery.setGeolocateImage1(extraImageName);
-    		    if(count == 2) galery.setGeolocateImage2(extraImageName);
-    		    count++;
-    		} 	    	
 	 	    CompanyGalery galerySaved = companyGaleryService.save(galery);
 	 	    if(galerySaved !=null) {
+	 	    	for(MultipartFile extraMultipart : uploadfiles) {
+	    			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+
+	    			if(count == 0) galerySaved.setCompanyImage(extraImageName);
+	    		    if(count == 1) galerySaved.setGeolocateImage1(extraImageName);
+	    		    if(count == 2) galerySaved.setGeolocateImage2(extraImageName);
+	    		    count++;
+	    		} 
+	 	    	companyGaleryService.update(galerySaved);
 	 	    	company.setGalery(galerySaved);
 	 	    	companyService.update(company);
+	            saveUploadedFiles(Arrays.asList(uploadfiles),galery.getId());
 	 	    }
-	 	    
-            saveUploadedFiles(Arrays.asList(uploadfiles),galery.getId());
-
+    			  
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
