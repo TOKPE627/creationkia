@@ -69,12 +69,18 @@
     .categoryTypeDiv img{
         width:  10rem !important;
     }
+     .catTypeShop{
+        margin-left: 1.5rem !important;
+    }
+    .catTypeStore{
+        margin-left: 1.5rem !important;
+    } 
    }
 </style>
 
 <div class="container categoryTypeContainer" style="margin-top: 20rem;">   
     <div class="row categoryType">
-        <div class="col-xs-6 categoryTypeDiv catTypeShop" style="margin-left: 4rem;background-color: #e8e8e8;">
+        <div class="col-xs-6 categoryTypeDiv catTypeShop" style="background-color: #e8e8e8;">
             <a th:href="@{/shop}">
                 <img
                         class="img-responsive"
@@ -99,7 +105,7 @@
                         <strong>Service</strong>  </span>  
               </a>                  
         </div>
-        <div class="col-xs-6 categoryTypeDiv catTypeStore" style="margin-left: 4rem;background-color: #e8e8e8;">
+        <div class="col-xs-6 categoryTypeDiv catTypeStore" style="background-color: #e8e8e8;">
             <a th:href="@{/store}">
                 <img                      
 
