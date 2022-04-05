@@ -338,7 +338,7 @@ public class ProductController {
 			  @ModelAttribute("image") String image) {
 			Product result = new Product();
 			result.setBrand(image);
-		    return   ResponseEntity.ok(result);
+		    return ResponseEntity.ok(result);
 		}
 		
 

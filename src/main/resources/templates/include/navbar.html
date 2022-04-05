@@ -107,9 +107,10 @@
 		<form class="form-inline active-purple-4 searchBar">
 		  <input class="form-control form-control-sm mr-3 w-75"
 		   type="text" placeholder="Entrer votre recherche"
-		    aria-label="Search">
+		    aria-label="Search" id="search" name="search">
 		  <i class="fa fa-search text-white" aria-hidden="true"></i>
-		</form>
+    </form>
+
       <li class="nav-item contact">
         <a class="nav-link text-white" th:href="@{/contact}">Contact</a>
       </li>
@@ -147,5 +148,101 @@
     </ul>
   </div>
 </nav>
+<div style="background-color: black; margin-left: 1rem;" id="dumppy"></div>
+
+<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+
+<script>
+  $(document).ready(function(){
+      $("#search").keyup(function(){
+
+      var query=$(this).val();
+      if(query!='')
+      {
+           $.ajax({
+            type: "GET",
+	          contentType: "application/json",
+	          url: '/search/products?keyword='+query,
+	          data: {},
+	          dataType: 'json',
+	          cache: false,
+	          timeout: 600000,
+	          success: function (data) {
+              var json = data.result;
+              $.each(json,function(index,product){
+                if(product.galery !=null && product.category.title =='service'){
+                  $('#dumppy').html('');    
+                  $('#dumppy').append(
+                  '<div class="row" style="margin-top:15px;">'+ 
+                      '<div class="col-xs-12">'
+                      +'<img class="rounded-circle" style="width:80px; height:8px" src='+ data.awsBucketProduct+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                    +'</div>'   
+                    +'<div class="col-xs-12" style="display:inline;margin-left:1rem; cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
+                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                      +'<span class="text-danger">' +product.price+ ' xof'+'</span>' 
+                    +'</div>'
+                  +"</div>"   
+                 );
+                }
+                if(product.galery !=null && product.category.title =='store'){
+                  $('#dumppy').html('');    
+                  $('#dumppy').append( 
+                  '<div class="row" style="margin-top:15px;">'+ 
+                      '<div class="col-xs-12">'
+                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketProduct+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                      +'</div>'   
+                      +'<div class="col-xs-12" style="display:inline;margin-left:1rem;cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
+                        +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                        +'<span class="text-danger">' +product.price+' xof'+'</span>'
+                      +'</div>'
+                    +"</div>"   
+                   
+                 );
+                }
+                if(product.galery !=null && product.category.title =='shop'){
+                  $('#dumppy').html('');    
+                  $('#dumppy').append(
+                  '<div class="row" style="margin-top:15px;">'+ 
+                      '<div class="col-xs-12">'
+                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketShop+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                    +'</div>'   
+                    +'<div class="col-xs-12" style="display:inline;margin-left:1rem;cursor: pointer;" onclick="getResultDumppy('+product.id+')">'
+                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                      +'<span class="text-danger">' +product.price+' xof'+'</span>' 
+                    +'</div>'
+                   
+                  +"</div>"   
+               );
+              }
+              if(product.galery !=null && product.category.title == 'groupSale'){
+                $('#dumppy').html('');    
+                  $('#dumppy').append(
+                  '<div class="row" style="margin-top:15px;">'+ 
+                      '<div class="col-xs-12">'
+                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketGroupSale+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                    +'</div>'   
+                    +'<div class="col-xs-12" style="display:inline; margin-left:1rem; cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
+                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                      +'<span class="text-danger">' +product.price+' xof'+'</span>' 
+                    +'</div>'  
+                  +"</div>"   
+               );
+              }
+              
+            });
+          },
+             
+	          error: function (e) {
+	            console.log("ERROR : ", e);
+	          }
+          });
+      }
+      });
+  });
+
+ function getResultDumppy(product_id){
+  alert(product_id);
+ }
+</script>
 </body>
 </html>

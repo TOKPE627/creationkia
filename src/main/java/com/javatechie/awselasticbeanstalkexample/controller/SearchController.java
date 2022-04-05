@@ -7,10 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 
 @Controller
 @RequestMapping("/search")
@@ -21,7 +21,7 @@ public class SearchController {
 	
 
 	@RequestMapping(value = "/products")
-	public ResponseEntity<?> showInfo(@ModelAttribute("keyword") String keyword ) {
+	public ResponseEntity<?> showInfo(@ModelAttribute("keyword") String keyword) {
         AjaxResponseBody result = new AjaxResponseBody();
 		List<Product> products = productService.findByNameLike(keyword);
 		
@@ -31,6 +31,10 @@ public class SearchController {
             result.setMsg("success");
         }
         result.setResult(products);	
+        result.setAwsBucketProduct(AppConstants.awsBucketProduct);
+        result.setAwsBucketGroupSale(AppConstants.awsBucketGroupSale);
+        result.setAwsBucketShop(AppConstants.awsBucketShop);
+        System.out.println(result);
 	    return ResponseEntity.ok(result);
 	}
 }
