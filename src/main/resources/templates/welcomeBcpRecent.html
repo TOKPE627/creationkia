@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="include/head"></head>
+<style type="text/css">
+
+  	.btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+    .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }  
+    @media screen and (min-width: 1281px) and (max-width:1300px){
+	  
+		.product-single{
+           width: 12.6rem !important; 
+           height: 18rem !important;
+           max-width: 120% !important;
+        } 
+        .product-thumb a img {
+            width:100%;
+             height:192px;
+        }
+	
+    }
+	@media (min-width: 1025px) and (max-width: 1280px) {
+		
+      
+    }
+    @media (min-width: 320px) and (max-width: 480px) {
+		.shareH {
+			margin-left: 10% !important;
+		}
+		.shareS a i{
+			margin-left: 10px !important;
+		}
+    .product-single{
+		 width: 10.1rem !important;
+	 }  
+     .product-thumb > a > img {
+            width:100% !important; 
+            height: 8rem !important;
+        }
+	 .shopContainer{
+		height: 10rem !important;
+	 }
+     .storeContainer{
+		 height: 10rem !important;
+	 }
+	 .serviceContainer{
+		 height: 16.2rem !important;
+	 }
+		.groupSaleContainer{
+		 width: 11rem !important;
+		 height: 9.5rem !important;  
+     }
+
+	 .product-thumb-store > a > img{
+			height: 166px !important;
+		}
+	 .product-title h4{
+		width: 100px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       height: 15px !important;
+       white-space: nowrap;
+	 }
+    .specialityLi{
+		width: 100px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+	}
+   }
+</style>
+<body style="background-color: #e8e8e8;">	
+    <!--header-->
+	<div th:replace="include/navbar"></div>
+	<div th:replace="include/headerMenu"></div>
+	<div th:replace="include/categoryType"></div>
+	   	<!--Shop-->
+		   <div class="products-tab-area mt-45 mt-sm-45">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h2 class="category">Boutique </h2>
+						</div>
+					</div>
+				</div>
+				<div th:if="${shopExist==true}" class="tab-content">
+					<div id="shop" class="tab-pane fade in show active">
+						<div class="row product-carousel cv-visible">
+							<div class="col-lg-12 shopContainer" data-th-each="product : ${shopList}">
+								<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !=''}"	
+								 class="product-single" style="background-color: white !important;">
+									<div class="product-title">
+                                     
+                                       <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,25)}"></h4>                                      
+                                  
+                                    </div>
+									<div  class="product-thumb">
+										<a href="#">
+									  	   <img width="100%" height="150rem"
+							                    class="img-responsive" style="object-fit: cover;"
+ 							                  th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+ 					            
+							                           th:data-id          = "${product.id}"
+													   th:data-name        = "${product.name}"
+												       th:data-detail      = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-quantity    = "${product.quantity}"												            
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory = "${product.subCategory.name}"												       
+												       th:data-deliveryprice = "${product.deliveryPrice}"
+												       th:data-image1="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" 
+											           th:data-image2="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image2}}" 
+												       th:data-image3="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image3}}" 
+												       th:data-image4="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image4}}"
+													 data-toggle="modal" data-target="#quickViewModal"
+							                    />
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+											 		<a href="javascript:void(0);"
+							                           th:data-id          = "${product.id}"													
+													   th:data-name        = "${product.name}"
+												       th:data-detail      = "${product.detail}"
+												       th:data-upprice     = "${product.upPrice}"
+												       th:data-price       = "${product.price}"
+												       th:data-quantity    = "${product.quantity}"												       												      
+												       th:data-category    = "${product.subCategory.category.name}"
+												       th:data-subcategory = "${product.subCategory.name}"												       
+												       th:data-deliveryprice = "${product.deliveryPrice}"												    
+											           th:data-image1="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" 
+											           th:data-image2="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image2}}" 
+												       th:data-image3="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image3}}" 
+												       th:data-image4="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image4}}"
+													 data-toggle="modal" data-target="#quickViewModal">Vue rapide</a> 
+												</div>
+									</div>
+									<div class="product-price-rating" id="service">
+										<div class="pull-left">
+											<span th:text="${product.price}+' XOF'"></span><br/>
+											<del th:text="${product.upPrice}+ ' XOF'"> </del>
+										</div>
+									</div>
+<!-- 									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div> 
+		<!--End Shop-->
+	<!--Service-->
+	<div class="products-tab-area mt-45 mt-sm-45">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 pr-0">
+					<div class="section-title">
+						<h2 class="category">Service </h2>
+					</div>
+				</div>
+			</div>
+			<div th:if="${serviceExist==true}" class="tab-content">
+				<div class="tab-pane fade in show active">
+					<div class="row product-carousel">
+						<div class="col-lg-12 serviceContainer" data-th-each="service : ${serviceList}" >
+							<div th:if="${service.galery !=null and service.galery.companyImage !='' and service.galery.geolocateImage1 !='' and service.galery.geolocateImage2 !=''}"  
+							 class="product-single" style="background-color: white !important;">
+								<div class="product-title">
+									 
+									<h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(service.name,25)}"></h4>                                      
+
+								 </div>
+								<div class="product-thumb">
+									<a th:href="@{/company/info/}+${service.id}">
+									   <img width="100%" height="150rem"
+										   class="img-responsive" style="object-fit: cover;"
+										   th:src="@{${awsBucketCompany}+${service.galery.id}+'/'+${service.galery.companyImage}}" alt=""  
+									  />   
+									 </a>
+								</div>
+								 <div class="container" style=" margin-left: 5px; margin-top: 1rem !important;" id="store">
+									<div style="height: 2.5rem !important; 
+									  
+									"
+									
+									>
+										<ul id="serviceSpeciality" data-th-each="sp : ${service.user.specialities}" 
+										style="list-style-type: '-'; margin:0 !important; padding: 0 !important;
+										
+										" >
+										
+									   <li class="specialityLi" th:text="${#strings.abbreviate(sp.name,20)}" 
+										  style="margin-top: -1rem !important;
+										  font-size: 12px;
+									   "></li>
+								   </ul>
+									</div>  
+									
+									<div class="row">
+										   <h6 style="margin-left: 15px !important;">
+											  <span>
+												<a href="#">
+												  <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
+													<span style="color: #292828; font-size: 10px;">Like</span>	
+												</a>
+											   </span>
+										   </h6>	
+										 <h6 style="margin-left: 18%;" class="shareH">
+											<span class="shareS">
+											 <a href="#">
+												 <i style="font-size: 10px; margin-left: 31px;" class="fa fa-share-alt" aria-hidden="true"></i>   
+												   <span style="color: #292828; font-size: 10px;">Partage</span> 
+											</a>
+										   </span>
+										 </h6>
+									</div> 
+								 </div>		 
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<!--End Service-->
+	<!--End Service-->
+	<!--Store-->
+	<div class="products-tab-area mt-45 mt-sm-45">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 pr-0">
+					<div class="section-title">
+						<h2 class="category">Magasin </h2>
+					</div>
+				</div>
+			</div>
+			<div th:if="${storeExist==true}" class="tab-content">
+				<div id="store" class="tab-pane fade in show active">
+					<div class="row product-carousel cv-visible">
+						<div class="col-lg-12 storeContainer" data-th-each="store : ${storeList}" >
+							<div th:if="${store.galery !=null and store.galery.companyImage !='' and store.galery.geolocateImage1 !='' and store.galery.geolocateImage2 !=''}"
+							 class="product-single" style="background-color: white !important; ">
+								<div class="product-title">   				     				
+								   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(store.name,20)}"></h4>                                      
+								 </div>
+								<div class="product-thumb product-thumb-store">
+									<a th:href="@{/company/info/}+${store.id}">
+									   <img style="object-fit: cover; 
+									      height: 230px; width: 100% !important;"
+										   class="img-responsive"
+						  th:src="@{${awsBucketCompany}+${store.galery.id}+'/'+${store.galery.companyImage}}" alt=""  
+											/> 
+									 </a>
+								</div>
+								 <div class="container" style="margin-top:4px; margin-left: 10px;" id="library">
+									<div class="row">
+										   <h6 style="margin-left: 10px !important;">
+											  <span>
+												<a href="#">
+												  <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
+													<span style="color: #292828; font-size: 10px;">Like</span>	
+												</a>
+											   </span>
+										   </h6>	
+										 <h6 style="margin-left: 28%;" class="shareH">
+											<span class="shareS">
+											 <a href="#">
+												 <i style="font-size: 10px; margin-left: 20px;" class="fa fa-share-alt" aria-hidden="true"></i>   
+												   <span style="color: #292828; font-size: 10px;">Partage</span> 
+											</a>
+										   </span>
+										 </h6>
+									</div> 
+								 </div>		 
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+		</div>
+	</div>
+	<!--	End Store -->    
+	
+	<!--GroupSale-->
+	<div class="products-tab-area mt-45 mt-sm-45">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 pr-0">
+						<div class="section-title">
+							<h2 class="category">Achat groupé </h2>
+						</div>
+					</div>
+				</div>
+				<div th:if="${groupSaleExist==true}" class="tab-content">
+					<div id="groupSale" class="tab-pane fade in show active">
+						<div class="row product-carousel cv-visible">
+							<div class="col-lg-12 groupSaleContainer" data-th-each="product : ${groupSaleList}">
+								<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !=''}"	
+								class="product-single product-single-groupSale" style="background-color: white;
+								 
+								  
+								">
+									<div class="product-title">	
+				                        <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,25)}"></h4>                                                                   
+                                        <h4 style="text-align: center;">  <span th:text="${product.currentBooking}"></span>      
+                                         <span>/10 réservations</span></h4>
+                					</div>
+									<div 
+									
+									   class="product-thumb">
+										<a href="#">									
+										   <img 
+										 
+							                    class="img-responsive" style="object-fit: cover;"
+   th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+											           th:data-id             = "${product.id}"
+													   th:data-name           = "${product.name}"
+												       th:data-detail         = "${product.detail}"
+												       th:data-quantity       = "${product.quantity}"												       
+												       th:data-price          = "${product.price}"
+												       th:data-category       = "${product.category.name}"
+												       th:data-currentbooking = "${product.currentBooking}"
+												       th:data-closeddate     = "${product.closedDate}"
+												       th:data-deliveryprice = "${product.deliveryPrice}"												    
+												       th:data-image1="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" 
+											           th:data-image2="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image2}}" 
+												       th:data-image3="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image3}}" 
+												       th:data-image4="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image4}}"
+													   data-toggle="modal" data-target="#quickViewModalAttoly"
+							                    /> 
+										 </a>
+											<div class="downsale"><span th:text="${product.downsale}"></span></div>
+												<div class="product-quick-view">
+													<a href="javascript:void(0);"
+										               th:data-id           = "${product.id}"
+													   th:data-name        = "${product.name}"
+												       th:data-detail      = "${product.detail}"
+												       th:data-quantity    = "${product.quantity}"												       												   
+												       th:data-price       = "${product.price}"
+												       th:data-category    = "${product.category.name}"
+												       th:data-currentbooking = "${product.currentBooking}"
+												       th:data-closeddate     = "${product.closedDate}"
+												       th:data-deliveryprice = "${product.deliveryPrice}"							
+												       th:data-image1="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" 
+											           th:data-image2="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image2}}" 
+												       th:data-image3="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image3}}" 
+												       th:data-image4="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image4}}"
+												     
+													   data-toggle="modal" data-target="#quickViewModalAttoly">Commander</a>
+												</div>
+									</div>
+									<div class="product-price-rating">
+										<div class="pull-left">
+											<span th:text="${product.price}+' XOF'"></span>
+										</div>
+									</div>
+									
+								<!-- 	
+									<div class="product-action">
+										<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+										<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
+										<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+									</div> -->
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+<!-- 		Group Sale
+ -->
+
+
+	<!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+
+<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			 $('#myLink1').click();
+		});
+		function getSpecialities(id){
+			alert("Id"+id);
+		}
+	</script>
+	<script>
+    var productId;
+    $(document).ready(function(){
+    	$("#quickViewModal").modal({
+            keyboard: true,
+            backdrop: "static",
+            show: false,
+            
+        }).on("show.bs.modal", function(event){
+        	var button        = $(event.relatedTarget);
+        	var id            = button.data("id");
+            var name          = button.data("name");
+            var detail        = button.data("detail");
+            var upprice       = button.data("upprice");
+            var price         = button.data("price");
+            var category      = button.data("category");
+            var quantity      = button.data("quantity");
+            var subcategory   = button.data("subcategory");
+            var deliveryprice = button.data("deliveryprice");
+            var image1        = button.data('image1');
+            var image2        = button.data('image2');
+            var image3        = button.data('image3');
+            var image4        = button.data('image4');
+            var detail        = button.data("detail");
+            //var companyname   = button.data('companyname');
+            //var companyimage  = button.data('companyimage');
+            
+            $(this).find("#id").html($("<b> " +id+ "</b>"));
+            $(this).find("#name").html($("<b> " + name +"</b>"));
+            $(this).find("#detail").html($("<li> " + detail +"</li>"));
+            $(this).find("#upprice").html($("<b> " + upprice + " FCFA"  +"</b>"));
+            $(this).find("#price").html($("<b> " + price + " FCFA" +"</b>"));
+            $(this).find("#category").html($("<span>" + category +"</span> "));
+            $(this).find("#subcategory").html($("<span>" + subcategory +"</span> "));
+            $(this).find("#quantity").html($("<span> " + quantity +"</span>"));
+            $(this).find("#deliveryprice").html($("<b> " + deliveryprice + " FCFA" +"</b>"));
+            $(this).find("#image1").attr("src", image1);
+            $(this).find("#image2").attr("src", image2);
+            $(this).find("#image3").attr("src", image3);
+            $(this).find("#image4").attr("src", image4);
+            //$(this).find("#companyimage").attr("src", companyimage);
+            //$(this).find("#companyname").html($("<span>" + companyname + "</span>"));
+            productId=id;
+
+        })
+    });
+</script>
+
+
+    <script>
+    var productId;
+    $(document).ready(
+    	function(){
+    	
+    	$("#quickViewModalAttoly").modal({
+            keyboard: true,
+            backdrop: "static",
+            show: false,
+            
+        }).on("show.bs.modal", function(event){
+        	var button        = $(event.relatedTarget);
+        	var id            = button.data("id");
+            var name          = button.data("name");
+            var detail        = button.data("detail");
+            var price         = button.data("price");
+            var category      = button.data("category");
+            var detail        = button.data("detail");
+            var quantity      = button.data("quantity");
+            var closeddate    = button.data("closeddate");
+            var currentbooking= button.data("currentbooking"); 
+            var deliveryprice = button.data("deliveryprice");
+            var image1        = button.data('image1');
+            var image2        = button.data('image2');
+            var image3        = button.data('image3');
+            var image4        = button.data('image4');
+          
+            
+            $(this).find("#id").html($("<b> " +id+ "</>"));
+            $(this).find("#name").html($("<b> " + name +"</b>"));
+            $(this).find("#detail").html($("<li> " + detail +"</li>"));
+            $(this).find("#price").html($("<b> " + price + " FCFA" + "</b>"));
+            $(this).find("#quantity").html($("<span> " + quantity +"</span>"));
+            $(this).find("#category").html($("<span>" + category +"</span> "));
+            $(this).find("#closeddate").html($("<span> " + closeddate +"</span>"));
+            $(this).find("#currentbooking").html($("<span>" + currentbooking +"</span> "));
+            $(this).find("#deliveryprice").html($("<b> " + deliveryprice   + " FCFA"  + "</b>"));
+            $(this).find("#image1").attr("src", image1);
+            $(this).find("#image2").attr("src", image2);
+            $(this).find("#image3").attr("src", image3);
+            $(this).find("#image4").attr("src", image4);
+            productId=id;
+           
+        })
+    });
+    function bookNow(){
+    	
+    	$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/booking/product?product_id='+productId,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+	              window.location.href = data.name+'booking/add/'+data.id;
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});  
+     }
+ 
+</script>
+
+<script type="text/javascript">
+  function sendProductId(id){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/product/sendProductId?id='+id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+                $('#productId').html(data.id);
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});
+  }
+  
+ 
+</script>
+
+<script type="text/javascript">
+function changeImage(a){
+    var idImage    = a.id;
+    var image = a.src;
+	$.ajax({
+		type: "GET",
+        contentType: "application/json",
+        url: '/product/changeImage?image='+image,
+        data: {},
+        dataType: 'json',
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+        	$("#image1").attr("src",data.brand);    
+        },
+        error: function (e) {
+            console.log("ERROR : ", e);
+        }
+	});
+ } 
+</script>
+<script type="text/javascript">
+   function companyImage(a){  
+	 var image = a.src;
+	 $.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/companyImage?image='+image,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+             window.location.href = data.name+'company/info/'+data.id;
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});
+	}  
+</script> 
+<script type="text/javascript">
+   function companyImageAttoly(a){  
+	 var image = a.src;
+	 $.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/companyImageAttoly?image='+image,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+              window.location.href = data.name+'/contact';
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});
+	}  
+   
+  
+    function changeImageAttoly(a){
+	    var idImage    = a.id;
+	    var image = a.src;
+		
+	    $.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/product/changeImage?image='+image,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+	        	$(".attoly #image1").attr("src",data.brand);   
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});
+	 } 
+    </script>
+
+	
+	<div class="modal fade quickViewModal" id="quickViewModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="tab-content">
+								<div id="product-1" class="tab-pane fade in show active">
+									<div class="product-details-thumb">
+										<img id="image1" alt="" style="object-fit: cover;"
+										 onClick="changeImage(this)" />
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs products-nav-tabs horizontal quick-view mt-10" >
+								<li><a data-toggle="tab">
+							      	  <img id="image2" style="object-fit: cover;"
+							      	     alt=""  onClick="changeImage(this)"
+							      	  />
+							      	</a>
+							    </li>
+								<li>
+								   <a data-toggle="tab" href="#product-3">
+								     <img id="image3" alt="" style="object-fit: cover;"
+									  onClick="changeImage(this)" />
+								   </a>
+								</li>
+								<li>
+								   <a data-toggle="tab" href="#product-4">
+								     <img id="image4" alt="" style="object-fit: cover;"
+									 onClick="changeImage(this)"/>
+								   </a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="product-details-desc">
+									   <h2 id="name"></h2>
+										<ul id="detail">
+										   <li></li>
+										</ul>
+										<div class="product-meta">
+											<ul class="list-none">
+<!-- 												<li>SKU: 00012 <span>|</span></li>
+ -->												<li>Categorie:
+													<a href="#" id="category"></a>
+												<!-- 	<a href="#">Macbook</a>
+													<a href="#">Laptop</a> -->
+<!-- 													<span>|</span>
+ -->												</li>
+											 	<li>Tag:
+													<a href="#" id="subcategory"></a>
+<!-- 													<a href="#">Apple</a>
+ -->												</li> 
+											</ul>
+										</div>
+								<!-- 		<div class="social-icons style-5">
+											<span>Partager sur:</span>
+											<a href="#"><i class="fa fa-facebook"></i></a>
+											<a href="#"><i class="fa fa-twitter"></i></a>
+											<a href="#"><i class="fa fa-google-plus"></i></a>
+											<a href="#"><i class="fa fa-rss"></i></a>
+										</div> -->
+										<div class="social-icons style-5" style="cursor: pointer;">
+										  <span>Compagnie:</span>
+											  <span>
+										      <img
+										         th:src="@{${awsBucketIcon}+'logo.png'}" style="object-fit: cover;"
+										       width="30%;" alt=""  onClick="companyImage(this)">
+										  </span>                                        
+										</div> 
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="product-action stuck text-left">
+										<div class="home-delivery">
+											<a  onClick="bookNow()" style="cursor: pointer;"><i class="ti-truck"></i> Livraison à domicile</a>
+										</div>
+										<div class="product-price-rating">
+										 	<div>
+												<del id="upprice"> </del>
+											</div> 
+											<span id="price"> </span>
+										<!-- 	<div class="pull-right">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div> -->
+										</div>
+										<div class="product-colors mt-20">
+											<label>	Quantité disponible:</label>
+											<span id="quantity"></span>
+											
+										</div>
+									 	<div class="product-quantity mt-15">
+											<label>Livraison:</label>
+											<span id="deliveryprice"></span>
+										</div> 
+										<div class="add-to-get mt-2">
+											<a  onClick="bookNow()" style="cursor: pointer;"  class="btn btn-success">
+											   <span style="color: white;">
+												  <i class="fa fa-shopping-cart" 
+									               ></i>
+												    Acheter maintenant										    
+											   </span>
+											 </a>
+ 										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade quickViewModalAttoly" id="quickViewModalAttoly" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="tab-content">
+								<div id="product-1" class="tab-pane fade in show active">
+									<div class="product-details-thumb attoly">
+										<img id="image1" alt="" style="object-fit: cover;"
+										 onClick="changeImageAttoly(this)"/>
+									</div>
+								</div>
+							</div>
+							<ul class="nav nav-tabs products-nav-tabs horizontal quick-view mt-10" >
+								<li><a data-toggle="tab">
+							      	  <img id="image2" alt=""   
+										style="object-fit: cover;"
+										onClick="changeImageAttoly(this)"
+							      	  />
+							      	</a>
+							    </li>
+								<li>
+								   <a data-toggle="tab" href="#product-3">
+								     <img id="image3" alt="" style="object-fit: cover;"
+									  onClick="changeImageAttoly(this)" />
+								   </a>
+								</li>
+								<li>
+								   <a data-toggle="tab" href="#product-4">
+								     <img id="image4" alt="" style="object-fit: cover;"
+									  onClick="changeImageAttoly(this)"/>
+								   </a>
+								</li>
+							</ul>
+						</div>
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-8">
+									<div class="product-details-desc">
+									   <h2 id="name"></h2>
+										<ul id="detail">
+										   <li></li>
+										</ul>
+										<div class="product-meta">
+											<ul class="list-none">
+ 												<li>Date de clôture: <span id="closeddate">|</span></li>
+ 												<li>Nombre de réservations: <span id="currentbooking">|</span></li>
+ 											    
+ 												<li>Categorie:
+													<a href="#" id="category"></a>
+												<!-- 	<a href="#">Macbook</a>
+													<a href="#">Laptop</a> -->
+<!-- 													<span>|</span>
+ -->												</li>
+											 <!-- 	<li>Tag:
+													<a href="#" id="subcategory"></a>
+													<a href="#">Apple</a>
+												</li>  -->
+											</ul>
+										</div>
+<!-- 										<div class="social-icons style-5">
+											<span>Partager sur:</span>
+											<a href="#"><i class="fa fa-facebook"></i></a>
+											<a href="#"><i class="fa fa-twitter"></i></a>
+											<a href="#"><i class="fa fa-google-plus"></i></a>
+											<a href="#"><i class="fa fa-rss"></i></a>
+										</div> -->
+										<div class="social-icons style-5" style="cursor: pointer;">
+										  <span>Compagnie:</span>
+										  <span>
+										      <img th:src="@{${awsBucketIcon}+'logo.png'}"  width="30%;" 
+											  style="object-fit: cover;" 
+											  alt=""  onClick="companyImage(this)">
+										  </span>                                          
+										</div> 
+									</div>
+								</div>
+								<div class="col-lg-4">
+									<div class="product-action stuck text-left">
+										<div class="home-delivery">
+											<a  onClick="bookNow()" style="cursor: pointer;"><i class="ti-truck"></i> Livraison à domicile</a>
+										</div>
+										<div class="product-price-rating">
+										<!-- 	<div>
+												<del id="upprice"></del>
+											</div> -->
+											<span id="price"></span>
+										<!-- 	<div class="pull-right">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div> -->
+										</div>
+										<div class="product-colors mt-20">
+											<label>Quantité disponible:</label>
+											<span id="quantity"></span>
+											
+										</div>
+									 	<div class="product-quantity mt-15">
+											<label>Livraison:</label>
+											<span id="deliveryprice"></span>
+										</div> 
+										<div class="add-to-get mt-2">
+											<a  onClick="bookNow()" style="cursor: pointer;"  class="btn btn-success">
+											   <span style="color: white;">
+												  <i class="fa fa-shopping-cart" 
+									               ></i>
+												    Acheter maintenant										    
+											   </span>
+											 </a>
+ 										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+</body>
+</html>

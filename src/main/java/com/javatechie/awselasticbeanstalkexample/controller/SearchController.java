@@ -37,4 +37,12 @@ public class SearchController {
         System.out.println(result);
 	    return ResponseEntity.ok(result);
 	}
+
+    // @RequestMapping(value="/findProduct")
+    // public ResponseEntity<?> findProudct(@ModelAttribute("product_id") String product_id){
+    //     AjaxResponseBody result = new AjaxResponseBody();
+    //     Product product = productService.findById(Long.parseLong(product_id));
+	// 	result.setBrand(image);
+	// 	    return ResponseEntity.ok(result);
+    // }
 }

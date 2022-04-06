@@ -13,7 +13,7 @@
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <title>Attoly</title>
+    <title>Atooly</title>
 </head>
 <style>
   .navbar-toggler{
@@ -240,9 +240,29 @@
       });
   });
 
- function getResultDumppy(product_id){
-  alert(product_id);
- }
+ 
+</script>
+
+<script>
+   function getResultDumppy(product_id){
+    	
+    	$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/search/findProduct?product_id='+productId,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+            alert("Yes");
+	              // window.location.href = data.name+'booking/add/'+data.id;
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});  
+     }
 </script>
 </body>
 </html>

@@ -1,82 +1,202 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
- <div class="row">
-	<div class="col-md-3 headerMenuCol1">
-       <div class="collapse-menu mt-0">    
-     	  <ul>		       
-				<li>
-				     <a href="javascript:void(0);" class="vm-menu-shop" >
-				       <i class="fa fa-navicon"></i><span>Boutique</span>
-				    </a>  
-					<ul class="firstUl" style="background-color: #e8e8e8 !important;">
-						<li><a th:href="@{/shop#supermarket}"><i class="fa fa-shopping-basket"></i>Supermarché</a>	</li>
-						<li><a th:href="@{/shop#healthBeauty}"><i class="fa fa-medkit"></i>Santé et Beauté </a></li>
-						<li><a th:href="@{/shop#phone}"><i class="fa fa-phone"></i>Téléphone et Tablettes</a></li>
-						<li><a th:href="@{/shop#electronic}"><i class="fa fa-microchip"></i>Electronique</a></li>
-						<li><a th:href="@{/shop#informatic}"><i class="fa fa-desktop"></i>Informatique</a></li>
-						<li><a th:href="@{/shop#homeAppliance}"><i class="fa fa-coffee"></i>Electroménager</a></li>
-						<li><a th:href="@{/shop#cloth}"><i class="fas fa-user-tie"></i>Habillement</a></li>
-						<li><a th:href="@{/shop#hobby}"><i class="fas fa-sleigh"></i>Loisir</a></li>
-					</ul>
-				</li>
-			</ul>
-    	</div>
-	 </div>   
-	 <div class="col-md-7 headerMenuCol2">
-	    <div th:if="${advertiseExists==true}" class="textImgContainer">
-	    	<img style="object-fit: contain;"
+<style>
+    /* 1327 */
+    @media screen and (min-width: 1301px) {
+        .serviceContainer{
+            margin-left: 62.5rem !important;
+        }
+        .serviceContainer > a{
+            margin-left: 2rem;
+        }
+         .advertiseDiv{
+            margin-top: 1rem !important;
+         }
+         .advertiseDiv > img{
+             margin-left: 2.5rem;
+             width: 80.5rem !important;
+             height: 14rem !important;
+         }
+    }
+    @media screen and (min-width: 1281px) and (max-width:1300px){
+     
+        .serviceContainer{
+            margin-left: 59rem !important;
+        }
+        .serviceContainer > a{
+            margin-left: 2rem;
+        }
+         .advertiseDiv{
+            margin-top: 1rem !important;
+         }
+         .advertiseDiv > img{
+             margin-left: 2.5rem;
+             width: 77rem !important;
+             height: 14rem !important;
+         }
+     }
+        
+    @media (min-width: 1025px) and (max-width: 1280px) {
+        .advertiseDiv{
+            margin-top: 1rem !important;
+         }
+         .serviceContainer {
+             /* margin-left: 40.5rem !important; */
+             margin-left: 60.4rem !important;
+         } 
+         
+         .advertiseDiv > img{
+             margin-left: 2.5rem; 
+             /* width: 58.4rem !important; */
+             /* width: 76.3rem !important; */
+             width: 73.4rem !important;
+             height: 14rem !important;
+         }
+    }
+      /* 1015 */
+    @media (min-width: 768px) and (max-width: 1024px) { 
+       
+        .advertiseDiv{
+            margin-top: 1rem !important;
+         }
+         .serviceContainer {
+             /* margin-left: 40.5rem !important; */
+             margin-left: 44.5rem !important;
+         } 
+         
+         .advertiseDiv > img{
+             margin-left: 2.5rem; 
+             width: 60.4rem !important;
+             height: 28rem !important;
+         }
+    }
+    @media (min-width: 481px) and (max-width: 767px) {
+        .advertiseDiv{
+            margin-top: 1rem !important;
+         }
+         .serviceContainer {
+             margin-left: 28.8rem !important;
+         } 
+         
+         .advertiseDiv > img{
+             margin-left: 2.5rem; 
+             width: 44.7rem !important;
+             height: 28rem !important;
+         }
+   }
+   /* 354 */
+   @media (min-width: 320px) and (max-width: 480px) {
+    .advertiseDiv{
+            margin-top: 0% !important;
+         }
+         .serviceContainer {
+             margin-left: 3.6rem !important;
+         } 
+         
+         .advertiseDiv > img{
+             margin-top: -70% !important;
+             margin-left: 2.5rem; 
+             width: 19.6rem !important;
+             height: 10rem !important;
+         }
+         .dropdownRow{
+             margin-bottom: 1px !important;
+         }
+   }
+</style>
+<div class="row dropdownRow">
+    <div class="col-xs-12" style="margin-left: 1rem;">
+        <a class="nav-link dropdown-toggle text-white" style="background-color: #6FB70F; margin-left: 1.5rem;"
+        href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fa fa-navicon"></i><span> Boutique</span>
+
+       </a>
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+       
+           <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
+             <span>	Supermarché </span>
+           </a>
+          </span>
+          </a>
+         <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa fa-medkit"></i> 
+           <span>Santé et Beauté </span>
+         </a>
+         <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-phone" aria-hidden="true"></i> 
+            <span>	Téléphone et Tablettes </span>
+          </a>
+         </span>
+         </a>
+        <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa  fa-microchip"></i> 
+          <span>Electronique </span>
+        </a>
+        <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
+            <span>	Informatique </span>
+          </a>
+         </span>
+         </a>
+        <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa  fa-coffee"></i> 
+          <span>Electroménager </span>
+        </a>
+        <a class="dropdown-item" th:href="@{/login}"> <i class="fas fa-user-tie" aria-hidden="true"></i> 
+            <span>	Habillement </span>
+          </a>
+         </span>
+         </a>
+        <a class="dropdown-item" th:href="@{/createAccount}"><i class="fas  fa-sleigh"></i> 
+          <span>Loisir </span>
+        </a>
+        <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa fa-list-alt"></i> 
+            <span>Autres </span>
+          </a>
+      </div>
+	</div>
+   <div class="col-xs-12 serviceContainer" style="display: inline; float: right; ">
+    <a class="nav-link dropdown-toggle text-white" style="background-color: #6FB70F; "
+    href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="fa fa-navicon"></i><span > Service</span>
+
+   </a>
+   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-cut" aria-hidden="true"></i> 
+        <span>	Couture </span>
+      </a>
+       <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-paint-brush" aria-hidden="true"></i> 
+         <span>	Coiffure </span>
+       </a>
+      </span>
+      </a>
+     <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa fa-pencil-ruler"></i> 
+       <span>Ménuiserie </span>
+     </a>
+     <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+        <span>	Episserie </span>
+      </a>
+     </span>
+     </a>
+    <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa  fa-car"></i> 
+      <span>Mécanique</span>
+    </a>
+    <a class="dropdown-item" th:href="@{/login}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
+        <span>	Informatique </span>
+      </a>
+     </span>
+     </a>
+    <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa  fa-wrench"></i> 
+      <span>Réparation </span>
+    </a>
+  
+    <a class="dropdown-item" th:href="@{/createAccount}"><i class="fa fa-list-alt"></i> 
+        <span>Autres </span>
+      </a>
+     </div>
+   </div>
+</div> 
+<div class="row">
+    <div class="col-xs-12 advertiseContainer">
+        <div th:if="${advertiseExists==true}" class="advertiseDiv">
+	    	<img style="object-fit: cover;"
 	    	   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/'+${advertise.image}}" alt=""  
 		     >
 	    </div>
-	 </div> 
-<!-- 	<div class="col-md-6">
-	  	<h2>Image Text</h2>
-			<p>How to place text over an image:</p>
-			
-	  
-	    	<div class="textImgContainer">
-			  <img src="/image/catalog/41/trouser4.png" alt="Snow">
-			  <div class="bottom-left">Bottom Left</div>
-			  <div class="top-left">Top Left</div>
-			  <div class="top-right" style="color: #6FB70F;">-30%</div>
-			  <div class="bottom-right">Bottom Right</div> 
-			  <div class="centered">50% de réduction depuis 3 jours.Commandez maintenant</div>
-			</div>
-	 </div> -->
-	 
-		<!--     <div class="col-md-5 banner" style="height: 33rem;display:inline;">
-			      <div class="banner-text">
-			        <h4>50% de réduction depuis 3 jours</h4>
-			        <h4>Achetez maintenant </h4>
-			      </div>  
-		       </div> 
-			   <div class="container">
-			          <div class="row text-center">
-			            <div class="col-lg-12">
-			            
-			            </div>
-			          </div>
-			        </div>
-			        <h1>En promotion de 50% de reduction depuis 3 jours</h1>
-			     </div>  
-	    </div>  --> 
-	    <div class="col-md-1 headerMenuCol3">
-	      	<div class="collapse-menu mt-0">
-	     	  <ul>
-				<li>
-				    <a href="javascript:void(0);" class="vm-menu-service"><i class="fa fa-navicon"></i>
-				      <span>Service</span>
-				    </a> 
-					<ul class="secondUl" style="background-color: #e8e8e8 !important;">
-						<li><a th:href="@{/service#sewing}"><i class="fa fa-cut"></i>Couture</a>	</li>
-						<li><a th:href="@{/service#hairdressing}"><i class="fa fa-paint-brush"></i>Coiffure </a></li>
-						<li><a th:href="@{/service#carpentry}"><i class="fa fa-pencil-ruler"></i></i>Ménuiserie</a></li>
-						<li><a th:href="@{/service#grosssery}"><i class="fa fa-shopping-cart"></i>Episserie</a></li>
-						<li><a th:href="@{/service#mechanic}"><i class="fa fa-car"></i>Mécanique</a></li>
-						<li><a th:href="@{/service#repair}"><i class="fa fa-wrench"></i>Réparation</a></li>
-					</ul>
-				</li>
-			  </ul>
-	     	</div>
-	    </div>
-	  </div>
+    </div>
+</div>
