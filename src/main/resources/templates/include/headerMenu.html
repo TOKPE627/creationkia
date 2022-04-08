@@ -1,8 +1,12 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
 <style>
-    /* 1327 */
+    /* 1327:Large -26px*/
     @media screen and (min-width: 1301px) {
+      .categoryTypeDiv{
+          top: 38%;
+          width: 6rem !important;
+         }
         .serviceContainer{
             margin-left: 62.5rem !important;
         }
@@ -18,8 +22,13 @@
              height: 14rem !important;
          }
     }
+    /* Medium My screen*/
     @media screen and (min-width: 1281px) and (max-width:1300px){
-     
+       
+        .categoryTypeDiv{
+          top: 42% !important;
+          width: 6rem !important;
+         }
         .serviceContainer{
             margin-left: 59rem !important;
         }
@@ -35,57 +44,143 @@
              height: 14rem !important;
          }
      }
-        
+      /*1265: Small Medium screen -240px:*/
     @media (min-width: 1025px) and (max-width: 1280px) {
+      .categoryTypeDiv{
+          top: 41.5%;
+          width: 6rem !important;
+         }
         .advertiseDiv{
             margin-top: 1rem !important;
          }
          .serviceContainer {
-             /* margin-left: 40.5rem !important; */
-             margin-left: 60.4rem !important;
+             /* margin-left: 60.4rem !important; */
+             margin-left: 59.7rem !important;
          } 
          
          .advertiseDiv > img{
              margin-left: 2.5rem; 
-             /* width: 58.4rem !important; */
-             /* width: 76.3rem !important; */
-             width: 73.4rem !important;
+             /* width: 73.4rem !important; */
+             width: 75.8rem !important;
              height: 14rem !important;
          }
     }
-      /* 1015 */
+      /* 789:Tablet -21px*/
     @media (min-width: 768px) and (max-width: 1024px) { 
-       
+      .categoryTypeDiv{
+          top: 24%;
+          width: 6rem !important;
+         }
+         .catTypeShop{
+        left: 21% !important;
+      }
+      .catTypeService{
+        left: 40% !important;
+      }
+      .catTypeStore{
+        left: 59% !important;
+      }
+      .catTypeGroupSale{
+        left: 77% !important;
+      }
         .advertiseDiv{
             margin-top: 1rem !important;
          }
          .serviceContainer {
-             /* margin-left: 40.5rem !important; */
-             margin-left: 44.5rem !important;
+             /* margin-left: 44.5rem !important; */
+             margin-left: 30.1rem !important;
          } 
          
          .advertiseDiv > img{
              margin-left: 2.5rem; 
-             width: 60.4rem !important;
-             height: 28rem !important;
+             /* width: 60.4rem !important; */
+             width: 46.1rem !important;
+             height: 14rem !important;
          }
     }
+    /*515px  -34px*/
     @media (min-width: 481px) and (max-width: 767px) {
+      
+      .categoryTypeDiv{
+          top: 38%;
+          width: 6rem !important;
+        }
+      .catTypeShop{
+        left: 21% !important;
+      }
+      .catTypeService{
+        left: 40% !important;
+      }
+      .catTypeStore{
+        left: 59% !important;
+      }
+      .catTypeGroupSale{
+        left: 77% !important;
+      }
+      
         .advertiseDiv{
             margin-top: 1rem !important;
          }
          .serviceContainer {
-             margin-left: 28.8rem !important;
+             /* margin-left: 28.8rem !important; */
+             margin-left: 13.1rem !important;
          } 
          
          .advertiseDiv > img{
              margin-left: 2.5rem; 
-             width: 44.7rem !important;
-             height: 28rem !important;
+             /* width: 44.7rem !important; */
+             width: 29rem !important;
+             height: 14rem !important;
          }
    }
-   /* 354 */
+   /* 354:Phone :-34px*/
    @media (min-width: 320px) and (max-width: 480px) {
+     .imgGroupSale{
+       margin-left: 9px !important;
+     }
+     .imgGroupStore > img{
+        width: 2.2rem !important;
+        height: 1.8rem !important; 
+       /* height: 3.3rem !important; */
+     }
+    .categoryTypeDiv{
+          top: 39.1% !important;
+          width: 4rem !important;
+        }
+    .categoryTypeDiv > a > img{
+      width: 2rem !important;
+    } 
+      .catTypeShop{
+        left: 23.5% !important;
+      }
+      .catTypeService{
+        left: 45% !important;
+      }
+      .catTypeStore{
+        /* width: 2.2rem !important;
+        height: 1.8rem !important; */
+        left: 65% !important;
+      }
+      .catTypeGroupSale{
+        left: 83.5% !important;
+      }
+      .spanShop{
+        margin-top: 3rem !important;
+        margin-left: -4px !important;
+        font-size: 9.7px !important;
+      }
+      .spanService{
+        margin-left: -2px !important;
+        font-size: 9.7px !important;
+      }
+      .spanStore{
+        margin-left: -3.5px !important;
+        font-size: 9.7px !important;
+      }
+      .spanGroupSale{
+        margin-left: -6px !important;
+        font-size: 9.7px !important;
+      }
     .advertiseDiv{
             margin-top: 0% !important;
          }
@@ -197,6 +292,74 @@
 	    	<img style="object-fit: cover;"
 	    	   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/'+${advertise.image}}" alt=""  
 		     >
+       <div class="row">
+         <div class="col-xs-12 categoryTypeDiv catTypeShop"  style="
+         position: absolute;
+         left: 35%;
+         transform: translate(-50%, -50%);
+       ">
+            <a   href="#"
+               >
+                <img
+                    class="img-responsive" style="width: 6.4rem;"
+                    src="assets/images/icons/category/shop.png" alt="" 
+                />
+              
+                  <span class="spanShop" style="margin-left: 1rem; color: black;">
+                    <strong>Boutique</strong>  </span>  
+            
+           </a>
+         </div>
+         <div class="col-xs-12 categoryTypeDiv catTypeService" 
+              style="
+                position: absolute;
+                left: 45%;
+                transform: translate(-50%, -50%);
+              ">
+             <a   href="#"
+             >
+              <img
+                  class="img-responsive" style="width: 6.4rem;"
+                  src="assets/images/icons/category/service.png" alt="" 
+              />
+              <span class="spanService" style="  margin-left: 1rem; color: black;">
+                <strong>Service</strong>  </span>  
+         </a>
+       
+         </div>
+         <div class="col-xs-12 categoryTypeDiv catTypeStore"     
+              style="
+                position: absolute;
+                left: 55%;
+                transform: translate(-50%, -50%);
+              ">
+              <a   href="#" class="imgGroupStore"
+              >
+               <img
+                   class="img-responsive" style="width: 6.4rem;height: 5.5rem;"
+                   src="assets/images/icons/category/store.png" alt="" 
+               />
+               <span class="spanStore" style="  margin-left: 1rem; color: black;">
+                <strong>Magasin</strong>  </span>  
+          </a>
+       </div>
+       <div class="col-xs-12 categoryTypeDiv catTypeGroupSale" 
+            style="
+              position: absolute;
+              left: 65%;
+              transform: translate(-50%, -50%);
+            ">
+          <a   href="#" class="imgGroupSale"
+          >
+            <img
+                class="img-responsive" style="width: 6.4rem; "
+                src="assets/images/icons/category/groupSale.png" alt="" 
+            />
+            <span class="spanGroupSale" style="  margin-left: 0%; color: black;">
+              <strong>Achat groupé</strong>  </span>  
+          </a>
+        </div>
+       </div>
 	    </div>
     </div>
 </div>
