@@ -77,9 +77,14 @@ public class SearchController {
         Product product = productService.findById(id);
         Category category = product.getCategory();
         SubCategory subCategory = product.getSubCategory();
+        List<Product> products = productService.findAllBySubCategory(category.getTitle(), subCategory.getTitle());
         model.addAttribute("product",product);
         model.addAttribute("category",category);
         model.addAttribute("subCategory",subCategory);
+        if(!products.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",products); 
+		}
 	    return "resultsProduct";
     }
 }
