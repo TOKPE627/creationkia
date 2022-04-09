@@ -243,10 +243,9 @@
 
  
 </script>
-<!-- 
+
 <script>
-   function getResultDumppy(product_id){
-    	
+   function getResultDumppy(productId){
     	$.ajax({
 			type: "GET",
 	        contentType: "application/json",
@@ -256,14 +255,13 @@
 	        cache: false,
 	        timeout: 600000,
 	        success: function (data) {
-            alert("Yes");
-	              // window.location.href = data.name+'booking/add/'+data.id;
+            window.location.href = '/search/resultsProduct/'+data.id+'/'+data.name;
 	        },
 	        error: function (e) {
 	            console.log("ERROR : ", e);
 	        }
 		});  
      }
-</script> -->
+</script> 
 </body>
 </html>
