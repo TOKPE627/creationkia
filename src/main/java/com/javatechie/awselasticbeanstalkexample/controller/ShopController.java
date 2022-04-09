@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
@@ -23,6 +25,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
@@ -71,6 +74,8 @@ public class ShopController {
 	@Autowired
 	private CompanyService companyService;
 
+	@Autowired
+	private AdvertiseService advertiseService;
 	
 	//Dashboard
 	
@@ -133,6 +138,7 @@ public class ShopController {
 	
 	  @RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	  public String all(Model model,Principal principal) throws IOException{
+		  
 		    User user = userService.findByUsername(principal.getName());
 		    Company company = companyService.findByUser(user);
 			model.addAttribute("user", user);
@@ -230,9 +236,17 @@ public class ShopController {
 	//Frontend
 	@GetMapping("")
 	public String index(Model model) throws UnknownHostException {
-		 List<Product> shops = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
-		 List<Product> supermarckets = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_1); 
+		 List<Product> supermarkets = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_1); 
 		 List<Product> healths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_2); 
 		 List<Product> phones = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_3); 
 		 List<Product> electronics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_4); 
@@ -240,19 +254,58 @@ public class ShopController {
 		 List<Product> homeApplicances = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_6); 
 		 List<Product> cloths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_7); 
 		 List<Product> hobbies = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_8); 
-		 
+		 List<Product> others = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_9); 
+
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
-		 
-		 model.addAttribute("shopList",shops);
-		 model.addAttribute("supermarketList",supermarckets); 
-		 model.addAttribute("healthList",healths); 
-		 model.addAttribute("phoneList",phones); 
-		 model.addAttribute("electronicList",electronics); 
-		 model.addAttribute("informaticList",informatics); 
-		 model.addAttribute("homeApplianceList",homeApplicances); 
-		 model.addAttribute("clothList",cloths); 
-		 model.addAttribute("hobbyList",hobbies); 
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		if(!supermarkets.isEmpty()) {
+			model.addAttribute("supermarketExist",true);
+			model.addAttribute("supermarketList",supermarkets); 
+		}
+		if(!healths.isEmpty()) {
+			model.addAttribute("healthExist",true);
+			model.addAttribute("healthList",healths); 
+		}
+		 if(!phones.isEmpty()) {
+			model.addAttribute("phoneExist",true);
+			model.addAttribute("phoneList",phones); 
+		}
+		 if(!electronics.isEmpty()) {
+			model.addAttribute("electronicExist",true);
+			model.addAttribute("electronicList",supermarkets); 
+		} 
+		if(!informatics.isEmpty()) {
+			model.addAttribute("informaticExist",true);
+			model.addAttribute("informaticList",informatics); 
+		}
+
+		if(!homeApplicances.isEmpty()) {
+			model.addAttribute("homeApplianceExist",true);
+			model.addAttribute("homeApplianceList",homeApplicances); 
+		}
+		if(!cloths.isEmpty()) {
+			model.addAttribute("clothExist",true);
+			model.addAttribute("clothList",cloths); 
+		}
+	
+		if(!hobbies.isEmpty()) {
+			model.addAttribute("hobbyExist",true);
+			model.addAttribute("hobbyList",hobbies); 
+		} 
+		if(!others.isEmpty()) {
+			model.addAttribute("otherExist",true);
+			model.addAttribute("otherList",others); 
+		} 
 		return "shop";
 	}
 }

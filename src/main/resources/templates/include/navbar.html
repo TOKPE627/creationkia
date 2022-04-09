@@ -155,7 +155,7 @@
 <script>
   $(document).ready(function(){
       $("#search").keyup(function(){
-
+      
       var query=$(this).val();
       if(query!='')
       {
@@ -169,6 +169,7 @@
 	          timeout: 600000,
 	          success: function (data) {
               var json = data.result;
+              console.log(json);
               $.each(json,function(index,product){
                 if(product.galery !=null && product.category.title =='service'){
                   $('#dumppy').html('');    
@@ -242,7 +243,7 @@
 
  
 </script>
-
+<!-- 
 <script>
    function getResultDumppy(product_id){
     	
@@ -263,6 +264,6 @@
 	        }
 		});  
      }
-</script>
+</script> -->
 </body>
 </html>

@@ -83,6 +83,7 @@ public class AppConstants {
    public static final String SUB_SHOP_6    = "homeAppliances";
    public static final String SUB_SHOP_7    = "cloths";
    public static final String SUB_SHOP_8    = "hobbies";
+   public static final String SUB_SHOP_9    = "other";
 
    //SUB_CATEGORIES OF SERVICE
    public static final String SUB_SERVICE_1    = "sewing";
@@ -91,6 +92,7 @@ public class AppConstants {
    public static final String SUB_SERVICE_4    = "groceries";
    public static final String SUB_SERVICE_5    = "mechanical";
    public static final String SUB_SERVICE_6    = "repair";
+   public static final String SUB_SERVICE_7   = "other";
 
    //SUB_CATEGORIES OF LIBRARY
    public static final String SUB_LIBRARY_1    = "comic";
