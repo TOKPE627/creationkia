@@ -49,6 +49,8 @@ border-color: #6FB70F !important;
        height:192px;
   }
 }
+
+
 @media (min-width: 320px) and (max-width: 480px) {
   .shareH {
       margin-left: 10% !important;

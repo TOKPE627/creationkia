@@ -291,7 +291,7 @@ public class BookingController {
 	   List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	   model.addAttribute("bookingBegunList",bookingsBegun);
 	   Product result = new Product();
-	   result.setName(AppConstants.url);
+	   //result.setName(AppConstants.url);
 	   Product product = productService.findById(id);
 	   result.setId(product.getId());
 	   return ResponseEntity.ok(result);

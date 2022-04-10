@@ -3728,7 +3728,9 @@ a.value-decrease::before {
  } 
 
  @media screen and (min-width: 1025px) {
-
+	.products-nav-tabs.horizontal.quick-view li {
+		width: 32.5% !important;
+	}
 .bottom-left {
   position: absolute;
   bottom: 8px;
@@ -3779,13 +3781,10 @@ a.value-decrease::before {
 */
 
 @media (min-width: 768px) and (max-width: 1024px) {
-/* 	.tab-content .tab-pane.active {
-	width: 920px;
-    height: auto;
-    opacity: 1;
-    overflow: visible;
-    visibility: visible;
-} */
+	.products-nav-tabs.horizontal.quick-view li {
+		width: 32.5% !important;
+	}
+
     .section-title .category{
      font-size: 28px;
     }
@@ -3900,45 +3899,50 @@ a.value-decrease::before {
 */
 
 @media (min-width: 481px) and (max-width: 767px) {
+	.products-nav-tabs.horizontal.quick-view li {
+		width: 32.1% !important;
+	}
   
-  /* CSS */
   
 }
 
+@media (min-width:361px) and (max-width:480px) {
+	.product-thumb-groupSale > a > img {
+		width: 100% !important;
+		height: 8rem !important;
+	}
+	.section-title-shop{
+		margin-top: -4rem !important;
+	}
+    .section-title-service{
+		margin-top: 2rem !important;
+	}
+	.section-title-store{
+		margin-top: 2rem !important;
+	}
+
+	.section-title-groupSale{
+		margin-top: 2rem !important;
+	}
+	.footer-area{
+		margin-top: 6rem !important;
+	}
+}
+
+@media (min-width:320px) and (max-width:360px){
+	.section-title{
+		margin-top: -4rem !important;
+	}
+}
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
-    .section-title{
-		margin-top: -4rem !important;
+    .close{
+		margin-right: 5rem !important;
 	}
-	/* .product-single{
-		width: 20rem !important;
-		max-width: 150% !important;
-	} 
-	/* .product-thumb img{
-		width:100% !important;
-		height:192px !important;
-	} */
-	/* .categoryTypeContainer{
-		margin-top: 22rem !important;
-	}
-  .categoryType{
-    margin-top: 16rem;
-     width: 28rem; 
-  }
-  	.categoryType .cat{
-	   margin-left: 1rem;
-	   color: black;
-    }
-    
-    .categoryType .catGroupSale{
-      margin-left: 0.2rem;
-      color: black;
-    }	 */
-
 	#quickViewModal{
    width: 35.5rem;
  }
@@ -3948,12 +3952,27 @@ a.value-decrease::before {
  .home-delivery{
   margin-top: 12px;
  }
- .product-details-thumb img{
-   width: 401px !important;
+ .home-delivery > a{
+	text-align: center !important;
+   }
+ .product-action.stuck {
+   width: 19.6rem !important;
+ }
+ .product-details-thumb{
+	 width: 19.6rem !important;
+	 text-align: left !important;
+ }
+ .product-details-thumb img{ 
+   object-fit: cover !important;
+   max-width: 338px !important;
    height: 270px;
  }
- 
-    
+ .products-nav-tabs.horizontal.quick-view li {
+    width: 23.9% !important;
+}
+.product-meta > ul > li {
+  width: 19rem !important;
+}
  /* #image2{
    width: 40px;
    height: 40px;

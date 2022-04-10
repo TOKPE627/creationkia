@@ -19,7 +19,7 @@
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-3 col-md-3 pr-0">
-						<div class="section-title">
+						<div class="section-title section-title-store">
 							<h2 class="category">Magasin </h2>
 						</div>
 					</div>
@@ -75,7 +75,7 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3 pr-0">
-					<div class="section-title">
+					<div class="section-title section-title-groupSale">
 						<h2 class="category">Achat groupé </h2>
 					</div>
 				</div>
@@ -298,7 +298,8 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	        cache: false,
 	        timeout: 600000,
 	        success: function (data) {
-	              window.location.href = data.name+'booking/add/'+data.id;
+	            //   window.location.href = data.name+'booking/add/'+data.id;
+				window.location.href = '/booking/add/'+data.id;
 	        },
 	        error: function (e) {
 	            console.log("ERROR : ", e);
