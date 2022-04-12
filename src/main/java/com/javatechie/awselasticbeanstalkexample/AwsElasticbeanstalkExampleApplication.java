@@ -97,6 +97,10 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	@Autowired
 	private AdvertiseService advertiseService;
 	
+	// @GetMapping("/")
+	// public String indexGoogle(){
+	// 	return "google/loginStatus";
+	// }
 	@GetMapping("/")
 	public String welcome(Model model) throws UnknownHostException {
 		model.addAttribute("url",AppConstants.url);

@@ -96,5 +96,18 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script th:src="@{/adminlte/dist/js/pages/dashboard.js}"></script>
+<script>
+  $(document).click(function(){
+       if(typeof timeOutObj != "undefined") {
+           clearTimeout(timeOutObj);
+       }
+
+       timeOutObj = setTimeout(function(){ 
+           localStorage.clear();
+           window.location = "/";
+       }, 1200000);   //will expire after twenty minutes
+
+  });
+</script>
 </body>
 </html>

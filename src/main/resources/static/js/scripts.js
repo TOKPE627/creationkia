@@ -231,7 +231,7 @@ $(document).ready(function() {
 /*	Category*/
 		$('.delete-category').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/category/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -261,7 +261,7 @@ $(document).ready(function() {
 /*	SubCategory*/
 		$('.delete-subCategory').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/subCategory/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -292,7 +292,7 @@ $(document).ready(function() {
 /*	Product*/
 		$('.delete-product').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/product/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -320,7 +320,7 @@ $(document).ready(function() {
 	/*	Advertise*/
 		$('.delete-advertise').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/advertise/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -350,7 +350,7 @@ $(document).ready(function() {
 	/*	Catalog*/
 		$('.delete-catalog').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/catalog/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -379,7 +379,7 @@ $(document).ready(function() {
 	/*	Speciality*/
 		$('.delete-speciality').on('click', function (){
 		/*<![CDATA[*/
-	    var path = /*[[@{/}]]*/'remove';
+	    var path = /*[[@{/}]]*/'/speciality/remove';
 	    /*]]>*/
 		
 		var id=$(this).attr('id');
@@ -407,7 +407,7 @@ $(document).ready(function() {
 		/*	TownAvailable*/
 		$('.delete-townAvailable').on('click', function (){
 		/*<![CDATA[*/
-	    var path = 'remove';
+	    var path = '/townAvailable/remove';
 		var id=$(this).attr('id');
 		
 		bootbox.confirm({
@@ -433,7 +433,7 @@ $(document).ready(function() {
 			/*	TownAvailable*/
 		$('.delete-day').on('click', function (){
 		/*<![CDATA[*/
-	    var path = 'remove';
+	    var path = '/remove';
 		var id=$(this).attr('id');
 		
 		bootbox.confirm({

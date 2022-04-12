@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 
 public interface ProductService {
@@ -20,6 +21,7 @@ public interface ProductService {
     List<Product> findAllByCategory(String title);
     List<Product> findByCategory(Category category);
     List<Product> findAllBySubCategory(String title, String titleSub);
+    List<Product> findBySubCategory(SubCategory subCategory);
     List<Product> findByNameLike(String keyword);
 
    }

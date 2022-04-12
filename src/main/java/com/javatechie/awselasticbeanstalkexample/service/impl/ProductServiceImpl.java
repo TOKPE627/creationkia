@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.repository.ProductRepository;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
@@ -75,6 +76,11 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<Product> findByUserAndByCategory(User user, Category category) {
 		return productRepository.findByUserAndByCategory(user, category);
+	}
+
+	@Override
+	public List<Product> findBySubCategory(SubCategory subCategory){ 
+		return productRepository.findBySubCategory(subCategory);
 	}
 
 

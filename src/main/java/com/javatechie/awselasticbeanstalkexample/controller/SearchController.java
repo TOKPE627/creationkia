@@ -76,15 +76,28 @@ public class SearchController {
 
         Product product = productService.findById(id);
         Category category = product.getCategory();
-        SubCategory subCategory = product.getSubCategory();
-        List<Product> products = productService.findAllBySubCategory(category.getTitle(), subCategory.getTitle());
         model.addAttribute("product",product);
         model.addAttribute("category",category);
-        model.addAttribute("subCategory",subCategory);
-        if(!products.isEmpty()) {
-			model.addAttribute("productExist",true);
-			model.addAttribute("productList",products); 
-		}
-	    return "resultsProduct";
+        if(product.getSubCategory() !=null){
+            SubCategory subCategory = product.getSubCategory();
+            List<Product> products = productService.findBySubCategory(subCategory);
+            System.out.println("SUB CATEGORy:" + subCategory.getName());
+            if(!products.isEmpty()) {
+                model.addAttribute("productExist",true);
+                model.addAttribute("productList",products); 
+            }
+            return "resultsProduct";
+        }
+      
+        if(product.getSubCategory() ==null){
+            List<Product> products = productService.findByCategory(category);
+            System.out.println("Category: " +category.getName());
+            if(!products.isEmpty()) {
+                model.addAttribute("productExist",true);
+                model.addAttribute("productList",products); 
+            }
+        }
+      
+	    return "resultsProductWithoutSubCateory";
     }
 }

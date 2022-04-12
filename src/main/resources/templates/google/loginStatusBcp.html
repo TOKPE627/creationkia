@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login status</title>
+    <meta name="google-signin-client_id" content="755658839527-komq1k1167fdifpjibgvss96n2l86svm.apps.googleusercontent.com">
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+</head>
+
+<body>
+    
+<img style="display:none;"
+onload="show_login_status('Google', true)"
+onerror="show_login_status('Google', false)"
+src="https://accounts.google.com/CheckCookie?continue=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&followup=https%3A%2F%2Fwww.google.com%2Fintl%2Fen%2Fimages%2Flogos%2Faccounts_logo.png&chtml=LoginDoneHtml&checkedDomains=youtube&checkConnection=youtube%3A291%3A1"
+/>
+
+ 
+<img style="display:none;"
+onload="show_login_status('GooglePlus', true)"
+onerror="show_login_status('GooglePlus', false)"
+src="https://plus.google.com/up/?continue=https://www.google.com/intl/en/images/logos/accounts_logo.png&type=st&gpsrc=ogpy0"
+/>
+ 
+<!-- <img style="display:none;" src="https://twitter.com/login?redirect_after_login=%2Fimages%2Fspinner.gif" onload="show_login_status('Twitter', true)" onerror="show_login_status('Twitter', false)" /> -->
+ 
+<div id="fb-root"></div>
+
+<script type="text/javascript">
+    function show_login_status(network, status)
+    {
+     if (status)
+     {   
+         console.log("LOgged into Network" +network);
+         console.log("Status: " +status);
+         console.log(gapi.auth2.getAuthInstance());
+        // var profile = googleUser.getBasicProfile();
+        //  console.log(gapi.auth2.getAuthInstance().isSignedIn.get());
+       
+         //var profile = googleUser.getBasicProfile();
+        //var imagurl=profile.getImageUrl();
+        //var name=profile.getName();
+        //var email=profile.getEmail();
+        //console("Profile:")
+        //console.log(profile);
+      //alert("Logged in to " + network);
+     }else{
+         console.log("Not loggedinto: " +network);
+         console.log("Status: " +status);
+      //alert("Not logged in to " + network);
+     }
+    }
+  </script>
+ 
+
+ <script>
+    window.fbAsyncInit = function(){
+     FB.init({ appId:'755658839527-komq1k1167fdifpjibgvss96n2l86svm.apps.googleusercontent.com', status:true,  cookie:true, xfbml:true});
+     FB.getLoginStatus(function(response){
+         console.log(response);
+    //   if (response.status != "unknown")
+    //   {
+    //    show_login_status("Facebook", true);
+    //   }else{
+    //    show_login_status("Facebook", false);
+    //   }
+     });
+    };
+    //Load the SDK Asynchronously
+//     (function(d){
+//      var js, id = 'facebook-jssdk';
+//      if (d.getElementById(id)) {return;}
+//      js = d.createElement('script'); js.id = id; js.async = true;
+//      js.src = "//connect.facebook.net/en_US/all.js";
+//      d.getElementsByTagName('head')[0].appendChild(js);
+//     }(document));
+//    </script>
+
+
+</body>
+</html>

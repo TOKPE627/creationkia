@@ -30,7 +30,9 @@ INSERT INTO sub_category(id,description,name,category_id,title) VALUES
   (11,'Sous-categorie de Service','Ménuiserie',2,'carpentry'),
   (12,'Sous-categorie de Service','Epiceries',2,'groceries'),
   (13,'Sous-categorie de Service','Mécanique',2,'mechanical'),
-  (14,'Sous-categorie de Service','Réparation',2,'repair')
+  (14,'Sous-categorie de Service','Réparation',2,'repair'),
+  (15,'Sous-categorie de Shop','Autre',1,'other'),
+  (16,'Sous-categorie de Service','Autre',2,'other')
  ;
 
 

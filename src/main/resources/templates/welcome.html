@@ -184,7 +184,22 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	<!-- plugins js -->
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
-	<script th:src="@{/assets/js/main.js}"></script>	
+	<script th:src="@{/assets/js/main.js}"></script>
+	
+<!-- 
+	<script type="text/javascript">
+		function show_login_status(network, status)
+		{
+		 if (status)
+		 {
+		  alert("Logged in to " + network);
+		 }else{
+		  alert("Not logged in to " + network);
+		 }
+		}
+	</script>
+  -->
+	 
 	<script type="text/javascript">
 		$(document).ready(function(){
 			 $('#myLink1').click();

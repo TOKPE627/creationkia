@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 
 public interface ProductRepository extends JpaRepository<Product, Long>{
@@ -26,4 +27,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
   List<Product> findByNameContainingIgnoreCase(String keyword);
   
   List<Product> findByCategory(Category category);
+
+  public List<Product> findBySubCategory(SubCategory subCategory);
 }
