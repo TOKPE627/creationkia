@@ -18,7 +18,7 @@
 			  />
 			</div>
 		
-	  	    <div class="row secondProductsRow" style="margin-left: 2.5rem;">
+	  	    <div class="row secondProductsRow" style="margin-left: 2.5rem; margin-top: 5px;">
 			  <div class="col-xs-12 secondProductDiv">
 				<a href="#">
 					<img
@@ -49,7 +49,7 @@
 		
 		  </div>
 		</div>
-		<div class="col-xs-12" style="width: 37.8rem;">
+		<div class="col-xs-12 products-info-tab" style="width: 37.8rem;">
 			<div class="product-details-desc" style="text-align: center;">
 				<h2 th:text="${product.name}"></h2>
 				 <ul th:text="${product.detail}">
@@ -57,10 +57,10 @@
 				 </ul>
 				 <div class="product-meta">
 					 <ul class="list-none">
-						<li>Categorie:
-							 <a href="#" th:text="${product.category.name}"></a>
+						<li th:if="${product.category.name=='groupSale'}">Catégorie:
+							 <a href="#">Vente groupée</a>
 						</li>
-					
+					</ul>
 					
 				 </div> 
 	
@@ -95,7 +95,7 @@
 					<span th:text="${product.deliveryPrice}"></span>
 				</div> 
 				<div class="add-to-get mt-2">
-					<a  onClick="bookNow()" style="cursor: pointer;"  class="btn btn-success">
+					<a th:href="@{/booking/add/}+${product.id}" style="cursor: pointer;"  class="btn btn-success">
 					   <span style="color: white;">
 						  <i class="fa fa-shopping-cart" 
 						   ></i>
@@ -112,7 +112,7 @@
 
 	<!---->
 	<!--GroupSale-->
-	<div class="products-tab-area mt-45 mt-sm-45">
+	<div class="products-tab-area mt-45 mt-sm-45 other-products-tab">
 		<div class="container-fluid">
 			<!-- <div class="row">
 				<div class="col-lg-3 col-md-3 pr-0">
@@ -512,8 +512,9 @@ function changeImage(a){
  												<li>Date de clôture: <span id="closeddate">|</span></li>
  												<li>Nombre de réservations: <span id="currentbooking">|</span></li>
  											    
- 												<li>Categorie:
-													<a href="#" id="category"></a>
+ 												<li>Catégorie:
+													<!-- <a href="#" id="category"></a> -->
+													<a href="#">Vente groupée</a>
 												<!-- 	<a href="#">Macbook</a>
 													<a href="#">Laptop</a> -->
 <!-- 													<span>|</span>
