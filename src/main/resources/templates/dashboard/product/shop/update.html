@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -66,7 +66,7 @@
 						<label class="col-md-2 control-label">* Photo 1</label>
 						  
 			               <div class="col-md-6">
-				              <img
+				              <img th:if="${product.galery !=null and product.galery.image1 !=''}" 
 						        id="thumbnail0"
 						        class="img-responsive center-block" 
 								style="height: 350px;width: 100%; object-fit: contain;"
@@ -81,7 +81,7 @@
 				    <div class="form-group">
 						<label class="col-md-2 control-label">* Photo 2</label>
 			               <div class="col-md-6">
-			                  <img
+			                  <img th:if="${product.galery !=null and product.galery.image2 !=''}" 
 						        id="thumbnail1"
 						        class="img-responsive center-block" 
 								style="height: 350px;width: 100%; object-fit: contain;"
@@ -96,7 +96,7 @@
 				     <div class="form-group">
 						<label class="col-md-2 control-label">* Photo 3</label>
 			               <div class="col-md-6">
-				              <img
+				              <img th:if="${product.galery !=null and product.galery.image3 !=''}" 
 						        id="thumbnail2"
 						        class="img-responsive center-block" 
 								style="height: 350px;width: 100%; object-fit: contain;"
@@ -111,7 +111,7 @@
 				     <div class="form-group">
 						<label class="col-md-2 control-label">* Photo 4</label>
 			              <div class="col-md-6">
-				             <img
+				             <img th:if="${product.galery !=null and product.galery.image4 !=''}" 
 						        id="thumbnail3"
 						        class="img-responsive center-block" 
 								style="height: 350px;width: 100%; object-fit: contain;"

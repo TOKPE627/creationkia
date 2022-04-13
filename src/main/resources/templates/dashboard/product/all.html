@@ -67,7 +67,9 @@
 						   <input hidden="hidden" name="id" th:value="${product.id}" />
 						
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
-						    <a th:href="@{/product/productInfo(id=${product.id})}">
+						    <a 
+							  th:if="${product.galery !=null and product.galery.image1 !=''}" 
+							  th:href="@{/product/productInfo(id=${product.id})}">
 						     <img th:if="${product.category.title =='shop'}"
 							  width="60%" height="200px"  style="object-fit: cover;"
 		                    class="img-responsive" 

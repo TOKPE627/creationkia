@@ -61,13 +61,14 @@
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr data-th-each="product : ${productList}">
+				<tbody th:if="${shopExist==true}">
+					<tr  data-th-each="product : ${productList}">
 					    <td>
 						   <input hidden="hidden" name="id" th:value="${product.id}" />
 						
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
-						    <a th:href="@{/shop/shopInfo(id=${product.id})}">
+						    <a th:if="${product.galery !=null and product.galery.image1 !=''}" 
+							   th:href="@{/shop/shopInfo(id=${product.id})}">
 						      <img
 					            class="img-responsive" style="height: 200px;width: 60%; object-fit: cover;"
 			                   th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  

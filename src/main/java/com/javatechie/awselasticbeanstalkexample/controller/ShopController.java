@@ -138,22 +138,29 @@ public class ShopController {
 	
 	  @RequestMapping(value = "/shopList", method = RequestMethod.GET)
 	  public String all(Model model,Principal principal) throws IOException{
-		  
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 		    User user = userService.findByUsername(principal.getName());
 		    Company company = companyService.findByUser(user);
 			model.addAttribute("user", user);
 			model.addAttribute("company",company);
 			 Category category = categoryService.findById(Long.parseLong("1"));
 			 List<Product> products        = productService.findByUserAndByCategory(user, category);
-			 model.addAttribute("productList",products); 
 			UserRole userRole =userRoleService.findByUser(user);
 			
-		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-		    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-		    
+		 
+		
 			if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
 			   model.addAttribute("userRole1",AppConstants.ROLE_1);
+			   if(!products.isEmpty()){
+				System.out.println("Products exist");
+				model.addAttribute("shopExist", true);
+				model.addAttribute("productList",products); 
+			   }else{
+				   System.out.println("Products Not exist");
+				   model.addAttribute("shopExist", false);
+			   }
 			}
 		   return "dashboard/product/shop/all";
 	  }
@@ -174,8 +181,11 @@ public class ShopController {
 
 			if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
 				model.addAttribute("userRole1",AppConstants.ROLE_1);
+			    if(product.getGalery() == null){
+					return "dashboard/product/shop/addGalery";
+				}
 			}
-		 
+		    
 			return "dashboard/product/shop/info";
 		}
 	
@@ -229,7 +239,7 @@ public class ShopController {
 				updatedProduct.setDownsale(Math.rint(-updatedProduct.getPrice()*100/updatedProduct.getUpPrice())+"%");
 				productService.update(updatedProduct);
 			}	
-			return "redirect:/shop/productList";		
+			return "redirect:/shop/shopList";		
 	     }
 		
 	

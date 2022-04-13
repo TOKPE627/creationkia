@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -73,7 +73,9 @@
 				</ol>
 			</div> 
 	        <div class="container">
-	           <div class="product">					        
+	           <div 
+			        th:if="${product.galery !=null and product.galery.image1 !=''}" 
+			        class="product">					        
 			        <img th:if="${product.category.title =='shop'}" 
 	                    width="100%" height="400rem"  style="object-fit: cover;"
 	                    class="img-responsive"
@@ -90,7 +92,8 @@
 		                  th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 	               /> 
 	           </div>
-                 <div class="product">					        
+                 <div 	  th:if="${product.galery !=null and product.galery.image2 !=''}" 
+				     class="product">					        
 			        <img th:if="${product.category.title =='shop'}" 
 	                    width="100%" height="400rem"  style="object-fit: cover;"
 	                    class="img-responsive"
@@ -108,7 +111,8 @@
 	               /> 
 	           </div>
 		         
-		           <div class="product">					        
+		           <div 	  th:if="${product.galery !=null and product.galery.image3 !=''}" 
+				     class="product">					        
 			        <img th:if="${product.category.title =='shop'}"
 			           width="100%" height="400rem"  style="object-fit: cover;"
 	                    class="img-responsive"
@@ -126,7 +130,9 @@
 	               /> 
 	           </div>
 	           
-	             <div class="product">					        
+	             <div 
+				 th:if="${product.galery !=null and product.galery.image4 !=''}" 
+				    class="product">					        
 			        <img th:if="${product.category.title =='shop'}"
 			            width="100%" height="400rem"  style="object-fit: cover;"
 	                    class="img-responsive"

@@ -233,6 +233,9 @@ public class ProductController {
 		 	if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 				model.addAttribute("userRole3",AppConstants.ROLE_3);
 			}	
+			if(product.getGalery() == null){
+				return "dashboard/product/addGalery";
+			}
 		 	return "dashboard/product/info";
 		}
 
