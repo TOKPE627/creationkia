@@ -86,8 +86,11 @@ public class SearchController {
                 model.addAttribute("productExist",true);
                 model.addAttribute("productList",products); 
             }
-            return "resultsProduct";
-        }
+            if(product.getCategory().getTitle().equals("shop")){
+               
+                return "search/resultsProductShop";
+           }
+       }
       
         if(product.getSubCategory() ==null){
             List<Product> products = productService.findByCategory(category);
@@ -96,8 +99,11 @@ public class SearchController {
                 model.addAttribute("productExist",true);
                 model.addAttribute("productList",products); 
             }
+            if(product.getCategory().getTitle().equals("groupSale")){
+                return "search/resultsProductGroupSale";
+            }
         }
       
-	    return "resultsProductWithoutSubCateory";
+	    return "search/resultsProductStore";
     }
 }
