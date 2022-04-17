@@ -129,6 +129,6 @@ public class AppConstants {
   public static  final String FILE_UPLOAD_ADVERTISE_PATH=  "/advertise/";
 
   //File too large
-  public static final String error_max_size="Fichiers téléversés trop lourds.La  taille totale des fichiers ne doit pas dépasser 100 Megabites";
+  public static final String error_max_size="Fichiers téléversés trop lourds.La  taille totale des fichiers ne doit pas dépasser 1024 Mégabites";
   
 }

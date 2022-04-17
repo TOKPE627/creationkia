@@ -220,15 +220,18 @@ public class ShopController {
 		public String update(
 			    @RequestParam("id") Long id, 
 			    @RequestParam("galery_id") Long galery_id, 
-				@ModelAttribute("product") Product product,			
+				@ModelAttribute("product") Product product,		
+				@ModelAttribute("category_id") Long category_id,	
 				 @RequestParam("subCategory_id") Long subCategory_id,
 				 Model model,Principal principal
 			)
 		{
 			User user = userService.findByUsername(principal.getName());
+			Category category = categoryService.findById(category_id);
 		    SubCategory subCategory = subCategoryService.findById(subCategory_id);
 	        ProductGalery productGalery=productGaleryService.findById(galery_id);
 		    product.setUser(user);
+			product.setCategory(category);
 	        product.setSubCategory(subCategory);	        
 	     	product.setPublicationDate(AppDates.currentDateTime());
 	     	product.setGalery(productGalery);

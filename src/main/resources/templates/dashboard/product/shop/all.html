@@ -39,6 +39,13 @@
  @media screen and (max-width:456px) {
  
  }
+ 
+@media (min-width: 320px) and (max-width: 480px) {
+	.shopImg{
+		width: 100% !important;
+        max-height: 3.5rem !important;
+	}
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -54,7 +61,7 @@
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<th><input th:id="selectAllStores" type="checkbox" /></th>
+						<!-- <th><input th:id="selectAllStores" type="checkbox" /></th> -->
 						<th>Nom</th>
 						 <th>Marque</th>
 						 <th>Quantite</th>
@@ -63,7 +70,7 @@
 				</thead>
 				<tbody th:if="${shopExist==true}">
 					<tr  data-th-each="product : ${productList}">
-					    <td>
+					    <!-- <td>
 						   <input hidden="hidden" name="id" th:value="${product.id}" />
 						
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
@@ -73,10 +80,17 @@
 					            class="img-responsive" style="height: 200px;width: 60%; object-fit: cover;"
 			                   th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 					             /> 
-						    </a>
-						</td> 
-						<td><a th:href="@{/shop/shopInfo(id=${product.id})}">
-						  <span th:text="${product.name}" class="colorText"></span></a>
+						    </a> 
+						</td>  -->
+						<td><a 
+							 th:href="@{/shop/shopInfo(id=${product.id})}">
+								<span th:text="${product.name}" class="colorText"></span> <br>
+								<img th:if="${product.galery !=null and product.galery.image1 !=''}" 
+									class="img-responsive shopImg" style="height: 200px;width: 60%; object-fit: cover;"
+									th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" 
+									alt=""  
+						       /> 
+						</a>
 						</td>
 						<td th:text="${product.brand}"></td>	
 						<td th:text="${product.quantity}"></td>

@@ -144,7 +144,8 @@
 	        <form class="form-horizontal" th:action="@{/shop/update}" method="post">
 				<input type="hidden" name="id" th:value="${product.id}" />
 			    <input type="hidden" name="galery_id" th:value="${product.galery.id}" />	      
-	     		<input type="hidden" name="subCategory_id" th:value="${product.subCategory.id}" />
+				<input type="hidden" name="category_id" th:value="${product.category.id}" />
+				<input type="hidden" name="subCategory_id" th:value="${product.subCategory.id}" />
 			
 	            <div class="card" style="display: inline;">
 				   <fieldset style="margin-top: 2rem;">
