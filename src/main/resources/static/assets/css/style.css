@@ -884,7 +884,7 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: none;
 	cursor: pointer;
 }
-.cv-visible.slick-slider .slick-arrow {
+ .cv-visible.slick-slider .slick-arrow {
 	top:-35px;
 }
 .slick-slider .fa.fa-angle-left.slick-arrow {
@@ -893,7 +893,7 @@ h1, h2, h3, h4, h5, h6 {
 .slick-slider .slick-arrow:hover {
 	background-color:#6FB70F;
 	color:#ffffff;
-}
+} 
 .slick-slider .slick-dots {
     margin-top: -80px;
     position: relative;
@@ -1078,7 +1078,7 @@ h1, h2, h3, h4, h5, h6 {
 /*  6. Products Area
 /*----------------------------------------*/
 .cv-visible .slick-list {
-	padding-bottom:100px;
+	padding-bottom:75px;
 	z-index:2;
 }
 .single-product-cat {
@@ -3728,38 +3728,51 @@ a.value-decrease::before {
  } 
 
  @media screen and (min-width: 1025px) {
+	.section-title-shop{
+		margin-top: -2rem !important;
+	}
+    .section-title-service{
+		margin-top: -4rem !important;
+	}
+	.section-title-store{
+		margin-top: -4rem !important;
+	}
+
+	.section-title-groupSale{
+		margin-top: -4rem !important;
+	}
 	.products-nav-tabs.horizontal.quick-view li {
 		width: 32.5% !important;
 	}
-.bottom-left {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
-}
+	.bottom-left {
+	  position: absolute;
+	  bottom: 8px;
+	  left: 16px;
+	}
 
-.top-left {
-  position: absolute;
-  top: 8px;
-  left: 16px;
-}
+	.top-left {
+      position: absolute;
+	  top: 8px;
+	  left: 16px;
+	}
 
-.top-right {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-}
+	.top-right {
+	  position: absolute;
+	  top: 8px;
+	  right: 16px;
+	}
 
 
-.centered {
-  position: absolute; 
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-transform: uppercase;
-  font-size: 22px; 
-   color: white;
-     padding: 10px;
-}  
+	.centered {
+	   position: absolute; 
+	   top: 50%;
+	   left: 50%;
+	   transform: translate(-50%, -50%);
+	   text-transform: uppercase;
+	   font-size: 22px; 
+	   color: white;
+	   padding: 10px;
+	}  
 
 
 	 .imgHeader > a> img{
