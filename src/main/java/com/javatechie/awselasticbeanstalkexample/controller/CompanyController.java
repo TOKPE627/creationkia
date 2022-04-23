@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
@@ -402,6 +403,30 @@ public class CompanyController {
 		return "message/badRequest";
 		//return "message/registrationBookingSuccess";
 	}
-	
+	@RequestMapping(value="/services", method=RequestMethod.GET)
+	public ResponseEntity<?> getServices(Model model
+	    ) throws UnknownHostException {
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	    model.addAttribute("bookingBegunList",bookingsBegun);
+		AjaxResponseBody result = new AjaxResponseBody();
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+		// System.out.println("Services: " + services.size());
+		result.setCompanies(services);
+	    return ResponseEntity.ok(result);
+	}
+	@RequestMapping(value="/service/specialities", method=RequestMethod.GET)
+	public ResponseEntity<?> getSpecialities(Model model,
+	   @ModelAttribute("service_id") Long service_id) throws UnknownHostException {
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	    model.addAttribute("bookingBegunList",bookingsBegun);
+		AjaxResponseBody result = new AjaxResponseBody();
+
+		Company company = companyService.findById(service_id);
+		// System.out.println("Company Searched: " + company.getId() + " " + company.getName());
+		List<Speciality> specialities =  company.getUser().getSpecialities();
+		// System.out.println("Specialities: " + specialities.size());
+		result.setSpecialities(specialities);	
+	    return ResponseEntity.ok(result);
+	}
    	
 }

@@ -9,6 +9,8 @@ public class AjaxResponseBody {
 	String awsBucketProduct;
 	String awsBucketGroupSale;
 	String awsBucketShop;
+	List<Company> companies;
+	List<Speciality> specialities;
 	public String getMsg() {
 		return msg;
 	}
@@ -38,6 +40,20 @@ public class AjaxResponseBody {
 	}
 	public void setAwsBucketShop(String awsBucketShop) {
 		this.awsBucketShop = awsBucketShop;
+	}
+
+	
+	public List<Company> getCompanies() {
+		return companies;
+	}
+	public void setCompanies(List<Company> companies) {
+		this.companies = companies;
+	}
+	public List<Speciality> getSpecialities() {
+		return specialities;
+	}
+	public void setSpecialities(List<Speciality> specialities) {
+		this.specialities = specialities;
 	}
 
     

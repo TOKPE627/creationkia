@@ -199,15 +199,70 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 		}
 	</script>
   -->
+  <script>
+	  loadServices();
+	  function loadServices(){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/services',
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+	            var json = data.companies;
+                console.log(json);
+				if(json){
+					$.each(json,function(index,company){
+						getSpecialities(company.id);
+					});
+				}
+			
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	  }
+  </script>
+  <script>
+
+	//document.getElementById('serviceSpeciality-'+id).click();
+	//$('#serviceSpeciality-'+service_id).click();
+	//alert(service_id);
+	function getSpecialities(service_id){
+
+		//console.log("Service_id" +service_id);
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/service/specialities?service_id='+service_id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+	            var json = data.specialities;
+              console.log(json);
+              $.each(json,function(index,speciality){
+                  $('#resultSpeciality-'+service_id).append(
+					 '<div style="margin-top:-1rem !important;">'
+					   +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 160px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
+						+"-"+speciality.name 
+					   +'</span>'
+                     +'</div>'
+                 );
+              });
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	}
+</script>
 	 
-	<script type="text/javascript">
-		$(document).ready(function(){
-			 $('#myLink1').click();
-		});
-		function getSpecialities(id){
-			alert("Id"+id);
-		}
-	</script>
+
 	<script>
     var productId;
     $(document).ready(function(){
