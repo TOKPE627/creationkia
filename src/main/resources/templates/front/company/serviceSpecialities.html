@@ -1,55 +1,13 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"></head>
+<head th:replace="include/head"/><head>
 <style type="text/css">
   @media screen and (min-width:1025px) { 
 	.companyLogo{
 	 width: 30%;
 	}
-	.cat-catalog{
-		 margin-left: 1.5rem !important;
-	 }
-	 .cat-booking{
-		margin-left: 1.1rem !important;
-	 }
-	 .cat-locate{
-		margin-left: 1.2rem !important;
-	 }
-	 .cat-contact{
-		margin-left: 1.8rem !important;
-	 }
-	 .cat-agenda{
-		margin-left: 2rem !important;
-	 }
   }
- @media (min-width: 768px) and (max-width:1024px) {
-	 .main-category{
-		 margin-left: .8rem !important;
-	 }	 
-	 .categoryCatalog{
-		 margin-top: .5rem !important;
-	 }
-	 .categoryBooking{
-		 margin-top: 1rem !important;
-	 }
-	 .cat-catalog{
-		 margin-left: 1.5rem !important;
-	 }
-	 .cat-booking{
-		margin-left: 1.1rem !important;
-	 }
-	 .cat-locate{
-		margin-left: 1.2rem !important;
-	 }
-	 .cat-contact{
-		margin-left: 1.8rem !important;
-	 }
-	 .cat-agenda{
-		margin-left: 2rem !important;
-	 }
- }
- @media (min-width:481px) and (max-width:767px) {
- }
+ 
  @media screen and (max-width:456px) {
  	 .companyLogo {
 	   width:80%;
@@ -76,38 +34,34 @@
               th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.companyImage}}" alt=""  
               />
               <span><strong th:text="${company.name}"></strong></span>
-		    </a>	
+		   </a>	
         </div>
-		<div th:replace="include/speciality"></div>
+       
      </div>
      <div  class="row" style="margin-top: 8px; margin-left: 3.6rem;">
         <div th:replace="include/companyLeft"></div>       	
 		<div class="col-md-9 row">
-		      
-			   <div  data-th-each="catalog : ${catalogList}">
-			     <div class="product-single" style="background-color: white !important;
-			       width: 10rem;margin-left: 10px;
-			     ">
-				    <div class="product-thumb">
-			         	<a href="#">
-						   <img width="100%" height="140rem" style="margin-top: 20px;"
-			                    class="img-responsive"
-                                th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
-			                /> 
-						 </a>
-					  </div>
-					  <div class="product-price-rating" id="service">
-							<div class="pull-left">
-								<span style="color: black;" th:text="${#strings.abbreviate(catalog.name,12)}"></span><br/>
-								<span th:text="${catalog.price}+ ' XOF'"> </span>
-							</div>
-						</div>
-			         </div>
-				</div>
-             </div>
-          </div>
+             <div style="display: inline;margin-left: 3rem;">
+                <span style="margin-left: 2rem;"><strong style="color: #6FB70F;">Spécialités</strong></span>
+             </div> 
+            <div data-th-each="speciality : ${specialityList}" class="container"
+                style=" margin-left: 5rem; ">
+                <a class="dropdown-toggle" style="color: black;                                                                                                     
+                margin-left: 1.5rem;"
+                href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-navicon"></i>  <span th:text="${speciality.name}"> </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item"> 
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
+                         <span th:text="${speciality.detail}"> </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
   
-     <div style="margin-top: 3rem;"></div>
+    <div style="margin-top: 3rem;"></div>
          
             
        <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>

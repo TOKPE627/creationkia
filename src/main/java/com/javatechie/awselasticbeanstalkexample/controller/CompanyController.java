@@ -286,9 +286,11 @@ private SpecialityService specialityService;
 	
         if(company.getCompanyType().name().equals("SERVICE")) {
         	List<Catalog> catalogs = catalogService.findByUser(user);
-    		List<Speciality> specialities = specialityService.findByUser(user);
+			List<Speciality> specialities = specialityService.findByUser(user);
+    		List<Speciality> specialityTop4List = specialityService.findTop4ByUser(user.getId());
     		model.addAttribute("catalogList",catalogs);
-    		model.addAttribute("specialityList", specialities);
+			model.addAttribute("specialityList",specialities);
+    		model.addAttribute("specialityTop4List", specialityTop4List);
 		  return "front/company/service";	
 		}
         if(company.getCompanyType().name().equals("STORE")) {
@@ -426,5 +428,20 @@ private SpecialityService specialityService;
 		result.setSpecialities(specialities);	
 	    return ResponseEntity.ok(result);
 	}
-   	
+	@RequestMapping("/service/allSpecialities/{id}")
+	public String serviceSpecialities(@ModelAttribute("id") Long id, Model model) throws UnknownHostException {
+		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct",AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	       model.addAttribute("bookingBegunList",bookingsBegun);
+		Company company = companyService.findById(id);
+		User user = company.getUser();
+		model.addAttribute("company", company);
+		List<Speciality> specialities = specialityService.findByUser(user);
+		model.addAttribute("specialityList",specialities);
+		return "front/company/serviceSpecialities";	
+   	}
 }
