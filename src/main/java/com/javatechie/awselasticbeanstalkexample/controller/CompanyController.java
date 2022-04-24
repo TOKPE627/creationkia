@@ -73,7 +73,7 @@ public class CompanyController {
 	private CatalogService catalogService;
 
 	@Autowired
-	private SpecialityService specialityService;
+private SpecialityService specialityService;
 	
 	@Autowired
 	private SubCategoryService subCategoryService;
@@ -410,7 +410,6 @@ public class CompanyController {
 	    model.addAttribute("bookingBegunList",bookingsBegun);
 		AjaxResponseBody result = new AjaxResponseBody();
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
-		// System.out.println("Services: " + services.size());
 		result.setCompanies(services);
 	    return ResponseEntity.ok(result);
 	}
@@ -422,9 +421,8 @@ public class CompanyController {
 		AjaxResponseBody result = new AjaxResponseBody();
 
 		Company company = companyService.findById(service_id);
-		// System.out.println("Company Searched: " + company.getId() + " " + company.getName());
-		List<Speciality> specialities =  company.getUser().getSpecialities();
-		// System.out.println("Specialities: " + specialities.size());
+		User user = company.getUser();
+		List<Speciality> specialities = specialityService.findTop4ByUser(user.getId());
 		result.setSpecialities(specialities);	
 	    return ResponseEntity.ok(result);
 	}

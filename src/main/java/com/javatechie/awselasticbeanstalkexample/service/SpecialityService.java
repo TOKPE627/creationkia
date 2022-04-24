@@ -11,6 +11,7 @@ public interface SpecialityService {
 	Speciality save(Speciality specificity);
 	List<Speciality> findAll();
 	List<Speciality> findByUser(User user);
+	List<Speciality> findTop4ByUser(Long user_id);
 	void remove(Long id);
 }
 

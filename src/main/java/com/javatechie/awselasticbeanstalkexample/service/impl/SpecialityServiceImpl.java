@@ -45,4 +45,9 @@ public class SpecialityServiceImpl implements SpecialityService{
 		specificityRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Speciality> findTop4ByUser(Long userId) {
+		return specificityRepository.findTop4ByUser(userId);
+	}
+
 }

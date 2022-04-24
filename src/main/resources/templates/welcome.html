@@ -243,8 +243,7 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	        cache: false,
 	        timeout: 600000,
 	        success: function (data) {
-	            var json = data.specialities;
-              console.log(json);
+	          var json = data.specialities;
               $.each(json,function(index,speciality){
                   $('#resultSpeciality-'+service_id).append(
 					 '<div style="margin-top:-1rem !important;">'
