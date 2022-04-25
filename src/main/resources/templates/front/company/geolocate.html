@@ -1,51 +1,49 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
-<style type="text/css">
-  @media screen and (min-width:1025px) { 
-	.companyLogo{
-	 width: 30%;
-	}
-  }
- 
- @media screen and (max-width:456px) {
- 	 .companyLogo {
-	   width:80%;
-	   margin-left: 3rem !important;
-	 }
-	 .cat{
-	   padding-left: 1rem;
-	 }
-  } 
-</style>
+<link rel="stylesheet" th:href="@{/assets/css/styleService.css}">
+
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
-     <div class="row">
-               <div th:replace="include/companyHead"></div>
+     <div class="row companyServiceDiv">
+        <div class="card companyLogo"
+            style="border-width: 3px; margin-left: 2rem; height:9rem;margin-top:2rem;
+                    border-radius: 13px ;border-color: #6FB70F;">					
+            <a href="#">      
+                   <img style="width:36%; height:8rem;padding-top: 10px; padding-left: 10px;" 
+                  class="img-responsive"
+              th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.companyImage}}" alt=""  
+              />
+              <span><strong th:text="${company.name}"></strong></span>
+		    </a>	
+        </div>
+		<div th:replace="include/speciality"></div>
      </div>
-     <div class="row" style="margin-top: 8px; margin-left: 3.6rem;">
-       	<div th:replace="include/companyLeft"></div>
-		<div class="col-md-9">
-				<div class="col-md-8 container">
-				   <h4><strong>Vue de face </strong></h4>
-					<div class="card card-body" style="border-radius: 13px;">
-					  <img class="img-responsive center-block geolocateImgFront"
-			                   th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage1}}" alt=""
-                       />  
-					</div>
-				</div>
-			    <div class="col-md-8 container" style="margin-top: 10px;">
-					<h4><strong>Vue de loin </strong></h4>
-					<div class="card card-body" style="border-radius: 13px;">
-					  <img class="img-responsive center-block geolocateImgFront"
-			                   th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage2}}" alt=""
-                       />
-              	    </div>
-		    </div> 
-         </div>
-      </div>
-  
+     <div  class="row catalogPictureDiv" style="margin-top: 8px; margin-left: 3.6rem;">
+        <div th:replace="include/companyLeft"></div>       	
+        <div class="col-md-9 row catalogList">
+            <div class="container bookingForm" style="width: 36rem;">
+   
+                <div class="col-md-8 container">
+                    <h4><strong>Vue de face </strong></h4>
+                     <div class="card card-body" style="border-radius: 13px;">
+                       <img class="img-responsive center-block geolocateImgFront"
+                                th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage1}}" alt=""
+                        />  
+                     </div>
+                 </div>
+                 <div class="col-md-8 container" style="margin-top: 10px;">
+                     <h4><strong>Vue de loin </strong></h4>
+                     <div class="card card-body" style="border-radius: 13px;">
+                       <img class="img-responsive center-block geolocateImgFront"
+                                th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage2}}" alt=""
+                        />
+                       </div>
+             </div>   
+           </div>       
+        </div>  
+    </div>
      <div style="margin-top: 3rem;"></div>
          
             

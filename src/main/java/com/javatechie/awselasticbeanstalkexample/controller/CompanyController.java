@@ -102,8 +102,12 @@ private SpecialityService specialityService;
 	
 	@RequestMapping("/companyInfo")
 	public String info(Model model, Principal principal) throws UnknownHostException {
-		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
-        		
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);        		
 		User user = userService.findByUsername(principal.getName());
 		Company company = companyService.findByUser(user);
 		
@@ -278,8 +282,11 @@ private SpecialityService specialityService;
 		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
 		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 
-		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
-	       model.addAttribute("bookingBegunList",bookingsBegun);
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		if(!bookingsAddedToCart.isEmpty()) {
+			model.addAttribute("bookingAddedToCartExist",true);
+			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+	   }
 		Company company = companyService.findById(id);
 		User user = company.getUser();
 		model.addAttribute("company", company);
@@ -312,15 +319,25 @@ private SpecialityService specialityService;
    			@ModelAttribute("company_id") Long id,
    			Model model) throws UnknownHostException
    	{	
-		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
-		model.addAttribute("awsBucketProduct",AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
-		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
-	       model.addAttribute("bookingBegunList",bookingsBegun);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		if(!bookingsAddedToCart.isEmpty()) {
+			model.addAttribute("bookingAddedToCartExist",true);
+			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+	   }
         Company company = companyService.findById(id);
         model.addAttribute("company",company);
    		User user = company.getUser();
-   		
+   		List<Speciality> specialities = specialityService.findByUser(user);
+    		List<Speciality> specialityTop4List = specialityService.findTop4ByUser(user.getId());
+			model.addAttribute("specialityList",specialities);
+    		model.addAttribute("specialityTop4List", specialityTop4List);
    	   List<WorkingHour> wDay1 = workingHourService.findByUserByDay(user,AppConstants.DAY_1);
    	 		model.addAttribute("day1List",wDay1);
    	 	    List<WorkingHour> wDay2 = workingHourService.findByUserByDay(user,AppConstants.DAY_2);
@@ -341,12 +358,24 @@ private SpecialityService specialityService;
    	@RequestMapping(value="/booking/add")
    	public String booking(@ModelAttribute("company_id") Long id, Model model) throws UnknownHostException {
 
-		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
-		model.addAttribute("awsBucketProduct",AppConstants.awsBucketProduct);
-		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
-	       model.addAttribute("bookingBegunList",bookingsBegun);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		if(!bookingsAddedToCart.isEmpty()) {
+			model.addAttribute("bookingAddedToCartExist",true);
+			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+	   }
    	 Company company = companyService.findById(id);
      model.addAttribute("company",company);
+	 List<Speciality> specialities = specialityService.findByUser(company.getUser());
+			model.addAttribute("specialityList",specialities);
+
+			List<Speciality> specialityTop4List = specialityService.findTop4ByUser(company.getUser().getId());
+			model.addAttribute("specialityTop4List",specialityTop4List);
      List<Town> towns=townService.findAll();
      model.addAttribute("townList",towns);
 		return "front/company/bookingAdd";

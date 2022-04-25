@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
@@ -22,6 +24,8 @@ import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 public class ContactController {
 	@Autowired
 	private CompanyService companyService;
+	@Autowired
+	private SpecialityService specialityService;
 	
 	@Autowired
 	private BookingService bookingService;
@@ -42,8 +46,13 @@ public class ContactController {
 	@RequestMapping("/all")
 	public String companyContact(@ModelAttribute("company_id") Long id, Model model) throws UnknownHostException {
 		
-		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
-		
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+				
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);
@@ -51,7 +60,11 @@ public class ContactController {
 		}
 		Company company = companyService.findById(id);
 		model.addAttribute("company", company);
-	
+		List<Speciality> specialities = specialityService.findByUser(company.getUser());
+		model.addAttribute("specialityList",specialities);
+
+		List<Speciality> specialityTop4List = specialityService.findTop4ByUser(company.getUser().getId());
+		model.addAttribute("specialityTop4List",specialityTop4List);
 		return "front/company/contact";
 	}
 }

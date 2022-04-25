@@ -1,0 +1,158 @@
+.btn-success {
+    background-color: #6FB70F !important;
+    border-color: #6FB70F !important;
+  }
+ .btn-success:hover,
+  .btn-success:active,
+  .btn-success:visited,
+  .btn-success:focus {
+    background-color: #6FB70F !important;
+    border-color: #6FB70F !important;
+  }
+  @media screen and (min-width:1281px) { 
+	.companyLogo{
+	 width: 30%;
+	}
+	.cat-catalog{
+		 margin-left: 1.5rem !important;
+	 }
+	 .cat-booking{
+		margin-left: 1.1rem !important;
+	 }
+	 .cat-locate{
+		margin-left: 1.2rem !important;
+	 }
+	 .cat-contact{
+		margin-left: 1.8rem !important;
+	 }
+	 .cat-agenda{
+		margin-left: 2rem !important;
+	 }
+  }
+    @media (min-width:1025px) and (max-width:1280px) { 
+		.specialityDiv{
+		 margin-left: 2% !important;
+	 }
+	.companyLogo {
+	   width:50%;
+	   margin-left: 3rem !important;
+	 }
+	 
+	  .catalogPictureDiv{
+		 margin-left: 4rem !important;
+	 } 
+	 .catalogList{
+		 margin-top: -1.1rem !important;
+		 margin-left: -2rem !important;
+	 }
+	 /* .companyLogo > a > img{
+		 height: 5rem !important;
+	 } */
+	 .main-category{
+		 margin-left: -22px !important;
+	 }	 
+	 .categoryCatalog{
+		 margin-top: .5rem !important;
+	 }
+	 .categoryBooking{
+		 margin-top: 1rem !important;
+	 }
+	 .cat-catalog{
+		 margin-left: 1.5rem !important;
+	 }
+	 .cat-booking{
+		margin-left: 1.1rem !important;
+	 }
+	 .cat-locate{
+		margin-left: 1.2rem !important;
+	 }
+	 .cat-contact{
+		margin-left: 1.8rem !important;
+	 }
+	 .cat-agenda{
+		margin-left: 2rem !important;
+	 }
+	/* .companyLogo{
+	 width: 30%;
+	}
+	.cat-catalog{
+		 margin-left: 1.5rem !important;
+	 }
+	 .cat-booking{
+		margin-left: 1.1rem !important;
+	 }
+	 .cat-locate{
+		margin-left: 1.2rem !important;
+	 }
+	 .cat-contact{
+		margin-left: 1.8rem !important;
+	 }
+	 .cat-agenda{
+		margin-left: 2rem !important;
+	 } */
+  }
+ @media (min-width: 768px) and (max-width:1024px) {
+     .bookingForm{
+         margin-left: -3rem !important;
+     }
+	 .specialityDiv{
+		 margin-left: 2% !important;
+	 }
+	.companyLogo {
+	   width:50%;
+	   margin-left: 3rem !important;
+	 }
+	 
+	  .catalogPictureDiv{
+		 margin-left: 4rem !important;
+	 } 
+	 .catalogList{
+		 margin-top: -1.1rem !important;
+		 margin-left: -2rem !important;
+	 }
+	 /* .companyLogo > a > img{
+		 height: 5rem !important;
+	 } */
+	 .main-category{
+		 margin-left: -22px !important;
+	 }	 
+	 .categoryCatalog{
+		 margin-top: .5rem !important;
+	 }
+	 .categoryBooking{
+		 margin-top: 1rem !important;
+	 }
+	 .cat-catalog{
+		 margin-left: 1.5rem !important;
+	 }
+	 .cat-booking{
+		margin-left: 1.1rem !important;
+	 }
+	 .cat-locate{
+		margin-left: 1.2rem !important;
+	 }
+	 .cat-contact{
+		margin-left: 1.8rem !important;
+	 }
+	 .cat-agenda{
+		margin-left: 2rem !important;
+	 }
+ }
+ @media (min-width:481px) and (max-width:767px) {
+	.companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+ }
+ @media screen and (max-width:456px) {
+ 	 .companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+	 .cat{
+	   padding-left: 1rem;
+	 }
+  } 
+  .companyServiceDiv{
+	  margin-top: 3rem !important;
+  }

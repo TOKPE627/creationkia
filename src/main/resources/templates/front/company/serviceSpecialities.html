@@ -1,26 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
-<style type="text/css">
-  @media screen and (min-width:1025px) { 
-	.companyLogo{
-	 width: 30%;
-	}
-  }
- 
- @media screen and (max-width:456px) {
- 	 .companyLogo {
-	   width:80%;
-	   margin-left: 3rem !important;
-	 }
-	 .cat{
-	   padding-left: 1rem;
-	 }
-  } 
-  .companyServiceDiv{
-	  margin-top: 3rem !important;
-  }
-</style>
+<head th:replace="include/head"></head>
+<link rel="stylesheet" th:href="@{/assets/css/styleService.css}">
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
@@ -40,7 +21,7 @@
      </div>
      <div  class="row" style="margin-top: 8px; margin-left: 3.6rem;">
         <div th:replace="include/companyLeft"></div>       	
-		<div class="col-md-9 row">
+	      	<div class="col-md-9 row">
              <div style="display: inline;margin-left: 3rem;">
                 <span style="margin-left: 2rem;"><strong style="color: #6FB70F;">Spécialités</strong></span>
              </div> 

@@ -1,6 +1,7 @@
 package com.javatechie.awselasticbeanstalkexample.controller;
 
 import java.io.IOException;
+import java.net.UnknownHostException;
 import java.security.Principal;
 import java.util.List;
 
@@ -16,15 +17,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
+import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 import com.javatechie.awselasticbeanstalkexample.utility.FileUploadUtil;
 
 @Controller
@@ -41,6 +47,12 @@ public class CatalogController {
 	
 	@Autowired
 	private CompanyService companyService;
+
+	@Autowired
+	private SpecialityService specialityService;
+
+	@Autowired
+	private BookingService bookingService;
 	
 	@RequestMapping("/catalogInfo")
 	public String catalogInfo(@RequestParam("id") Long id,Model model,Principal principal) {
@@ -147,10 +159,27 @@ public class CatalogController {
 		}
 		
 		@RequestMapping("/all")
-		public String all(@RequestParam("company_id") Long id, Model model) {
-			model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
-			model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
-            Company company = companyService.findById(id);
+		public String all(@RequestParam("company_id") Long id, Model model) throws UnknownHostException {
+			model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);          
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+			model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+			model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+			model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		    List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+ 		if(!bookingsAddedToCart.isEmpty()) {
+	    	 model.addAttribute("bookingAddedToCartExist",true);
+	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+		}
+		
+			Company company = companyService.findById(id);
+
+			List<Speciality> specialities = specialityService.findByUser(company.getUser());
+			model.addAttribute("specialityList",specialities);
+
+			List<Speciality> specialityTop4List = specialityService.findTop4ByUser(company.getUser().getId());
+			model.addAttribute("specialityTop4List",specialityTop4List);
 			List<Catalog> catalogs = catalogService.findByUser(company.getUser());
 			model.addAttribute("company", company);
 			model.addAttribute("catalogList", catalogs);

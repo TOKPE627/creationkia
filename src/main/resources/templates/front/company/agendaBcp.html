@@ -1,36 +1,61 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
-<link rel="stylesheet" th:href="@{/assets/css/styleService.css}">
-
+<style type="text/css">
+  @media screen and (min-width:1025px) { 
+	.companyLogo{
+	 width: 30%;
+	}
+  }
+ 
+ @media screen and (max-width:456px) {
+ 	 .companyLogo {
+	   width:80%;
+	   margin-left: 3rem !important;
+	 }
+	 .cat{
+	   padding-left: 1rem;
+	 }
+  } 
+</style>
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
-     <div class="row companyServiceDiv">
-        <div class="card companyLogo"
-            style="border-width: 3px; margin-left: 2rem; height:9rem;margin-top:2rem;
-                    border-radius: 13px ;border-color: #6FB70F;">					
-            <a href="#">      
-                   <img style="width:36%; height:8rem;padding-top: 10px; padding-left: 10px;" 
-                  class="img-responsive"
-              th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.companyImage}}" alt=""  
-              />
-              <span><strong th:text="${company.name}"></strong></span>
-		    </a>	
+     <div class="row">
+      
+        <div th:replace="include/companyHead"></div>
+        
+        
+        <div style="display: inline; margin-top: 2rem; margin-left: 3rem;">
+<!--            <span><strong style="color: #6FB70F;">Spécialités</strong></span>
+ -->            <div class="container" style=" margin-left: 10px;"><!-- 
+               <div class="book-item" data-th-each="speciality : ${specialityList}">
+                  <div class="col-md-4 col-xs-4">
+				     <p class="panel-footer" style="width:190px;margin-left:14px;">
+					     <a th:href="@{/speciality/info?id=}+${speciality.id}">  
+				     	   <span th:text="${speciality.name}" style="font-size: 15px; color: #db3208;"></span> <br>							    
+						
+						</a>			
+				     </p> 
+			       </div>
+                </div> -->
+               	<ul class="book-item" data-th-each="sp : ${specialityList}" 
+				 	style="list-style-type: '-'; padding: 0; margin: 0;">
+		             <li th:text="${sp.name}" style="margin: 0 0 !important;"></li>
+				 	
+			    </ul>
+			</div>
         </div>
-		<div th:replace="include/speciality"></div>
      </div>
-     <div  class="row catalogPictureDiv" style="margin-top: 8px; margin-left: 3.6rem;">
+     <div  class="row" style="margin-top: 8px; margin-left: 3.6rem;">
         <div th:replace="include/companyLeft"></div>       	
-        <div class="col-md-9 row catalogList">
-            <div class="container bookingForm" style="width: 36rem;">
-   
-                <div style="margin-top: 13px;" class="container-fluid">
+		    <div class="col-md-9 row">
+		          <div style="margin-top: 13px;" class="container-fluid">
 			        <div class="table-responsive">
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Lundi</th>
+								 <th>Jour 1</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -56,7 +81,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Mardi</th>
+								 <th>Jour 2</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -83,7 +108,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Mercredi</th>
+								 <th>Jour 3</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -111,7 +136,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Jeudi</th>
+								 <th>Jour 4</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -138,7 +163,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Vendredi</th>
+								 <th>Jour 5</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -165,7 +190,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Samedi</th>
+								 <th>Jour 6</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -192,7 +217,7 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Dimanche</th>
+								 <th>Jour 7</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
@@ -214,10 +239,10 @@
 						</tbody>
 					</table>
 				</div>
-			  </div> 
-           </div>       
-        </div>  
-    </div>
+			  </div>
+            </div>
+        </div>
+  
      <div style="margin-top: 3rem;"></div>
          
             
