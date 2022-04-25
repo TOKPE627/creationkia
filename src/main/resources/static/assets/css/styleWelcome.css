@@ -28,6 +28,12 @@ border-color: #6FB70F !important;
 
 }
 @media screen and (min-width:1025px){
+  .shopContainer > .product-single{ 
+    height: 16.8rem !important;
+ } 
+ .groupSaleContainer> .product-single{
+  height: 17.5rem !important;
+}
   /* .product-thumb-shop a img{
     height:237px !important;
   } */
@@ -39,6 +45,7 @@ border-color: #6FB70F !important;
       width:100%;
        height:192px;
   }
+
 }
 @media (min-width: 1025px) and (max-width: 1280px) {
 
@@ -84,41 +91,67 @@ border-color: #6FB70F !important;
 
 
 @media (min-width: 320px) and (max-width: 480px) {
+  
+  .initialPrice{
+    margin-top: -0.7rem !important;
+    display: flex;
+  }
     .shareH {
         margin-left: 10% !important;
     }
     .shareS a i{
         margin-left: 10px !important;
     }
-  .product-single{
-    width: 10.1rem !important;
-  }  
+  /* .product-single{
+    height: 218px !important;
+    width: 10.9rem !important;
+  }   */
+  .product-single {
+    width: 10.9rem !important;
+    height: 218px !important;
+    max-width: 120% !important;
+  }
   .product-thumb > a > img {
         width:100% !important; 
         height: 8rem !important;
     }
+    .product-thumb-shop a img{
+      height:156px !important;
+    }
+     
     .product-thumb-groupSale > a > img {
         width:100% !important; 
         height: 8rem !important;
     }
   .shopContainer{
-    height: 10rem !important;
+    height: 16.2rem !important;
   }
+  .shopContainer > .product-single{ 
+    height: 14rem !important;
+ } 
   .storeContainer{
-    height: 10rem !important;
+    height: 16.2rem !important;
   }
+  .storeContainer > .product-single{ 
+    height: 14.2rem !important;
+ } 
   .serviceContainer{
     height: 16.2rem !important;
   }
     .groupSaleContainer{
     width: 11rem !important;
-    height: 9.5rem !important;  
+    height: 16rem !important;  
   }
-
+  .groupSaleContainer > .product-single{ 
+    height: 14rem !important;
+ } 
   .product-thumb-store > a > img{
-        height: 166px !important;
+        height: 176px !important;
     }
-
+    .product-thumb-groupSale > a > img {
+      width: 100% !important;
+      height: 9rem !important;
+    }
   .product-title h4{
     width: 100px;
   overflow: hidden;

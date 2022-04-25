@@ -3932,22 +3932,19 @@ a.value-decrease::before {
 }
 
 @media (min-width:361px) and (max-width:480px) {
-	.product-thumb-groupSale > a > img {
-		width: 100% !important;
-		height: 8rem !important;
-	}
+
 	.section-title-shop{
-		margin-top: -4rem !important;
+		margin-top: -4.7rem !important;
 	}
     .section-title-service{
-		margin-top: 2rem !important;
+		margin-top: -3rem !important;
 	}
 	.section-title-store{
-		margin-top: 2rem !important;
+		margin-top: -3rem !important;
 	}
 
 	.section-title-groupSale{
-		margin-top: 2rem !important;
+		margin-top: -3rem !important;
 	}
 	.footer-area{
 		margin-top: 6rem !important;
@@ -3965,6 +3962,9 @@ a.value-decrease::before {
 */
 
 @media (min-width: 320px) and (max-width: 480px) {
+	/* .cv-visible .slick-list {
+		padding-bottom:-15px !important;
+	} */
     .close{
 		margin-right: 5rem !important;
 	}
