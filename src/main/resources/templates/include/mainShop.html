@@ -22,7 +22,7 @@
 								   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,25)}"></h4>                                      
 							  
 								</div>
-								<div  class="product-thumb">
+								<div  class="product-thumb product-thumb-shop">
 									<a href="#">
 										 <img width="100%" height="150rem"
 											class="img-responsive" style="object-fit: cover;"
@@ -65,8 +65,8 @@
 								</div>
 								<div class="product-price-rating" id="supermarket">
 									<div class="pull-left">
-										<span th:text="${product.price}+' XOF'"></span><br/>
-										<del th:text="${product.upPrice}+ ' XOF'"> </del>
+										<span th:text="${product.price}+' XOF'"></span> <br>
+										<del class="initialPrice" style="font-size: 13px;" th:text="${product.upPrice}+ ' XOF'"> </del>
 									</div>
 								</div>
 <!-- 									<div class="product-action">

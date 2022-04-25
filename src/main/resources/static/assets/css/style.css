@@ -3799,7 +3799,7 @@ a.value-decrease::before {
 	}
 
     .section-title .category{
-     font-size: 28px;
+     font-size: 27px !important;
     }
  	.collapse-menu > ul > li > ul > li {
 			display: block;
@@ -3902,7 +3902,19 @@ a.value-decrease::before {
 
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   
-  /* CSS */
+	.section-title-shop{
+		margin-top: -1.3rem !important;
+	}
+    .section-title-service{
+		margin-top: -3.1rem !important;
+	}
+	.section-title-store{
+		margin-top: -3.1rem !important;
+	}
+
+	.section-title-groupSale{
+		margin-top: -3.1rem !important;
+	}
   
 }
 
