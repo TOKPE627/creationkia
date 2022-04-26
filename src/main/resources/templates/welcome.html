@@ -31,7 +31,7 @@
 								<div th:if="${store.galery !=null and store.galery.companyImage !='' and store.galery.geolocateImage1 !='' and store.galery.geolocateImage2 !=''}"
 								 class="product-single" style="background-color: white !important; ">
 									<div class="product-title">   				     				
-									   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(store.name,20)}"></h4>                                      
+									   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(store.name,18)}"></h4>                                      
 									 </div>
 									<div class="product-thumb product-thumb-store">
 										<a th:href="@{/company/info/}+${store.id}">
@@ -90,7 +90,7 @@
 							  
 							">
 								<div class="product-title">	
-									<h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,25)}"></h4>                                                                   
+									<h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,18)}"></h4>                                                                   
 									<h4 style="text-align: center;">  <span th:text="${product.currentBooking}"></span>      
 									 <span>/10 réservations</span></h4>
 								</div>
