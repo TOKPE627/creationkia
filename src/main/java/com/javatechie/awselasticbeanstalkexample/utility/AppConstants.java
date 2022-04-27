@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 public class AppConstants {
 	
-   public static String APP_NAME="attoly";
+   public static String APP_NAME="atooly";
    public static final String ROLE_1 = "ROLE_ADMIN";//Admin
    public static final String ROLE_2 = "ROLE_STOREKEEPER";
    public static final String ROLE_3 = "ROLE_SERVICE";
@@ -33,18 +33,18 @@ public class AppConstants {
    //public static String url="http://localhost:8080/";
    //awsUrl
    
-   public static String url="http://attoly-env.eba-9tajrzrg.us-east-1.elasticbeanstalk.com/";
+   public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
    
 //   @Value("${application.bucket.user}")
 //   public static String awsBucketUser;
-   public static String awsBucketIcon="https://attolyicon.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketUser="https://attolyuser.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketCompany="https://attolycompany.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketProduct="https://attolyproduct.s3.us-east-1.amazonaws.com/";
+   public static String awsBucketIcon="https://atoolyicon.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketUser="https://atoolyuser.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketCompany="https://atoolycompany.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketProduct="https://atoolyproduct.s3.us-east-1.amazonaws.com/";
     public static String awsBucketShop ="https://attolyshop.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketGroupSale="https://attolygroupsale.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketAdvertise="https://attolyad.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketCatalog ="https://attolycatalog.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketGroupSale="https://atoolygroupsale.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketAdvertise="https://atoolyad.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketCatalog ="https://atoolycatalog.s3.us-east-1.amazonaws.com/";
 
 //   @Value("${application.bucket.product}")
 //   public static String awsBucketProduct;

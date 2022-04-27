@@ -158,19 +158,19 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	   @Override
 		public void run(String... args) throws Exception {
 			
-			//   User user = new User(); 
-			//   //user.setId(Long.parseLong("1"));
-			//   user.setEmail("kouassielysee@gmail.com"); 
-			//   user.setUsername("elysee");
-			//   user.setLastName("Kouassi");
-			//   user.setFirstName("Elysee");
-			//   BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
-			//   user.setPassword(passwordEncoder.encode("passer")); 
-			//   Role roleR = new Role();
-			//   roleR.setRoleId(Long.parseLong("1")); 
-			//   roleR.setName(AppConstants.ROLE_1);//By Default
-			//   Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
-			//   UserRole(user, roleR)); 
-			//   userService.createUser(user, userRoles);
+			  User user = new User(); 
+			  //user.setId(Long.parseLong("1"));
+			  user.setEmail("kouassielysee@gmail.com"); 
+			  user.setUsername("elysee");
+			  user.setLastName("Kouassi");
+			  user.setFirstName("Elysee");
+			  BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+			  user.setPassword(passwordEncoder.encode("passer")); 
+			  Role roleR = new Role();
+			  roleR.setRoleId(Long.parseLong("1")); 
+			  roleR.setName(AppConstants.ROLE_1);//By Default
+			  Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
+			  UserRole(user, roleR)); 
+			  userService.createUser(user, userRoles);
 		}
 }

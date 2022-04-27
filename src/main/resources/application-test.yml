@@ -1,8 +1,8 @@
 cloud:
   aws:
     credentials:
-      access-key: AKIA5KV4Z6CGL5Y7SLVN
-      secret-key: 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
+      access-key: AKIAVZEDBFOEPCBN7UU7
+      secret-key:  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
     region:
       static: us-east-1
     stack:
@@ -10,13 +10,13 @@ cloud:
 
 application:
  bucket: 
-   name: attolystorage
-   icon: attolyicon
-   user: attolyuser
-   company: attolycompany
-   product: attolyproduct
-   shop: attolyshop
-   groupsale: attolygroupsale
-   advertise: attolyad
-   catalog: attolycatalog
+   name: atoolystorage
+   icon: atoolyicon
+   user: atoolyuser
+   company: atoolycompany
+   product: atoolyproduct
+   shop: atoolyshop
+   groupsale: atoolygroupsale
+   advertise: atoolyad
+   catalog: atoolycatalog
 
