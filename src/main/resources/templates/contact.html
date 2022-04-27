@@ -1,59 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
-<style type="text/css">
-   .btn-success {
-	  background-color: #6FB70F !important;
-	  border-color: #6FB70F !important;
-	}
-    .btn-success:hover,
-    .btn-success:active,
-    .btn-success:visited,
-    .btn-success:focus {
-      background-color: #6FB70F !important;
-      border-color: #6FB70F !important;
-    }
-
-	@media screen and (min-width:1025px) {
-	  .form-group > input{
-	    width: 22rem;
-	   }
-       .form-group  .formEmail{
-		  margin-left: 4px;
-		}
-	 .infoResponsive{
-	      margin-top: 3rem;
-	      margin-left: 4rem;
-	  }	
-	  .contactResponsive {
-	    margin-left: 4rem;
-	  }
-	 .contactResponsive > form{
-	      margin-top: 1px;
-	      margin-left: 1rem;
-	  }	
-    }
-    
-    @media screen and (max-width:456px) {
-       .form-group > input{
-		  width: 20.5rem;
-		}
-
-	 .infoResponsive{
-	   margin-top: 3rem;
-	   margin-left: 1rem; 
-	   margin-right: 1rem;
-	 }	
-
-    .contactResponsive > form{
- 	      width: 20.5rem;
-	  }	
-      .submitResponsive > button {
-       margin-left: 35% !important;
-     } 
-  } 
-	
-</style>
+<head th:replace="include/head"></head>
+<link rel="stylesheet" th:href="@{/assets/css/styleContact.css}">
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
@@ -80,15 +28,14 @@
 							placeholder="Email" required="required">
 			       </div>
          	    </div>
-		    	<div class="row">
-		        	<textarea rows="4" cols="50" class="form-control" name="message" placeholder="Ecrivez le message.."
-		        	  required="required" style="width: 44.2rem;"
+		    	<div class="row formMessageDiv">
+		        	<textarea rows="4" cols="50" class="form-control formMessage" name="message" placeholder="Ecrivez le message.."
+		        	  required="required" 
 		        	></textarea>
 				</div> 
 			</form>
 			 <div class="container submitResponsive" style="margin-top: 6px; margin-bottom: 5rem;">
-				   <button type="submit" class="btn btn-sm btn-success" style="margin-left: 90%;
-">
+				   <button type="submit" class="btn btn-sm btn-success">
 				   <i class="fa fa-paper-plane" aria-hidden="true"></i>Envoyer</button>
 			 </div>
          </div>

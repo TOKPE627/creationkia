@@ -3729,7 +3729,7 @@ a.value-decrease::before {
 
  @media screen and (min-width: 1025px) {
 	.section-title-shop{
-		margin-top: -2rem !important;
+		margin-top: 2.5rem !important;
 	}
     .section-title-service{
 		margin-top: -4rem !important;
@@ -3903,7 +3903,7 @@ a.value-decrease::before {
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   
 	.section-title-shop{
-		margin-top: -1.3rem !important;
+		margin-top: 1.8rem !important;
 	}
     .section-title-service{
 		margin-top: -3.1rem !important;

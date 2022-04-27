@@ -173,6 +173,7 @@
               $.each(json,function(index,product){
                 if(product.galery !=null && product.category.title =='service'){
                   $('#dumppy').html('');    
+                  $("nav div").hide();
                   $('#dumppy').append(
                   '<div class="row" style="margin-top:4.5rem;">'+ 
                       '<div class="col-xs-12">'
@@ -187,6 +188,7 @@
                 }
                 if(product.galery !=null && product.category.title =='store'){
                   $('#dumppy').html('');    
+                  $("nav div").hide();
                   $('#dumppy').append( 
                   '<div class="row" style="margin-top:4.5rem;">'+ 
                       '<div class="col-xs-12">'
@@ -202,6 +204,7 @@
                 }
                 if(product.galery !=null && product.category.title =='shop'){
                   $('#dumppy').html('');    
+                  $("nav div").hide();
                   $('#dumppy').append(
                   '<div class="row" style="margin-top:4.5rem;">'+ 
                       '<div class="col-xs-12">'
@@ -217,6 +220,7 @@
               }
               if(product.galery !=null && product.category.title == 'groupSale'){
                 $('#dumppy').html('');    
+                $("nav div").hide();
                   $('#dumppy').append(
                   '<div class="row" style="margin-top:4.5rem;">'+ 
                       '<div class="col-xs-12">'

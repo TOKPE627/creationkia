@@ -55,7 +55,4 @@ public class AjaxResponseBody {
 	public void setSpecialities(List<Speciality> specialities) {
 		this.specialities = specialities;
 	}
-
-    
-
 }
