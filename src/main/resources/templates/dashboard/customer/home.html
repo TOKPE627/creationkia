@@ -1,8 +1,105 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
-<style type="text/css">
+<head th:replace="include/head"></head>
 
+<style type="text/css">
+	@media screen and (min-width:1301px){
+		.totalSpan{
+			margin-left: 51rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 51rem !important;
+		}
+		.productDiv > a > img{
+			width: 40% !important;
+			height: 160px !important;
+		}
+	}
+	@media (min-width: 1281px) and (max-width:1300px){
+		.totalSpan{
+			margin-left: 51rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 51rem !important;
+		}
+		.productDiv > a > img{
+			width: 40% !important;
+			height: 160px !important;
+		}
+		
+    }
+	@media (min-width: 1025px) and (max-width:1280px){
+		.totalSpan{
+			margin-left: 43rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 43rem !important;
+		}
+		.productDiv > a > img{
+			width: 40% !important;
+			height: 160px !important;
+		}
+    }
+	@media (min-width: 768px) and (max-width:1024px){
+		.totalSpan{
+			margin-left: 27rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 27rem !important;
+		}
+		.productDiv > a > img{
+			width: 10rem !important;
+			height: 50px !important;
+		}
+    }
+	@media (min-width: 481px) and (max-width:767px){
+		.totalSpan{
+			margin-left: 12rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 12rem !important;
+		}
+    }
+	@media (min-width: 401px) and (max-width:480px){
+		.totalSpan{
+			margin-left: 6rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 6rem !important;
+		}
+		.productDiv{
+			position: absolute !important;
+			width: 40% !important;
+		}
+		.sellerDiv {
+			margin-top: 30% !important;
+			width: 60% !important;
+		}
+    }
+	@media (min-width: 381px) and (max-width:400px){
+		.totalSpan{
+			margin-left: 4rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 4rem !important;
+		}
+    }
+    @media (min-width: 361px) and (max-width:380px){
+		.totalSpan{
+			margin-left: 4rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 4rem !important;
+		}
+    }
+	@media (min-width: 320px) and (max-width:360px){
+		.totalSpan{
+			margin-left: 4rem !important;
+		}
+		.includeAmountSpan{
+			margin-left: 4rem !important;
+		}
+	}
   	.btn-success {
 	  background-color: #6FB70F !important;
 	  border-color: #6FB70F !important;
@@ -41,24 +138,24 @@
 						
 							<td>
 						        <div class="row">
-						            <div class="col-md-2">
+						            <div class="col-md-2 col-xs-12 col-lg-12 productDiv">
 						                <a th:href="@{/product/productInfo(id=${booking.product.id})}">
-									   <img th:if="${booking.product.category.title =='shop'}" width="80%" height="60px"
+									   <img th:if="${booking.product.category.title =='shop'}" 
 							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
-							               <img th:if="${booking.product.category.title == 'groupSale'}" width="80%" height="60px"
+							               <img th:if="${booking.product.category.title == 'groupSale'}" 
 							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               />
-									  	   <img th:if="${booking.product.category.title =='store'}" width="80%" height="60px"
+									  	   <img th:if="${booking.product.category.title =='store'}" 
 							                    class="img-responsive"  style="object-fit: cover;"
 								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
 							               /> 
 									    </a>
 						            </div>
 						           
-						            <div class="col-md-10">
+						            <div class="col-md-10 col-xs-12 col-lg-12 sellerDiv">
 						              <span>Vendeur:</span> <span th:text="${booking.product.user.lastName}"></span>
 						               <span th:text="${booking.product.user.firstName}"></span>
 						              <br>
@@ -66,7 +163,7 @@
 						                    <span style="font-size: 18px;" th:text="${#strings.abbreviate(booking.product.detail,100)}"></span> 
 						              </strong>
 				    	            </div>	
-						            <div class="container" style="margin-left: 7rem;margin-top: 2rem;">
+						            <div class="container col-xs-12 col-lg-12" style="margin-left: 7rem;margin-top: 2rem;">
 	                                 <a th:href="@{/booking/remove(id=${booking.id})}" style="margin-left: 10px;">
 	      					              <i class="fa fa-trash colorText" style="text-transform: uppercase;">Supprimer</i>                             
 	                                 </a>
@@ -82,14 +179,14 @@
 					</tbody>
 				</table>
 				<div th:if="${bookingBegunList.size !=0}" class="container">
-				  <span style="margin-left: 49rem;">Total: </span>
+				  <span class="totalSpan">Total: </span>
 				  <span style="margin-left: 2rem;" class="colorText">
 				   <strong >
 				     <span th:text="${total_price_orders}"></span><span> FCFA</span>
 				   </strong>
 				  </span> 
 				  <strong>
-				     <span style="margin-left: 39rem;">Frais de livraison inclus</span>
+				     <span class="includeAmountSpan">Frais de livraison inclus</span>
 				  </strong>
 				
 				   <a th:href="@{/order/validate}">

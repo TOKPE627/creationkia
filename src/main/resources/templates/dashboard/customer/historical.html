@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
-<head th:replace="include/head"/><head>
+<head th:replace="include/head"></head>
 <link rel="stylesheet" th:href="@{/assets/css/styleDashboard.css}">
 
 <style type="text/css">
@@ -16,6 +16,36 @@
       background-color: #6FB70F !important;
       border-color: #6FB70F !important;
     }  
+	@media screen and (min-width:1301px){
+
+	}
+
+	@media (min-width: 1281px) and (max-width: 1300px){
+
+	}
+    @media (min-width: 1025px) and (max-width: 1280px){
+
+	}
+	@media (min-width:768px) and (max-width:1024px){
+		.bookingHistorical{
+			position: absolute !important;
+		}
+		.historicalSeller{
+			margin-top: 4rem !important;
+		}
+	}
+	@media (min-width: 481px) and (max-width: 767px){
+	
+	}
+	@media (min-width: 401px) and (max-width:480px){
+
+	}
+	@media (min-width:381px) and (max-width:400px){
+
+	}
+	@media (min-width:320px) and (max-width:380px){
+
+	}
 </style>
 <body style="background-color: #e8e8e8;">	
     <!--header-->
@@ -45,7 +75,7 @@
 					
 						<td>
 					        <div class="row">
-					            <div class="col-md-2">
+					            <div class="col-md-2 col-xs-12 col-lg-12 bookingHistorical">
 					                <a th:href="@{/product/productInfo(id=${booking.product.id})}">      
 						                   <img th:if="${booking.product.category.title =='shop'}" width="80%" height="60px"
 							                    class="img-responsive"  style="object-fit: cover;"
@@ -62,7 +92,7 @@
 								    </a>
 					            </div>
 					       
-					            <div class="col-md-10">
+					            <div class="col-md-10 col-xs-12 col-lg-12 historicalSeller">
 					              <span>Vendeur:</span> <span th:text="${booking.product.user.lastName}"></span>
 					               <span th:text="${booking.product.user.firstName}"></span>
 					              <br>

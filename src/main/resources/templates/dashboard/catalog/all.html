@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -31,14 +31,20 @@
 </head>
 <style>
 
+@media screen and (min-width:1025px) { 
 
-  @media screen and (min-width:1025px) { 
+}
 
+@media screen and (max-width:456px) {
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .catalogImg{
+	  width: 100% !important;
+	  max-height: 3.5rem !important;
   }
- 
- @media screen and (max-width:456px) {
- 
- }
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -54,8 +60,7 @@
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<th><input th:id="selectAllStores" type="checkbox" /></th>
-						<th>Nom</th>
+						 <th></th>
 						 <th>Prix</th>
 						<th>Action</th>
 					</tr>
@@ -64,18 +69,17 @@
 				   <tr data-th-each="catalog : ${catalogList}">
 					  <td>
 						   <input hidden="hidden" name="id" th:value="${catalog.id}" />
-						   <input th:id="'selected'+${catalog.id}" class="checkboxCatalog" type="checkbox" />
+						   <!-- <input th:id="'selected'+${catalog.id}" class="checkboxCatalog" type="checkbox" /> -->
 						    <a th:href="@{/catalog/catalogInfo(id=${catalog.id})}">
-						      <img
-					            class="img-responsive" 
-								style="height: 200px;width: 60%;object-fit: cover;"
-					             th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
-					             /> 
+								<span th:text="${catalog.name}" class="colorText"></span><br>
+								 <img
+									 class="img-responsive catalogImg" style="height: 200px;width: 60%; object-fit: cover;"
+									 th:src="@{${awsBucketCatalog}+${catalog.id}+'/'+${catalog.image}}" alt=""  
+
+								/>  
 						    </a>
 					   </td>
-						<td><a th:href="@{/catalog/catalogInfo(id=${catalog.id})}">
-						  <span th:text="${catalog.name}" class="colorText"></span></a>
-						</td>
+
 						<td th:text="${catalog.price}"></td>	
 						
 						<td>

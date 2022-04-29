@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
+
 @Table(name="advertise")
 @Entity(name="advertise")
 public class Advertise  implements Serializable{
@@ -22,7 +24,7 @@ public class Advertise  implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	private String name="attoly";
+	private String name=AppConstants.APP_NAME;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")

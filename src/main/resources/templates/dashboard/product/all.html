@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -39,6 +39,12 @@
  @media screen and (max-width:456px) {
  
  }
+ @media (min-width: 320px) and (max-width: 480px) {
+	.productImg{
+		width: 100% !important;
+        max-height: 3.5rem !important;
+	}
+}
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -68,28 +74,27 @@
 						
 						  <input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
 						    <a 
-							  th:if="${product.galery !=null and product.galery.image1 !=''}" 
-							  th:href="@{/product/productInfo(id=${product.id})}">
+							    th:if="${product.galery !=null and product.galery.image1 !=''}" 
+							    th:href="@{/product/productInfo(id=${product.id})}">
+							  <span th:text="${product.name}" class="colorText"></span>
 						     <img th:if="${product.category.title =='shop'}"
-							  width="60%" height="200px"  style="object-fit: cover;"
-		                    class="img-responsive" 
-			                  th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-		               />
-		               <img th:if="${product.category.title == 'groupSale'}" 
-		                   width="60%" height="200px"  style="object-fit: cover;"
-		                    class="img-responsive"
-			                  th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-		               />
-				  	   <img th:if="${product.category.title =='store'}"
-				  	       width="60%" height="200px"  style="object-fit: cover;"
-		                    class="img-responsive"
-			                  th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-		               /> 
+							   style="object-fit: cover; width:60%; height: 200px"
+		                       class="img-responsive productImg" 
+			                   th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+							/>
+							<img th:if="${product.category.title == 'groupSale'}" 
+						    	style="object-fit: cover; width:60%; height: 200px"
+							    class="img-responsive productImg"
+									th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+							/>
+							<img th:if="${product.category.title =='store'}"
+								style="object-fit: cover; width:60%; height: 200px"
+								class="img-responsive productImg"
+									th:src="@{${awsBucketProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+							/> 
 						    </a>
 						</td> 
-						<td><a th:href="@{/product/productInfo(id=${product.id})}">
-						  <span th:text="${product.name}" class="colorText"></span></a>
-						</td>
+					
 						<td th:text="${product.brand}"></td>	
 						<td th:text="${product.quantity}"></td>
 						

@@ -41,7 +41,7 @@ public class AppConstants {
     public static String awsBucketUser="https://atoolyuser.s3.us-east-1.amazonaws.com/";
     public static String awsBucketCompany="https://atoolycompany.s3.us-east-1.amazonaws.com/";
     public static String awsBucketProduct="https://atoolyproduct.s3.us-east-1.amazonaws.com/";
-    public static String awsBucketShop ="https://attolyshop.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketShop ="https://atoolyshop.s3.us-east-1.amazonaws.com/";
     public static String awsBucketGroupSale="https://atoolygroupsale.s3.us-east-1.amazonaws.com/";
     public static String awsBucketAdvertise="https://atoolyad.s3.us-east-1.amazonaws.com/";
     public static String awsBucketCatalog ="https://atoolycatalog.s3.us-east-1.amazonaws.com/";
