@@ -216,7 +216,8 @@
 	        cache: false,
 	        timeout: 600000,
 	        success: function (data) {
-	              window.location.href = data.name+'booking/add/'+data.id;
+				window.location.href = '/booking/add/'+data.id;
+	            //window.location.href = data.name+'booking/add/'+data.id;
 	        },
 	        error: function (e) {
 	            console.log("ERROR : ", e);

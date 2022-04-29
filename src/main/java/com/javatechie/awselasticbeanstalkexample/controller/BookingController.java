@@ -37,7 +37,6 @@ import com.javatechie.awselasticbeanstalkexample.service.TownService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
-import com.javatechie.awselasticbeanstalkexample.utility.FileUploadUtil;
 import com.javatechie.awselasticbeanstalkexample.utility.SecurityUtility;
 
 @Controller
@@ -76,6 +75,7 @@ public class BookingController {
 	public String continueBooking(
 			@RequestParam("id") Long id,Principal principal,Model model
 			) throws UnknownHostException {
+				model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
@@ -109,6 +109,7 @@ public class BookingController {
 				@ModelAttribute("quantity")  int quantity,
 				Model model,Principal principal
 			) throws Exception{
+				model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
@@ -291,8 +292,8 @@ public class BookingController {
 	   List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	   model.addAttribute("bookingBegunList",bookingsBegun);
 	   Product result = new Product();
-	   //result.setName(AppConstants.url);
 	   Product product = productService.findById(id);
+	   //result.setName(AppConstants.url);
 	   result.setId(product.getId());
 	   return ResponseEntity.ok(result);
 	}

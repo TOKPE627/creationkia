@@ -2,7 +2,6 @@ package com.javatechie.awselasticbeanstalkexample.controller;
 
 import java.net.UnknownHostException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
-import com.javatechie.awselasticbeanstalkexample.domain.Delivery;
-import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
@@ -56,6 +54,7 @@ public class OrderController {
 	  
 	  @RequestMapping("/all")
 	  public String all(Model model,Principal principal) {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		  model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
@@ -78,20 +77,23 @@ public class OrderController {
 	       if(userRole.getRole().getName().equals(AppConstants.ROLE_2) || (userRole.getRole().getName().equals(AppConstants.ROLE_3))) {
 			   Company company = companyService.findByUser(user);
                model.addAttribute("company",company);
-	       if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-				  model.addAttribute("userRole2",AppConstants.ROLE_2);
-				   List<WorkingHour> workingHours = workingHourService.findByUser(user);
-  		    	   model.addAttribute("workingHourList",workingHours);
-			}	
-	       if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
-				  model.addAttribute("userRole3",AppConstants.ROLE_3);
-			}	
+				if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+						model.addAttribute("userRole2",AppConstants.ROLE_2);
+						List<WorkingHour> workingHours = workingHourService.findByUser(user);
+						model.addAttribute("workingHourList",workingHours);
+					}	
+				if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
+						// List<BookingCompany> 
+					//   model.addAttribute("userRole3",AppConstants.ROLE_3);
+
+					}	
 	      }
 		  return "dashboard/booking/all";
 	  }
 	  @RequestMapping("/historical")
 	  public String historical(Model model,Principal principal) throws UnknownHostException {
-		    model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);  
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);    
@@ -138,6 +140,7 @@ public class OrderController {
 	  public String pendingByCustomer(
 			  @RequestParam("customer_id") Long customer_id,
 			  Model model,Principal principal) {
+				model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
       		  model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 		      model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 			  model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);

@@ -121,15 +121,7 @@
 		     </div> 
          </fieldset>
          <hr>
-         <div class="container">
-           <a th:href="@{/login}"> 
-             <span class="colorText">
-              <strong>
-               <i class="fa fa-user"></i>
-               Je possède déjà un compte</strong>
-             </span>           
-           </a>
-         </div>
+         <div th:replace="include/alreadyHasCustomerAccount"></div>
          <hr>
           <fieldset>
 			<legend class="center-block">	    

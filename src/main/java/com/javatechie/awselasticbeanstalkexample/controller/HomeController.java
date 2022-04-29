@@ -29,6 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
@@ -42,6 +43,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.security.PasswordResetTo
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
+import com.javatechie.awselasticbeanstalkexample.service.BookingCompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
@@ -113,6 +115,8 @@ public class HomeController {
 	@Autowired
 	private AdvertiseService advertiseService;
 
+	@Autowired
+	private BookingCompanyService bookingCompanyService;
 
 	@RequestMapping("/login-admin")
 	public String loginAdmin() {
@@ -517,11 +521,13 @@ public class HomeController {
 	
 	@RequestMapping("/dashboard")	
 	public String dashboard(Model model) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-	    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+	
 	    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		/*check username*/
 		
@@ -595,7 +601,6 @@ public class HomeController {
 				}
 				
 				List<Booking> bookingsBegun = bookingService.findByCustomer(currentUser,AppConstants.ORDER_STATUS_0);
-	     		
 				if(!bookingsBegun.isEmpty()) {
 					double total_price_orders=0;
 			    	for(Booking booking: bookingsBegun) {
@@ -605,6 +610,19 @@ public class HomeController {
 			    	 model.addAttribute("bookingBegunListExist",true);
 			    	 model.addAttribute("bookingBegunList",bookingsBegun);
 		   			 model.addAttribute("total_price_orders",total_price_orders);	
+				}else{
+					List<BookingCompany> bookingsCompanyBegun = bookingCompanyService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
+					if(!bookingsCompanyBegun.isEmpty()){
+						model.addAttribute("bookingCompanyBegunListExist", true);
+						model.addAttribute("bookingCompanyBegunList",bookingsCompanyBegun);
+						return "dashboard/customer/homeBookingCompanyBegun";
+					}
+					List<BookingCompany> bookingCompanies = bookingCompanyService.findByUser(currentUser);
+					if(!bookingCompanies.isEmpty()){
+						model.addAttribute("bookingCompanyListExist", true);
+						model.addAttribute("bookingCompanyList", bookingCompanies);
+						return "dashboard/customer/homeBookingCompany";
+					}
 				}
 		   }
 	   }

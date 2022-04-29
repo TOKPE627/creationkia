@@ -110,12 +110,12 @@
   
       <li  class="nav-item shopping-cart">
          <a class="nav-link" th:href="@{/dashboard}">
-        <i class="fa fa-shopping-cart" 
+        <i class="fa fa-calendar" 
                    style="font-size: 1.7rem;"
                aria-hidden="true"></i>
-                 <span th:if="${bookingAddedToCartExist==true}" style="color:#6FB70F;" 
-                  th:text="${bookingAddedToCartList.size}"></span>
-                 <span th:if="${bookingAddedToCartExist !=true}" style="color:#6FB70F;" 
+                 <span th:if="${bookingCompanyBegunListExist==true}" style="color:#6FB70F;" 
+                  th:text="${bookingCompanyBegunList.size}"></span>
+                 <span th:if="${bookingCompanyBegunListExist !=true}" style="color:#6FB70F;" 
                   >0</span>
                   
          </a>	            
@@ -128,11 +128,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">  
           <a class="dropdown-item" th:href="@{/dashboard}">
-          <i class="fa fa-shopping-cart" 
+          <i class="fa fa-calendar" 
                    style="font-size: 1.7rem;"></i> 
-            <span>Panier</span>
+            <span>Rendez-vous</span>
           </a> 
-            <a class="dropdown-item" th:href="@{/order/historical}"><i class="fa fa-history"></i> 
+            <a class="dropdown-item" th:href="@{/order/company/historical}"><i class="fa fa-history"></i> 
             <span>Historique</span>
           </a> 
           <a class="dropdown-item" th:href="@{/logout}"> <i class="fa fa-sign-out" 

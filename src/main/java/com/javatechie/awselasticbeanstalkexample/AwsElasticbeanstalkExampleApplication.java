@@ -148,29 +148,26 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 		 }
 		return "welcome";
 	}
-	@GetMapping("/status")
-	public String deploy() {
-		return "Application deployed to AWS beanstalk...";
-	}
+	
 	public static void main(String[] args) {
 		SpringApplication.run(AwsElasticbeanstalkExampleApplication.class, args);
 	}
 	   @Override
 		public void run(String... args) throws Exception {
 			
-			  User user = new User(); 
+			 // User user = new User(); 
 			  //user.setId(Long.parseLong("1"));
-			  user.setEmail("kouassielysee@gmail.com"); 
-			  user.setUsername("elysee");
-			  user.setLastName("Kouassi");
-			  user.setFirstName("Elysee");
-			  BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
-			  user.setPassword(passwordEncoder.encode("passer")); 
-			  Role roleR = new Role();
-			  roleR.setRoleId(Long.parseLong("1")); 
-			  roleR.setName(AppConstants.ROLE_1);//By Default
-			  Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
-			  UserRole(user, roleR)); 
-			  userService.createUser(user, userRoles);
+			//   user.setEmail("kouassielysee@gmail.com"); 
+			//   user.setUsername("elysee");
+			//   user.setLastName("Kouassi");
+			//   user.setFirstName("Elysee");
+			//   BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
+			//   user.setPassword(passwordEncoder.encode("passer")); 
+			//   Role roleR = new Role();
+			//   roleR.setRoleId(Long.parseLong("1")); 
+			//   roleR.setName(AppConstants.ROLE_1);//By Default
+			//   Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
+			//   UserRole(user, roleR)); 
+			//   userService.createUser(user, userRoles);
 		}
 }

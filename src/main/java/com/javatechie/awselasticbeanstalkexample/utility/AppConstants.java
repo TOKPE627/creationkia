@@ -30,10 +30,10 @@ public class AppConstants {
    public static final String bucket_catalog   =  "catalog";
 
    //localhostUrl
-   //public static String url="http://localhost:8080/";
+   public static String url="http://localhost:8080/";
    //awsUrl
    
-   public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
+   //public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
    
 //   @Value("${application.bucket.user}")
 //   public static String awsBucketUser;

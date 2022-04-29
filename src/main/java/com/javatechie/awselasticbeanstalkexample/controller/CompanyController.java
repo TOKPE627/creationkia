@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
@@ -39,6 +40,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BookingCompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyGaleryService;
@@ -71,6 +73,9 @@ public class CompanyController {
 	
 	@Autowired
 	private CatalogService catalogService;
+    
+	@Autowired
+    private BookingCompanyService bookingCompanyService;
 
 	@Autowired
 private SpecialityService specialityService;
@@ -371,6 +376,7 @@ private SpecialityService specialityService;
 	   }
    	 Company company = companyService.findById(id);
      model.addAttribute("company",company);
+
 	 List<Speciality> specialities = specialityService.findByUser(company.getUser());
 			model.addAttribute("specialityList",specialities);
 
@@ -378,14 +384,19 @@ private SpecialityService specialityService;
 			model.addAttribute("specialityTop4List",specialityTop4List);
      List<Town> towns=townService.findAll();
      model.addAttribute("townList",towns);
-		return "front/company/bookingAdd";
+	 //create BookingCompany
+	 BookingCompany bookingCompany = new BookingCompany();
+	 bookingCompany.setCompany(company);
+	 bookingCompany.setIpaddress(AppHosts.currentHostIpAddress());
+	 bookingCompanyService.save(bookingCompany);
+	return "front/company/bookingAdd";
    	}
    	
 /* todo */   	
    	@RequestMapping(value="/booking/add", method = RequestMethod.POST)
 	public String createBookingService(
 				HttpServletRequest request,
-				@ModelAttribute("company_id")Long product_id,
+				@ModelAttribute("company_id") Long company_id,
 				@ModelAttribute("role")      String role,
 				@ModelAttribute("lastName")  String lastName,
 				@ModelAttribute("firstName") String firstName,
@@ -401,38 +412,74 @@ private SpecialityService specialityService;
 				@ModelAttribute("password")  String password,
 				Model model
 			) throws Exception{
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		if(!bookingsAddedToCart.isEmpty()) {
+			model.addAttribute("bookingAddedToCartExist",true);
+			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+		}
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+	
 		model.addAttribute("email", userEmail);
 		model.addAttribute("username", username);
 		model.addAttribute("role",role);
-        		
 		if (userService.findByUsername(username) != null) {
 			model.addAttribute("usernameExists", true);
 			return "front/company/bookingAdd";
 		}
 		
-//	  
-//		User user = new User();
-//		user.setUsername(username);
-//		user.setEmail(userEmail);
-//		user.setLastName(lastName);
-//		user.setFirstName(firstName);
-//		user.setPhone(phone);
-//		user.setTown(town);
-//		user.setDistrict(district);
-//		user.setAddress(address);
-//			
-//		String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
-//		user.setPassword(encryptedPassword);
-//	
-//		Role roleR = new Role();
-//        roleR.setName(role);//By Default
-//		Set<UserRole> userRoles = new HashSet<>();
-//		userRoles.add(new UserRole(user, roleR));
-//		User savedUser = userService.createUser(user, userRoles);
-//		
+	  
+		User user = new User();
+		user.setUsername(username);
+		user.setEmail(userEmail);
+		user.setLastName(lastName);
+		user.setFirstName(firstName);
+		user.setPhone(phone);
+		user.setTown(town);
+		user.setDistrict(district);
+		user.setAddress(address);
+			
+		String encryptedPassword = SecurityUtility.passwordEncoder().encode(password);
+		user.setPassword(encryptedPassword);
 	
-		return "message/badRequest";
-		//return "message/registrationBookingSuccess";
+		Role roleR = new Role();
+        roleR.setName(role);//By Default
+		Set<UserRole> userRoles = new HashSet<>();
+		userRoles.add(new UserRole(user, roleR));
+		User savedUser = userService.createUser(user, userRoles);
+		if(savedUser !=null){
+			Company company = companyService.findById(company_id);
+			BookingCompany checkBookingCompany = bookingCompanyService.findByCompanyByIpaddressAndByStatus(company, AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
+			if(Objects.nonNull(checkBookingCompany)){
+				checkBookingCompany.setUser(user);
+				checkBookingCompany.setCompany(company);
+				checkBookingCompany.setEmail(userEmail);
+				checkBookingCompany.setCommand(command);
+				checkBookingCompany.setDay(day);
+				checkBookingCompany.setHour(hour);
+				checkBookingCompany.setStatus(AppConstants.ORDER_STATUS_1);
+				bookingCompanyService.update(checkBookingCompany);
+			}
+			else{
+				BookingCompany bookingCompany = new BookingCompany();
+				bookingCompany.setUser(user);
+				bookingCompany.setCompany(company);
+				bookingCompany.setEmail(userEmail);
+				bookingCompany.setCommand(command);
+				bookingCompany.setDay(day);
+				bookingCompany.setHour(hour);
+				bookingCompany.setStatus(AppConstants.ORDER_STATUS_1);
+				bookingCompanyService.save(bookingCompany);
+			}
+		
+			return "message/registrationBookingSuccess";
+		}
+	   
+		return "message/technicalIssue";
 	}
 	@RequestMapping(value="/services", method=RequestMethod.GET)
 	public ResponseEntity<?> getServices(Model model

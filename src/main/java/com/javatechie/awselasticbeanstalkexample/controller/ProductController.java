@@ -175,7 +175,9 @@ public class ProductController {
 	
 	  @RequestMapping(value = "/productList", method = RequestMethod.GET)
 	  public String all(Model model,Principal principal) throws IOException{
-		   model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+ 
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);    
@@ -201,7 +203,9 @@ public class ProductController {
 	  
 		@RequestMapping("/productInfo")
 		public String storeInfo(@RequestParam("id") Long id,Model model,Principal principal) throws UnknownHostException {
-			   model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+  
+			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 			    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 				model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 			    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);    
@@ -242,6 +246,7 @@ public class ProductController {
 		
 		@RequestMapping("/update")
 		public String update(@RequestParam("id") Long id, Model model,Principal principal) {
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 
 			   model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 			    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);

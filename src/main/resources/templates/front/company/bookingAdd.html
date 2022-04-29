@@ -30,6 +30,7 @@
                   Renseignez ces champs					
                   <span style="font-size: small"> * Champ obligatoire</span>
               </legend>
+              <div th:replace="include/alreadyHasCustomerAccount"></div>
                <div class="container">
                   <form th:action="@{/company/booking/add}" method="post">
                         <input type="hidden" name="company_id" th:value="${company.id}">
@@ -89,8 +90,10 @@
                         </div>
                          <div class="form-group">
                           <label for="exampleFormControlInput1">Service demandé</label>
-                          <input type="text" class="form-control" id="exampleFormControlInput1" 
-                             placeholder="nom@example.com" name="command" required="required"> 
+                          <textarea 
+                             placeholder="Décrivez ce que vous cherchez" name="command" 
+                             required="required" class="form-control" >
+                          </textarea> 
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Jour</label>
@@ -99,7 +102,7 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Heure</label>
-                          <input type="text" class="form-control" id="exampleFormControlInput1" 
+                          <input type="time" class="form-control" id="exampleFormControlInput1" 
                              placeholder="exemple: 08h30" name="hour" required="required"> 
                         </div>
                         <div class="form-group">
@@ -111,14 +114,15 @@
                           <input type="text" class="form-control" id="exampleFormControlInput1" 
                              placeholder="Nom d'utilisateur" name="username" required="required">
                         </div>
-                        <div class="form-group">
-                              <label for="txtNewPassword">Mot de passe</label>&nbsp;<span
-                                  id="checkPasswordMatch" style="color: red;"></span> 
-                                  <input required="required" placeholder="Mot de passe"
-                                  type="password" class="form-control" id="txtNewPassword"
-                                  name="password" />
-                       </div>
-          
+                      
+                       <div class="form-group">
+                        <label for="txtNewPassword">Mot de passe</label>&nbsp;<span
+                          id="checkPasswordMatch" style="color: red;"></span> 
+                          <input required="required" placeholder="Mot de passe"
+                          type="password" class="form-control" id="txtNewPassword"
+                          name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                                                 title="Doit contenir au minimum un nombre, une lettre majuscule, une lettre minuscule et au moins 8 charactères"/>
+                      </div>  
                       
         
                         
