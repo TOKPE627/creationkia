@@ -16,6 +16,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BookingCompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.DeliveryService;
@@ -51,6 +52,9 @@ public class OrderController {
 	  
 	  @Autowired
 	  private WorkingHourService workingHourService;
+
+	  @Autowired
+	  private BookingCompanyService bookingCompanyService;
 	  
 	  @RequestMapping("/all")
 	  public String all(Model model,Principal principal) {
@@ -78,15 +82,16 @@ public class OrderController {
 			   Company company = companyService.findByUser(user);
                model.addAttribute("company",company);
 				if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-						model.addAttribute("userRole2",AppConstants.ROLE_2);
-						List<WorkingHour> workingHours = workingHourService.findByUser(user);
-						model.addAttribute("workingHourList",workingHours);
-					}	
+					model.addAttribute("userRole2",AppConstants.ROLE_2);
+				}	
 				if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
-						// List<BookingCompany> 
-					//   model.addAttribute("userRole3",AppConstants.ROLE_3);
-
-					}	
+					List<WorkingHour> workingHours = workingHourService.findByUser(user);
+					model.addAttribute("workingHourList",workingHours);
+					List<BookingCompany> pendingsBookingCompany = bookingCompanyService.findBySeller(user, AppConstants.ORDER_STATUS_1);
+					model.addAttribute("userRole3",AppConstants.ROLE_3);
+					model.addAttribute("pendingsBookingCompanyList",pendingsBookingCompany);
+				    return "dashboard/bookingCompany/all";
+				}	
 	      }
 		  return "dashboard/booking/all";
 	  }
@@ -102,7 +107,7 @@ public class OrderController {
 		    User user =  userService.findByUsername(principal.getName());
 			  
 		    model.addAttribute("user",user);
-				  UserRole userRole =userRoleService.findByUser(user);
+			UserRole userRole =userRoleService.findByUser(user);
 		       if(userRole.getRole().getName().equals(AppConstants.ROLE_4)) {
 				 model.addAttribute("userRole4",AppConstants.ROLE_4);
 				 List<Booking> bookingsAddedToCart = 
@@ -116,21 +121,31 @@ public class OrderController {
 		    	 model.addAttribute("bookingList",ordersHistorical);
 				  return "dashboard/customer/historical";
 		      }
-		       List<Booking> bookingsHistorical = bookingService.findHistoryBySeller(user, AppConstants.ORDER_STATUS_1, AppConstants.ORDER_STATUS_2);//user=seller
-			   model.addAttribute("bookingList",bookingsHistorical);
+	
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
+				List<Booking> bookingsHistorical = bookingService.findHistoryBySeller(user, AppConstants.ORDER_STATUS_1, AppConstants.ORDER_STATUS_2);//user=seller
+				model.addAttribute("bookingList",bookingsHistorical);
 				  model.addAttribute("userRole1",AppConstants.ROLE_1); 
 			  }	
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_2) || (userRole.getRole().getName().equals(AppConstants.ROLE_3))) {
-					  Company company = companyService.findByUser(user);
+					 
+				      Company company = companyService.findByUser(user);
                       model.addAttribute("company",company);
 					  if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+						List<Booking> bookingsHistorical = bookingService.findHistoryBySeller(user, AppConstants.ORDER_STATUS_1, AppConstants.ORDER_STATUS_2);//user=seller
+						model.addAttribute("bookingList",bookingsHistorical);
 						  model.addAttribute("userRole2",AppConstants.ROLE_2);
-						   List<WorkingHour> workingHours = workingHourService.findByUser(user);
-	      		    	   model.addAttribute("workingHourList",workingHours);
 					  }
 					  if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
-						  model.addAttribute("userRole3",AppConstants.ROLE_3);
+						List<WorkingHour> workingHours = workingHourService.findByUser(user);
+						model.addAttribute("workingHourList",workingHours);
+						model.addAttribute("userRole3",AppConstants.ROLE_3);
+						List<BookingCompany> servedBookingsList = bookingCompanyService.findBySeller(user, AppConstants.ORDER_STATUS_2);
+					    if(!servedBookingsList.isEmpty()){
+							model.addAttribute("servedBookingsExist",true);
+							model.addAttribute("servedBookingsList",servedBookingsList);
+						}
+						return "dashboard/bookingCompany/historical";
 					  }
 			   }	  
 		  return "dashboard/booking/historical";
@@ -154,30 +169,42 @@ public class OrderController {
 		   //Delivery delivery = deliveryService.findByCustomerAndPaymentStatus(user,customer,"not_payed");
 		   //model.addAttribute("delivery",delivery);
 		   model.addAttribute("customer",customer);
-		    List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user, customer,AppConstants.ORDER_STATUS_1);
-		   
-         	model.addAttribute("pendingBookingList",pendingBookings); 
-
-		   double total_price_orders=0;
-	    	for(Booking booking: pendingBookings) {
-	    		double total_price = booking.getTotal_price();
-		    	total_price_orders = total_price + total_price_orders;
-	    	}
-  			model.addAttribute("total_price_orders",total_price_orders);
+		 
             //todo
 		   if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
+					List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user, customer,AppConstants.ORDER_STATUS_1);
+				
+					model.addAttribute("pendingBookingList",pendingBookings); 
+
+				double total_price_orders=0;
+				for(Booking booking: pendingBookings) {
+					double total_price = booking.getTotal_price();
+					total_price_orders = total_price + total_price_orders;
+				}
+					model.addAttribute("total_price_orders",total_price_orders);
 			  model.addAttribute("userRole1",AppConstants.ROLE_1);     
 		  }	
 		   if(userRole.getRole().getName().equals(AppConstants.ROLE_2) || (userRole.getRole().getName().equals(AppConstants.ROLE_3))) {
 			   Company company = companyService.findByUser(user);
                model.addAttribute("company",company);
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-				  model.addAttribute("userRole2",AppConstants.ROLE_2);
-				   List<WorkingHour> workingHours = workingHourService.findByUser(user);
-  		    	   model.addAttribute("workingHourList",workingHours);
+				List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user, customer,AppConstants.ORDER_STATUS_1);
+				model.addAttribute("pendingBookingList",pendingBookings); 
+				double total_price_orders=0;
+				for(Booking booking: pendingBookings) {
+					double total_price = booking.getTotal_price();
+					total_price_orders = total_price + total_price_orders;
+				}
+				model.addAttribute("total_price_orders",total_price_orders);
+				model.addAttribute("userRole2",AppConstants.ROLE_2);
 			  }
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
+				List<WorkingHour> workingHours = workingHourService.findByUser(user);
+				model.addAttribute("workingHourList",workingHours);
+				  List<BookingCompany> bookingCompanies = bookingCompanyService.findBySellerAndCustomerAndStatus(user, customer, AppConstants.ORDER_STATUS_1);
 				  model.addAttribute("userRole3",AppConstants.ROLE_3);
+				  model.addAttribute("pendingsBookingCompanyList",bookingCompanies);
+				  return "dashboard/bookingCompany/bycustomertodeliver";
 			  }
 		  }
 		  return "dashboard/booking/bycustomertodeliver";

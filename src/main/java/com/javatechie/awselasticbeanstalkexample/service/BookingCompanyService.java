@@ -17,4 +17,9 @@ public interface BookingCompanyService {
 	List<BookingCompany> findByIpAddressAndStatus(String ipaddress, String status);
 	BookingCompany  findByCompanyByIpaddressAndByStatus(Company company, String ipaddress,String status);
 
+	List<BookingCompany>  findBySeller(User seller, String status);
+	List<BookingCompany> findByCustomer(User customer, String status);
+    List<BookingCompany> findBySellerAndCustomerAndStatus(User seller,User customer,String status);
+	List<BookingCompany> findHistoryBySeller(User seller,String status);
+	List<BookingCompany> findHistoryByCustomer(User customer,String status);
 }

@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
+import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingCompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.RoleService;
 import com.javatechie.awselasticbeanstalkexample.service.TownService;
+import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
@@ -47,6 +50,11 @@ public class BookingCompanyController {
     
     @Autowired
     private BookingCompanyService bookingCompanyService;
+	@Autowired
+	private UserRoleService userRoleService;
+	
+    @Autowired 
+	RoleService roleService;
 
     //Dashboard
 	@RequestMapping("/remove")
@@ -174,4 +182,30 @@ public class BookingCompanyController {
 	  	return "redirect:/dashboard";
 	}
 
+
+    @RequestMapping("/customer/historical")
+	  public String historical(Model model,Principal principal) throws UnknownHostException {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);  
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);    
+		    
+		    
+		    User user =  userService.findByUsername(principal.getName());
+			  
+		    model.addAttribute("user",user);
+			UserRole userRole =userRoleService.findByUser(user);
+		       if(userRole.getRole().getName().equals(AppConstants.ROLE_4)) {
+				 model.addAttribute("userRole4",AppConstants.ROLE_4);
+				 List<BookingCompany> bookingsServed = 
+				 bookingCompanyService.findByCustomer(user,AppConstants.ORDER_STATUS_2);
+
+			     if(!bookingsServed.isEmpty()) {
+			       model.addAttribute("bookingsServedExist",true);
+			       model.addAttribute("bookingsServedList",bookingsServed);
+				 }
+		      }  
+		  return "dashboard/bookingCompany/historicalCustomer";
+	  }
 }

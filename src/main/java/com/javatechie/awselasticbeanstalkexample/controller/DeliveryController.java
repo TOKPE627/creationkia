@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.Delivery;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BookingCompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.DeliveryService;
@@ -47,24 +49,11 @@ public class DeliveryController {
 	  
 	 @Autowired
 	 private WorkingHourService workingHourService;
+
+	 @Autowired
+	 private BookingCompanyService bookingCompanyService;
 	
-		/*
-		 * @RequestMapping(value = "/update", method = RequestMethod.POST) public String
-		 * update(
-		 * 
-		 * @RequestParam("delivery_id") Long delivery_id,
-		 * 
-		 * @RequestParam("delivery_price") double deliveryPrice, Model model,Principal
-		 * principal )throws IOException { Delivery delivery =
-		 * deliveryService.findById(delivery_id); User user =
-		 * userService.findByUsername(principal.getName());
-		 * model.addAttribute("user",user);
-		 * model.addAttribute("userRole1",AppConstants.ROLE_1);
-		 * 
-		 * delivery.setSeller(user); delivery.setDelivery_price(deliveryPrice);
-		 * delivery.setFinal_price(delivery.getFinal_price()+delivery.getDelivery_price(
-		 * )); deliveryService.update(delivery); return "redirect:/order/all"; }
-		 */
+	
 	
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -82,39 +71,65 @@ public class DeliveryController {
 
 	   // User customer = userService.findById(delivery.getCustomer().getId());
 		
-	    List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user,customer,AppConstants.ORDER_STATUS_1);     
-        for(Booking booking: pendingBookings) {
-        	booking.setStatus(AppConstants.ORDER_STATUS_2);
-    		bookingService.update(booking);
-        }
-        
-        double total_price_orders=0;
-    	for(Booking booking: pendingBookings) {
-    		double total_price = booking.getTotal_price();
-	    	total_price_orders = total_price + total_price_orders;
-    	}
-		
-        
-        Delivery delivery = new Delivery();
-        delivery.setCustomer(customer);
-        delivery.setSeller(user);
-        delivery.setFinal_price(total_price_orders);
-        delivery.setPayment_status("payed");
-        deliveryService.save(delivery);
+
         
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
+				List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user,customer,AppConstants.ORDER_STATUS_1);     
+				for(Booking booking: pendingBookings) {
+					booking.setStatus(AppConstants.ORDER_STATUS_2);
+					bookingService.update(booking);
+				}
+				
+				double total_price_orders=0;
+				for(Booking booking: pendingBookings) {
+					double total_price = booking.getTotal_price();
+					total_price_orders = total_price + total_price_orders;
+				}
+				
+				
+				Delivery delivery = new Delivery();
+				delivery.setCustomer(customer);
+				delivery.setSeller(user);
+				delivery.setFinal_price(total_price_orders);
+				delivery.setPayment_status("payed");
+				deliveryService.save(delivery);
 			  model.addAttribute("userRole1",AppConstants.ROLE_1);
 		  }		
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_2) || (userRole.getRole().getName().equals(AppConstants.ROLE_3))) {
 			  Company company = companyService.findByUser(user);
               model.addAttribute("company",company);
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+				List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user,customer,AppConstants.ORDER_STATUS_1);     
+				for(Booking booking: pendingBookings) {
+					booking.setStatus(AppConstants.ORDER_STATUS_2);
+					bookingService.update(booking);
+				}
+				
+				double total_price_orders=0;
+				for(Booking booking: pendingBookings) {
+					double total_price = booking.getTotal_price();
+					total_price_orders = total_price + total_price_orders;
+				}
+				
+				
+				Delivery delivery = new Delivery();
+				delivery.setCustomer(customer);
+				delivery.setSeller(user);
+				delivery.setFinal_price(total_price_orders);
+				delivery.setPayment_status("payed");
+				deliveryService.save(delivery);
 				  model.addAttribute("userRole2",AppConstants.ROLE_2);
-				   List<WorkingHour> workingHours = workingHourService.findByUser(user);
-  		    	   model.addAttribute("workingHourList",workingHours);
+				 
 			  }
 			  
 			  if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
+				List<WorkingHour> workingHours = workingHourService.findByUser(user);
+				model.addAttribute("workingHourList",workingHours);
+				List<BookingCompany> pendingsBookingCompanies = bookingCompanyService.findBySellerAndCustomerAndStatus(user,customer,AppConstants.ORDER_STATUS_1);     
+                for(BookingCompany bookingCompany: pendingsBookingCompanies){
+					bookingCompany.setStatus(AppConstants.ORDER_STATUS_2);//served
+					bookingCompanyService.update(bookingCompany);
+				}
 				  model.addAttribute("userRole3",AppConstants.ROLE_3);
 			  } 
 			}       

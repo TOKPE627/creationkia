@@ -63,67 +63,45 @@
 	    <section class="content">
 	      <div class="container-fluid">
 	         <strong>
-	              <span>Historique(</span>
-	              <span th:text="${bookingList.size}"></span><span> articles)</span>
+	              <span>Rendez-vous(</span>
+	              <span th:text="${pendingsBookingCompanyList.size}"></span><span> commandes)</span>
 	         </strong>
 	      
 	      	  <div class="table-responsive">
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<th width="90rem;">Article</th>
-						 <th width="2px;">Quantité</th>
-						 <th width="2px;">Prix unitaire</th>
-						<th width="2px;">Sous-total</th>
-						<th width="2px;">Status</th>
-						
+						<th>Nom</th>
+						 <th>Prénom</th>
+						 <th>Telephone</th>
+						<th>Email</th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr data-th-each="booking : ${bookingList}">
-					
-						<td>
-					        <div class="row">
-					            <div class="col-md-2">
-					                <a th:href="@{/product/productInfo(id=${booking.product.id})}">
-								      <img th:if="${booking.product.category.title =='shop'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-							               <img th:if="${booking.product.category.title == 'groupSale'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-									  	   <img th:if="${booking.product.category.title =='store'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               /> 
-								    </a>
-					            </div>
-					            <div class="col-md-10">
-					              <span>Vendeur:</span> <span th:text="${booking.product.user.lastName}"></span>
-					               <span th:text="${booking.product.user.firstName}"></span>
-					              <br>
-					              <strong>
-					                    <span style="font-size: 18px;" th:text="${#strings.abbreviate(booking.product.detail,100)}"></span> 
-					              </strong>
-			    	            </div>	
-					        </div>
+					<tr data-th-each="booking : ${pendingsBookingCompanyList}">
+					  		<td>
+					        <span th:text="${booking.user.lastName}"></span>
 					     </td>
-						<td><a th:href="@{/product/productInfo(id=${booking.product.id})}">
-						  <span th:text="${booking.quantity}" class="colorText"></span></a>
+					     <td>
+					        <span th:text="${booking.user.lastName}"></span>
+					         <span th:text="${booking.user.firstName}"></span>
+					     </td>
+						<td>
+						  <span th:text="${booking.user.phone}"></span></a>
 						</td>
-						<td th:text="${booking.product.price}"></td>	
-						<td class="colorText" th:text="${booking.total_price}"></td>
-	                    <td>
-						  <span th:if="${booking.status== 'PENDING'}" class="colorText">En cours</span>
-    					  <span th:if="${booking.status== 'DELIVERED'}" class="colorText">Livré</span>				
-						</td>					
+						<td>
+						   <span th:text="${booking.user.email}"></span>
+						</td>
+					    <td>
+					       <a  class="colorText" th:href="@{/order/pendingByCustomer(customer_id=${booking.user.id})}">
+					         <i class="fa fa-eye"></i> <span> Voir</span> 
+					       </a>
+						</td>
+					
 					</tr>
 				</tbody>
-	         </table>
-		
-			</div>
+			</table>
 		</div>
 	  </div>
 			

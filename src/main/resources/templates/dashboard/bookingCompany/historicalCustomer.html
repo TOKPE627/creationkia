@@ -63,67 +63,41 @@
 	    <section class="content">
 	      <div class="container-fluid">
 	         <strong>
-	              <span>Historique(</span>
-	              <span th:text="${bookingList.size}"></span><span> articles)</span>
+	              <span>Rendez-vous(</span>
+	              <span th:text="${bookingsServedList.size}"></span><span> commandes)</span>
 	         </strong>
 	      
 	      	  <div class="table-responsive">
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<th width="90rem;">Article</th>
-						 <th width="2px;">Quantité</th>
-						 <th width="2px;">Prix unitaire</th>
-						<th width="2px;">Sous-total</th>
-						<th width="2px;">Status</th>
-						
+						<th>Service</th>
+                        <th>Commande</th>
+						<th>Status</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr data-th-each="booking : ${bookingList}">
-					
-						<td>
-					        <div class="row">
-					            <div class="col-md-2">
-					                <a th:href="@{/product/productInfo(id=${booking.product.id})}">
-								      <img th:if="${booking.product.category.title =='shop'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-							               <img th:if="${booking.product.category.title == 'groupSale'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-									  	   <img th:if="${booking.product.category.title =='store'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               /> 
-								    </a>
-					            </div>
-					            <div class="col-md-10">
-					              <span>Vendeur:</span> <span th:text="${booking.product.user.lastName}"></span>
-					               <span th:text="${booking.product.user.firstName}"></span>
-					              <br>
-					              <strong>
-					                    <span style="font-size: 18px;" th:text="${#strings.abbreviate(booking.product.detail,100)}"></span> 
-					              </strong>
-			    	            </div>	
-					        </div>
+				<tbody th:if="${bookingsServedExist==true}">
+					<tr data-th-each="booking : ${bookingsServedList}">
+					  	
+					     <td>
+                            <span th:text="${booking.company.name}"></span><br>
+                            <div class="form-group">
+                              <img
+                              width="80%" height="60px"
+                                              class="img-responsive"  style="object-fit: cover;"
+                              th:src="@{${awsBucketCompany}+${booking.company.galery.id}+'/'+${booking.company.galery.companyImage}}" alt=""  
+                              /> 
 					     </td>
-						<td><a th:href="@{/product/productInfo(id=${booking.product.id})}">
-						  <span th:text="${booking.quantity}" class="colorText"></span></a>
+					
+                        <td>
+                            <p th:text="${booking.command}"></p>
+                        </td>
+						<td>
+                            <span class="colorText">Servi</span>				
 						</td>
-						<td th:text="${booking.product.price}"></td>	
-						<td class="colorText" th:text="${booking.total_price}"></td>
-	                    <td>
-						  <span th:if="${booking.status== 'PENDING'}" class="colorText">En cours</span>
-    					  <span th:if="${booking.status== 'DELIVERED'}" class="colorText">Livré</span>				
-						</td>					
 					</tr>
 				</tbody>
-	         </table>
-		
-			</div>
+			</table>
 		</div>
 	  </div>
 			

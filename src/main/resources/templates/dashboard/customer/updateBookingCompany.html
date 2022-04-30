@@ -130,8 +130,8 @@
                     <input type="hidden" name="company_id" th:value="${bookingCompany.company.id}">
                     <div class="form-group">
                         <img
-                        height="400px;" width="50%;"
-	                    class="img-responsive"  style="object-fit: cover;"
+						class="img-responsive"  style="object-fit: cover;height:400px; width:100%;"
+
                         th:src="@{${awsBucketCompany}+${bookingCompany.company.galery.id}+'/'+${bookingCompany.company.galery.companyImage}}" alt=""  
                         /> 
                     </div>

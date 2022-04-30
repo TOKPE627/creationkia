@@ -60,6 +60,31 @@ public class BookingCompanyServiceImpl implements BookingCompanyService{
         return bookingCompanyRepository.findByCompanyByIpaddressAndByStatus(company, ipaddress, status);
     }
 
+    @Override
+    public List<BookingCompany> findBySeller(User seller, String status) {
+        return bookingCompanyRepository.findBySeller(seller, status);
+    }
+
+    @Override
+    public List<BookingCompany> findByCustomer(User customer, String status) {
+        return bookingCompanyRepository.findByCustomer(customer, status);
+    }
+
+    @Override
+    public List<BookingCompany> findBySellerAndCustomerAndStatus(User seller, User customer, String status) {
+        return bookingCompanyRepository.findBySellerAndCustomerAndStatus(seller, customer, status);
+    }
+
+    @Override
+    public List<BookingCompany> findHistoryBySeller(User seller, String status) {
+        return bookingCompanyRepository.findHistoryBySeller(seller, status);
+    }
+
+    @Override
+    public List<BookingCompany> findHistoryByCustomer(User customer, String status) {
+        return bookingCompanyRepository.findHistoryByCustomer(customer, status);
+    }
+
   
     
 }
