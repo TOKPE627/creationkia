@@ -30,7 +30,8 @@ public class AppConstants {
    public static final String bucket_catalog   =  "catalog";
 
    //localhostUrl
-   public static String url="http://localhost:8080/";
+   //public static String url="http://localhost:8080/";
+   public static String url="http://atooly.com/";
    //awsUrl
    
    //public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
@@ -130,5 +131,7 @@ public class AppConstants {
 
   //File too large
   public static final String error_max_size="Fichiers téléversés trop lourds.La  taille totale des fichiers ne doit pas dépasser 1024 Mégabites";
+ 
+  
   
 }
