@@ -62,7 +62,7 @@ public class Product  implements Serializable{
 	private String publicationDate;
     private String closedDate;
     private double deliveryPrice;
-	private int currentBooking;
+	private int currentBooking=0;
 	@OneToMany(mappedBy="product")
 	@JsonIgnore()
 	private List<MailVisitor> mailVisitorList;

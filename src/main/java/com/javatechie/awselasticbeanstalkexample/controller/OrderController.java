@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.BookingCompany;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
@@ -64,14 +65,9 @@ public class OrderController {
 			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 	       User user =  userService.findByUsername(principal.getName());
-			  model.addAttribute("user",user);
 		   UserRole userRole =userRoleService.findByUser(user);
 
 			 
-			/*
-			 * List<Product> products = productService.findByUser(user);
-			 */		      
-	         //todo
 	          List<Booking> pendingBookings = bookingService.findBySeller(user,AppConstants.ORDER_STATUS_1);
 		      model.addAttribute("pendingBookingList",pendingBookings);
 
@@ -166,11 +162,9 @@ public class OrderController {
 		   UserRole userRole =userRoleService.findByUser(user);
 
 		   User customer = userService.findById(customer_id);
-		   //Delivery delivery = deliveryService.findByCustomerAndPaymentStatus(user,customer,"not_payed");
-		   //model.addAttribute("delivery",delivery);
+		
 		   model.addAttribute("customer",customer);
 		 
-            //todo
 		   if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
 					List<Booking> pendingBookings = bookingService.findBySellerAndCustomerAndStatus(user, customer,AppConstants.ORDER_STATUS_1);
 				
@@ -222,27 +216,11 @@ public class OrderController {
 				  for(Booking booking: pendingBookings) {
 			    	  booking.setStatus(AppConstants.ORDER_STATUS_1);
 			    	  bookingService.update(booking);
+					  Product findProduct =  booking.getProduct();
+					  findProduct.setQuantity(findProduct.getQuantity() - booking.getQuantity());
+					  findProduct.setCurrentBooking(findProduct.getCurrentBooking()+booking.getQuantity());
+					  productService.update(findProduct);
 			      }
-				  //Delivery delivery = new Delivery();
-				  //delivery.setCustomer(customer);
-//				  List<Booking> bookings = bookingService.findByCustomer(customer,AppConstants.ORDER_STATUS_1);
-//				  List<Booking> pendingBySellerBookings =new ArrayList<Booking>();
-//				  User seller = null;
-//			      for(Booking booking: bookings) {
-//			          seller = booking.getProduct().getUser();
-//			   	      pendingBySellerBookings = bookingService.findBySellerAndCustomerAndStatus(seller, customer,AppConstants.ORDER_STATUS_1);
-//			          double total_price_orders=0;	
-//				      for(Booking bookingBySeller: pendingBySellerBookings) {
-//				     	double total_price = bookingBySeller.getTotal_price();
-//					   	total_price_orders = total_price + total_price_orders;
-//				      }
-//				      delivery.setSeller(seller);
-//				      
-//					  delivery.setFinal_price(total_price_orders);
-//					  deliveryService.save(delivery);
-//			      
-//			      }
-			 
 				  model.addAttribute("pendingBookingList",pendingBookings);
 				  
 			  }	 

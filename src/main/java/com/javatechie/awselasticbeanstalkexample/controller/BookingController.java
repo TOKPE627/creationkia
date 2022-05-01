@@ -144,10 +144,10 @@ public class BookingController {
 	    	booking.setTotal_price(quantity*product.getPrice()+product.getDeliveryPrice());
             
 		  	Booking bookingUpdated = bookingService.update(booking);
-		  	if(bookingUpdated !=null) {
-		  	  product.setQuantity(product.getQuantity() - quantity);
-		  	  productService.update(product);
-	    	}
+		  	//if(bookingUpdated !=null) {
+		  	  //product.setQuantity(product.getQuantity() - quantity);
+		  	  //productService.update(product);
+	    	//}
 		 }
 	  	  return "redirect:/dashboard";
 	}

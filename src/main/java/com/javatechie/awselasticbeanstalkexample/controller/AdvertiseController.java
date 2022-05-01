@@ -41,6 +41,13 @@ public class AdvertiseController {
 	
 	@RequestMapping("/add")
 	public String index(Model model,Principal principal){
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+
 		User user = userService.findByUsername(principal.getName());
 		UserRole userRole =userRoleService.findByUser(user);
 		if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
@@ -51,6 +58,13 @@ public class AdvertiseController {
 	}
 	@RequestMapping("/update")
 	public String info(Model model,Principal principal){
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		
 		User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user",user);
 		UserRole userRole =userRoleService.findByUser(user);
