@@ -1,6 +1,7 @@
 package com.javatechie.awselasticbeanstalkexample.domain;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,28 +10,24 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@Table(name="like")
-@Entity(name="like")
-public class Like implements Serializable{
+
+@Table(name="give_like")
+@Entity(name="give_like")
+public class GiveLike implements Serializable{
     private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-
+	
+	@ManyToOne(cascade = { CascadeType.REMOVE})
+	@JoinColumn(name = "company_id")
 	private Company company;
+	private Integer current;
 
-	private Integer number;
 
-	public Like() {
-	}
-	public Like(Long id, Company company, int number) {
-		this.id = id;
-		this.company = company;
-		this.number = number;
-	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -40,18 +37,22 @@ public class Like implements Serializable{
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	public Company getCompany() {
 		return company;
 	}
 	public void setCompany(Company company) {
 		this.company = company;
 	}
-	public Integer getNumber() {
-		return number;
+	public Integer getCurrent() {
+		return current;
 	}
-	public void setNumber(Integer number) {
-		this.number = number;
+	public void setCurrent(Integer current) {
+		this.current = current;
 	}
+	
+	
+
 	
 	
 }

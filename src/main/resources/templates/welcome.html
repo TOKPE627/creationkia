@@ -46,11 +46,12 @@
 										<div class="row likeShareStore">
 											   <h6 style="margin-left: 10px !important;">
 												  <span>
-													<a href="#">
+													<a style="cursor: pointer;">
 													  <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
 														<span style="color: #292828; font-size: 10px;"
-														 th:onClick="likeStore(store.id)"
-														>Like</span>	
+														th:onclick="|likeStore('${store.id}')|"
+														>Like</span>
+														<span style="font-size: 10px;" th:id="|resultLikeStore-${store.id}|" ></span>	
 													</a>
 												   </span>
 											   </h6>	
@@ -203,6 +204,7 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
   -->
   <script>
 	  loadServices();
+	  loadStores();
 	  function loadServices(){
 		$.ajax({
 			type: "GET",
@@ -214,10 +216,10 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	        timeout: 600000,
 	        success: function (data) {
 	            var json = data.companies;
-                console.log(json);
 				if(json){
 					$.each(json,function(index,company){
 						getSpecialities(company.id);
+						getServiceLikes(company.id);
 					});
 				}
 			
@@ -227,8 +229,74 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	        }
 		}); 
 	  }
-  </script>
 
+
+	  function loadStores(){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/company/stores',
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+	            var json = data.companies;
+                console.log(json);
+				if(json){
+					$.each(json,function(index,company){
+						getStoreLikes(company.id);
+					});
+				}
+			
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	  }
+
+  </script>
+  
+  <script>
+	function getServiceLikes(service_id){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/like/service/count?service_id='+service_id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+				$('#resultLikeService-'+data.companyId).html(data.numberLikes);
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	}
+
+
+	function getStoreLikes(store_id){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/like/store/count?store_id='+store_id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+				$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	}
+</script>
+	 
   <script>
 	  function likeService(service_id){
 		$.ajax({
@@ -240,15 +308,26 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	        cache: false,
 	        timeout: 600000,
 	        success: function (data) {
-				console.log(data.result);
-				//var companyId = data.companyId;
-				//var numberLikes = data.numberLikes;
-				// console.log("Company Id: "+companyId);
-				// console.log("Number Likes: "+console.numberLikes);
-	            // $('#resultLikeService-'+companyId).append(
-				// 	 '<span>'+ numberLikes + '</span>'
-                //  );
-			
+				$('#resultLikeService-'+data.companyId).html(data.numberLikes);
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	  }
+
+
+	  function likeStore(store_id){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/like/store?store_id='+store_id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+				$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
 	        },
 	        error: function (e) {
 	            console.log("ERROR : ", e);
@@ -257,13 +336,7 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	  }
   </script>
   <script>
-
-	//document.getElementById('serviceSpeciality-'+id).click();
-	//$('#serviceSpeciality-'+service_id).click();
-	//alert(service_id);
 	function getSpecialities(service_id){
-
-		//console.log("Service_id" +service_id);
 		$.ajax({
 			type: "GET",
 	        contentType: "application/json",

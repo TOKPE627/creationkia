@@ -491,6 +491,18 @@ private SpecialityService specialityService;
 		result.setCompanies(services);
 	    return ResponseEntity.ok(result);
 	}
+
+	@RequestMapping(value="/stores", method=RequestMethod.GET)
+	public ResponseEntity<?> getStores(Model model
+	    ) throws UnknownHostException {
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	    model.addAttribute("bookingBegunList",bookingsBegun);
+		AjaxResponseBody result = new AjaxResponseBody();
+		List<Company> stores          = companyService.findAllByType(CompanyType.STORE);
+		result.setCompanies(stores);
+	    return ResponseEntity.ok(result);
+	}
+
 	@RequestMapping(value="/service/specialities", method=RequestMethod.GET)
 	public ResponseEntity<?> getSpecialities(Model model,
 	   @ModelAttribute("service_id") Long service_id) throws UnknownHostException {
