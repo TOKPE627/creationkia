@@ -343,7 +343,7 @@ public class ProductController {
 
 		@RequestMapping(value="/changeImage", method=RequestMethod.GET , produces = "application/json;charset=UTF-8")
 		public ResponseEntity<?> changeImage(
-			  @ModelAttribute("image") String image) {
+			@ModelAttribute("image") String image) {
 			Product result = new Product();
 			result.setBrand(image);
 		    return ResponseEntity.ok(result);

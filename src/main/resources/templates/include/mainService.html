@@ -51,10 +51,12 @@
                                 <div class="row likeShareService">
                                        <h6 style="margin-left: 15px !important;">
                                           <span>
-                                            <a href="#">
                                               <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
-                                                <span style="color: #292828; font-size: 10px;">Like</span>	
-                                            </a>
+                                                <span style="color: #292828; font-size: 10px;"
+                                                  th:onclick="|likeService('${service.id}')|"
+                                                >Like</span>	
+                                                <h3 th:id="|resultLikeService-${service.id}|" ></h3>
+                                            
                                            </span>
                                        </h6>	
                                      <h6 id="sewing" style="margin-left: 18%;" class="shareH">

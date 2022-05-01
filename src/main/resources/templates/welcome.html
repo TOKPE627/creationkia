@@ -48,7 +48,9 @@
 												  <span>
 													<a href="#">
 													  <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
-														<span style="color: #292828; font-size: 10px;">Like</span>	
+														<span style="color: #292828; font-size: 10px;"
+														 th:onClick="likeStore(store.id)"
+														>Like</span>	
 													</a>
 												   </span>
 											   </h6>	
@@ -218,6 +220,34 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 						getSpecialities(company.id);
 					});
 				}
+			
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		}); 
+	  }
+  </script>
+
+  <script>
+	  function likeService(service_id){
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/like/service?service_id='+service_id,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+				console.log(data.result);
+				//var companyId = data.companyId;
+				//var numberLikes = data.numberLikes;
+				// console.log("Company Id: "+companyId);
+				// console.log("Number Likes: "+console.numberLikes);
+	            // $('#resultLikeService-'+companyId).append(
+				// 	 '<span>'+ numberLikes + '</span>'
+                //  );
 			
 	        },
 	        error: function (e) {
