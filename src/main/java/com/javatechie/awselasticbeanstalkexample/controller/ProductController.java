@@ -23,6 +23,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.Day;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
+import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
@@ -33,6 +34,7 @@ import com.javatechie.awselasticbeanstalkexample.service.ProductGaleryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.StorageService;
 import com.javatechie.awselasticbeanstalkexample.service.SubCategoryService;
+import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -72,6 +74,9 @@ public class ProductController {
 	
 	@Autowired
 	private BookingService bookingService;
+
+	@Autowired
+	private TownAvailableService townAvailableService;
 	
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
@@ -86,11 +91,17 @@ public class ProductController {
 	
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
 			model.addAttribute("userRole2",AppConstants.ROLE_2);
-			Category category = categoryService.findByTitle(AppConstants.CATEGORY_STORE);//Store
-		    //List<SubCategory> subCategories = subCategoryService.findByCategory(category);
-			//model.addAttribute("subCategoryList",subCategories);
-		    model.addAttribute("category",category);
-		    return "dashboard/product/addStore";
+			List<TownAvailable> townAvailables = townAvailableService.findByUser(user);
+			if(townAvailables.isEmpty()){
+				return "redirect:/townAvailable/add";
+			}
+			else{
+				Category category = categoryService.findByTitle(AppConstants.CATEGORY_STORE);//Store
+				//List<SubCategory> subCategories = subCategoryService.findByCategory(category);
+				//model.addAttribute("subCategoryList",subCategories);
+				model.addAttribute("category",category);
+				return "dashboard/product/addStore";
+			}
    		  }
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 				Category category = categoryService.findByTitle(AppConstants.CATEGORY_SERVICE);//Shop	    

@@ -164,7 +164,7 @@
 				       <div class="form-group">
 					   	 <label> S&eacute;lectionner la ville de livraison</label>
 						<select name="town" class="form-control">
-					       <option data-th-each="town : ${townList}" th:value="${town.name}" th:text="${town.name}">
+					       <option data-th-each="t : ${townList}" th:value="${t.town}" th:text="${t.town}">
 					       </option>
 					    </select>
 				       </div>

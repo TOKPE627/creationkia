@@ -21,6 +21,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.Day;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
+import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
@@ -29,6 +30,7 @@ import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.DayService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductGaleryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -63,6 +65,9 @@ public class GroupSaleController {
 
 	@Autowired
 	private DayService dayService;
+
+	@Autowired
+	private TownAvailableService townAvailableService;
 	
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
@@ -82,6 +87,10 @@ public class GroupSaleController {
 			    Category category = categoryService.findByTitle(AppConstants.CATEGORY_GROUPSALE);
 				model.addAttribute("userRole1",AppConstants.ROLE_1);
 				model.addAttribute("category", category);
+				List<TownAvailable> townAvailables = townAvailableService.findByUser(user);
+				if(townAvailables.isEmpty()){
+					return "redirect:/townAvailable/add";
+				}
 	   	  }
 		  
 		  return "dashboard/product/groupSale/add";

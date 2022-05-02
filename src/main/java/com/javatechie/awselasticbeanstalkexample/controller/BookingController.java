@@ -27,12 +27,14 @@ import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.Town;
+import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.TownService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -58,6 +60,9 @@ public class BookingController {
     
     @Autowired
     private CompanyService companyService;
+
+	@Autowired
+	private TownAvailableService townAvailableService;
     
     //Dashboard
     
@@ -191,9 +196,9 @@ public class BookingController {
 		model.addAttribute("product", product);
         Category category= product.getCategory();
         model.addAttribute("category",category);
-	    List<Town> towns= townService.findAll();
-		model.addAttribute("townList",towns); 
-		  return "booking/add";
+		List<TownAvailable> townAvailables = townAvailableService.findByUser(product.getUser());
+		model.addAttribute("townList",townAvailables); 
+		return "booking/add";
 	}
 	
 	
@@ -231,8 +236,8 @@ public class BookingController {
 		model.addAttribute("product", product);
         Category category= product.getCategory();
         model.addAttribute("category",category);
-	    List<Town> towns= townService.findAll();
-		model.addAttribute("townList",towns); 
+		List<TownAvailable> townAvailables = townAvailableService.findByUser(product.getUser());
+		model.addAttribute("townList",townAvailables); 
 		if (userService.findByUsername(username) != null) {
 			model.addAttribute("usernameExists", true);
 			return "booking/add";

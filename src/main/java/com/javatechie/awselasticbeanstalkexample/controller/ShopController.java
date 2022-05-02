@@ -23,6 +23,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.Day;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
+import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
@@ -34,6 +35,7 @@ import com.javatechie.awselasticbeanstalkexample.service.ProductGaleryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.StorageService;
 import com.javatechie.awselasticbeanstalkexample.service.SubCategoryService;
+import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -76,6 +78,9 @@ public class ShopController {
 
 	@Autowired
 	private AdvertiseService advertiseService;
+
+	@Autowired
+	private TownAvailableService townAvailableService;
 	
 	//Dashboard
 	
@@ -93,8 +98,13 @@ public class ShopController {
 		    List<SubCategory> subCategories = subCategoryService.findByCategory(category);
 			model.addAttribute("subCategoryList",subCategories);
 		    model.addAttribute("category",category);
+			
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
 				model.addAttribute("userRole1",AppConstants.ROLE_1);
+				List<TownAvailable> townAvailables = townAvailableService.findByUser(user);
+				if(townAvailables.isEmpty()){
+					return "redirect:/townAvailable/add";
+				}
 	   	  }
 		  
 		  return "dashboard/product/shop/add";
