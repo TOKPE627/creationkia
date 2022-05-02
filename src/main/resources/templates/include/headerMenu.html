@@ -452,39 +452,39 @@
        </a>
        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
        
-           <a class="dropdown-item" th:href="@{/shop#supermarket}"> <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
+           <a class="dropdown-item" th:href="@{/shop/supermarket}"> <i class="fa fa-shopping-basket" aria-hidden="true"></i> 
              <span>	Supermarché </span>
            </a>
           </span>
           </a>
-         <a class="dropdown-item" th:href="@{/shop#healthBeauty}"><i class="fa fa-medkit"></i> 
+         <a class="dropdown-item" th:href="@{/shop/healthBeauty}"><i class="fa fa-medkit"></i> 
            <span>Santé et Beauté </span>
          </a>
-         <a class="dropdown-item" th:href="@{/shop#phone}"> <i class="fa fa-phone" aria-hidden="true"></i> 
+         <a class="dropdown-item" th:href="@{/shop/phone}"> <i class="fa fa-phone" aria-hidden="true"></i> 
             <span>	Téléphone et Tablettes </span>
           </a>
          </span>
          </a>
-        <a class="dropdown-item" th:href="@{/shop#electronic}"><i class="fa  fa-microchip"></i> 
+        <a class="dropdown-item" th:href="@{/shop/electronic}"><i class="fa  fa-microchip"></i> 
           <span>Electronique </span>
         </a>
-        <a class="dropdown-item" th:href="@{/shop#informatic}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
+        <a class="dropdown-item" th:href="@{/shop/informatic}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
             <span>	Informatique </span>
           </a>
          </span>
          </a>
-        <a class="dropdown-item" th:href="@{/shop#homeAppliance}"><i class="fa  fa-coffee"></i> 
+        <a class="dropdown-item" th:href="@{/shop/homeAppliance}"><i class="fa  fa-coffee"></i> 
           <span>Electroménager </span>
         </a>
-        <a class="dropdown-item" th:href="@{/shop#cloth}"> <i class="fas fa-user-tie" aria-hidden="true"></i> 
+        <a class="dropdown-item" th:href="@{/shop/cloth}"> <i class="fas fa-user-tie" aria-hidden="true"></i> 
             <span>	Habillement </span>
           </a>
          </span>
          </a>
-        <a class="dropdown-item" th:href="@{/shop#hobby}"><i class="fas  fa-sleigh"></i> 
+        <a class="dropdown-item" th:href="@{/shop/hobby}"><i class="fas  fa-sleigh"></i> 
           <span>Loisir </span>
         </a>
-        <a class="dropdown-item" th:href="@{/shop#other}"><i class="fa fa-list-alt"></i> 
+        <a class="dropdown-item" th:href="@{/shop/other}"><i class="fa fa-list-alt"></i> 
             <span>Autres </span>
           </a>
       </div>
@@ -496,35 +496,35 @@
 
    </a>
    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-    <a class="dropdown-item" th:href="@{/service#sewing}"> <i class="fa fa-cut" aria-hidden="true"></i> 
+    <a class="dropdown-item" th:href="@{/service/sewing}"> <i class="fa fa-cut" aria-hidden="true"></i> 
         <span>	Couture </span>
       </a>
-       <a class="dropdown-item" th:href="@{/service#hairdressing}"> <i class="fa fa-paint-brush" aria-hidden="true"></i> 
+       <a class="dropdown-item" th:href="@{/service/hairdressing}"> <i class="fa fa-paint-brush" aria-hidden="true"></i> 
          <span>	Coiffure </span>
        </a>
       </span>
       </a>
-     <a class="dropdown-item" th:href="@{/service#carpentry}"><i class="fa fa-pencil-ruler"></i> 
+     <a class="dropdown-item" th:href="@{/service/carpentry}"><i class="fa fa-pencil-ruler"></i> 
        <span>Ménuiserie </span>
      </a>
-     <a class="dropdown-item" th:href="@{/service#grosssery}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
+     <a class="dropdown-item" th:href="@{/service/grosssery}"> <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
         <span>	Episserie </span>
       </a>
      </span>
      </a>
-    <a class="dropdown-item" th:href="@{/service#mechanic}"><i class="fa  fa-car"></i> 
+    <a class="dropdown-item" th:href="@{/service/mechanic}"><i class="fa  fa-car"></i> 
       <span>Mécanique</span>
     </a>
-    <a class="dropdown-item" th:href="@{/service#informatic}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
+    <a class="dropdown-item" th:href="@{/service/informatic}"> <i class="fa fa-desktop" aria-hidden="true"></i> 
         <span>	Informatique </span>
       </a>
      </span>
      </a>
-    <a class="dropdown-item" th:href="@{/service#repair}"><i class="fa  fa-wrench"></i> 
+    <a class="dropdown-item" th:href="@{/service/repair}"><i class="fa  fa-wrench"></i> 
       <span>Réparation </span>
     </a>
   
-    <a class="dropdown-item" th:href="@{/service#other}"><i class="fa fa-list-alt"></i> 
+    <a class="dropdown-item" th:href="@{/service/other}"><i class="fa fa-list-alt"></i> 
         <span>Autres </span>
       </a>
      </div>
@@ -542,7 +542,7 @@
          left: 35%;
          transform: translate(-50%, -50%);
        ">
-            <a   href="#"
+            <a  th:href="@{/shop}"
                >
                 <img
                     class="img-responsive" style="width: 6.4rem;"
@@ -559,7 +559,7 @@
                 left: 45%;
                 transform: translate(-50%, -50%);
               ">
-             <a   href="#"
+             <a   th:href="@{/service}"
              >
               <img
                   class="img-responsive" style="width: 6.4rem;"
@@ -575,7 +575,7 @@
                 left: 55%;
                 transform: translate(-50%, -50%);
               ">
-              <a   href="#" class="imgGroupStore"
+              <a  th:href="@{/store}" class="imgGroupStore"
               >
                <img
                    class="img-responsive" style="width: 6.4rem;height: 5.5rem;"
@@ -590,7 +590,7 @@
               left: 65%;
               transform: translate(-50%, -50%);
             ">
-          <a   href="#" class="imgGroupSale"
+          <a   th:href="@{/groupSale}" class="imgGroupSale"
           >
             <img
                 class="img-responsive" style="width: 6.4rem; "

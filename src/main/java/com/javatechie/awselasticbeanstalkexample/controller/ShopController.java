@@ -305,7 +305,7 @@ public class ShopController {
 		}
 		 if(!electronics.isEmpty()) {
 			model.addAttribute("electronicExist",true);
-			model.addAttribute("electronicList",supermarkets); 
+			model.addAttribute("electronicList",electronics); 
 		} 
 		if(!informatics.isEmpty()) {
 			model.addAttribute("informaticExist",true);
@@ -330,5 +330,309 @@ public class ShopController {
 			model.addAttribute("otherList",others); 
 		} 
 		return "shop";
+	}
+
+	@GetMapping("/supermarket")
+	public String supermarket(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+
+		 List<Product> supermarkets = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_1); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		if(!supermarkets.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",supermarkets); 
+		}
+		return "front/shop/supermarket";
+	}
+
+	@GetMapping("/healthBeauty")
+	public String healthBeauty(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+
+		 List<Product> healths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_2); 
+	
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+	
+		if(!healths.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",healths); 
+		}
+		
+		return "front/shop/healthBeauty";
+	}
+
+	@GetMapping("/phone")
+	public String phone(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+         List<Product> phones = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_3); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		
+		 if(!phones.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",phones); 
+		}
+		
+		return "front/shop/phone";
+	}
+
+	@GetMapping("/electronic")
+	public String electronic(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+
+		 List<Product> electronics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_4); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+	
+		 if(!electronics.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",electronics); 
+		} 
+		
+		return "front/shop/electronic";
+	}
+
+	@GetMapping("/informatic")
+	public String informatic(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+         List<Product> informatics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_5); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		
+		if(!informatics.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",informatics); 
+		}
+
+		
+		return "front/shop/informatic";
+	}
+
+	@GetMapping("/homeAppliance")
+	public String homeAppliance(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+        List<Product> homeApplicances = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_6); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		if(!homeApplicances.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",homeApplicances); 
+		}
+		
+		return "front/shop/homeAppliance";
+	}
+
+	@GetMapping("/cloth")
+	public String cloth(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+
+		List<Product> cloths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_7); 
+		
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		
+		if(!cloths.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",cloths); 
+		}
+	
+		return "front/shop/cloth";
+	}
+
+	@GetMapping("/hobby")
+	public String hobby(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+         List<Product> hobbies = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_8); 
+
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		if(!hobbies.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",hobbies); 
+		} 
+		return "front/shop/hobby";
+	}
+
+	@GetMapping("/other")
+	public String other(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+
+		 List<Product> others = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_9); 
+
+		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!shops.isEmpty()) {
+			model.addAttribute("shopExist",true);
+			model.addAttribute("shopList",shops); 
+		}
+		
+		if(!others.isEmpty()) {
+			model.addAttribute("productExist",true);
+			model.addAttribute("productList",others); 
+		} 
+		return "front/shop/other";
 	}
 }
