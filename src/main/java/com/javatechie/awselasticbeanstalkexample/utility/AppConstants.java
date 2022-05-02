@@ -31,7 +31,7 @@ public class AppConstants {
 
    //localhostUrl
    //public static String url="http://localhost:8080/";
-   public static String url="http://atooly.com/";
+   public static String url="https://www.atooly.com/";
    //awsUrl
    
    //public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
