@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -95,7 +95,7 @@
 					Heure de d&eacute;but</label>
 				   <div class="col-md-8">
 					 <input
-					   type="text" name="openHour"
+					   type="time" name="openHour"
 						class="form-control" th:value="${workingHour.openHour}"/>
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 						Heure de fin</label>
 					   <div class="col-md-8">
 						 <input
-						   type="text" name="closeHour" th:value="${workingHour.closeHour}"
+						   type="time" name="closeHour" th:value="${workingHour.closeHour}"
 							class="form-control"/>
 						</div>
 					</div>

@@ -1,27 +1,23 @@
 package com.javatechie.awselasticbeanstalkexample.controller;
-
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.security.Principal;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
+import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
@@ -29,9 +25,9 @@ import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
+import com.javatechie.awselasticbeanstalkexample.service.WorkingHourService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
-import com.javatechie.awselasticbeanstalkexample.utility.FileUploadUtil;
 
 @Controller
 @RequestMapping("/catalog")
@@ -53,6 +49,9 @@ public class CatalogController {
 
 	@Autowired
 	private BookingService bookingService;
+
+	@Autowired
+	private WorkingHourService workingHourService;
 	
 	@RequestMapping("/catalogInfo")
 	public String catalogInfo(@RequestParam("id") Long id,Model model,Principal principal) {
@@ -67,9 +66,9 @@ public class CatalogController {
 		model.addAttribute("company",company);
 		
 		model.addAttribute("catalog",catalog);
-	 	if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-			model.addAttribute("userRole2",AppConstants.ROLE_2);
-		}
+	 	// if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+		// 	model.addAttribute("userRole2",AppConstants.ROLE_2);
+		// }
 	 	if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 			model.addAttribute("userRole3",AppConstants.ROLE_3);
 		}		
@@ -85,10 +84,13 @@ public class CatalogController {
 		model.addAttribute("company",company);
 		model.addAttribute("catalogList", catalogs);
 		UserRole userRole = userRoleService.findByUser(user);
-
-		if (userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-			model.addAttribute("userRole2", AppConstants.ROLE_2);
+        List<WorkingHour> workingHours = workingHourService.findByUser(user);
+		if(workingHours.isEmpty()){
+			return "redirect:/agenda/add";
 		}
+		// if (userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+		// 	model.addAttribute("userRole2", AppConstants.ROLE_2);
+		// }
 		if (userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 			model.addAttribute("userRole3", AppConstants.ROLE_3);
 		}
@@ -106,9 +108,9 @@ public class CatalogController {
 			 List<Catalog> catalogs = catalogService.findByUser(user); 
 			 model.addAttribute("catalogList", catalogs); 
 			 UserRole userRole =userRoleService.findByUser(user);
-		 	if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-				model.addAttribute("userRole2",AppConstants.ROLE_2);
-			}
+		 	// if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+			// 	model.addAttribute("userRole2",AppConstants.ROLE_2);
+			// }
 		 	if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 				model.addAttribute("userRole3",AppConstants.ROLE_3);
 			}
@@ -127,9 +129,9 @@ public class CatalogController {
 			 model.addAttribute("company",company);
 			model.addAttribute("catalog", catalog);
 			 UserRole userRole =userRoleService.findByUser(user);
-			if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-				model.addAttribute("userRole2",AppConstants.ROLE_2);
-			}
+			// if(userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+			// 	model.addAttribute("userRole2",AppConstants.ROLE_2);
+			// }
 		 	if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 				model.addAttribute("userRole3",AppConstants.ROLE_3);
 			}

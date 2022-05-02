@@ -22,5 +22,4 @@ public interface WorkingHourRepository  extends JpaRepository<WorkingHour, Long>
 	
 	  @Query("SELECT w from workinghour w WHERE (w.user= :user and w.day1= :day) or (w.user= :user and w.day2= :day) or (w.user= :user and w.day3= :day)  or (w.user= :user and w.day4= :day) or (w.user= :user and w.day5= :day) or (w.user= :user and w.day6= :day) or (w.user= :user and w.day7= :day)")
 	  List<WorkingHour> findByUserByDay(User user,String day);
-	 
 }

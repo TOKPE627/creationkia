@@ -38,7 +38,7 @@ public class AppConstants {
    
 //   @Value("${application.bucket.user}")
 //   public static String awsBucketUser;
-   public static String awsBucketIcon="https://atoolyicon.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketIcon="https://atoolyicon.s3.us-east-1.amazonaws.com/";
     public static String awsBucketUser="https://atoolyuser.s3.us-east-1.amazonaws.com/";
     public static String awsBucketCompany="https://atoolycompany.s3.us-east-1.amazonaws.com/";
     public static String awsBucketProduct="https://atoolyproduct.s3.us-east-1.amazonaws.com/";

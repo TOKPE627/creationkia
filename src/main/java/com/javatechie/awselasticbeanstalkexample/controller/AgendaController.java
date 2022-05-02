@@ -41,6 +41,13 @@ public class AgendaController {
 	
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+
 		  User user = userService.findByUsername(principal.getName());
           model.addAttribute("user", user);
 		  UserRole userRole =userRoleService.findByUser(user);
@@ -49,7 +56,7 @@ public class AgendaController {
 		  model.addAttribute("company",company);
 		  
 		  if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
-			model.addAttribute("userRole2",AppConstants.ROLE_3);
+			model.addAttribute("userRole3",AppConstants.ROLE_3);
    		  }
 		  return "dashboard/agenda/selectDay";
 	}
@@ -58,36 +65,43 @@ public class AgendaController {
 	public String selectDay(
 			@RequestParam("day") String day,
 			Model model, Principal principal)  {
-		   User user = userService.findByUsername(principal.getName());
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		    model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	        model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	        model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	        model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		   
+			User user = userService.findByUsername(principal.getName());
 		   model.addAttribute("user", user);
 		   Company company=companyService.findByUser(user);
 	       model.addAttribute("company",company);
-		   
-		   
 		   model.addAttribute("day",day);
-		   model.addAttribute("d1",AppConstants.DAY_1);
-		   model.addAttribute("d2",AppConstants.DAY_2);
-		   model.addAttribute("d3",AppConstants.DAY_3);
-		   model.addAttribute("d4",AppConstants.DAY_4);
-		   model.addAttribute("d5",AppConstants.DAY_5);
-		   model.addAttribute("d6",AppConstants.DAY_6);
-		   model.addAttribute("d7",AppConstants.DAY_7);
-
+		   List<WorkingHour>  workingHours =workingHourService.findByUserByDay(user, day);
+		   
 		   UserRole userRole =userRoleService.findByUser(user);
 		   if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 				model.addAttribute("userRole3",AppConstants.ROLE_3);
-		   }		
+		   }
+		  
+		   if(!workingHours.isEmpty()){
+				String message = "Les horaires du jour " + day + " sont déjà configurés"; 
+				model.addAttribute("alreadyConfiguredExist",true);  
+				model.addAttribute("alreadyConfiguredMessage",message);
+				return "dashboard/agenda/selectDay";
+			}
+		 		
 		   return "dashboard/agenda/add";
 	}
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(	
-			@RequestParam("day") String day,
-			@RequestParam("openHour") String openHour,
-			@RequestParam("closeHour") String closeHour,
+			@ModelAttribute("dy") String d,
+			@ModelAttribute("openHour") String openHour,
+			@ModelAttribute("closeHour") String closeHour,
 			 Model model,Principal principal
 		)
 	{	
-		System.out.println(day);
+		System.out.println("Day: " +d);
 	    User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user", user);
 		UserRole userRole =userRoleService.findByUser(user);
@@ -96,16 +110,36 @@ public class AgendaController {
 		workingHour.setUser(user);
 		workingHour.setOpenHour(openHour);
 		workingHour.setCloseHour(closeHour);
-        if(day.equals(AppConstants.DAY_1)) workingHour.setDay1(day); 
-        if(day.equals(AppConstants.DAY_2)) workingHour.setDay2(day); 
-        if(day.equals(AppConstants.DAY_3)) workingHour.setDay3(day); 
-        if(day.equals(AppConstants.DAY_4)) workingHour.setDay4(day); 
-        if(day.equals(AppConstants.DAY_5)) workingHour.setDay5(day); 
-        if(day.equals(AppConstants.DAY_6)) workingHour.setDay6(day); 
-        if(day.equals(AppConstants.DAY_7)) workingHour.setDay7(day); 
+        if(d.equals(AppConstants.DAY_1)){
 
-		workingHourService.save(workingHour);
-		
+			workingHour.setDay1(d); 
+			workingHourService.save(workingHour);
+		} 
+        if(d.equals(AppConstants.DAY_2)) {
+			workingHour.setDay2(d);
+			workingHourService.save(workingHour);
+		} 
+        if(d.equals(AppConstants.DAY_3)){
+			workingHour.setDay3(d);
+			workingHourService.save(workingHour);
+		} 
+        if(d.equals(AppConstants.DAY_4)){
+			workingHour.setDay4(d);
+		    workingHourService.save(workingHour);
+		} 
+        if(d.equals(AppConstants.DAY_5)){
+			workingHour.setDay5(d);
+			workingHourService.save(workingHour);
+		} 
+        if(d.equals(AppConstants.DAY_6)){
+			workingHour.setDay6(d);
+			workingHourService.save(workingHour);
+		}
+        if(d.equals(AppConstants.DAY_7)){ 
+			workingHour.setDay7(d);
+			workingHourService.save(workingHour);
+		}
+
 		if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 			model.addAttribute("userRole3",AppConstants.ROLE_3);
 		}		
@@ -117,12 +151,17 @@ public class AgendaController {
 			 Model model,Principal principal
 		)
 	{	
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+
 	    User user = userService.findByUsername(principal.getName());
 		model.addAttribute("user",user);
 		Company company=companyService.findByUser(user);
 		model.addAttribute("company",company);
-		
-		
 		UserRole userRole =userRoleService.findByUser(user);
         List<WorkingHour> wDay1 = workingHourService.findByDay(AppConstants.DAY_1);
  		model.addAttribute("day1List",wDay1);
@@ -145,15 +184,54 @@ public class AgendaController {
 	}
 	
 
-       @RequestMapping(value="/remove", method=RequestMethod.POST)
-        public String remove(
-		@ModelAttribute("id") String id
-		) {
-	     workingHourService.remove(Long.parseLong(id.substring(7)));
-	     return "redirect:/agenda/all";
-       }
-       
+    @RequestMapping(value="/byOwner")
+	public String byOwner(
+			@RequestParam("id") Long id,
+			Model model, Principal principal)  {
+				model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+				model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+				model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+				model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+				model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+				model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+			   
+		   WorkingHour workingHour = workingHourService.findById(id);
+		   User user = userService.findByUsername(principal.getName());
+		   model.addAttribute("user",user);
+		   Company company=companyService.findByUser(user);
+		   model.addAttribute("company",company);
+		   model.addAttribute("workingHour",workingHour);
+		   UserRole userRole =userRoleService.findByUser(user);
+		   if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
+				model.addAttribute("userRole3",AppConstants.ROLE_3);
+		   }		
+		   return "dashboard/agenda/update";
+	}
 
-       
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(	
+			@RequestParam("id") Long id,
+			@RequestParam("status") String status,
+			@RequestParam("openHour") String openHour,
+			@RequestParam("closeHour") String closeHour,
+			 Model model,Principal principal
+		)
+	{	
+	    User user = userService.findByUsername(principal.getName());
+		model.addAttribute("user", user);
+		UserRole userRole =userRoleService.findByUser(user);
+
+		WorkingHour workingHour = workingHourService.findById(id);
+		workingHour.setOpenHour(openHour);
+		workingHour.setCloseHour(closeHour);
+		workingHour.setStatus(status);
+		workingHourService.update(workingHour);
+		
+		if(userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
+			model.addAttribute("userRole3",AppConstants.ROLE_3);
+		}		
+		return "redirect:/agenda/all";
+	}
+	   
 	
 }

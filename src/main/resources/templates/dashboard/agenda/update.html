@@ -27,8 +27,6 @@
   <link rel="stylesheet" th:href="@{/adminlte/plugins/daterangepicker/daterangepicker.css}">
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/adminlte/plugins/summernote/summernote-bs4.min.css}">
-  <link rel="stylesheet" th:href="@{/assets/css/styleDashboard.css}">
-  
 </head>
 <style>
  	.btn-success {
@@ -61,36 +59,82 @@
             <!-- Main content -->
 	    <section class="content">
 	      <div class="container-fluid">
-	          <span style="margin-left: 25rem;">
-	            <strong>  Sélectionner le jour
-	            </strong>
-	        </span>
-	      	  <div class="row">
-	      	    <div class="col-md-1 card" style="margin-left: 10rem;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Lundi)}"><span>Lundi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Mardi)}"><span>Mardi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Mercredi)}"><span>Mercredi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Jeudi)}"><span>Jeudi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Vendredi)}"><span>Vendredi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Samedi)}"><span>Samedi</span></a>
-	      	    </div>
-	      	    <div class="col-md-1 card" style="margin-left: 7px;">
-	      	      <a class="colorText" th:href="@{/agenda/selectDay(day=Dimanche)}"><span>Dimanche</span></a>
-	      	    </div>
-	      	  </div>
-            <div style="margin-left: 10rem;" class="row" th:if="${alreadyConfiguredExist==true}">
-              <span class="text-danger" th:text="${alreadyConfiguredMessage}"></span>
-            </div>
+	      	  <form class="form-horizontal" th:action="@{/agenda/update}" method="post">
+				
+				<input type="hidden" th:value="${workingHour.id}" name="id">
+				<!-- <div class="form-group">
+					<label class="col-md-2 control-label">Jour</label>
+					<div class="col-md-8">
+					   <span class="form-control"  th:if="${workingHour.day1 = 'Lundi'}">Lundi</span>
+					    <span class="form-control"  th:if="${workingHour.day2 = 'Mardi'}">Mardi</span>
+					   <span class="form-control"  th:if="${workingHour.day3 = 'Mercredi'}">Mercredi</span>
+					   <span class="form-control"  th:if="${workingHour.day4 = 'Jeudi'}">Jeudi</span>
+					   <span class="form-control"  th:if="${workingHour.day5 = 'Vendredi'}">Vendredi</span>
+					   <span class="form-control"  th:if="${workingHour.day6 = 'Samedi'}">Samedi</span>
+					   <span class="form-control"  th:if="${workingHour.day7 = 'Dimanche'}">Dimanche</span>
+					</div>
+				 </div>	 -->
+				<div th:if="${workingHour.status=='open'}" class="container">
+                   <label class="col-md-2 control-label">*
+							Actuellement</label>
+					<span class="colorText">Ouvert</span>
+			
+				   <div class="form-group">	
+				       <label>Voulez-vous fermer?</label>
+						<select name="status">
+						   <option value="open">-----------</option>
+						   <option value="close">Oui Fermer maintenant</option>
+						</select>		
+					</div>
+				</div>
+				<div th:if="${workingHour.status=='close'}" class="container">
+                   <label class="col-md-2 control-label">*
+							Actuellement</label>
+					<span class="colorText">Fermé</span>
+					
+				 <div class="form-group">	
+			       <label>Voulez-vous ouvrir?</label>
+					<select name="status">
+					   <option value="close">-----------</option>
+					   <option value="open">Oui Ouvrir maintenant</option>
+					</select>		
+				  </div>
+				</div>
+						
+			    <div class="container">
+					<div class="form-group">
+					  
+							<label class="col-md-2 control-label">*
+								Heure de d&eacute;but</label>
+							   <div class="col-md-8">
+								 <input
+								   type="time" name="openHour"
+									class="form-control" th:value="${workingHour.openHour}"/>
+								</div>
+					
+					</div>
+				</div>
+				 
+                  	<div class="form-group">
+					   <label class="col-md-2 control-label">*
+						Heure de fin</label>
+					   <div class="col-md-8">
+						 <input
+						   type="time" name="closeHour" th:value="${workingHour.closeHour}"
+							class="form-control"/>
+						</div>
+					</div>
+
+				
+					
+				<!-- 	End Contacts -->
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Valider</button>
+						</div>
+					</div>
+			</form>
 		 </div>
 	  </section>
     </div>

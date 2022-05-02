@@ -38,7 +38,7 @@ public class WorkingHour implements Serializable{
 	private String day7;
 	private String openHour;
 	private String closeHour;
-	private String status; //Open or Closed
+	private String status="open"; //Open or Closed
 	public WorkingHour() {
 		super();
 		// TODO Auto-generated constructor stub

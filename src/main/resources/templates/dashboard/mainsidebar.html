@@ -232,6 +232,29 @@
 	            </li>
              </ul>
           </li>
+           <li th:if="${company !=null and company.galery !=null}" class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Horaires de travail
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview"> 
+               <li class="nav-item">
+                <a th:href="@{/workingHour/add}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ajouter un horaire de travail</p>
+                </a>
+              </li> 
+              <li class="nav-item">
+                <a th:href="@{/workingHour/all}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Horaires de travail </p>
+                </a>
+              </li> 
+           </ul> 
+          </li>  
           <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
@@ -351,29 +374,7 @@
             </ul>
           </li>
               
-          <li th:if="${company !=null and company.galery !=null}" class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Horaires de travail
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          <!--   <ul class="nav nav-treeview">
-              <li th:if="${workingHourList.isEmpty}" class="nav-item">
-                <a th:href="@{/workingHour/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un horaire de travail</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a th:href="@{/workingHour/all}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Nos horaires de travail </p>
-                </a>
-              </li>
-            </ul> -->
-          </li> 
+         
           
            <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
             <a href="#" class="nav-link">

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attoly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -77,9 +77,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 1</th>
+						 <th>Lundi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -90,14 +91,19 @@
 						  <span th:text="${day.day1}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>		
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>			 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>
@@ -108,9 +114,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 2</th>
+						 <th>Mardi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -121,14 +128,19 @@
 						  <span th:text="${day.day2}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>	
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>				 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>
@@ -140,9 +152,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 3</th>
+						 <th>Mercredi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -153,14 +166,19 @@
 						  <span th:text="${day.day3}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>		
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>			 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>
@@ -172,9 +190,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 4</th>
+						 <th>Jeudi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -185,14 +204,19 @@
 						  <span th:text="${day.day4}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>		
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>			 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -203,9 +227,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 5</th>
+						 <th>Vendredi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -216,14 +241,19 @@
 						  <span th:text="${day.day5}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>	
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>				 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>
@@ -234,9 +264,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 6</th>
+						 <th>Samedi</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -247,14 +278,19 @@
 						  <span th:text="${day.day6}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>	
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>				 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>
@@ -265,9 +301,10 @@
 			 <table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						 <th>Jour 7</th>
+						 <th>Dimanche</th>
 						<th>Heure d'ouverture </th>
 						 <th>Heure de fermeture</th>
+						 <!-- <th>Actuellement</th> -->
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -278,14 +315,19 @@
 						  <span th:text="${day.day7}" class="colorText"></span>
 						</td>
 		                <td>
-						  <span th:text="${day.closeHour}" class="colorText"></span>
+						  <span th:text="${day.openHour}" class="colorText"></span>
 						</td>	
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
-						</td>				
+						</td>			
+						<!-- <td>
+							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
+							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
+						</td>		 -->
 						<td>
-							<button th:id="'oneDay-'+${day.id}" class="btn btn-danger btn-xs delete-day" type="submit" value="delete" >
-							<span class="fa fa-times"></span>Supprimer</button>
+							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
+								<i class="fa fa-eye"></i> <span> Voir</span> 
+							  </a>
 						</td>
 					</tr>
 				</tbody>

@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
+import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
+import com.javatechie.awselasticbeanstalkexample.service.WorkingHourService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 
 @Controller
@@ -34,6 +36,9 @@ public class SpecialityController {
     
 	@Autowired
 	private SpecialityService specialityService;
+
+	@Autowired
+	private WorkingHourService workingHourService;
 	
 	@Autowired
 	private CompanyService companyService;
@@ -66,9 +71,13 @@ public class SpecialityController {
 		model.addAttribute("specialityList", specialities);
 		UserRole userRole = userRoleService.findByUser(user);
 		
-		if (userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
-			model.addAttribute("userRole2", AppConstants.ROLE_2);
+		List<WorkingHour> workingHours = workingHourService.findByUser(user);
+		if(workingHours.isEmpty()){
+			return "redirect:/agenda/add";
 		}
+		// if (userRole.getRole().getName().equals(AppConstants.ROLE_2)) {
+		// 	model.addAttribute("userRole2", AppConstants.ROLE_2);
+		// }
 		if (userRole.getRole().getName().equals(AppConstants.ROLE_3)) {
 			model.addAttribute("userRole3", AppConstants.ROLE_3);
 		}
