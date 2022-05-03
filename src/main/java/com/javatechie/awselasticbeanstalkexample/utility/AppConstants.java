@@ -79,18 +79,18 @@ public class AppConstants {
    public static final String SUB_SHOP_1    = "supermarket";
    public static final String SUB_SHOP_2    = "healthBeauty";
    public static final String SUB_SHOP_3    = "phone";
-   public static final String SUB_SHOP_4    = "electronics";
-   public static final String SUB_SHOP_5    = "informatics";
-   public static final String SUB_SHOP_6    = "homeAppliances";
-   public static final String SUB_SHOP_7    = "cloths";
-   public static final String SUB_SHOP_8    = "hobbies";
+   public static final String SUB_SHOP_4    = "electronic";
+   public static final String SUB_SHOP_5    = "informatic";
+   public static final String SUB_SHOP_6    = "homeAppliance";
+   public static final String SUB_SHOP_7    = "cloth";
+   public static final String SUB_SHOP_8    = "hobby";
    public static final String SUB_SHOP_9    = "other";
 
    //SUB_CATEGORIES OF SERVICE
    public static final String SUB_SERVICE_1    = "sewing";
    public static final String SUB_SERVICE_2    = "hairdressing";
    public static final String SUB_SERVICE_3    = "carpentry";
-   public static final String SUB_SERVICE_4    = "groceries";
+   public static final String SUB_SERVICE_4    = "grocery";
    public static final String SUB_SERVICE_5    = "mechanical";
    public static final String SUB_SERVICE_6    = "repair";
    public static final String SUB_SERVICE_7   = "other";

@@ -10,94 +10,94 @@
     <!--header-->
    <div th:replace="include/navbar"></div>
    <div th:replace="include/headerMenu"></div>
-   <div class="storeCategoryHead"></div>
+   <div class="shopCategoryHead"></div>
 
+   <!--Main Service-->
    <div class="products-tab-area mt-45 mt-sm-45">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-lg-3 col-md-3 pr-0">
-				<div class="section-title section-title-groupSale">
-					<h2 class="category">Achat groupé </h2>
-				</div>
-			</div>
-		</div>
-		<div th:if="${groupSaleExist==true}" class="tab-content">
-			<div id="groupSale" class="tab-pane fade in show active">
-				<div class="row product-carousel cv-visible">
-					<div class="col-lg-12 groupSaleContainer" data-th-each="product : ${groupSaleList}">
-						<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !='' and product.quantity > 0}"	
-						class="product-single product-single-groupSale" style="background-color: white;
-						 
-						  
-						">
-							<div class="product-title">	
-								<h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,18)}"></h4>                                                                   
-								<h4 style="text-align: center;">  <span th:text="${product.currentBooking}+'/'"></span>      
-								 <span th:text="${product.quantity}+' réservations'"> </span></h4>
-							</div>
-							<div 
-							
-							   class="product-thumb-groupSale">
-								<a href="#">									
-								   <img 
-								 
-										class="img-responsive" style="object-fit: cover;"
-th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-											   th:data-id             = "${product.id}"
-											   th:data-name           = "${product.name}"
-											   th:data-detail         = "${product.detail}"
-											   th:data-quantity       = "${product.quantity}"												       
-											   th:data-price          = "${product.price}"
-											   th:data-category       = "${product.category.name}"
-											   th:data-currentbooking = "${product.currentBooking}"
-											   th:data-closeddate     = "${product.closedDate}"
-											   th:data-deliveryprice = "${product.deliveryPrice}"												    
-											   th:data-image1="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" 
-											   th:data-image2="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image2}}" 
-											   th:data-image3="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image3}}" 
-											   th:data-image4="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image4}}"
-											   data-toggle="modal" data-target="#quickViewModalAttoly"
-										/> 
-								 </a>
-									<div class="downsale"><span th:text="${product.downsale}"></span></div>
-										<div class="product-quick-view">
-											<a href="javascript:void(0);"
-											   th:data-id           = "${product.id}"
-											   th:data-name        = "${product.name}"
-											   th:data-detail      = "${product.detail}"
-											   th:data-quantity    = "${product.quantity}"												       												   
-											   th:data-price       = "${product.price}"
-											   th:data-category    = "${product.category.name}"
-											   th:data-currentbooking = "${product.currentBooking}"
-											   th:data-closeddate     = "${product.closedDate}"
-											   th:data-deliveryprice = "${product.deliveryPrice}"							
-											   th:data-image1="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" 
-											   th:data-image2="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image2}}" 
-											   th:data-image3="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image3}}" 
-											   th:data-image4="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image4}}"
-											 
-											   data-toggle="modal" data-target="#quickViewModalAttoly">Commander</a>
-										</div>
-							</div>
-							<div class="product-price-rating">
-								<div class="pull-left">
-									<span th:text="${product.price}+' XOF'"></span>
-								</div>
-							</div>
-							
-						<!-- 	
-							<div class="product-action">
-								<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
-								<a href="javascript:void(0);" class="add-to-cart">Ajouter</a>
-								<a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
-							</div> -->
-						</div>
-					</div>
-				</div>
-			</div>	
-		</div>
-	</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 pr-0">
+                <div class="section-title">
+                    <h2 class="category">Autres </h2>
+                </div>
+            </div>
+        </div>
+        <div th:if="${companyExist==true}" class="tab-content">
+            <div class="tab-pane fade in show active">
+                <div class="row product-carousel cv-visible">
+                    <div class="col-lg-12 serviceProductContainer" data-th-each="service : ${companyList}" >
+                        <div th:if="${service.galery !=null and service.galery.companyImage !='' and service.galery.geolocateImage1 !='' and service.galery.geolocateImage2 !=''}"  
+                         class="product-single" style="background-color: white !important;">
+                            <div class="product-title"
+                              
+                            >
+                                 
+                                <h4
+
+                                style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(service.name,18)}"></h4>                                      
+
+                             </div>
+                            <div class="product-thumb">
+                                <a th:href="@{/company/info/}+${service.id}"  
+                                  >
+                                   <img width="100%" height="150rem"
+                                       class="img-responsive" style="object-fit: cover;"
+                                       th:src="@{${awsBucketCompany}+${service.galery.id}+'/'+${service.galery.companyImage}}" alt=""  
+                                  />   
+                                 </a>
+                            </div>
+                             <div  class="container" style=" margin-left: 5px; margin-top: 1.3rem !important;" id="store">
+                                <div   style="height: 2.4rem !important;"  
+                                   th:id="|resultSpeciality-${service.id}|"   
+                                >
+                                <!-- <ul data-th-each="sp : ${service.user.specialities}" 
+                                    style="list-style-type: '-'; margin:0 !important; padding: 0 !important;"
+                                      
+                                    >
+                                    <li class="specialityLi" th:text="${#strings.abbreviate(sp.name,20)}" 
+                                        style="margin-top: -1rem !important;
+                                        font-size: 12px;
+                                    "></li>
+                                </ul> -->
+                                  
+                                </div>  
+                                
+                                <div class="row likeShareService">
+                                       <h6 style="margin-left: 15px !important;">
+                                          <span>
+                                            <a style="cursor: pointer;">
+                                              <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
+                                                <span style="color: #292828; font-size: 10px;"
+                                                  th:onclick="|likeService('${service.id}')|"
+                                                >Like
+                                                </span>	
+                                                <span style="font-size: 10px;" th:id="|resultLikeService-${service.id}|" ></span>
+                                            </a>
+                                           </span>
+                                       </h6>	
+                                     <h6 id="sewing" style="margin-left: 18%;" class="shareH">
+                                        <span class="shareS">
+                                         <a th:href="@{/socialNetwork/company/}+${service.id}">
+                                             <i style="font-size: 10px; margin-left: 31px;" class="fa fa-share-alt" aria-hidden="true"></i>   
+                                               <span style="color: #292828; font-size: 10px;">Partage</span> 
+                                        </a>
+                                       </span>
+                                     </h6>
+                                </div> 
+                             </div>		 
+                        </div>
+                    </div>
+                </div>
+            </div>	
+        </div>
+    </div>
 </div>
+
+	
+
+
+   
+	<!-- JS  -->
 		<!--footer-area start-->
 		<footer th:replace="include/footer"></footer>
 
@@ -124,14 +124,168 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 			<script th:src="@{/assets/js/plugins.js}"></script>
 			<!-- main js -->
 			<script th:src="@{/assets/js/main.js}"></script>	
-			<script type="text/javascript">
-				$(document).ready(function(){
-					 $('#myLink1').click();
-				});
-				function getSpecialities(id){
-					alert("Id"+id);
+			<script>
+				loadServices();
+				loadStores();
+				function loadServices(){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/company/services',
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  var json = data.companies;
+						  if(json){
+							  $.each(json,function(index,company){
+								  getSpecialities(company.id);
+								  getServiceLikes(company.id);
+							  });
+						  }
+					  
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+				}
+		  
+		  
+				function loadStores(){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/company/stores',
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  var json = data.companies;
+						  console.log(json);
+						  if(json){
+							  $.each(json,function(index,company){
+								  getStoreLikes(company.id);
+							  });
+						  }
+					  
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+				}
+		  
+			</script>
+			
+			<script>
+			  function getServiceLikes(service_id){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/like/service/count?service_id='+service_id,
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  $('#resultLikeService-'+data.companyId).html(data.numberLikes);
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+			  }
+		  
+		  
+			  function getStoreLikes(store_id){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/like/store/count?store_id='+store_id,
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  $('#resultLikeStore-'+data.companyId).html(data.numberLikes);
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+			  }
+		  </script>
+			   
+			<script>
+				function likeService(service_id){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/like/service?service_id='+service_id,
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  $('#resultLikeService-'+data.companyId).html(data.numberLikes);
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+				}
+		  
+		  
+				function likeStore(store_id){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/like/store?store_id='+store_id,
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						  $('#resultLikeStore-'+data.companyId).html(data.numberLikes);
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
 				}
 			</script>
+			<script>
+			  function getSpecialities(service_id){
+				  $.ajax({
+					  type: "GET",
+					  contentType: "application/json",
+					  url: '/company/service/specialities?service_id='+service_id,
+					  data: {},
+					  dataType: 'json',
+					  cache: false,
+					  timeout: 600000,
+					  success: function (data) {
+						var json = data.specialities;
+						$.each(json,function(index,speciality){
+							$('#resultSpeciality-'+service_id).append(
+							   '<div style="margin-top:-1rem !important;">'
+								 +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 125px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
+								  +"-"+speciality.name 
+								 +'</span>'
+							   +'</div>'
+						   );
+						});
+					  },
+					  error: function (e) {
+						  console.log("ERROR : ", e);
+					  }
+				  }); 
+			  }
+		  </script>
+			   
 			<script>
 			var productId;
 			$(document).ready(function(){

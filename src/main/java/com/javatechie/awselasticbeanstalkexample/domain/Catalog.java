@@ -103,6 +103,8 @@ public class Catalog  implements Serializable{
 		return serialVersionUID;
 	}
 	
+	
+
 	@Transient
 	public String getImagePath() {
 		if(id==null || image == null) return null;

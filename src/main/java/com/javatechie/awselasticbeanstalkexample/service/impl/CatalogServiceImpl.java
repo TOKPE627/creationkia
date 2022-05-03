@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.repository.CatalogRepository;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
@@ -45,5 +47,7 @@ public class CatalogServiceImpl implements CatalogService{
 	public void remove(Long id) {
 		catalogRepository.deleteById(id);
 	}
+
+
 
 }

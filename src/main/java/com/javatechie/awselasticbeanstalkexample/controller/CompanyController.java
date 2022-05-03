@@ -157,16 +157,17 @@ private SpecialityService specialityService;
 	}
 
 	@RequestMapping(value = "/add/service", method = RequestMethod.POST)
-	public String addServicePost(@ModelAttribute("company") Company company, Principal principal,
+	public String addServicePost(
+		    @ModelAttribute("company") Company company,
+		    @RequestParam("sub_category_id") Long subCategory_id,
+	        Principal principal,
 			Model model
 			)
 			 {
 		User user = userService.findByUsername(principal.getName());
+		SubCategory subCategory = subCategoryService.findById(subCategory_id);
+		company.setSubCategory(subCategory);
 		company.setUser(user);
-		model.addAttribute("user", user);
-		model.addAttribute("userRole3", AppConstants.ROLE_3);	
-		model.addAttribute("company", company);
-
 		Company savedCompany = companyService.save(company);
 		if(savedCompany !=null) {
 				  savedCompany.setCompanyType(CompanyType.SERVICE);
@@ -174,6 +175,9 @@ private SpecialityService specialityService;
 			  companyService.update(savedCompany);
 			
 		}
+		model.addAttribute("user", user);
+		model.addAttribute("userRole3", AppConstants.ROLE_3);	
+		model.addAttribute("company", company);
 		return "dashboard/company/add/addGalery";
 
 	}

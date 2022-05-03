@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
@@ -24,6 +26,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
@@ -69,6 +72,8 @@ public class GroupSaleController {
 	@Autowired
 	private TownAvailableService townAvailableService;
 	
+	@Autowired
+	private AdvertiseService advertiseService;
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
 
@@ -221,18 +226,30 @@ public class GroupSaleController {
 		
 		@RequestMapping("")
 		public String index(Model model) throws UnknownHostException{
-		     List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+			model.addAttribute("url",AppConstants.url);
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+			model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+			model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+			model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		 
+			List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	     model.addAttribute("bookingBegunList",bookingsBegun);
-			 Category category = categoryService.findById(Long.parseLong("3"));
+		
+			  Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
+	
+			  if(Objects.nonNull(advertise)) {
+				  model.addAttribute("advertiseExists",true);
+				  model.addAttribute("advertise",advertise);
+			  }
+			  Category category = categoryService.findById(Long.parseLong("3"));
 			 List<Product> groupSales        = productService.findByCategory(category); 
-			 List<Product> shops             = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
-			 List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
-			 List<Company> stores            = companyService.findAllByType(CompanyType.STORE);
-
-			 model.addAttribute("groupSaleList",groupSales);
-			 model.addAttribute("shopList",shops);
-			 model.addAttribute("storeList", stores);
-			 model.addAttribute("serviceList",services);	 
+			 
+			 if(!groupSales.isEmpty()) {
+				model.addAttribute("groupSaleExist",true);
+				model.addAttribute("groupSaleList",groupSales);			 
+			}
 			return "groupSale";
 		}
 

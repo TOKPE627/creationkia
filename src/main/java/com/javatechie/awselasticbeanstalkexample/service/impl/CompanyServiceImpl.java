@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.CompanyGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.CompanyType;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.repository.CompanyRepository;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
@@ -48,6 +49,11 @@ public class CompanyServiceImpl implements CompanyService {
     public Company findByGalery(CompanyGalery companyGalery) {
     	return companyRepository.findByGalery(companyGalery);
     }
+
+	@Override
+	public List<Company> findByCompanyTypeBySubCategory(CompanyType companyType, SubCategory subCategory) {
+		return companyRepository.findByCompanyTypeBySubCategory(companyType, subCategory);
+	}
 
 
 

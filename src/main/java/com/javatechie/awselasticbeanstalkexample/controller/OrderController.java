@@ -67,7 +67,8 @@ public class OrderController {
 	       User user =  userService.findByUsername(principal.getName());
 		   UserRole userRole =userRoleService.findByUser(user);
 
-			 
+		   model.addAttribute("user",user);
+
 	          List<Booking> pendingBookings = bookingService.findBySeller(user,AppConstants.ORDER_STATUS_1);
 		      model.addAttribute("pendingBookingList",pendingBookings);
 

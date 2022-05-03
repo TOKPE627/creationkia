@@ -12,6 +12,12 @@ border-color: #6FB70F !important;
 }  
   /* 1327:Large -26px*/
 @media screen and (min-width: 1301px) {
+  .storeCategoryHead{
+    margin-top: 9rem !important;
+  }
+  .serviceCategoryHead{
+    margin-top: 5rem !important;
+  }
   .shopCategoryHead{
     margin-top: 5rem !important;
   }
@@ -47,6 +53,12 @@ border-color: #6FB70F !important;
 }
     /* Medium My screen*/
 @media screen and (min-width: 1281px) and (max-width:1300px){
+  .storeCategoryHead{
+    margin-top: 9rem !important;
+  }
+  .serviceCategoryHead{
+    margin-top: 5rem !important;
+  }
   .shopCategoryHead{
     margin-top: 5rem !important;
   }
@@ -83,6 +95,12 @@ border-color: #6FB70F !important;
 
       /*1265: Small Medium screen -240px:*/
 @media (min-width: 1025px) and (max-width: 1280px) {
+  .storeCategoryHead{
+    margin-top: 9rem !important;
+  }
+  .serviceCategoryHead{
+    margin-top: 5rem !important;
+  }
   .shopCategoryHead{
     margin-top: 5rem !important;
   }
@@ -124,6 +142,9 @@ border-color: #6FB70F !important;
 }
     /* 789:Tablet -21px*/
 @media (min-width:768px) and (max-width:1024px){
+  .storeCategoryHead{
+    margin-top: 5rem !important;
+  }
   .shopCategoryHead{
     margin-top: 5rem !important;
   }
@@ -161,6 +182,9 @@ border-color: #6FB70F !important;
 }
  /*515px  -34px*/
 @media (min-width:481px) and (max-width:767px) {
+  .storeCategoryHead{
+    margin-top: 2rem !important;
+  }
   .shopCategoryHead{
     margin-top: 0rem !important;
   }
@@ -241,6 +265,9 @@ border-color: #6FB70F !important;
   
 }
 @media (min-width:401px) and (max-width:480px){
+  .storeCategoryHead{
+    margin-top: -2rem !important;
+  }
   .shopCategoryHead{
     margin-top: -4rem !important;
   }
@@ -319,6 +346,9 @@ border-color: #6FB70F !important;
     }
 }
 @media(min-width: 381px) and (max-width: 400px){
+  .storeCategoryHead{
+    margin-top: -1rem !important;
+  }
   .shopCategoryHead{
     margin-top: -3rem !important;
   }
@@ -394,6 +424,9 @@ border-color: #6FB70F !important;
     }
 }
 @media (min-width:361px) and (max-width: 380px){
+  .storeCategoryHead{
+    margin-top: -1rem !important;
+  }
   .shopCategoryHead{
     margin-top: -3rem !important;
   }
@@ -470,6 +503,9 @@ border-color: #6FB70F !important;
 }
 
 @media (min-width:320px) and (max-width:360px){
+  .storeCategoryHead{
+    margin-top: 0rem !important;
+  }
   .shopCategoryHead{
     margin-top: 4rem !important;
   }

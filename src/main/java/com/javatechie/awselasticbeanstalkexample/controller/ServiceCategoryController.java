@@ -15,14 +15,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.CompanyType;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
+import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
+import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
+import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.SubCategoryService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
@@ -42,6 +48,9 @@ public class ServiceCategoryController {
 	@Autowired
     private CompanyService companyService;
 
+	@Autowired
+	private SubCategoryService subCategoryService;
+
 	@GetMapping("")
 	public String index(Model model) throws UnknownHostException {
 		model.addAttribute("url",AppConstants.url);
@@ -52,16 +61,24 @@ public class ServiceCategoryController {
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+        
+		 SubCategory subCategorySewing = subCategoryService.findById(Long.parseLong("9"));
+		 SubCategory subCategoryAirdressing = subCategoryService.findById(Long.parseLong("10"));
+		 SubCategory subCategoryCarpentry = subCategoryService.findById(Long.parseLong("11"));
+		 SubCategory subCategoryGrossery = subCategoryService.findById(Long.parseLong("12"));
+		 SubCategory subCategoryMeca = subCategoryService.findById(Long.parseLong("13"));
+		 SubCategory subCategoryRepair = subCategoryService.findById(Long.parseLong("14"));
+		 SubCategory subCategoryOther = subCategoryService.findById(Long.parseLong("16"));
 
-		 List<Product> sewings = productService.findAllBySubCategory(AppConstants.CATEGORY_SERVICE, AppConstants.SUB_SERVICE_1); 
-		 List<Product> hairdressings = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_2); 
-		 List<Product> carpentries = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_3); 
-		 List<Product> grosseries = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_4); 
-		 List<Product> mecas = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_5); 
-		 List<Product> repairs = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_6); 
-		 List<Product> others = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SERVICE_7); 
+
+		 List<Company> sewings = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategorySewing);
+		 List<Company> hairdressings = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryAirdressing);
+		 List<Company> carpentries = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryCarpentry);
+		 List<Company> grosseries = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryGrossery);
+		 List<Company> mecas = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryMeca);
+		 List<Company> repairs = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryRepair);
+		 List<Company> others = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryOther);
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
@@ -112,6 +129,253 @@ public class ServiceCategoryController {
 	  return "dashboard/service/update";
 	}
 
-	//
-    	
+	@GetMapping("/sewing")
+	public String sewing(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+		SubCategory subCategorySewing = subCategoryService.findById(Long.parseLong("9"));
+		
+
+		List<Company> sewings = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategorySewing);
+			List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+		if(!sewings.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",sewings); 
+		}
+		
+		return "front/service/sewing";
+	}
+
+	@GetMapping("/hairdressing")
+	public String hairdressing(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+
+		SubCategory subCategoryAirdressing = subCategoryService.findById(Long.parseLong("10"));
+
+		List<Company> hairdressings = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryAirdressing);
+
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+
+		if(!hairdressings.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",hairdressings); 
+		}
+		
+		return "front/service/hairdressing";
+	}	
+
+
+	@GetMapping("/carpentry")
+	public String carpentry(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+	SubCategory subCategoryCarpentry = subCategoryService.findById(Long.parseLong("11"));
+			List<Company> carpentries = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryCarpentry);
+	
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+		
+		if(!carpentries.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",carpentries); 
+		}
+		return "front/service/carpentry";
+	}
+
+	@GetMapping("/grocery")
+	public String grossery(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+	   SubCategory subCategoryGrossery = subCategoryService.findById(Long.parseLong("12"));
+	
+       List<Company> grosseries = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryGrossery);
+
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		if(Objects.nonNull(advertise)) {
+		  model.addAttribute("advertiseExists",true);
+		  model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+		  
+		if(!grosseries.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",grosseries); 
+		}
+		
+		return "front/service/grocery";
+	}
+
+	@GetMapping("/mechanic")
+	public String meca(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+		SubCategory subCategoryMeca = subCategoryService.findById(Long.parseLong("13"));
+        List<Company> mecas = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryMeca);
+		
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+	
+		if(!mecas.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",mecas); 
+		}
+		
+		return "front/service/meca";
+	}
+
+	@GetMapping("/repair")
+	public String repair(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+		SubCategory subCategoryRepair = subCategoryService.findById(Long.parseLong("14"));
+		List<Company> repairs = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryRepair);
+	   
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+		
+		if(!repairs.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",repairs); 
+		}
+		
+		return "front/service/repair";
+	}
+
+	@GetMapping("/other")
+	public String other(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+		SubCategory subCategoryOther = subCategoryService.findById(Long.parseLong("16"));
+     	List<Company> others = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryOther);
+	   
+
+			 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+	 	 model.addAttribute("bookingBegunList",bookingsBegun);
+		
+		  
+		  if(Objects.nonNull(advertise)) {
+			model.addAttribute("advertiseExists",true);
+			model.addAttribute("advertise",advertise);
+		}
+		if(!services.isEmpty()) {
+			model.addAttribute("serviceExist",true);
+			model.addAttribute("serviceList",services); 
+		}
+		
+		if(!others.isEmpty()) {
+			model.addAttribute("companyExist",true);
+			model.addAttribute("companyList",others); 
+		}
+		return "front/service/other";
+	}
 }
