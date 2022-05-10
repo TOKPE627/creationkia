@@ -4101,14 +4101,10 @@ a.value-decrease::before {
 	 
  }  */
   .geolocateImg{
-  max-height: 450px !important; width: 450px !important;
-  object-fit:contain;
+    max-height: 450px !important; width: 450px !important;
+    object-fit:contain;
  }
  
-   .geolocateImgFront{
-  max-height: 400px !important; max-width: 580px !important;
-  object-fit:fill;
- }
 
 
 

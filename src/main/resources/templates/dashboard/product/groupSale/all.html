@@ -29,17 +29,7 @@
   <link rel="stylesheet" th:href="@{/adminlte/plugins/summernote/summernote-bs4.min.css}">
   <link rel="stylesheet" th:href="@{/assets/css/styleDashboard.css}">
 </head>
-<style>
 
-
-  @media screen and (min-width:1025px) { 
-
-  }
- 
- @media screen and (max-width:456px) {
- 
- }
-</style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -54,7 +44,7 @@
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<th><input th:id="selectAllStores" type="checkbox" /></th>
+						<!-- <th><input th:id="selectAllStores" type="checkbox" /></th> -->
 						<th>Nom</th>
 						 <th>Quantite disponible</th>
 						<th>Action</th>
@@ -68,16 +58,25 @@
 						<input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
 						</td> -->
 					 	<td>
-						    <a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
+							<a 
+							th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
+							   <span th:text="${product.name}" class="colorText"></span> <br>
+							   <img th:if="${product.galery !=null and product.galery.image1 !=''}" 
+								   class="img-responsive shopImg" style="height: 200px;width: 60%; object-fit: cover;"
+								   th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" 
+								   alt=""  
+							  /> 
+					   </a>
+						    <!-- <a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
 						      <img
 					            class="img-responsive" style="height: 250px;width: 100%; object-fit: contain;"
 			                   th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
 					             /> 
-						    </a>
+						    </a> -->
 						</td> 
-						<td><a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
+						<!-- <td><a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
 						  <span th:text="${product.name}" class="colorText"></span></a>
-						</td>
+						</td> -->
 						<td th:text="${product.quantity}"></td>
 					
 						<td>
