@@ -1,0 +1,105 @@
+@media screen and (min-width: 1301px) {
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 38.2rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1300px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 38.5rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 38.5rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 19rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+@media (min-width: 481px) and (max-width: 767px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 18rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+@media (min-width: 401px) and (max-width: 480px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 20.5rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+@media (min-width: 381px) and (max-width: 400px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 19rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 380px){
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 18rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 360px){
+    
+    .specialityItemMenu{
+        margin-left: -3px;
+    }
+    .specialityItemDetail{
+        width: 17rem !important;
+    }
+    .specialityItemDetail > span{
+        white-space: initial;
+    }
+}
+

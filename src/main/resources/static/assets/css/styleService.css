@@ -22,6 +22,7 @@
 	padding-left: 10px;
   }
   @media screen and (min-width:1281px) { 
+
 	.categoryRow{
 		margin-left: -2.6rem !important;
 	}
@@ -30,7 +31,7 @@
 	 width: 23%;
 	}
 	.companyLogo > a > img{
-		width:37.6%; 
+		width:28%; 
 	}
 	.cat-catalog{
 		 margin-left: 1.5rem !important;
@@ -64,7 +65,7 @@
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
-		width:41.6%; 
+		width:32%; 
 	}
 	  .catalogPictureDiv{
 		 margin-left: 4rem !important;
@@ -116,7 +117,7 @@
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
-		width:40%; 
+		width:26%; 
 	 }
 	  .catalogPictureDiv{
 		 margin-left: 4rem !important;
@@ -160,7 +161,7 @@
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
-		width:40%; 
+		width:26%; 
 	 }
 	 .bookingForm{
 		margin-top: 2rem !important;
@@ -190,7 +191,7 @@
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
-		width:38%; 
+		width:26%; 
 	 }
 	 .bookingForm{
 		margin-top: 2rem !important;
@@ -220,7 +221,7 @@
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
-	  width:38%; 
+	  width:26%; 
    }
    .bookingForm{
 	margin-top: 2rem !important;
@@ -250,7 +251,7 @@
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
-	  width:40%; 
+	  width:26%; 
    }
    .bookingForm{
 	margin-top: 2rem !important;
@@ -280,7 +281,7 @@
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
-	  width:42%; 
+	  width:26%; 
    }
    .bookingForm{
 	margin-top: 2rem !important;

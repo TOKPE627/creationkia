@@ -299,6 +299,7 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	 
   <script>
 	  function likeService(service_id){
+		  alert(service_id);
 		$.ajax({
 			type: "GET",
 	        contentType: "application/json",
