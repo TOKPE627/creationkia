@@ -32,51 +32,21 @@ public class GiveLikeController {
 
 	@RequestMapping(value="/service", method=RequestMethod.GET)
     public ResponseEntity<?> giveLike(@ModelAttribute("service_id") Long service_id, Model model) throws UnknownHostException {
-        Company company = companyService.findById(service_id);
-
-        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
-        
+        Company company = companyService.findById(service_id);        
+        GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
         int numberLikes=0;
-        System.out.println("Company Id: " +company.getId());
-       System.out.println("Number likes: " + giveLikes.size());
-        if(!giveLikes.isEmpty()) {
-            System.out.println("Company not empty");
-            GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
-            if(checkLikeByIpAdress == null){
-                GiveLike giveLike = new GiveLike();
-                giveLike.setCurrent(1);
-                giveLike.setCompany(company);
-                giveLike.setIpaddress(AppHosts.currentHostIpAddress());
-                giveLikeService.save(giveLike);
-            }
-         
-            for(GiveLike giveLikeC: giveLikes){
-                numberLikes = numberLikes + giveLikeC.getCurrent();
-            }
-            System.out.println("Number likes " +numberLikes);
-        }
-        else{
-            System.out.println("Empty company likes");
+       
+        if(Objects.isNull(checkLikeByIpAdress)){
             GiveLike giveLike = new GiveLike();
             giveLike.setCurrent(1);
             giveLike.setCompany(company);
             giveLike.setIpaddress(AppHosts.currentHostIpAddress());
             giveLikeService.save(giveLike);
         }
-        // GiveLike checkLike = giveLikeService.findByCompany(company);
-        // if(checkLike !=null){
-        //     GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
-        //     if(checkLikeByIpAdress == null){
-        //         GiveLike giveLike = new GiveLike();
-        //         giveLike.setCurrent(1);
-        //         giveLike.setCompany(company);
-        //         giveLike.setIpaddress(AppHosts.currentHostIpAddress());
-        //         giveLikeService.save(giveLike);
-        //     }
-        // }
-      
-        // GiveLike likeF =  giveLikeService.findByCompany(company);
-        // int numberLikes = likeF.getCurrent(); 
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        for(GiveLike giveLike: giveLikes){
+            numberLikes +=giveLike.getCurrent();
+        }
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -89,12 +59,9 @@ public class GiveLikeController {
         Company company = companyService.findById(service_id);       
         List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
         int numberLikes=0;
-        // GiveLike likeF =  giveLikeService.findByCompany(company);
-        // int numberLikes = likeF.getCurrent(); 
         for(GiveLike giveLikeC: giveLikes){
             numberLikes = numberLikes + giveLikeC.getCurrent();
         }
-          System.out.println(numberLikes);
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -105,36 +72,22 @@ public class GiveLikeController {
 
     @RequestMapping(value="/store", method=RequestMethod.GET)
     public ResponseEntity<?> giveStoreLike(@ModelAttribute("store_id") Long store_id, Model model) throws UnknownHostException {
-        Company company = companyService.findById(store_id);
-        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
-        int numberLikes=0;
-        System.out.println("Company Id: " +company.getId());
        
-        if(!giveLikes.isEmpty()) {
-            System.out.println("Company not empty");
-            GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
-            if(checkLikeByIpAdress == null){
-                GiveLike giveLike = new GiveLike();
-                giveLike.setCurrent(1);
-                giveLike.setCompany(company);
-                giveLike.setIpaddress(AppHosts.currentHostIpAddress());
-                giveLikeService.save(giveLike);
-            }
-         
-            for(GiveLike giveLikeC: giveLikes){
-                numberLikes = numberLikes + giveLikeC.getCurrent();
-            }
-            System.out.println("Number likes " +numberLikes);
-        }
-        else{
-            System.out.println("Empty company likes");
+        Company company = companyService.findById(store_id);        
+        GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
+        int numberLikes=0;
+
+        if(Objects.isNull(checkLikeByIpAdress)){
             GiveLike giveLike = new GiveLike();
             giveLike.setCurrent(1);
             giveLike.setCompany(company);
             giveLike.setIpaddress(AppHosts.currentHostIpAddress());
             giveLikeService.save(giveLike);
         }
-      
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        for(GiveLike giveLike: giveLikes){
+            numberLikes +=giveLike.getCurrent();
+        }
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -150,7 +103,6 @@ public class GiveLikeController {
         for(GiveLike giveLikeC: giveLikes){
             numberLikes = numberLikes + giveLikeC.getCurrent();
         }
-          System.out.println(numberLikes);
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);

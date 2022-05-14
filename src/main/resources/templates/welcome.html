@@ -188,184 +188,148 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
 	<script th:src="@{/assets/js/main.js}"></script>
-	
-<!-- 
-	<script type="text/javascript">
-		function show_login_status(network, status)
-		{
-		 if (status)
-		 {
-		  alert("Logged in to " + network);
-		 }else{
-		  alert("Not logged in to " + network);
-		 }
+	<script>
+		function likeStore(store_id){
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: '/like/store?store_id='+store_id,
+			data: {},
+			dataType: 'json',
+			cache: false,
+			timeout: 600000,
+			success: function (data) {
+				$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
+			},
+			error: function (e) {
+				console.log("ERROR : ", e);
+			}
+		}); 
+	  }	
+  </script>
+	<script>
+		loadServices();
+		loadStores();
+		function loadServices(){
+		  $.ajax({
+			  type: "GET",
+			  contentType: "application/json",
+			  url: '/company/services',
+			  data: {},
+			  dataType: 'json',
+			  cache: false,
+			  timeout: 600000,
+			  success: function (data) {
+				  var json = data.companies;
+				  if(json){
+					  $.each(json,function(index,company){
+						  getSpecialities(company.id);
+						  getServiceLikes(company.id);
+					  });
+				  }
+			  
+			  },
+			  error: function (e) {
+				  console.log("ERROR : ", e);
+			  }
+		  }); 
 		}
+	
+	
+		function loadStores(){
+		  $.ajax({
+			  type: "GET",
+			  contentType: "application/json",
+			  url: '/company/stores',
+			  data: {},
+			  dataType: 'json',
+			  cache: false,
+			  timeout: 600000,
+			  success: function (data) {
+				  var json = data.companies;
+				  console.log(json);
+				  if(json){
+					  $.each(json,function(index,company){
+						  getStoreLikes(company.id);
+					  });
+				  }
+			  
+			  },
+			  error: function (e) {
+				  console.log("ERROR : ", e);
+			  }
+		  }); 
+		}
+	
 	</script>
-  -->
-  <script>
-	  loadServices();
-	  loadStores();
-	  function loadServices(){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/company/services',
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-	            var json = data.companies;
-				if(json){
-					$.each(json,function(index,company){
-						getSpecialities(company.id);
-						getServiceLikes(company.id);
-					});
+	<script>
+		function getServiceLikes(service_id){
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: '/like/service/count?service_id='+service_id,
+				data: {},
+				dataType: 'json',
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+					$('#resultLikeService-'+data.companyId).html(data.numberLikes);
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
 				}
-			
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	  }
-
-
-	  function loadStores(){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/company/stores',
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-	            var json = data.companies;
-                console.log(json);
-				if(json){
-					$.each(json,function(index,company){
-						getStoreLikes(company.id);
-					});
+			}); 
+		}
+	  
+	  
+		function getStoreLikes(store_id){
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: '/like/store/count?store_id='+store_id,
+				data: {},
+				dataType: 'json',
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+					$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
 				}
-			
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	  }
-
-  </script>
+			}); 
+		}
+	  </script>
   
-  <script>
-	function getServiceLikes(service_id){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/like/service/count?service_id='+service_id,
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-				$('#resultLikeService-'+data.companyId).html(data.numberLikes);
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	}
-
-
-	function getStoreLikes(store_id){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/like/store/count?store_id='+store_id,
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-				$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	}
-</script>
-	 
-  <script>
-	  function likeService(service_id){
-		  alert(service_id);
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/like/service?service_id='+service_id,
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-				$('#resultLikeService-'+data.companyId).html(data.numberLikes);
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	  }
-
-
-	  function likeStore(store_id){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/like/store?store_id='+store_id,
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-				$('#resultLikeStore-'+data.companyId).html(data.numberLikes);
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	  }
-  </script>
-  <script>
-	function getSpecialities(service_id){
-		$.ajax({
-			type: "GET",
-	        contentType: "application/json",
-	        url: '/company/service/specialities?service_id='+service_id,
-	        data: {},
-	        dataType: 'json',
-	        cache: false,
-	        timeout: 600000,
-	        success: function (data) {
-	          var json = data.specialities;
-              $.each(json,function(index,speciality){
-                  $('#resultSpeciality-'+service_id).append(
-					 '<div style="margin-top:-1rem !important;">'
-					   +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 125px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
-						+"-"+speciality.name 
-					   +'</span>'
-                     +'</div>'
-                 );
-              });
-	        },
-	        error: function (e) {
-	            console.log("ERROR : ", e);
-	        }
-		}); 
-	}
-</script>
-	 
-
+	  
+	  <script>
+		function getSpecialities(service_id){
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: '/company/service/specialities?service_id='+service_id,
+				data: {},
+				dataType: 'json',
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+				  var json = data.specialities;
+				  $.each(json,function(index,speciality){
+					  $('#resultSpeciality-'+service_id).append(
+						 '<div style="margin-top:-1rem !important;">'
+						   +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 125px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
+							+"-"+speciality.name 
+						   +'</span>'
+						 +'</div>'
+					 );
+				  });
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+				}
+			}); 
+		}
+	  </script> 
 	<script>
     var productId;
     $(document).ready(function(){

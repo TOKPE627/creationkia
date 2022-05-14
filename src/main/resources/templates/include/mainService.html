@@ -79,3 +79,25 @@
     </div>
 </div>
 
+
+   
+<script>
+	function likeService(service_id){
+	  $.ajax({
+		  type: "GET",
+		  contentType: "application/json",
+		  url: '/like/service?service_id='+service_id,
+		  data: {},
+		  dataType: 'json',
+		  cache: false,
+		  timeout: 600000,
+		  success: function (data) {
+			  $('#resultLikeService-'+data.companyId).html(data.numberLikes);
+		  },
+		  error: function (e) {
+			  console.log("ERROR : ", e);
+		  }
+	  }); 
+	}
+
+</script>

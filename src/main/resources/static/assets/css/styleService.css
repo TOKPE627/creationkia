@@ -28,7 +28,7 @@
 	}
 	.companyLogo{
 	 margin-left: 2rem; 
-	 width: 23%;
+	 width: 23% !important;
 	}
 	.companyLogo > a > img{
 		width:28%; 
@@ -61,7 +61,7 @@
 	 }
 	.companyLogo {
 		margin-top: 4rem !important;
-		width: 23%;
+		width: 23% !important;
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
@@ -113,7 +113,7 @@
 		 margin-left: 2% !important;
 	 }
 	.companyLogo {
-	   width:40%;
+	   width:40% !important;
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
@@ -157,7 +157,7 @@
  }
  @media (min-width:481px) and (max-width:767px) {
 	.companyLogo {
-		width:60%;
+		width:60% !important;
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
@@ -187,7 +187,7 @@
  }
  @media (min-width: 401px) and (max-width:480px) {
  	 .companyLogo {
-	   width:78%;
+	   width:78% !important;
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
@@ -217,7 +217,7 @@
   } 
   @media (min-width: 381px) and (max-width:400px) {
 	.companyLogo {
-	 width:78%;
+	 width:78% !important;
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
@@ -247,7 +247,7 @@
  }
  @media (min-width: 361px) and (max-width:380px) {
 	.companyLogo {
-	 width:76%;
+	 width:76% !important;
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
@@ -277,7 +277,7 @@
 }
 @media (min-width: 320px) and (max-width:360px) {
 	.companyLogo {
-	 width:76%;
+	 width:76% !important;
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
