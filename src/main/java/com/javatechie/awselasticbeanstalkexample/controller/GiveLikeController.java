@@ -11,6 +11,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.GiveLike;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.GiveLikeService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
+import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,20 +33,48 @@ public class GiveLikeController {
 	@RequestMapping(value="/service", method=RequestMethod.GET)
     public ResponseEntity<?> giveLike(@ModelAttribute("service_id") Long service_id, Model model) throws UnknownHostException {
         Company company = companyService.findById(service_id);
-        GiveLike checkLike = giveLikeService.findByCompany(company);
-        if(checkLike !=null){
-            checkLike.setCurrent(checkLike.getCurrent()+1);
-            checkLike.setCompany(company);
-            giveLikeService.update(checkLike);
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        int numberLikes=0;
+        System.out.println("Company Id: " +company.getId());
+       
+        if(!giveLikes.isEmpty()) {
+            System.out.println("Company not empty");
+            GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
+            if(checkLikeByIpAdress == null){
+                GiveLike giveLike = new GiveLike();
+                giveLike.setCurrent(1);
+                giveLike.setCompany(company);
+                giveLike.setIpaddress(AppHosts.currentHostIpAddress());
+                giveLikeService.save(giveLike);
+            }
+         
+            for(GiveLike giveLikeC: giveLikes){
+                numberLikes = numberLikes + giveLikeC.getCurrent();
+            }
+            System.out.println("Number likes " +numberLikes);
         }
         else{
+            System.out.println("Empty company likes");
             GiveLike giveLike = new GiveLike();
             giveLike.setCurrent(1);
             giveLike.setCompany(company);
+            giveLike.setIpaddress(AppHosts.currentHostIpAddress());
             giveLikeService.save(giveLike);
         }
-        GiveLike likeF =  giveLikeService.findByCompany(company);
-        int numberLikes = likeF.getCurrent(); 
+        // GiveLike checkLike = giveLikeService.findByCompany(company);
+        // if(checkLike !=null){
+        //     GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
+        //     if(checkLikeByIpAdress == null){
+        //         GiveLike giveLike = new GiveLike();
+        //         giveLike.setCurrent(1);
+        //         giveLike.setCompany(company);
+        //         giveLike.setIpaddress(AppHosts.currentHostIpAddress());
+        //         giveLikeService.save(giveLike);
+        //     }
+        // }
+      
+        // GiveLike likeF =  giveLikeService.findByCompany(company);
+        // int numberLikes = likeF.getCurrent(); 
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -56,8 +85,14 @@ public class GiveLikeController {
     @RequestMapping(value="/service/count", method=RequestMethod.GET)
     public ResponseEntity<?> countServiceLikes(@ModelAttribute("service_id") Long service_id, Model model) throws UnknownHostException {
         Company company = companyService.findById(service_id);       
-        GiveLike likeF =  giveLikeService.findByCompany(company);
-        int numberLikes = likeF.getCurrent(); 
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        int numberLikes=0;
+        // GiveLike likeF =  giveLikeService.findByCompany(company);
+        // int numberLikes = likeF.getCurrent(); 
+        for(GiveLike giveLikeC: giveLikes){
+            numberLikes = numberLikes + giveLikeC.getCurrent();
+        }
+          System.out.println(numberLikes);
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -69,20 +104,35 @@ public class GiveLikeController {
     @RequestMapping(value="/store", method=RequestMethod.GET)
     public ResponseEntity<?> giveStoreLike(@ModelAttribute("store_id") Long store_id, Model model) throws UnknownHostException {
         Company company = companyService.findById(store_id);
-        GiveLike checkLike = giveLikeService.findByCompany(company);
-        if(checkLike !=null){
-            checkLike.setCurrent(checkLike.getCurrent()+1);
-            checkLike.setCompany(company);
-            giveLikeService.update(checkLike);
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        int numberLikes=0;
+        System.out.println("Company Id: " +company.getId());
+       
+        if(!giveLikes.isEmpty()) {
+            System.out.println("Company not empty");
+            GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
+            if(checkLikeByIpAdress == null){
+                GiveLike giveLike = new GiveLike();
+                giveLike.setCurrent(1);
+                giveLike.setCompany(company);
+                giveLike.setIpaddress(AppHosts.currentHostIpAddress());
+                giveLikeService.save(giveLike);
+            }
+         
+            for(GiveLike giveLikeC: giveLikes){
+                numberLikes = numberLikes + giveLikeC.getCurrent();
+            }
+            System.out.println("Number likes " +numberLikes);
         }
         else{
+            System.out.println("Empty company likes");
             GiveLike giveLike = new GiveLike();
             giveLike.setCurrent(1);
             giveLike.setCompany(company);
+            giveLike.setIpaddress(AppHosts.currentHostIpAddress());
             giveLikeService.save(giveLike);
         }
-        GiveLike likeF =  giveLikeService.findByCompany(company);
-        int numberLikes = likeF.getCurrent(); 
+      
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);
@@ -93,8 +143,12 @@ public class GiveLikeController {
     @RequestMapping(value="/store/count", method=RequestMethod.GET)
     public ResponseEntity<?> countStoreLikes(@ModelAttribute("store_id") Long store_id, Model model) throws UnknownHostException {
         Company company = companyService.findById(store_id);       
-        GiveLike likeF =  giveLikeService.findByCompany(company);
-        int numberLikes = likeF.getCurrent(); 
+        List<GiveLike> giveLikes = giveLikeService.findAllByCompany(company);
+        int numberLikes=0;
+        for(GiveLike giveLikeC: giveLikes){
+            numberLikes = numberLikes + giveLikeC.getCurrent();
+        }
+          System.out.println(numberLikes);
         AjaxResponseBody result = new AjaxResponseBody();
         result.setCompanyId(company.getId());
         result.setNumberLikes(numberLikes);

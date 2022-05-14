@@ -25,7 +25,7 @@ public class GiveLike implements Serializable{
 	@JoinColumn(name = "company_id")
 	private Company company;
 	private Integer current;
-
+	private String  ipaddress;
 
 
 	public static long getSerialversionuid() {
@@ -49,6 +49,12 @@ public class GiveLike implements Serializable{
 	}
 	public void setCurrent(Integer current) {
 		this.current = current;
+	}
+	public String getIpaddress() {
+		return ipaddress;
+	}
+	public void setIpaddress(String ipaddress) {
+		this.ipaddress = ipaddress;
 	}
 	
 	

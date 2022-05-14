@@ -29,6 +29,16 @@ public class GiveLikeServiceImpl implements GiveLikeService{
     public GiveLike findByCompany(Company company) {
         return giveLikeRepository.findByCompany(company);
     }
+
+    @Override
+    public GiveLike findByCompanyAndIpaddress(Company company, String ipaddress) {
+        return giveLikeRepository.findByCompanyAndIpaddress(company, ipaddress);
+    }
+
+    @Override
+    public List<GiveLike> findAllByCompany(Company company) {
+        return giveLikeRepository.findAllByCompany(company);
+    }
     
     
 }

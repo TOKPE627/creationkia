@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -285,7 +286,7 @@ private SpecialityService specialityService;
 	
 	
 	@RequestMapping("/info/{id}")
-	public String companyInfo(@ModelAttribute("id") Long id, Model model) throws UnknownHostException {
+	public String companyInfo(@PathVariable("id") Long id, Model model) throws UnknownHostException {
 		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
 		model.addAttribute("awsBucketProduct",AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);

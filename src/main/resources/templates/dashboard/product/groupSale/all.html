@@ -44,7 +44,6 @@
 			<table id="storeListTable" class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<!-- <th><input th:id="selectAllStores" type="checkbox" /></th> -->
 						<th>Nom</th>
 						 <th>Quantite disponible</th>
 						<th>Action</th>
@@ -52,11 +51,6 @@
 				</thead>
 				<tbody>
 					<tr data-th-each="product : ${productList}">
-					<!-- 	<td>
-						   <input hidden="hidden" name="id" th:value="${product.id}" />
-						
-						<input th:id="'selected'+${product.id}" class="checkboxProduct" type="checkbox" />
-						</td> -->
 					 	<td>
 							<a 
 							th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
@@ -67,21 +61,11 @@
 								   alt=""  
 							  /> 
 					   </a>
-						    <!-- <a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
-						      <img
-					            class="img-responsive" style="height: 250px;width: 100%; object-fit: contain;"
-			                   th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-					             /> 
-						    </a> -->
 						</td> 
-						<!-- <td><a th:href="@{/groupSale/groupSaleInfo(id=${product.id})}">
-						  <span th:text="${product.name}" class="colorText"></span></a>
-						</td> -->
 						<td th:text="${product.quantity}"></td>
 					
 						<td>
-<!-- 							<input hidden="hidden" name="id" th:value="${product.store.id}" />
- -->							<button th:id="'oneProduct-'+${product.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete" >
+							<button th:id="'oneProduct-'+${product.id}" class="btn btn-danger btn-xs delete-product" type="submit" value="delete" >
 							<span class="fa fa-times"></span>Supprimer</button>
 						</td>
 					</tr>

@@ -9,4 +9,6 @@ public interface GiveLikeService {
     GiveLike save(GiveLike giveLike);
     GiveLike update(GiveLike giveLike);
     GiveLike findByCompany(Company company);
+    GiveLike findByCompanyAndIpaddress(Company company, String ipaddress);
+    List<GiveLike> findAllByCompany(Company company);
 }
