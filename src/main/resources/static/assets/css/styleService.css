@@ -309,5 +309,5 @@
 	  margin-top: 3rem !important;
   }
   .companyLogo > a > img {
-   object-fit: fill !important;
+   object-fit: contain !important;
   }

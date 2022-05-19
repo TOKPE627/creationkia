@@ -32,10 +32,10 @@
 								 class="product-single" style="background-color: white !important; ">
 									<div class="product-title">   				     				
 									   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(store.name,18)}"></h4>                                      
-									 </div>
+									</div>
 									<div class="product-thumb product-thumb-store">
 										<a th:href="@{/company/info/}+${store.id}">
-										   <img style="object-fit: cover; 
+										   <img style="object-fit: contain; 
 											  height: 230px; width: 100% !important;"
 											   class="img-responsive"
 							  th:src="@{${awsBucketCompany}+${store.galery.id}+'/'+${store.galery.companyImage}}" alt=""  
@@ -314,7 +314,17 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 				timeout: 600000,
 				success: function (data) {
 				  var json = data.specialities;
-				  $.each(json,function(index,speciality){
+
+				  var checkSize = json.length;
+				  console.log("Size of service: "  + service_id + " " + checkSize);
+				  if(checkSize == 0){
+					$('#checkSpecialityIsEmpty-'+service_id).html(checkSize)
+				  } 
+				  else
+				  {	
+					$('#checkSpecialityIsEmpty-'+service_id).html(checkSize)
+					$.each(json,function(index,speciality){
+					  
 					  $('#resultSpeciality-'+service_id).append(
 						 '<div style="margin-top:-1rem !important;">'
 						   +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 125px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
@@ -322,7 +332,9 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 						   +'</span>'
 						 +'</div>'
 					 );
-				  });
+				    });
+				  }
+				  
 				},
 				error: function (e) {
 					console.log("ERROR : ", e);

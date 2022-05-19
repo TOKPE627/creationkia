@@ -209,7 +209,12 @@ private SpecialityService specialityService;
 	//Update on Dashboard Parameters
 	@RequestMapping("/update")
 	public String update(Model model) {
-		model.addAttribute("awsBucketCompany",AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop); 
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		User user = userService.findByUsername(userDetails.getUsername());
 		Company company = companyService.findByUser(user);

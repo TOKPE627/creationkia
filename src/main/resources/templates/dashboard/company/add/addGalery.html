@@ -72,7 +72,7 @@
                 </p>
                  <div class="col-xs-3">
                   	   <input type="file" name="files"/><br/><br/>
-                  	    
+                       <span class="text-danger" id="errorSize0"></span>
                   </div>
                 </div>
 		 </div>
@@ -84,7 +84,7 @@
                 </p>
                  <div class="col-xs-3">
                   	   <input type="file" name="files"/><br/><br/>
-                  	    
+                       <span class="text-danger" id="errorSize1"></span>
                   </div>
                 </div>
 		 </div>
@@ -96,7 +96,7 @@
                 </p>
                  <div class="col-xs-3">
                   	   <input type="file" name="files"/><br/><br/>
-                  	    
+                       <span class="text-danger" id="errorSize2"></span>
                   </div>
                 </div>
 		 </div>
@@ -162,9 +162,24 @@
 				reader = new FileReader();
 				
 				reader.onload = function(e){
-					$('#thumbnail'+index).attr('src',e.target.result);
-				}
-				reader.readAsDataURL(file);
+					
+					var image = new Image();
+ 
+					//Set the Base64 string return from FileReader as source.
+					image.src = e.target.result;
+							
+					//Validate the File Height and Width.
+					image.onload = function () {
+						var height = this.height;
+						var width  = this.width;
+            if(width > 376 && height < 598){
+							$('#errorSize'+index).html("La largeur maximale doit être 376 px. La hauteur minimale doit être 598 px");
+						}else{
+							$('#thumbnail'+index).attr('src',e.target.result);
+						}
+					}
+			    }
+				  reader.readAsDataURL(file);
 			} 
 			
 		});

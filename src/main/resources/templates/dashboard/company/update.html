@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Attooly</title>
+  <title>Atooly</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -125,50 +125,55 @@
 				            
 				              />
 	                         <input type="file" name="files"/>
-	 	          </div>
+							 <span class="text-danger" id="errorSize0"></span>
+	 	        </div>
 	                 
-		            
-		            
-		            
-		            <div class="card" style="display: inline;"> 
-					   <fieldset>
-				         <legend style="font-size: medium;color: #6FB70F">Localisation <hr></legend>
-					   
-						   <div class="form-group">
-						    <label for="exampleFormControlInput1">Vue de face</label><br>
-						     
-						    <img class="geolocateImg" 
-						       id="thumbnail1"   
-							   style="object-fit: contain; width: 39rem; height: 22rem;"
-						   	  th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage1}}" alt=""
-						    />					  
-						     <input type="file" name="files"/>
+				<div class="card" style="display: inline;"> 
+					<fieldset>
+						<legend style="font-size: medium;color: #6FB70F">Localisation <hr></legend>
+					
+						<div class="form-group">
+						<label for="exampleFormControlInput1">Vue de face</label><br>
+							
+						<img class="geolocateImg" 
+							id="thumbnail1"   
+							style="object-fit: contain; width: 39rem; height: 22rem;"
+							th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage1}}" alt=""
+						/>					  
+							
+							<div class="container">
+								<input type="file" name="files"/>
+								<span class="text-danger" id="errorSize1"></span>
+							</div>
+						</div>
+						
+						
+						
+						<div class="form-group">
+						<label for="exampleFormControlInput1">Vue de loin</label><br>
+							
+						<img class="geolocateImg"
+							id="thumbnail2" 		
+							style="object-fit: contain; width: 39rem; height: 22rem;"
+								th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage2}}" alt=""				   	  
+							/>
+						   <div class="container">
+							<input type="file" name="files"><br>
+							<span class="text-danger" id="errorSize2"></span>
 						   </div>
-						 
-						 
-						 
-						  <div class="form-group">
-						    <label for="exampleFormControlInput1">Vue de loin</label><br>
-						     
-						    <img class="geolocateImg"
-						       id="thumbnail2" 		
-							   style="object-fit: contain; width: 39rem; height: 22rem;"
-							   	  th:src="@{${awsBucketCompany}+${company.galery.id}+'/'+${company.galery.geolocateImage2}}" alt=""				   	  
-						   	   />
-						   	  <input type="file" name="files">
-						  </div>
-						   <div class="row" style="margin-left: 10%;">
-						      <span style="color:  #6FB70F;" id="result"></span>					    	
-			   	           </div>
-		                   <div class="form-group">
-							<label class="col-md-2 control-label"></label>
-				              <div class="col-md-6">
-				              	    <input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
-				               </div>
-						  </div>
-						  </fieldset>
-		            </div>
-		          </form>
+						</div>
+						<div class="row" style="margin-left: 10%;">
+							<span style="color:  #6FB70F;" id="result"></span>					    	
+						</div>
+						<div class="form-group">
+						    <label class="col-md-2 control-label"></label>
+							<div class="col-md-6">
+								<input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				</form>
 	      </div><!-- /.container-fluid -->
 	    </section>
 	    
@@ -377,14 +382,28 @@
 				});
 			}); 
 
-			
-		  function showExtraImageThumbnail(fileInput,index){
+		    function showExtraImageThumbnail(fileInput,index){	
 				file = fileInput.files[0];
 				reader = new FileReader();
 				
 				reader.onload = function(e){
-					$('#thumbnail'+index).attr('src',e.target.result);
-				}
+					
+					var image = new Image();
+ 
+					//Set the Base64 string return from FileReader as source.
+					image.src = e.target.result;
+							
+					//Validate the File Height and Width.
+					image.onload = function () {
+						var height = this.height;
+                        var width = this.width;
+						if(width > 376 && height < 598){
+							$('#errorSize'+index).html("La largeur maximale doit être 376 px. La hauteur minimale doit être 598 px");
+						}else{
+							$('#thumbnail'+index).attr('src',e.target.result);
+						}
+					}
+			    }
 				reader.readAsDataURL(file);
 			} 
 			

@@ -32,20 +32,14 @@
                                   />   
                                  </a>
                             </div>
-                             <div  class="container" style=" margin-left: 5px; margin-top: 1.3rem !important;" id="store">
+                            <!-- False -->
+                             <div th:id="|checkSpecialityIsEmpty-${service.id}|" 
+                              class="container" 
+                              style=" margin-left: 5px; margin-top: 1.3rem !important;"
+                               >
                                 <div   style="height: 2.4rem !important;"  
                                    th:id="|resultSpeciality-${service.id}|"   
-                                >
-                                <!-- <ul data-th-each="sp : ${service.user.specialities}" 
-                                    style="list-style-type: '-'; margin:0 !important; padding: 0 !important;"
-                                      
-                                    >
-                                    <li class="specialityLi" th:text="${#strings.abbreviate(sp.name,20)}" 
-                                        style="margin-top: -1rem !important;
-                                        font-size: 12px;
-                                    "></li>
-                                </ul> -->
-                                  
+                                >      
                                 </div>  
                                 
                                 <div class="row likeShareService">
@@ -71,6 +65,7 @@
                                      </h6>
                                 </div> 
                              </div>		 
+                          
                         </div>
                     </div>
                 </div>
