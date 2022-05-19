@@ -9,6 +9,7 @@ public class AppConstants {
    public static final String ROLE_2 = "ROLE_STOREKEEPER";
    public static final String ROLE_3 = "ROLE_SERVICE";
    public static final String ROLE_4 = "ROLE_CUSTOMER";
+   public static final String ROLE_5 = "ROLE_CUSTOMER_COMPANY";
    
    //
    public static String companyImage= "companyimage";

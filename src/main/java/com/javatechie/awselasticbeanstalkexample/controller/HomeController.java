@@ -583,15 +583,12 @@ public class HomeController {
 			
 			if(userRole.getRole().getName().equals(AppConstants.ROLE_4)) {
 				model.addAttribute("userRole4",AppConstants.ROLE_4);
-
-	
 			    List<Booking> bookingsAddedToCart = 
-			    		bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
-
+			    bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 				model.addAttribute("bookingAddedToCartExist",false);
 
 			    if(!bookingsAddedToCart.isEmpty()) {
-			       System.out.println("Added to cart " +bookingsAddedToCart.size());
+				
 					model.addAttribute("bookingAddedToCartExist",true);
 			    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
 					 return "dashboard/customer/addedToCart";
@@ -599,7 +596,6 @@ public class HomeController {
 				else{
 					List<Booking> bookingsBegun = bookingService.findByCustomer(currentUser,AppConstants.ORDER_STATUS_0);
 					if(!bookingsBegun.isEmpty()) {
-						System.out.println("Bookings begun " +bookingsBegun.size());
 						double total_price_orders=0;
 						for(Booking booking: bookingsBegun) {
 							double total_price = booking.getTotal_price();
@@ -608,29 +604,28 @@ public class HomeController {
 						model.addAttribute("bookingBegunListExist",true);
 						model.addAttribute("bookingBegunList",bookingsBegun);
 						model.addAttribute("total_price_orders",total_price_orders);	
-					}else{
-						List<BookingCompany> bookingsCompanyBegun = bookingCompanyService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
-						if(!bookingsCompanyBegun.isEmpty()){
-							System.out.println("Company begun " +bookingsCompanyBegun.size());
-							model.addAttribute("bookingCompanyBegunListExist", true);
-							model.addAttribute("bookingCompanyBegunList",bookingsCompanyBegun);
-							return "dashboard/customer/homeBookingCompanyBegun";
-						}
-						else{
-							List<BookingCompany> bookingCompanies = bookingCompanyService.findByCustomer(currentUser, AppConstants.ORDER_STATUS_1);
-							if(!bookingCompanies.isEmpty()){
-								System.out.println("Company pendings " +bookingCompanies.size());
-								model.addAttribute("bookingCompanyListExist", true);
-								model.addAttribute("bookingCompanyList", bookingCompanies);
-								return "dashboard/customer/homeBookingCompany";
-							}
-						}
-						
 					}
 				}
 		   }
-	   }
-	     return "dashboard/customer/home";
-	  }
+		   if(userRole.getRole().getName().equals(AppConstants.ROLE_5)) {
+				List<BookingCompany> bookingsCompanyBegun = bookingCompanyService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
+				if(!bookingsCompanyBegun.isEmpty()){
+					model.addAttribute("bookingCompanyBegunListExist", true);
+					model.addAttribute("bookingCompanyBegunList",bookingsCompanyBegun);
+					return "dashboard/customerCompany/homeBookingCompanyBegun";
+				}
+				else{
+					List<BookingCompany> bookingCompanies = bookingCompanyService.findByCustomer(currentUser, AppConstants.ORDER_STATUS_1);
+
+					if(!bookingCompanies.isEmpty()){
+						model.addAttribute("bookingCompanyListExist", true);
+						model.addAttribute("bookingCompanyList", bookingCompanies);
+						return "dashboard/customerCompany/homeBookingCompany";
+					}
+				}
+			} 
+		}
+		return "dashboard/customer/home";
 	}
 
+}

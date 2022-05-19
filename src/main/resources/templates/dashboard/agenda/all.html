@@ -96,14 +96,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>		
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>			 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -133,14 +132,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>	
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>				 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -171,14 +169,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>		
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>			 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -209,13 +206,12 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>		
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>			 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
 							</a>
 						</td>
 					</tr>
@@ -246,14 +242,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>	
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>				 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -283,14 +278,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>	
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>				 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>
@@ -320,14 +314,13 @@
 						<td>
 						  <span th:text="${day.closeHour}" class="colorText"></span>
 						</td>			
-						<!-- <td>
-							<span th:if="${day.status=='open'}" class="colorText">Ouvert</span>
-							<span th:if="${day.status=='close'}" class="colorText">Fermé</span>
-						</td>		 -->
 						<td>
 							<a  class="colorText" th:href="@{/agenda/byOwner(id=${day.id})}">
-								<i class="fa fa-eye"></i> <span> Voir</span> 
-							  </a>
+								<i class="fa fa-eye"></i> <span> Modifier</span> 
+							</a>
+							<a class="text-danger" th:href="@{/agenda/removeByOwner(id=${day.id})}">
+								<i class="fa fa-trash"></i> <span> Supprimer</span> 
+							</a>
 						</td>
 					</tr>
 				</tbody>

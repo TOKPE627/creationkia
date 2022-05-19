@@ -114,59 +114,44 @@
 </style>
 <body style="background-color: #e8e8e8;">	
     <!--header-->
-	 <div th:replace="dashboard/navbarCustomerBookingCompany"></div>
+    <div th:replace="dashboard/navbarCustomerBookingCompanyBegun"></div>
 	 
      <section class="content">
         <div class="container bookingForm" style="width: 36rem;">
    
             <fieldset>
           <legend class="center-block">
-              Commande		
+			Rendez-vous		
               <span style="font-size: small"> </span>
           </legend>
            <div class="container">
-              <form th:action="@{/bookingCompany/update}" method="post">
+            <div class="form-group">
+                <img
+                
+                class="img-responsive"  style="object-fit: contain;height:400px; width:100%;"
+                th:src="@{${awsBucketCompany}+${bookingCompany.company.galery.id}+'/'+${bookingCompany.company.galery.companyImage}}" alt=""  
+                /> 
+            </div>
+              <form th:action="@{/bookingCompany/begun/update}" method="post">
                     <input type="hidden" name="bookingCompany_id" th:value="${bookingCompany.id}">
                     <input type="hidden" name="company_id" th:value="${bookingCompany.company.id}">
-                    <div class="form-group">
-                        <img
-						class="img-responsive"  style="object-fit: cover;height:400px; width:100%;"
 
-                        th:src="@{${awsBucketCompany}+${bookingCompany.company.galery.id}+'/'+${bookingCompany.company.galery.companyImage}}" alt=""  
-                        /> 
-                    </div>
                      <div class="form-group">
                       <label for="exampleFormControlInput1">Service demandé</label>
                       <textarea rows="5"
-                        th:value="${bookingCompany.command}" class="form-control"
-                        th:text="${bookingCompany.command}"
+                        class="form-control" placeholder="Décrivez le service que vous cherchez" required
                         name="command" 
                         >
                       </textarea> 
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Jour</label>
-                      <div class="row">
-                          <div class="col-md-5">
-                            <input th:value="${bookingCompany.day}" class="form-control" disabled                            >
-                          </div>
-                          <div class="col-md-5">
                             <input type="date" class="form-control" 
                               name="day" required="required">
-                          </div>
-                          
-                      </div> 
                     </div>
                     <div class="form-group">
                       <label for="exampleFormControlInput1">Heure</label>
-                      <div class="row">
-                          <div class="col-md-5">
-                            <input th:value="${bookingCompany.hour}" class="form-control" disabled> 
-                          </div>
-                          <div class="col-md-5">
-                            <input type="time" name="hour" class="form-control"> 
-                          </div>
-                      </div>
+                            <input type="time" name="hour" class="form-control">
                     </div>
                   
                     <div style="margin-bottom: 3rem;" >

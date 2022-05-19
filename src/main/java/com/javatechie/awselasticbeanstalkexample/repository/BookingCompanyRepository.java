@@ -24,7 +24,7 @@ public interface BookingCompanyRepository extends JpaRepository<BookingCompany,L
 	@Query("SELECT b from booking_company b WHERE  b.company.user= :seller AND b.status = :status")
 	List<BookingCompany>  findBySeller(User seller, String status);
 	
-	@Query("SELECT b from booking_company b WHERE b.company.user = :customer AND b.status = :status")
+	@Query("SELECT b from booking_company b WHERE b.user = :customer AND b.status = :status")
 	List<BookingCompany> findByCustomer(User customer, String status);
 
 		

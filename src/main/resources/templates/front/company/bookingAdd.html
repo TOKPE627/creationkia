@@ -36,7 +36,7 @@
                         <input type="hidden" name="company_id" th:value="${company.id}">
                     
                          <div class="form-group">
-                             <input type="hidden" name="role" class="form-control" value="ROLE_CUSTOMER">
+                             <input type="hidden" name="role" class="form-control" value="ROLE_CUSTOMER_COMPANY">
                         </div>
                     
                         
@@ -85,6 +85,10 @@
                    
                         <div class="form-group">
                           <label for="exampleFormControlInput1">Adresse email</label>
+                          <span
+                          style="color: red;" th:if="${emailExists}">Cet email existe d&eacute;j&agrave;.
+                          Choisissez-en un autre.
+                      </span>
                           <input type="email" class="form-control" id="exampleFormControlInput1" 
                              placeholder="nom@example.com" name="email" required="required"> 
                         </div>
@@ -105,7 +109,7 @@
                           <input type="time" class="form-control" id="exampleFormControlInput1" 
                              placeholder="exemple: 08h30" name="hour" required="required"> 
                         </div>
-                        <div class="form-group">
+                      <div class="form-group">
                           <label for="exampleFormControlInput1">Nom d'utilisateur</label>
                           <span
                               style="color: red;" th:if="${usernameExists}">Ce nom d'utilisateur existe d&eacute;j&agrave;.
@@ -122,7 +126,7 @@
                           type="password" class="form-control" id="txtNewPassword"
                           name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
                                                  title="Doit contenir au minimum un nombre, une lettre majuscule, une lettre minuscule et au moins 8 charactères"/>
-                      </div>  
+                      </div>   
                       
         
                         

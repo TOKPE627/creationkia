@@ -30,14 +30,13 @@
 					 <table class="table table-bordered table-hover table-striped">
 						<thead>
 							<tr>
-								 <th>Lundi</th>
+								 <th>Jour de la semaine</th>
 								<th>Heure d'ouverture </th>
 								 <th>Heure de fermeture</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr data-th-each="day : ${day1List}">
-							
 								<td>
 								  <span th:text="${day.day1}" class="colorText"></span>
 								</td>
@@ -48,22 +47,7 @@
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 								</td>				
 							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!--  Day 2 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Mardi</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day2List}">
-							
 								<td>
 								  <span th:text="${day.day2}" class="colorText"></span>
 								</td>
@@ -74,21 +58,6 @@
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 							    </td>
 							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-				   <!--  Day 3 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Mercredi</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day3List}">
 							
 								<td>
@@ -100,25 +69,8 @@
 								<td>
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 								</td>				
-								
 							</tr>
-						</tbody>
-					</table>
-				</div>
-				
-					   <!--  Day 4 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Jeudi</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day4List}">
-							
 								<td>
 								  <span th:text="${day.day4}" class="colorText"></span>
 								</td>
@@ -128,24 +80,8 @@
 								<td>
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 								</td>				
-								
 							</tr>
-						</tbody>
-					</table>
-				</div>
-					   <!--  Day 5 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Vendredi</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day5List}">
-							
 								<td>
 								  <span th:text="${day.day5}" class="colorText"></span>
 								</td>
@@ -155,24 +91,8 @@
 								<td>
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 								</td>				
-							
 							</tr>
-						</tbody>
-					</table>
-				</div>
-					   <!--  Day 6 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Samedi</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day6List}">
-							
 								<td>
 								  <span th:text="${day.day6}" class="colorText"></span>
 								</td>
@@ -182,22 +102,7 @@
 								<td>
 								  <span th:text="${day.closeHour}" class="colorText"></span>
 								</td>				
-							
 							</tr>
-						</tbody>
-					</table>
-				</div>
-					   <!--  Day 7 -->
-				   <div class="table-responsive">
-					 <table class="table table-bordered table-hover table-striped">
-						<thead>
-							<tr>
-								 <th>Dimanche</th>
-								<th>Heure d'ouverture </th>
-								 <th>Heure de fermeture</th>
-							</tr>
-						</thead>
-						<tbody>
 							<tr data-th-each="day : ${day7List}">
 							
 								<td>

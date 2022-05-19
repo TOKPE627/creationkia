@@ -208,6 +208,15 @@ public class AgendaController {
 		   return "dashboard/agenda/update";
 	}
 
+
+    @RequestMapping(value="/removeByOwner")
+	public String removeByOwner(
+			@RequestParam("id") Long id,
+			Model model, Principal principal)  {	   
+		  workingHourService.remove(id);
+		  return "redirect:/agenda/all";
+	}
+
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public String update(	
 			@RequestParam("id") Long id,

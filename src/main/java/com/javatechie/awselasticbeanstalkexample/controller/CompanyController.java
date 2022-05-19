@@ -432,6 +432,10 @@ private SpecialityService specialityService;
 		model.addAttribute("email", userEmail);
 		model.addAttribute("username", username);
 		model.addAttribute("role",role);
+		if(userService.findByEmail(userEmail) !=null){
+			model.addAttribute("emailExists", true);
+			return "front/company/bookingAdd";
+		}
 		if (userService.findByUsername(username) != null) {
 			model.addAttribute("usernameExists", true);
 			return "front/company/bookingAdd";

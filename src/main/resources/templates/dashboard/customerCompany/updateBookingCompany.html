@@ -117,57 +117,67 @@
 	 <div th:replace="dashboard/navbarCustomerBookingCompany"></div>
 	 
      <section class="content">
-	      <div th:if="${bookingCompanyListExist==true}" class="container-fluid">
-	         <strong>
-	              <span>Rendez-vous(</span>
-	              <span th:text="${bookingCompanyList.size}"></span><span> commandes)</span>
-	         </strong>
-	      
-	      	  <div class="table-responsive">
-				<table id="storeListTable" class="table table-bordered table-hover table-striped">
-					<thead>
-						<tr>
-							<th width="90px;">Commande</th>
-							 <th width="5px;">Service</th>
-							 <th width="5px;">Date</th>
-							<th width="5px;">Heure</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr data-th-each="booking : ${bookingCompanyList}">
-						
-							<td>
-						        <div class="row">
-						            <div class="col-md-2 col-xs-12 col-lg-12 productDiv">
-						                <p th:text="${booking.command}"></p>
-						            </div>
-						        </div>
-                                <div class="container" style="margin-left: 7rem;margin-top: 2rem;">
-                                  <a th:href="@{/bookingCompany/remove(id=${booking.id})}" style="margin-left: 10px;">
-                                    <i class="fa fa-trash colorText" style="text-transform: uppercase;">Supprimer</i>                             
-                                  </a>
-                                  <a th:href="@{/bookingCompany/update(id=${booking.id})}" style="margin-left: 10px;">
-                                    <i class="fa fa-edit colorText" style="text-transform: uppercase;">Modifier</i>                             
-                                  </a>
-                                </div>  
-						     </td>
-							<td>
-							  <span th:text="${booking.company.name}"></span><br>
-                              <div class="form-group">
-                                <img
-                                width="80%" height="60px"
-							                    class="img-responsive"  style="object-fit: cover;"
-                                th:src="@{${awsBucketCompany}+${booking.company.galery.id}+'/'+${booking.company.galery.companyImage}}" alt=""  
-                                /> 
-                            </div>
-							</td>
-							<td th:text="${booking.day}"></td>	
-							<td th:text="${booking.hour}"></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>			
+        <div class="container bookingForm" style="width: 36rem;">
+   
+            <fieldset>
+          <legend class="center-block">
+              Rendez-vous		
+              <span style="font-size: small"> </span>
+          </legend>
+           <div class="container">
+              <form th:action="@{/bookingCompany/update}" method="post">
+                    <input type="hidden" name="bookingCompany_id" th:value="${bookingCompany.id}">
+                    <input type="hidden" name="company_id" th:value="${bookingCompany.company.id}">
+                    <div class="form-group">
+                        <img
+						class="img-responsive"  style="object-fit: contain;height:400px; width:100%;"
+
+                        th:src="@{${awsBucketCompany}+${bookingCompany.company.galery.id}+'/'+${bookingCompany.company.galery.companyImage}}" alt=""  
+                        /> 
+                    </div>
+                     <div class="form-group">
+                      <label for="exampleFormControlInput1">Service demandé</label>
+                      <textarea rows="5"
+                        th:value="${bookingCompany.command}" class="form-control"
+                        th:text="${bookingCompany.command}"
+                        name="command" 
+                        >
+                      </textarea> 
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Jour</label>
+                      <div class="row">
+                          <div class="col-md-5">
+                            <input th:value="${bookingCompany.day}" class="form-control" disabled                            >
+                          </div>
+                          <div class="col-md-5">
+                            <input type="date" class="form-control" 
+                              name="day" required="required">
+                          </div>
+                          
+                      </div> 
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleFormControlInput1">Heure</label>
+                      <div class="row">
+                          <div class="col-md-5">
+                            <input th:value="${bookingCompany.hour}" class="form-control" disabled> 
+                          </div>
+                          <div class="col-md-5">
+                            <input type="time" name="hour" class="form-control"> 
+                          </div>
+                      </div>
+                    </div>
+                  
+                    <div style="margin-bottom: 3rem;" >
+                        <button type="submit" class="btn btn-success btn-block" style="margin-top: 1rem;">
+                                Valider
+                        </button>
+                    </div>
+               </form> 
+             </div>
+           </fieldset>    
+       </div>   			
 	    </section>
 	 
 	

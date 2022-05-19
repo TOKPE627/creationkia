@@ -92,7 +92,7 @@ public class BookingCompanyController {
         }
 		BookingCompany bookingCompany = bookingCompanyService.findById(id);
         model.addAttribute("bookingCompany", bookingCompany);
-	    return "dashboard/customer/updateBookingCompany";
+	    return "dashboard/customerCompany/updateBookingCompany";
 	}
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
@@ -154,7 +154,7 @@ public class BookingCompanyController {
         }
 		BookingCompany bookingCompany = bookingCompanyService.findById(id);
         model.addAttribute("bookingCompany", bookingCompany);
-	    return "dashboard/customer/updateBookingCompanyBegun";
+	    return "dashboard/customerCompany/updateBookingCompanyBegun";
 	}
 
 
@@ -223,34 +223,37 @@ public class BookingCompanyController {
                             model.addAttribute("bookingBegunList",bookingsBegun);
                             model.addAttribute("total_price_orders",total_price_orders);	
                             return "dashboard/customer/home";
-                        }else{
-                            List<BookingCompany> bookingsCompanyBegun = bookingCompanyService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
-                            if(!bookingsCompanyBegun.isEmpty()){
-                                System.out.println("Company begun " +bookingsCompanyBegun.size());
-                                model.addAttribute("bookingCompanyBegunListExist", true);
-                                model.addAttribute("bookingCompanyBegunList",bookingsCompanyBegun);
-                                return "dashboard/customer/homeBookingCompanyBegun";
-                            }
-                            else{
-                                List<BookingCompany> bookingCompanies = bookingCompanyService.findByCustomer(user, AppConstants.ORDER_STATUS_1);
-                                if(!bookingCompanies.isEmpty()){
-                                    System.out.println("Company pendings " +bookingCompanies.size());
-                                    model.addAttribute("bookingCompanyListExist", true);
-                                    model.addAttribute("bookingCompanyList", bookingCompanies);
-                                    return "dashboard/customer/homeBookingCompany";
-                                }
-                            }
-                            
                         }
                     }
-                    List<BookingCompany> bookingsServed = 
-                    bookingCompanyService.findByCustomer(user,AppConstants.ORDER_STATUS_2);
-
-                    if(!bookingsServed.isEmpty()) {
-                        model.addAttribute("bookingsServedExist",true);
-                        model.addAttribute("bookingsServedList",bookingsServed);
-                    }
+                 
 		  }  
+          if(userRole.getRole().getName().equals(AppConstants.ROLE_5)) {
+            model.addAttribute("userRole5",AppConstants.ROLE_5);
+            List<BookingCompany> bookingsCompanyBegun = bookingCompanyService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
+            if(!bookingsCompanyBegun.isEmpty()){
+                System.out.println("Company begun " +bookingsCompanyBegun.size());
+                model.addAttribute("bookingCompanyBegunListExist", true);
+                model.addAttribute("bookingCompanyBegunList",bookingsCompanyBegun);
+                return "dashboard/customerCompany/homeBookingCompanyBegun";
+            }
+            else{
+                List<BookingCompany> bookingCompanies = bookingCompanyService.findByCustomer(user, AppConstants.ORDER_STATUS_1);
+                if(!bookingCompanies.isEmpty()){
+                    System.out.println("Company pendings " +bookingCompanies.size());
+                    model.addAttribute("bookingCompanyListExist", true);
+                    model.addAttribute("bookingCompanyList", bookingCompanies);
+                    return "dashboard/customerCompany/homeBookingCompany";
+                }
+            }
+            List<BookingCompany> bookingsServed = 
+            bookingCompanyService.findByCustomer(user,AppConstants.ORDER_STATUS_2);
+
+            if(!bookingsServed.isEmpty()) {
+                model.addAttribute("bookingsServedExist",true);
+                model.addAttribute("bookingsServedList",bookingsServed);
+            }
+          }
+        
 		return "dashboard/bookingCompany/historicalCustomer";
 	  }
 }

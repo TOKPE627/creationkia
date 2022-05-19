@@ -31,7 +31,7 @@
 	 width: 23% !important;
 	}
 	.companyLogo > a > img{
-		width:28%; 
+		width:26%; 
 	}
 	.cat-catalog{
 		 margin-left: 1.5rem !important;
@@ -65,7 +65,7 @@
 	   margin-left: 3rem !important;
 	 }
 	 .companyLogo > a > img{
-		width:32%; 
+		width:26%; 
 	}
 	  .catalogPictureDiv{
 		 margin-left: 4rem !important;
@@ -221,8 +221,8 @@
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
-	  width:26%; 
-   }
+	  width:33%; 
+   } 
    .bookingForm{
 	margin-top: 2rem !important;
   }
@@ -281,8 +281,8 @@
 	 margin-left: 3rem !important;
    }
    .companyLogo > a > img{
-	  width:26%; 
-   }
+	  width:32%; 
+   } 
    .bookingForm{
 	margin-top: 2rem !important;
   } 
@@ -307,4 +307,7 @@
 }   
   .companyServiceDiv{
 	  margin-top: 3rem !important;
+  }
+  .companyLogo > a > img {
+   object-fit: fill !important;
   }

@@ -4,6 +4,9 @@
 
 <style type="text/css">
 	@media screen and (min-width:1301px){
+		.chooseActionCommand{
+			margin-left: 2px !important;
+		}
 		.totalSpan{
 			margin-left: 51rem !important;
 		}
@@ -16,6 +19,9 @@
 		}
 	}
 	@media (min-width: 1281px) and (max-width:1300px){
+		.chooseActionCommand{
+			margin-left: 2px !important;
+		}
 		.totalSpan{
 			margin-left: 51rem !important;
 		}
@@ -29,6 +35,9 @@
 		
     }
 	@media (min-width: 1025px) and (max-width:1280px){
+		.chooseActionCommand{
+			margin-left: 2px !important;
+		}
 		.totalSpan{
 			margin-left: 43rem !important;
 		}
@@ -41,6 +50,9 @@
 		}
     }
 	@media (min-width: 768px) and (max-width:1024px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 27rem !important;
 		}
@@ -53,6 +65,9 @@
 		}
     }
 	@media (min-width: 481px) and (max-width:767px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 12rem !important;
 		}
@@ -61,6 +76,9 @@
 		}
     }
 	@media (min-width: 401px) and (max-width:480px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 6rem !important;
 		}
@@ -77,6 +95,9 @@
 		}
     }
 	@media (min-width: 381px) and (max-width:400px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 4rem !important;
 		}
@@ -85,6 +106,9 @@
 		}
     }
     @media (min-width: 361px) and (max-width:380px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 4rem !important;
 		}
@@ -93,6 +117,9 @@
 		}
     }
 	@media (min-width: 320px) and (max-width:360px){
+		.chooseActionCommand{
+			margin-left: -14px !important;
+		}
 		.totalSpan{
 			margin-left: 4rem !important;
 		}
@@ -114,55 +141,61 @@
 </style>
 <body style="background-color: #e8e8e8;">	
     <!--header-->
-    <div th:replace="dashboard/navbarCustomerBookingCompanyBegun"></div>
+	 <div th:replace="dashboard/navbarCustomerBookingCompany"></div>
 	 
      <section class="content">
-        <div class="container bookingForm" style="width: 36rem;">
-   
-            <fieldset>
-          <legend class="center-block">
-              Commande		
-              <span style="font-size: small"> </span>
-          </legend>
-           <div class="container">
-            <div class="form-group">
-                <img
-                
-                class="img-responsive"  style="object-fit: cover;height:400px; width:100%;"
-                th:src="@{${awsBucketCompany}+${bookingCompany.company.galery.id}+'/'+${bookingCompany.company.galery.companyImage}}" alt=""  
-                /> 
-            </div>
-              <form th:action="@{/bookingCompany/begun/update}" method="post">
-                    <input type="hidden" name="bookingCompany_id" th:value="${bookingCompany.id}">
-                    <input type="hidden" name="company_id" th:value="${bookingCompany.company.id}">
-
-                     <div class="form-group">
-                      <label for="exampleFormControlInput1">Service demandé</label>
-                      <textarea rows="5"
-                        class="form-control" placeholder="Décrivez le service que vous cherchez" required
-                        name="command" 
-                        >
-                      </textarea> 
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Jour</label>
-                            <input type="date" class="form-control" 
-                              name="day" required="required">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Heure</label>
-                            <input type="time" name="hour" class="form-control">
-                    </div>
-                  
-                    <div style="margin-bottom: 3rem;" >
-                        <button type="submit" class="btn btn-success btn-block" style="margin-top: 1rem;">
-                                Valider
-                        </button>
-                    </div>
-               </form> 
-             </div>
-           </fieldset>    
-       </div>   			
+	      <div th:if="${bookingCompanyListExist==true}" class="container-fluid">
+	         <strong>
+	              <span>Rendez-vous(</span>
+	              <span th:text="${bookingCompanyList.size}"></span><span> )</span>
+	         </strong>
+	      
+	      	  <div class="table-responsive">
+				<table id="storeListTable" class="table table-bordered table-hover table-striped">
+					<thead>
+						<tr>
+							<th width="90px;">Rendez-vous</th>
+							 <th width="5px;">Service</th>
+							 <th width="5px;">Date</th>
+							<th width="5px;">Heure</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-th-each="booking : ${bookingCompanyList}">
+						
+							<td>
+						        <div class="row">
+						            <div class="form-group" style="margin-left: 10px">
+						                <p th:text="${booking.command}"></p>
+						            </div>
+									<div class="container chooseActionCommand">
+										<a th:href="@{/bookingCompany/remove(id=${booking.id})}" style="margin-left: 10px;">
+										  <i class="fa fa-trash colorText" style="text-transform: uppercase;"> Supprimer</i>                             
+										</a>
+										<a th:href="@{/bookingCompany/update(id=${booking.id})}" style="margin-left: 10px;">
+										  <i class="fa fa-edit colorText" style="text-transform: uppercase;"> Modifier</i>                             
+										</a>
+									</div> 
+						        </div>
+                                 
+						     </td>
+							<td>
+							  <span th:text="${booking.company.name}"></span><br>
+                              <div class="form-group">
+                                <img
+                                width="80%" height="100px"
+							                    class="img-responsive"  style="object-fit: contain;"
+                                th:src="@{${awsBucketCompany}+${booking.company.galery.id}+'/'+${booking.company.galery.companyImage}}" alt=""  
+                                /> 
+                            </div>
+							</td>
+							<td th:text="${booking.day}"></td>	
+							<td th:text="${booking.hour}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>			
 	    </section>
 	 
 	

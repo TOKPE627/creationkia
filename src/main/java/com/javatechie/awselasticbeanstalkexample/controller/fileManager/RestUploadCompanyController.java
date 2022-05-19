@@ -6,11 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.imageio.ImageIO;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +34,7 @@ import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 @RestController
 @RequestMapping("/uploadCompany")
 public class RestUploadCompanyController {
-
+  
 	@Autowired
 	private CompanyService companyService;
 	
@@ -51,6 +54,8 @@ public class RestUploadCompanyController {
     
 	private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
 
+	//Image Size:    The Megabytes (mb) value for 376 X 598 Pixels at 24 Bit depth is:
+	//        0.64329528808594 MB
 	@PostMapping("/multi")
     public ResponseEntity<?> uploadFileMulti(
             @RequestParam("extraField") String extraField,
@@ -64,6 +69,7 @@ public class RestUploadCompanyController {
 
         
         if (uploadedFileName.isEmpty()) {
+			
             return new ResponseEntity("Veuillez sélectionner un fichier!", HttpStatus.OK);
         }
         
