@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -394,14 +395,22 @@ private SpecialityService specialityService;
 			model.addAttribute("specialityTop4List",specialityTop4List);
      List<Town> towns=townService.findAll();
      model.addAttribute("townList",towns);
-	 //create BookingCompany
-	 BookingCompany bookingCompany = new BookingCompany();
-	 bookingCompany.setCompany(company);
-	 bookingCompany.setIpaddress(AppHosts.currentHostIpAddress());
-	 bookingCompanyService.save(bookingCompany);
+	
 	return "front/company/bookingAdd";
    	}
    	
+
+	@GetMapping("/hasAccountBookingCompany")
+	public String hasAccountBookingCompany(@ModelAttribute("company_id") Long id) throws UnknownHostException{
+		Company company = companyService.findById(id); 
+		//create BookingCompany
+		 BookingCompany bookingCompany = new BookingCompany();
+		 bookingCompany.setCompany(company);
+		 bookingCompany.setIpaddress(AppHosts.currentHostIpAddress());
+		 bookingCompanyService.save(bookingCompany);
+		 return "redirect:/login";	
+
+	}
 /* todo */   	
    	@RequestMapping(value="/booking/add", method = RequestMethod.POST)
 	public String createBookingService(
@@ -422,18 +431,29 @@ private SpecialityService specialityService;
 				@ModelAttribute("password")  String password,
 				Model model
 			) throws Exception{
-		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
-		if(!bookingsAddedToCart.isEmpty()) {
-			model.addAttribute("bookingAddedToCartExist",true);
-			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
-		}
+
 		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-	
+		
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		if(!bookingsAddedToCart.isEmpty()) {
+			model.addAttribute("bookingAddedToCartExist",true);
+			model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+		}
+		Company company = companyService.findById(company_id);
+		model.addAttribute("company",company);
+		List<Speciality> specialities = specialityService.findByUser(company.getUser());
+		model.addAttribute("specialityList",specialities);
+
+		List<Speciality> specialityTop4List = specialityService.findTop4ByUser(company.getUser().getId());
+		model.addAttribute("specialityTop4List",specialityTop4List);
+        List<Town> towns=townService.findAll();
+        model.addAttribute("townList",towns);
+
 		model.addAttribute("email", userEmail);
 		model.addAttribute("username", username);
 		model.addAttribute("role",role);
@@ -465,31 +485,17 @@ private SpecialityService specialityService;
 		Set<UserRole> userRoles = new HashSet<>();
 		userRoles.add(new UserRole(user, roleR));
 		User savedUser = userService.createUser(user, userRoles);
-		if(savedUser !=null){
-			Company company = companyService.findById(company_id);
-			BookingCompany checkBookingCompany = bookingCompanyService.findByCompanyByIpaddressAndByStatus(company, AppHosts.currentHostIpAddress(), AppConstants.ORDER_STATUS_0);
-			if(Objects.nonNull(checkBookingCompany)){
-				checkBookingCompany.setUser(user);
-				checkBookingCompany.setCompany(company);
-				checkBookingCompany.setEmail(userEmail);
-				checkBookingCompany.setCommand(command);
-				checkBookingCompany.setDay(day);
-				checkBookingCompany.setHour(hour);
-				checkBookingCompany.setStatus(AppConstants.ORDER_STATUS_1);
-				bookingCompanyService.update(checkBookingCompany);
-			}
-			else{
-				BookingCompany bookingCompany = new BookingCompany();
-				bookingCompany.setUser(user);
-				bookingCompany.setCompany(company);
-				bookingCompany.setEmail(userEmail);
-				bookingCompany.setCommand(command);
-				bookingCompany.setDay(day);
-				bookingCompany.setHour(hour);
-				bookingCompany.setStatus(AppConstants.ORDER_STATUS_1);
-				bookingCompanyService.save(bookingCompany);
-			}
-		
+		if(savedUser !=null){			
+			BookingCompany bookingCompany = new BookingCompany();
+			bookingCompany.setUser(user);
+			bookingCompany.setCompany(company);
+			bookingCompany.setEmail(userEmail);
+			bookingCompany.setCommand(command);
+			bookingCompany.setDay(day);
+			bookingCompany.setHour(hour);
+			bookingCompany.setIpaddress(AppHosts.currentHostIpAddress());
+			bookingCompany.setStatus(AppConstants.ORDER_STATUS_1);
+			bookingCompanyService.save(bookingCompany);
 			return "message/registrationBookingSuccess";
 		}
 	   

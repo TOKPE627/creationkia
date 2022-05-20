@@ -20,8 +20,18 @@
                   Renseignez ces champs					
                   <span style="font-size: small"> * Champ obligatoire</span>
               </legend>
-              <div th:replace="include/alreadyHasCustomerAccount"></div>
-               <div class="container">
+              
+                <div class="container">
+                    <a 
+                      th:href="@{/company/hasAccountBookingCompany?company_id=}+${company.id}"
+                    > 
+                      <span class="colorText">
+                       <strong>
+                        <i class="fa fa-user"></i>
+                        Je possède déjà un compte client</strong>
+                      </span>           
+                    </a>
+                  </div>               <div class="container">
                   <form th:action="@{/company/booking/add}" method="post">
                         <input type="hidden" name="company_id" th:value="${company.id}">
                     
@@ -69,7 +79,7 @@
                               <label for="userName">Num&eacute;ro de t&eacute;l&eacute;phone</label>
                                 <input type="text"
                                   class="form-control" id="userPhone" name="phone" required="required"
-                                  placeholder="Numéro de téléphone "
+                                  placeholder="Numéro de téléphone(+221.......) "
                                    />
                        </div>
                    

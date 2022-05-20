@@ -134,7 +134,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>atooly</finalName>
+		<finalName>atoolyprod</finalName>
 	</build>
 
 </project>
