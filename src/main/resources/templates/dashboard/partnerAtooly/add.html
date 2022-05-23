@@ -27,10 +27,19 @@
   <link rel="stylesheet" th:href="@{/adminlte/plugins/daterangepicker/daterangepicker.css}">
   <!-- summernote -->
   <link rel="stylesheet" th:href="@{/adminlte/plugins/summernote/summernote-bs4.min.css}">
-  <link rel="stylesheet" th:href="@{/assets/css/styleDashboard.css}">
 </head>
 <style>
-
+ 	.btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+   .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }
 
   @media screen and (min-width:1025px) { 
 
@@ -39,18 +48,8 @@
  @media screen and (max-width:456px) {
  
  }
+ 
 
-  .btn-success {
-	  background-color: #6FB70F !important;
-	  border-color: #6FB70F !important;
-   }
-   .btn-success:hover,
-    .btn-success:active,
-    .btn-success:visited,
-    .btn-success:focus {
-      background-color: #6FB70F !important;
-      border-color: #6FB70F !important;
-    }
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -58,84 +57,49 @@
    <div th:replace="dashboard/navbar"></div>
    <div th:replace="dashboard/mainsidebar"></div> 
    <div class="content-wrapper">
-        <div th:replace="dashboard/header"></div>
-            <!-- Main content -->
-	    <section class="content">
-	      <div class="container-fluid">
-	         <strong>
-	              <span>Historique(</span>
-	              <span th:text="${bookingList.size}"></span><span> articles)</span>
-	         </strong>
-	      
-	      	  <div class="table-responsive">
-			<table id="storeListTable" class="table table-bordered table-hover table-striped">
-				<thead>
-					<tr>
-						<th width="90rem;">Article</th>
-						 <th width="2px;">Quantité</th>
-						 <th width="2px;">Prix unitaire</th>
-						<th width="2px;">Sous-total</th>
-						<th width="2px;">Status</th>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr data-th-each="booking : ${bookingList}">
-					
-						<td>
-					        <div class="row">
-					            <div class="col-md-2">
-					                <a th:href="@{/product/productInfo(id=${booking.product.id})}">
-								      <img th:if="${booking.product.category.title =='shop'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketShop}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-							               <img th:if="${booking.product.category.title == 'groupSale'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketGroupSale}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               />
-									  	   <img th:if="${booking.product.category.title =='store'}" width="120%" height="60px"
-							                    class="img-responsive" style="object-fit: contain;"
-								                  th:src="@{${awsBucketProduct}+${booking.product.galery.id}+'/'+${booking.product.galery.image1}}" alt=""  
-							               /> 
-								    </a>
-					            </div>
-					            <div class="col-md-10">
-					              <span>Vendeur:</span> <span th:text="${booking.product.user.lastName}"></span>
-					               <span th:text="${booking.product.user.firstName}"></span>
-					              <br>
-					              <strong>
-					                    <span style="font-size: 18px;" th:text="${booking.product.name}"></span> 
-					              </strong>
-			    	            </div>	
-					        </div>
-					     </td>
-						<td><a th:href="@{/product/productInfo(id=${booking.product.id})}">
-						  <span th:text="${booking.quantity}" class="colorText"></span></a>
-						</td>
-						<td th:text="${booking.product.price}"></td>	
-						<td class="colorText" th:text="${booking.total_price}"></td>
-	                    <td>
-						  <span th:if="${booking.status== 'PENDING'}" class="colorText">En cours</span>
-    					  <span th:if="${booking.status== 'DELIVERED'}" class="colorText">Livré</span>				
-						</td>					
-					</tr>
-				</tbody>
-	         </table>
-		
-			</div>
+   <div th:replace="dashboard/header"></div>
+         <!-- Main content -->
+	<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+	   
+	    <label>
+	    	<span style="font-size: small"> * Champ obligatoire</span>
+	    </label>
+        <div class="form-group">
+			<label class="col-md-2 control-label">* Nom du partner</label>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="namePartner" required="required"/>
+            </div>
 		</div>
-	  </div>
-			
-	    </section>
-  </div>
-  <aside class="control-sidebar control-sidebar-dark">
-  </aside>
-</div>
+        <div class="form-group">
+			<label class="col-md-2 control-label">* Logo ou Photo</label>
+               <div class="col-md-6">
+                <p>
+                  <img alt="" id="thumbnail0"  style="width: 17rem;height: 15rem;object-fit: cover;"/>
+                </p>
+                 <div class="col-xs-3">
+                  	   <input type="file" name="files"/><br/><br/>
+                  </div>
+                </div>
+		 </div>
+	  
+	 
+		<div class="row" style="margin-left: 10%;">
+		   	<span style="color: #6FB70F ;" id="result"></span>
+		</div>
+		  <div class="form-group">
+			<label class="col-md-2 control-label"></label>
+              <div class="col-md-6">
+              	    <input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
+               </div>
+		 </div>
+	</form>
+      
+   <aside class="control-sidebar control-sidebar-dark"></aside>
+   </div>
 
- <script th:src="@{/adminlte/plugins/jquery/jquery.min.js}"></script>
- 
+</div>
 <!-- jQuery -->
+<script th:src="@{/adminlte/plugins/jquery/jquery.min.js}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script th:src="@{/adminlte/plugins/jquery-ui/jquery-ui.min.js}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -167,9 +131,80 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script th:src="@{/adminlte/dist/js/pages/dashboard.js}"></script>
-<script th:src="@{/js/bootbox.min.js}"></script>
-<script th:src="@{/js/scripts.js}"></script>
+<script type="text/javascript">
+		$(document).ready(function() {
+		 	$("input[name='files']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			}); 
 
+			
+		  function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+                reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			} 
+			
+		});
+ </script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        fire_ajax_submit();
+
+    });
+
+});
+
+function fire_ajax_submit() {
+
+    // Get form
+    var form = $('#fileUploadForm')[0];
+
+    var data = new FormData(form);
+
+    data.append("CustomField", "This is some extra data, testing");
+
+    $("#btnSubmit").prop("disabled", true);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/uploadPartner/single",
+        data: data,
+        processData: false, 
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+
+            $("#result").text(data);
+            console.log("SUCCESS : ", data);
+            $("#btnSubmit").prop("disabled", false);
+            window.location.href = '/partner/partnerList';
+
+        },
+        error: function (e) {
+
+            $("#result").text(e.responseText);
+            console.log("ERROR : ", e);
+            $("#btnSubmit").prop("disabled", false);
+
+        }
+    });
+
+}
+</script>
 
 </body>
 </html>

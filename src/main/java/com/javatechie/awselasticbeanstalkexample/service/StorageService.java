@@ -54,6 +54,9 @@ public class StorageService {
     @Value("${application.bucket.catalog}")
     private String bucketCatalog;
     
+    @Value("${application.bucket.partner}")
+    private String bucketPartner;
+
     @Autowired
     private AmazonS3 s3Client;
     
@@ -84,6 +87,9 @@ public class StorageService {
        if(bucketFolder.equals(AppConstants.bucket_catalog)) {
       	   s3Client.putObject(new PutObjectRequest(bucketCatalog, fileName, fileObj));
        }
+       if(bucketFolder.equals(AppConstants.bucket_partner)) {
+        s3Client.putObject(new PutObjectRequest(bucketPartner, fileName, fileObj));
+  }
         fileObj.delete();
         return "File uploaded : " + fileName;
     }

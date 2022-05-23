@@ -29,6 +29,7 @@ public class AppConstants {
    public static final String bucket_groupsale =  "groupsale";
    public static final String bucket_advertise =  "advertise";
    public static final String bucket_catalog   =  "catalog";
+   public static final String bucket_partner   =  "partner";
 
    //localhostUrl
    //public static String url="http://localhost:8080/";
@@ -47,6 +48,7 @@ public class AppConstants {
     public static String awsBucketGroupSale="https://atoolygroupsale.s3.us-east-1.amazonaws.com/";
     public static String awsBucketAdvertise="https://atoolyad.s3.us-east-1.amazonaws.com/";
     public static String awsBucketCatalog ="https://atoolycatalog.s3.us-east-1.amazonaws.com/";
+    public static String awsBucketPartner ="https://atoolypartner.s3.us-east-1.amazonaws.com/";
 
 //   @Value("${application.bucket.product}")
 //   public static String awsBucketProduct;
