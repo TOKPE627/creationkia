@@ -19,12 +19,14 @@ import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.domain.Town;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.service.TownService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
@@ -49,6 +51,9 @@ public class ContactAtoolyController {
 
 	@Autowired
 	private ContactAtoolyService contactAtoolyService;
+
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
 
 	@Autowired
 	private TownService townService;
@@ -143,9 +148,27 @@ public class ContactAtoolyController {
 	
 	@GetMapping("")
 	public String index(Model model) throws UnknownHostException {
+		model.addAttribute("url",AppConstants.url);
 		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
-
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+        model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+	 
 	    List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);
 	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
@@ -158,13 +181,27 @@ public class ContactAtoolyController {
 	@RequestMapping("/all")
 	public String companyContact(@ModelAttribute("company_id") Long id, Model model) throws UnknownHostException {
 		
+		model.addAttribute("url",AppConstants.url);
 		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
-	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-				
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+	 
+		
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+	
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);

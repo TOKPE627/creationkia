@@ -13,10 +13,14 @@ import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.CompanyType;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
@@ -32,7 +36,11 @@ public class StoreController {
 	
 	@Autowired
 	private AdvertiseService advertiseService;
-	
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+ 
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
 	
 	@GetMapping("")
 	public String index(Model model) throws UnknownHostException {
@@ -44,10 +52,22 @@ public class StoreController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-	  List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	  model.addAttribute("bookingBegunList",bookingsBegun);
 	  Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-	
+	  ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		  List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		  if(Objects.nonNull(contactAtooly)){
+			 model.addAttribute("contactExists",true);
+			 model.addAttribute("contact",contactAtooly); 
+		 }
+		 if(!partnerAtoolies.isEmpty()){
+			 model.addAttribute("partnerExist",true);
+			 model.addAttribute("partnerList",partnerAtoolies);
+		 }
+		  
 	  if(Objects.nonNull(advertise)) {
 		  model.addAttribute("advertiseExists",true);
 		  model.addAttribute("advertise",advertise);

@@ -3,6 +3,8 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Catalog;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Speciality;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.WorkingHour;
@@ -22,6 +26,8 @@ import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
@@ -52,7 +58,14 @@ public class CatalogController {
 
 	@Autowired
 	private WorkingHourService workingHourService;
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
 	
+
+
 	@RequestMapping("/catalogInfo")
 	public String catalogInfo(@RequestParam("id") Long id,Model model,Principal principal) {
 		model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);
@@ -162,14 +175,27 @@ public class CatalogController {
 		
 		@RequestMapping("/all")
 		public String all(@RequestParam("company_id") Long id, Model model) throws UnknownHostException {
-			model.addAttribute("awsBucketCatalog",AppConstants.awsBucketCatalog);          
+			model.addAttribute("url",AppConstants.url);
 			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
 			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 			model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 			model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 			model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-		    List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+			model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+		 
+			
+			ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+			List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+			if(Objects.nonNull(contactAtooly)){
+			   model.addAttribute("contactExists",true);
+			   model.addAttribute("contact",contactAtooly); 
+		   }
+		   if(!partnerAtoolies.isEmpty()){
+			   model.addAttribute("partnerExist",true);
+			   model.addAttribute("partnerList",partnerAtoolies);
+		   }
+			List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
  		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);
 	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);

@@ -19,7 +19,9 @@ import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Day;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
@@ -30,7 +32,9 @@ import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.DayService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductGaleryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.StorageService;
@@ -82,6 +86,13 @@ public class ShopController {
 	@Autowired
 	private TownAvailableService townAvailableService;
 	
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+ 
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
+
+
 	//Dashboard
 	
 	
@@ -131,7 +142,7 @@ public class ShopController {
 
 		Product savedProduct = productService.save(product);
 		if(savedProduct !=null) {
-			savedProduct.setDownsale(Math.rint(-savedProduct.getPrice()*100/savedProduct.getUpPrice())+"%");
+			savedProduct.setDownsale(-(100-Math.rint(savedProduct.getPrice()*100/savedProduct.getUpPrice()))+"%");
 			productService.update(savedProduct);
 		}	
 		model.addAttribute("user",user);
@@ -151,7 +162,9 @@ public class ShopController {
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-		    User user = userService.findByUsername(principal.getName());
+		  
+		
+		User user = userService.findByUsername(principal.getName());
 		    Company company = companyService.findByUser(user);
 			model.addAttribute("user", user);
 			model.addAttribute("company",company);
@@ -266,6 +279,8 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
@@ -281,7 +296,16 @@ public class ShopController {
 
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
-		
+		  ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		  List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		  if(Objects.nonNull(contactAtooly)){
+			 model.addAttribute("contactExists",true);
+			 model.addAttribute("contact",contactAtooly); 
+		 }
+		 if(!partnerAtoolies.isEmpty()){
+			 model.addAttribute("partnerExist",true);
+			 model.addAttribute("partnerList",partnerAtoolies);
+		 }
 		if(Objects.nonNull(advertise)) {
 			model.addAttribute("advertiseExists",true);
 			model.addAttribute("advertise",advertise);
@@ -341,6 +365,18 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
@@ -374,6 +410,19 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+	
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
@@ -409,6 +458,18 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> phones = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_3); 
@@ -443,6 +504,18 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
@@ -478,6 +551,19 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+		
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> informatics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_5); 
@@ -513,6 +599,19 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+		
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
         List<Product> homeApplicances = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_6); 
@@ -545,6 +644,18 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
@@ -580,6 +691,19 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+		
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> hobbies = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_8); 
@@ -612,6 +736,19 @@ public class ShopController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+		
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 

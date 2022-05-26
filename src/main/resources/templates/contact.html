@@ -6,11 +6,19 @@
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
      <div class="row infoResponsive"> 
-         <div>
+         <div th:if="${contactExists == true}">
                <span> Contactez-nous et nous vous répondrons dans les 24 heures</span> <br>
-               <i class="fa fa-map-marker" aria-hidden="true"></i> <span> Dakar, Sénégal</span>  <br>         
-               <i class="fa fa-phone" aria-hidden="true"></i><span>+221 70 151 15 15 </span>     <br>
-               <i class="fa fa-envelope" aria-hidden="true"></i> <span>attoly@gmail.com</span> 
+               <i class="fa fa-map-marker" aria-hidden="true"></i>
+			  
+				<span th:text="${contact.town}"></span> /
+				<span th:text="${contact.country}"></span>
+				<br>         
+               <i class="fa fa-phone" aria-hidden="true"></i>
+			   <span th:text="${contact.phone}"></span>
+			   <br>
+               <i class="fa fa-envelope" aria-hidden="true"></i>
+			   <span  th:text="${contact.email}"></span>
+
          </div>
       
          <div class="contactResponsive">

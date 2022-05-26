@@ -13,26 +13,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
-import com.javatechie.awselasticbeanstalkexample.domain.Town;
 import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.TownService;
@@ -55,8 +54,7 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
     
-    @Autowired
-    private TownService townService;
+    
     
     @Autowired
     private CompanyService companyService;
@@ -64,6 +62,12 @@ public class BookingController {
 	@Autowired
 	private TownAvailableService townAvailableService;
     
+
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+ 
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
     //Dashboard
     
 	@RequestMapping("/remove")
@@ -172,7 +176,17 @@ public class BookingController {
 	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
 	    model.addAttribute("awsBucketShop",    AppConstants.awsBucketShop);
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-	    
+	    model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
 	    List<Booking> bookingsAddedToCart = 
 	    		bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 
@@ -219,12 +233,22 @@ public class BookingController {
 				@ModelAttribute("password")  String password,
 				Model model
 			) throws Exception{
-		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
-		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
-	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-	    model.addAttribute("awsBucketShop",    AppConstants.awsBucketShop);
-	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-	    
+				model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+				model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+				model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+				model.addAttribute("awsBucketShop",    AppConstants.awsBucketShop);
+				model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+				model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+				ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+				List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+				if(Objects.nonNull(contactAtooly)){
+				   model.addAttribute("contactExists",true);
+				   model.addAttribute("contact",contactAtooly); 
+			   }
+			   if(!partnerAtoolies.isEmpty()){
+				   model.addAttribute("partnerExist",true);
+				   model.addAttribute("partnerList",partnerAtoolies);
+			   }
 		model.addAttribute("email", userEmail);
 		model.addAttribute("username", username);
 		model.addAttribute("role",role);

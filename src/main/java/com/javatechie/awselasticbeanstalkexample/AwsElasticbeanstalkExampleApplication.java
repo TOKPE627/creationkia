@@ -1,24 +1,15 @@
 package com.javatechie.awselasticbeanstalkexample;
 import java.net.UnknownHostException;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.util.Set;
-
-import javax.mail.event.StoreListener;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
@@ -27,9 +18,6 @@ import com.javatechie.awselasticbeanstalkexample.domain.CompanyType;
 import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
-import com.javatechie.awselasticbeanstalkexample.domain.User;
-import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
-import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
@@ -48,7 +36,6 @@ import com.javatechie.awselasticbeanstalkexample.service.impl.UserSecurityServic
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 import com.javatechie.awselasticbeanstalkexample.utility.MailConstructor;
-import com.javatechie.awselasticbeanstalkexample.utility.SecurityUtility;
 
 @SpringBootApplication
 @Controller
@@ -135,6 +122,15 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 		 List<Company> stores                = companyService.findAllByType(CompanyType.STORE);
 		 ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
 		 List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		 if(Objects.nonNull(contactAtooly)){
+			model.addAttribute("contactExists",true);
+		    model.addAttribute("contact",contactAtooly); 
+		}
+		if(!partnerAtoolies.isEmpty()){
+			model.addAttribute("partnerExist",true);
+			model.addAttribute("partnerList",partnerAtoolies);
+		}
+		 
 		 if(Objects.nonNull(advertise)) {
     		 model.addAttribute("advertiseExists",true);
     		 model.addAttribute("advertise",advertise);
@@ -158,14 +154,7 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			 model.addAttribute("groupSaleList",groupSales);			 
 		 }
 
-		 if(Objects.nonNull(contactAtooly)){
-			model.addAttribute("contactExists",true);
-		    model.addAttribute("contact",contactAtooly); 
-		}
-		if(!partnerAtoolies.isEmpty()){
-			model.addAttribute("partnerExist",true);
-			model.addAttribute("partnerList",partnerAtoolies);
-		}
+		
 		return "welcome";
 	}
 	
