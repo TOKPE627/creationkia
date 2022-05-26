@@ -5,88 +5,58 @@
 <div class="footer-area">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-4">
-							<div class="company-info">
-								<img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="logo" />
-								<p>101 E 129th St, East Chicago, <br/> IN 46312, US</p>
-								<p>Tel: 001-1234-88888</p>
-								<p>Email: info.deercreative@gmail.com</p>
-							</div>
-							<div class="social-icons style-2 style-4">
-								<strong>Retrouver nous sur !</strong>
-								<a href="http://www.facebook.com/Attoly-365765610857137/"><i class="fa fa-facebook"></i></a>
-								<a href="#"><i class="fa fa-instagram"></i></a>
-							</div>
+						<div class="company-info" th:if="${contactExists == true}">
+							<img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="logo" />
+							<p>
+							   <span th:text="${contact.town}"></span> /
+							   <span th:text="${contact.country}"></span>
+							</p>
+							<p>Tel:   
+								<span th:text="${contact.phone}"></span>
+							</p>
+							<p>Email: 
+								<span th:text="${contact.email}"></span>
+							</p>
 						</div>
-						<div class="col-lg-8 mt-sm-45">
-							<div class="row">
-								<div class="col-lg-4 col-sm-6">
-									<div class="fooer-widget">
-										<h4>Raccourci</h4>
-										<div class="footer-menu">
-											<ul>
-												<li><a href="#">Technologie</a></li>
-												<li><a href="#">Electromenager</a></li>
-												<li><a href="#">Cosmétique</a></li>
-												<li><a href="#">Bébé/Enfant</a></li>
-												<li><a href="#">Jeux/Sport</a></li>
-												<li><a href="#">Quincaillerie</a></li>
-												<li><a href="#">Habillement</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-sm-6">
-									<div class="fooer-widget">
-										<h4>Information</h4>
-										<div class="footer-menu">
-											<ul>
-												<li><a href="#">Attoly</a></li>
-												<li><a href="#">A propos</a></li>
-												<li><a href="#">Nous contacter</a></li>
-												<li><a href="#">Information de livraison</a></li>
-												<li><a href="#">Politique de confidentialité</a></li>
-												<li><a href="#">Termes & Conditions</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-								<div class="col-lg-4 col-sm-6 mt-sm-35">
-									<div class="fooer-widget">
-										<h4>Service client</h4>
-										<div class="footer-menu">
-											<ul>
-												<li><a href="#">Mon compte</a></li>
-												<li><a href="#">Historie des commandes</a></li>
-												<li><a href="#">Service client</a></li>
-												<li><a href="#">Retour / Echange</a></li>
-												<li><a href="#">FAQs</a></li>
-												<li><a href="#">Support produit</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
+					    <div class="container" style="margin-top: -1rem;">
+							<a th:href="@{/}" style="float: right;">
+								<span class="badge badge-success"
+										 style="font-size: 14px !important; border-radius: 10px;">
+											Retour 
+								</span>
+							</a>
 						</div>
 					</div>
+					<hr 
+						   style="max-width: 130rem; margin-left: -0.7rem;
+						       background-color: white;
+							   font-size: 25px;
+								"
+						>
+					<div>
+						<strong>Retrouver nous sur !</strong>
+						<a style="margin-left: 5px;" href="http://www.facebook.com/Attoly-365765610857137/">
+							<img th:src="@{${awsBucketIcon}+'facebook.png'}"  alt="logo" />
+						</a>
+						<a style="margin-left: 5px;" href="#">
+							<img th:src="@{${awsBucketIcon}+'whatsapp.png'}"  alt="logo" />
+						</a>
+				    </div>  
 				</div>
+			   
 			</div>
 			<!--subscribe-area-start-->
 			<div class="subscribe-area pd-25">
 				<div class="container">
 					<div class="row align-items-center">
-						<div class="col-lg-7">
-							<div class="subscribe-text">
-								<h3>S'abonner à la <strong>Newsletter</strong></h3>
-								<p>Abonnez-vous à notre Newsletter pour obtenir les notifications sur nos réductions et promotions.</p>
+						<div class="col-lg-12">
+							<div class="subscribe-text" th:if="${contactExists == true}">
+								<h3><strong>Règles et fonctionnements</strong></h3>
+								<p style="cursor: pointer;" th:onclick="|readMoreRuleAtooly()|"
+								 th:text="${#strings.abbreviate(contact.rule,480)+'LIRE LA SUITE'}"></p>
 							</div>
 						</div>
-						<div class="col-lg-5">
-							<div class="subscribe-form style-3">
-								<input type="text" placeholder="Votre adresse mail " />
-								<button>Envoyer</button>
-							</div>
-						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -106,9 +76,9 @@
 								<img src="assets/images/footer/p1.png" alt="" />
 								<img src="assets/images/footer/p2.png" alt="" />
 								<img src="assets/images/footer/p3.png" alt="" />
-								<img src="assets/images/footer/p4.png" alt="" />
+								<!-- <img src="assets/images/footer/p4.png" alt="" />
 								<img src="assets/images/footer/p5.png" alt="" />
-								<img src="assets/images/footer/p6.png" alt="" />
+								<img src="assets/images/footer/p6.png" alt="" /> -->
 							</div>
 						</div>
 					</div>

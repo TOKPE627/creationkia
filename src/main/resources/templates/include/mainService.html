@@ -20,7 +20,9 @@
                                  
                                 <h4
 
-                                style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(service.name,18)}"></h4>                                      
+                                style="font-size: 12px; text-align: center;"
+                                 th:text="${#strings.abbreviate(service.name,18)}"
+                                 ></h4>                                      
 
                              </div>
                             <div class="product-thumb">
@@ -43,12 +45,15 @@
                                 </div>  
                                 
                                 <div class="row likeShareService">
-                                       <h6 style="margin-left: 15px !important;">
+                                       <h6 style="margin-left: 15px !important;" 
+                                        th:onclick="|likeService('${service.id}')|"
+                                            >
                                           <span>
-                                            <a style="cursor: pointer;">
-                                              <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
+                                            <a style="cursor: pointer;" >
+                                              <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"
+                                              >
+                                              </i> 
                                                 <span style="color: #292828; font-size: 10px;"
-                                                  th:onclick="|likeService('${service.id}')|"
                                                 >Like
                                                 </span>	
                                                 <span style="font-size: 10px;" th:id="|resultLikeService-${service.id}|" ></span>
@@ -71,12 +76,12 @@
                             style=" margin-left: 5px; margin-top: 2.7rem !important;"
                              >          
                               <div class="row likeShareService">
-                                     <h6 style="margin-left: 15px !important;">
+                                     <h6 style="margin-left: 15px !important;" th:onclick="|likeService('${service.id}')|">
                                         <span>
                                           <a style="cursor: pointer;">
                                             <i style="font-size: 10px;" class="fa fa-thumbs-up" aria-hidden="true"></i> 
                                               <span style="color: #292828; font-size: 10px;"
-                                                th:onclick="|likeService('${service.id}')|"
+                                                
                                               >Like
                                               </span>	
                                               <span style="font-size: 10px;" th:id="|resultLikeService-${service.id}|" ></span>
@@ -101,9 +106,100 @@
     </div>
 </div>
 
-
+<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+	<!-- bootstra.min js -->
+	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+	<!-- mmenu js -->
+	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+	<!-- easing js -->
+	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+	<!---slick-js-->
+	<script th:src="@{/assets/js/slick.min.js}"></script>
+	<!---letteranimation-js-->
+	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+	<!-- jquery-ui js -->
+	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+	<!-- jquery.countdown js -->
+	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+	<!-- venobox js -->
+	<script th:src="@{/assets/js/venobox.min.js}"></script>
+	<!-- plugins js -->
+	<script th:src="@{/assets/js/plugins.js}"></script>
+	<!-- main js -->
+	<script th:src="@{/assets/js/main.js}"></script>
    
 <script>
+  	loadServices();
+    function loadServices(){
+		  $.ajax({
+			  type: "GET",
+			  contentType: "application/json",
+			  url: '/company/services',
+			  data: {},
+			  dataType: 'json',
+			  cache: false,
+			  timeout: 600000,
+			  success: function (data) {
+				  var json = data.companies;
+				  if(json){
+					  $.each(json,function(index,company){
+              getServiceLikes(company.id);
+						  getSpecialities(company.id);
+					  });
+				  }
+			  
+			  },
+			  error: function (e) {
+				  console.log("ERROR : ", e);
+			  }
+		  }); 
+		}
+  	function getServiceLikes(service_id){
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: '/like/service/count?service_id='+service_id,
+				data: {},
+				dataType: 'json',
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+					$('#resultLikeService-'+data.companyId).html(data.numberLikes);
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+				}
+			}); 
+		}
+    function getSpecialities(service_id){
+			$.ajax({
+				type: "GET",
+				contentType: "application/json",
+				url: '/company/service/specialities?service_id='+service_id,
+				data: {},
+				dataType: 'json',
+				cache: false,
+				timeout: 600000,
+				success: function (data) {
+				  var json = data.specialities;
+					$.each(json,function(index,speciality){					  
+					  $('#resultSpeciality-'+service_id).append(
+						 '<div style="margin-top:-1rem !important;">'
+						   +'<span style="margin-top: -1rem !important;font-size: 10px; display: inline-block !important; width: 125px !important; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">'
+							+"-"+speciality.name 
+						   +'</span>'
+						 +'</div>'
+					 );
+				    });
+				},
+				error: function (e) {
+					console.log("ERROR : ", e);
+				}
+			}); 
+		}
+	  
 	function likeService(service_id){
 	  $.ajax({
 		  type: "GET",

@@ -32,11 +32,16 @@ public class GiveLikeController {
 
 	@RequestMapping(value="/service", method=RequestMethod.GET)
     public ResponseEntity<?> giveLike(@ModelAttribute("service_id") Long service_id, Model model) throws UnknownHostException {
+        System.out.println(service_id);
         Company company = companyService.findById(service_id);        
+        // System.out.println("Company: " + company.getId());
+        // System.out.println("Ip address: " +AppHosts.currentHostIpAddress());
         GiveLike checkLikeByIpAdress = giveLikeService.findByCompanyAndIpaddress(company, AppHosts.currentHostIpAddress());
+        System.out.println(checkLikeByIpAdress);
         int numberLikes=0;
-       
+        
         if(Objects.isNull(checkLikeByIpAdress)){
+            // System.out.println("Yes no likes for the company");
             GiveLike giveLike = new GiveLike();
             giveLike.setCurrent(1);
             giveLike.setCompany(company);

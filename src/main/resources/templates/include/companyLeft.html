@@ -6,7 +6,8 @@
 		 	   <a th:href="@{/catalog/all?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
-	                  th:src="@{/assets/images/icons/2.jpg}" alt=""
+					  th:src="@{${awsBucketIcon}+'catalog.png'}"   
+					  alt=""
 	               />
 	               <span class="cat cat-catalog"> <strong>Catalogue</strong></span>
 		 	    </a>
@@ -15,7 +16,7 @@
 		 	   <a th:href="@{/company/booking/add?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
-	                  th:src="@{/assets/images/icons/2.jpg}" alt=""
+	                  th:src="@{${awsBucketIcon}+'booking.png'}"    alt=""
 	               />
 	               <span class="cat cat-booking"> <strong>Rendez-vous</strong></span>
 		 	    </a>
@@ -26,7 +27,7 @@
 		 	   <a th:href="@{/geolocate/info?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
-	                  th:src="@{/assets/images/icons/2.jpg}" alt=""
+	                  th:src="@{${awsBucketIcon}+'locate.png'}"    alt=""
 	               />
 	               <span class="cat cat-locate"> <strong>Localisation</strong></span>
 		 	    </a>
@@ -35,7 +36,7 @@
 		 	   <a th:href="@{/contact/all?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
-	                  th:src="@{/assets/images/icons/2.jpg}" alt=""
+					  th:src="@{${awsBucketIcon}+'contact.png'}"    alt=""
 	               />
 	               <span class="cat cat-contact"> <strong>Contacts</strong></span>
 		 	    </a>
@@ -46,7 +47,7 @@
 		 	   <a th:href="@{/company/agenda?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
-	                  th:src="@{/assets/images/icons/2.jpg}" alt=""
+					  th:src="@{${awsBucketIcon}+'agenda.png'}"    alt=""
 	               />
 	               <span class="cat cat-agenda"> <strong>Agenda</strong></span>
 		 	    </a>

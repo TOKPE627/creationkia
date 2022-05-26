@@ -11,7 +11,7 @@ public interface GiveLikeRepository extends JpaRepository<GiveLike,Long>
   {
     GiveLike findByCompany(Company company);
 
-    @Query("SELECT g from give_like g WHERE  g.company= :company AND  g.ipaddress = :ipaddress ")
+    @Query("SELECT g from give_like g WHERE  g.company= :company AND  g.ipaddress = :ipaddress")
     GiveLike findByCompanyAndIpaddress(Company company, String ipaddress);
     
     @Query("SELECT g from give_like g WHERE  g.company= :company")

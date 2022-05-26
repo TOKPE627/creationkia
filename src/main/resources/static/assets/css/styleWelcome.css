@@ -1,7 +1,7 @@
 
-.btn-success {
-background-color: #6FB70F !important;
-border-color: #6FB70F !important;
+.badge-success, .btn-success {
+  background-color: #6FB70F !important;
+  border-color: #6FB70F !important;
 }
 .btn-success:hover,
 .btn-success:active,

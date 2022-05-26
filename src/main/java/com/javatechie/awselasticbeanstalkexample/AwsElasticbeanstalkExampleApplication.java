@@ -24,6 +24,8 @@ import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.CompanyType;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
@@ -33,6 +35,8 @@ import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.RoleService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
@@ -96,6 +100,12 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 
 	@Autowired
 	private AdvertiseService advertiseService;
+
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
 	
 	// @GetMapping("/")
 	// public String indexGoogle(){
@@ -118,12 +128,13 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
 		}
  	     
- 	     Category category               = categoryService.findById(Long.parseLong("3"));
-		 List<Product> groupSales        = productService.findByCategory(category); 
-		 List<Product> shops             = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
-		 List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
-		 List<Company> stores            = companyService.findAllByType(CompanyType.STORE);
-		
+ 	     Category category                   = categoryService.findById(Long.parseLong("3"));
+		 List<Product> groupSales            = productService.findByCategory(category); 
+		 List<Product> shops                 = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+		 List<Company> services              = companyService.findAllByType(CompanyType.SERVICE);
+		 List<Company> stores                = companyService.findAllByType(CompanyType.STORE);
+		 ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		 List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
 		 if(Objects.nonNull(advertise)) {
     		 model.addAttribute("advertiseExists",true);
     		 model.addAttribute("advertise",advertise);
@@ -146,6 +157,15 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			 model.addAttribute("groupSaleExist",true);
 			 model.addAttribute("groupSaleList",groupSales);			 
 		 }
+
+		 if(Objects.nonNull(contactAtooly)){
+			model.addAttribute("contactExists",true);
+		    model.addAttribute("contact",contactAtooly); 
+		}
+		if(!partnerAtoolies.isEmpty()){
+			model.addAttribute("partnerExist",true);
+			model.addAttribute("partnerList",partnerAtoolies);
+		}
 		return "welcome";
 	}
 	
