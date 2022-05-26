@@ -13,7 +13,7 @@ public class AjaxResponseBody {
 	List<Speciality> specialities;
 	Long companyId;
 	int numberLikes;
-
+    CharSequence contactrule;
 	public String getMsg() {
 		return msg;
 	}
@@ -87,5 +87,15 @@ public class AjaxResponseBody {
 	public void setCompanyId(Long companyId) {
 		this.companyId = companyId;
 	}
+
+	public CharSequence getContactrule() {
+		return contactrule;
+	}
+
+	public void setContactrule(CharSequence contactrule) {
+		this.contactrule = contactrule;
+	}
+
+
 
 }

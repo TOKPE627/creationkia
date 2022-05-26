@@ -15,11 +15,8 @@
                         <div th:if="${service.galery !=null and service.galery.companyImage !='' and service.galery.geolocateImage1 !='' and service.galery.geolocateImage2 !=''}"  
                          class="product-single" style="background-color: white !important;">
                             <div class="product-title"
-                              
                             >
-                                 
                                 <h4
-
                                 style="font-size: 12px; text-align: center;"
                                  th:text="${#strings.abbreviate(service.name,18)}"
                                  ></h4>                                      
@@ -106,29 +103,7 @@
     </div>
 </div>
 
-<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
-	<!-- jquery-3.3.1 version -->
-	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
-	<!-- bootstra.min js -->
-	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
-	<!-- mmenu js -->
-	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
-	<!-- easing js -->
-	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
-	<!---slick-js-->
-	<script th:src="@{/assets/js/slick.min.js}"></script>
-	<!---letteranimation-js-->
-	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
-	<!-- jquery-ui js -->
-	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
-	<!-- jquery.countdown js -->
-	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
-	<!-- venobox js -->
-	<script th:src="@{/assets/js/venobox.min.js}"></script>
-	<!-- plugins js -->
-	<script th:src="@{/assets/js/plugins.js}"></script>
-	<!-- main js -->
-	<script th:src="@{/assets/js/main.js}"></script>
+
    
 <script>
   	loadServices();

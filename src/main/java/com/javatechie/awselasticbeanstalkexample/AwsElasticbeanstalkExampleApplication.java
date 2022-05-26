@@ -120,7 +120,7 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-
+        model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 	    Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
  		if(!bookingsAddedToCart.isEmpty()) {

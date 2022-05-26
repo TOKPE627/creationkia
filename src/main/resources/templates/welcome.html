@@ -86,7 +86,8 @@
 			<div th:if="${groupSaleExist==true}" class="tab-content">
 				<div id="groupSale" class="tab-pane fade in show active">
 					<div class="row product-carousel cv-visible">
-						<div class="col-lg-12 groupSaleContainer" data-th-each="product : ${groupSaleList}">
+						<div class="col-lg-12 groupSaleContainer" 
+						    data-th-each="product : ${groupSaleList}">
 							<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !='' and product.quantity > 0}"	
 							class="product-single product-single-groupSale" style="background-color: white;
 							 
@@ -162,32 +163,31 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	</div>
 <!-- 		Group Sale
 --> 
-	<!--footer-area start-->
-	<footer th:replace="include/footer"></footer>
-
 <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
-	<!-- jquery-3.3.1 version -->
-	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
-	<!-- bootstra.min js -->
-	<script th:src="@{/assets/js/bootstrap.min.js}"></script>
-	<!-- mmenu js -->
-	<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
-	<!-- easing js -->
-	<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
-	<!---slick-js-->
-	<script th:src="@{/assets/js/slick.min.js}"></script>
-	<!---letteranimation-js-->
-	<script th:src="@{/assets/js/letteranimation.min.js}"></script>
-	<!-- jquery-ui js -->
-	<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
-	<!-- jquery.countdown js -->
-	<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
-	<!-- venobox js -->
-	<script th:src="@{/assets/js/venobox.min.js}"></script>
-	<!-- plugins js -->
-	<script th:src="@{/assets/js/plugins.js}"></script>
-	<!-- main js -->
-	<script th:src="@{/assets/js/main.js}"></script>
+<!-- jquery-3.3.1 version -->
+<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+<!-- bootstra.min js -->
+<script th:src="@{/assets/js/bootstrap.min.js}"></script>
+<!-- mmenu js -->
+<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+<!-- easing js -->
+<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+<!---slick-js-->
+<script th:src="@{/assets/js/slick.min.js}"></script>
+<!---letteranimation-js-->
+<script th:src="@{/assets/js/letteranimation.min.js}"></script>
+<!-- jquery-ui js -->
+<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<!-- jquery.countdown js -->
+<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+<!-- venobox js -->
+<script th:src="@{/assets/js/venobox.min.js}"></script>
+<!-- plugins js -->
+<script th:src="@{/assets/js/plugins.js}"></script>
+<!-- main js -->
+<script th:src="@{/assets/js/main.js}"></script>	
+<!--footer-area start-->
+<footer th:replace="include/footer"></footer>
 
 	<script>
 		loadStores();
@@ -256,7 +256,21 @@ th:src="@{${awsBucketGroupSale}+${product.galery.id}+'/'+${product.galery.image1
 	  </script>
   <script>
 	function readMoreRuleAtooly(){
-		alert("SAY HI");
+		$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/contact/atooly/readMoreRule',
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+				$('#resultReadMoreRule').html(data.contactrule);
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});  
 	}
 </script>
 	  
