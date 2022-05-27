@@ -182,7 +182,7 @@ function fire_ajax_submit() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "/uploadAdvertise/single",
+        url: "/uploadAdvertise/tablet/single",
         data: data,
         //http://api.jquery.com/jQuery.ajax/
         //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
@@ -191,10 +191,11 @@ function fire_ajax_submit() {
         cache: false,
         timeout: 600000,
         success: function (data) {
-            window.location.href = '/advertise/update';
+            window.location.href = '/advertise/tablet/update';
             $("#result").text(data);
             console.log("SUCCESS : ", data);
             $("#btnSubmit").prop("disabled", false);
+          
         },
         error: function (e) {
 

@@ -5,7 +5,10 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -108,9 +111,16 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
         model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
-	    Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
- 		if(!bookingsAddedToCart.isEmpty()) {
+
+	    List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}	
+	
+		if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);
 	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
 		}
@@ -131,10 +141,7 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			model.addAttribute("partnerList",partnerAtoolies);
 		}
 		 
-		 if(Objects.nonNull(advertise)) {
-    		 model.addAttribute("advertiseExists",true);
-    		 model.addAttribute("advertise",advertise);
-         }	
+		
 		 if(!shops.isEmpty()) {
 			 model.addAttribute("shopExist",true);
 			 model.addAttribute("shopList",shops); 
@@ -153,17 +160,20 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			 model.addAttribute("groupSaleExist",true);
 			 model.addAttribute("groupSaleList",groupSales);			 
 		 }
-
+		 System.out.println("Device:");
+		
+	
 		
 		return "welcome";
 	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AwsElasticbeanstalkExampleApplication.class, args);
+	
 	}
 	   @Override
 		public void run(String... args) throws Exception {
-			
+		
 			 // User user = new User(); 
 			  //user.setId(Long.parseLong("1"));
 			//   user.setEmail("kouassielysee@gmail.com"); 

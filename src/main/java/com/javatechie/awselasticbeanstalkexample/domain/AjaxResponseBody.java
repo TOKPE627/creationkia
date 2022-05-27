@@ -9,11 +9,13 @@ public class AjaxResponseBody {
 	String awsBucketProduct;
 	String awsBucketGroupSale;
 	String awsBucketShop;
+	String awsBucketAdvertise;
 	List<Company> companies;
 	List<Speciality> specialities;
 	Long companyId;
 	int numberLikes;
     CharSequence contactrule;
+	
 	public String getMsg() {
 		return msg;
 	}
@@ -94,6 +96,14 @@ public class AjaxResponseBody {
 
 	public void setContactrule(CharSequence contactrule) {
 		this.contactrule = contactrule;
+	}
+
+	public String getAwsBucketAdvertise() {
+		return awsBucketAdvertise;
+	}
+
+	public void setAwsBucketAdvertise(String awsBucketAdvertise) {
+		this.awsBucketAdvertise = awsBucketAdvertise;
 	}
 
 

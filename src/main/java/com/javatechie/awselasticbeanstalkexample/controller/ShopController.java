@@ -281,8 +281,13 @@ public class ShopController {
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}	
+			List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		 List<Product> supermarkets = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_1); 
 		 List<Product> healths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_2); 
@@ -306,10 +311,7 @@ public class ShopController {
 			 model.addAttribute("partnerExist",true);
 			 model.addAttribute("partnerList",partnerAtoolies);
 		 }
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -377,18 +379,19 @@ public class ShopController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		 List<Product> supermarkets = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_1); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+	
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -423,18 +426,18 @@ public class ShopController {
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
 	
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		 List<Product> healths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_2); 
 	
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -470,17 +473,18 @@ public class ShopController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> phones = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_3); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+	
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -516,18 +520,21 @@ public class ShopController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   
+	   List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		 List<Product> electronics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_4); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -564,17 +571,19 @@ public class ShopController {
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
 		
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> informatics = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_5); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -612,17 +621,19 @@ public class ShopController {
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
 		
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
         List<Product> homeApplicances = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_6); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -656,18 +667,20 @@ public class ShopController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }	
+	   	List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		List<Product> cloths = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_7); 
 		
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -704,17 +717,19 @@ public class ShopController {
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
 		
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }	
+	   	List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
          List<Product> hobbies = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_8); 
 
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+	
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 
@@ -749,18 +764,20 @@ public class ShopController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-		List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }	
+	   
+	   List<Product> shops  = productService.findAllByCategory(AppConstants.CATEGORY_SHOP);
 
 		 List<Product> others = productService.findAllBySubCategory(AppConstants.CATEGORY_SHOP, AppConstants.SUB_SHOP_9); 
 
 		 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
-		
-		if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+	
 		if(!shops.isEmpty()) {
 			model.addAttribute("shopExist",true);
 			model.addAttribute("shopList",shops); 

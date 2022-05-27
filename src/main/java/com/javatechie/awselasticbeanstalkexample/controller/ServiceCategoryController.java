@@ -64,7 +64,13 @@ public class ServiceCategoryController {
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
 		
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}
+		
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
         
 		 SubCategory subCategorySewing = subCategoryService.findById(Long.parseLong("9"));
@@ -96,10 +102,7 @@ public class ServiceCategoryController {
 			 model.addAttribute("partnerList",partnerAtoolies);
 		 }
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -153,7 +156,13 @@ public class ServiceCategoryController {
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}
+		
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 		SubCategory subCategorySewing = subCategoryService.findById(Long.parseLong("9"));
 		
@@ -172,10 +181,7 @@ public class ServiceCategoryController {
 			 model.addAttribute("partnerList",partnerAtoolies);
 		 }
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+	
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -199,7 +205,13 @@ public class ServiceCategoryController {
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}
+		
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 
 		SubCategory subCategoryAirdressing = subCategoryService.findById(Long.parseLong("10"));
@@ -219,10 +231,7 @@ public class ServiceCategoryController {
 			 model.addAttribute("partnerList",partnerAtoolies);
 		 }
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -249,8 +258,13 @@ public class ServiceCategoryController {
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
 		
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}
+				//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 	SubCategory subCategoryCarpentry = subCategoryService.findById(Long.parseLong("11"));
 			List<Company> carpentries = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryCarpentry);
@@ -268,10 +282,7 @@ public class ServiceCategoryController {
 			model.addAttribute("partnerList",partnerAtoolies);
 		}
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		 
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -296,7 +307,13 @@ public class ServiceCategoryController {
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
 	
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
+		Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}
+		
 		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 	   SubCategory subCategoryGrossery = subCategoryService.findById(Long.parseLong("12"));
@@ -315,10 +332,7 @@ public class ServiceCategoryController {
 			model.addAttribute("partnerExist",true);
 			model.addAttribute("partnerList",partnerAtoolies);
 		}
-		if(Objects.nonNull(advertise)) {
-		  model.addAttribute("advertiseExists",true);
-		  model.addAttribute("advertise",advertise);
-		}
+	
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -352,8 +366,14 @@ public class ServiceCategoryController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-		//  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   
+	   //  List<Product> services = productService.findAllByCategory(AppConstants.CATEGORY_SERVICE);
 		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 		SubCategory subCategoryMeca = subCategoryService.findById(Long.parseLong("13"));
         List<Company> mecas = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryMeca);
@@ -362,10 +382,7 @@ public class ServiceCategoryController {
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		 
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -399,8 +416,13 @@ public class ServiceCategoryController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 		SubCategory subCategoryRepair = subCategoryService.findById(Long.parseLong("14"));
 		List<Company> repairs = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryRepair);
 	   
@@ -408,10 +430,7 @@ public class ServiceCategoryController {
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
 		
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
+		  
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 
@@ -445,20 +464,21 @@ public class ServiceCategoryController {
 		   model.addAttribute("partnerExist",true);
 		   model.addAttribute("partnerList",partnerAtoolies);
 	   }
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-		List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
+	   Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+	   if(Objects.nonNull(advertiseMobile)) {
+		   model.addAttribute("advertiseMobileExists",true);
+		   model.addAttribute("advertise",advertiseMobile);
+	   }
+	   
+	   List<Company> services          = companyService.findAllByType(CompanyType.SERVICE);
 		SubCategory subCategoryOther = subCategoryService.findById(Long.parseLong("16"));
      	List<Company> others = companyService.findByCompanyTypeBySubCategory(CompanyType.SERVICE, subCategoryOther);
 	   
 
 			 List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	 model.addAttribute("bookingBegunList",bookingsBegun);
-		
 		  
-		  if(Objects.nonNull(advertise)) {
-			model.addAttribute("advertiseExists",true);
-			model.addAttribute("advertise",advertise);
-		}
 		if(!services.isEmpty()) {
 			model.addAttribute("serviceExist",true);
 			model.addAttribute("serviceList",services); 

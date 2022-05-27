@@ -2,54 +2,54 @@
   
    <div class="col-md-3">
             <div class="row categoryRow">
-              <div class="card main-category categoryCatalog" style="width: 8rem;">
+              <div class="card main-category categoryCatalog" style="width: 8rem;background-color: azure;">
 		 	   <a th:href="@{/catalog/all?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
 					  th:src="@{${awsBucketIcon}+'catalog.png'}"   
 					  alt=""
 	               />
-	               <span class="cat cat-catalog"> <strong>Catalogue</strong></span>
+	               <span class="cat cat-catalog"> <strong style="color:  #6FB70F ;">Catalogue</strong></span>
 		 	    </a>
 		 	 </div>
-             <div class="card main-category categoryBooking" style="width: 8rem; display: inline; margin-left: 1rem;">
+             <div class="card main-category categoryBooking" style="width: 8rem; display: inline; margin-left: 1rem; background-color: azure;">
 		 	   <a th:href="@{/company/booking/add?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
 	                  th:src="@{${awsBucketIcon}+'booking.png'}"    alt=""
 	               />
-	               <span class="cat cat-booking"> <strong>Rendez-vous</strong></span>
+	               <span class="cat cat-booking"> <strong style="color:  #6FB70F ;">Rendez-vous</strong></span>
 		 	    </a>
              </div>
             </div>
             <div class="row categoryRow">
-              <div class="card main-category categoryLocate" style="width: 8rem;margin-top: 1rem">
+              <div class="card main-category categoryLocate" style="width: 8rem;margin-top: 1rem; background-color: azure;">
 		 	   <a th:href="@{/geolocate/info?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
 	                  th:src="@{${awsBucketIcon}+'locate.png'}"    alt=""
 	               />
-	               <span class="cat cat-locate"> <strong>Localisation</strong></span>
+	               <span class="cat cat-locate"> <strong style="color:  #6FB70F ;">Localisation</strong></span>
 		 	    </a>
 		 	 </div>
-             <div class="card main-category categoryContact" style="width: 8rem; display: inline; margin-left: 1rem;margin-top: 1rem;">
+             <div class="card main-category categoryContact" style="width: 8rem; display: inline; margin-left: 1rem;margin-top: 1rem;background-color: azure;">
 		 	   <a th:href="@{/contact/all?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
 					  th:src="@{${awsBucketIcon}+'contact.png'}"    alt=""
 	               />
-	               <span class="cat cat-contact"> <strong>Contacts</strong></span>
+	               <span class="cat cat-contact"> <strong style="color:  #6FB70F ;">Contacts</strong></span>
 		 	    </a>
              </div>
             </div>
             <div class="row categoryRow" style="margin-top: 1rem;">
-              <div class="card main-category categoryAgenda" style="width: 8rem;">
+              <div class="card main-category categoryAgenda" style="width: 8rem; background-color: azure;">
 		 	   <a th:href="@{/company/agenda?company_id=}+${company.id}">
 	 	          <img style="border-radius: 17px; width: 100%;height: 100px;"
 	                  class="img-responsive"
 					  th:src="@{${awsBucketIcon}+'agenda.png'}"    alt=""
 	               />
-	               <span class="cat cat-agenda"> <strong>Agenda</strong></span>
+	               <span class="cat cat-agenda"> <strong style="color:  #6FB70F ;">Agenda</strong></span>
 		 	    </a>
 		 	 </div>
             </div>

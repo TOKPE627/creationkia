@@ -1,8 +1,6 @@
 package com.javatechie.awselasticbeanstalkexample.domain;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,11 +27,11 @@ public class Advertise  implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
- 
-	
+    private String type;//Phone type
 	private String image;
 	
-//	@Column(columnDefinition="text")
+
+  //@Column(columnDefinition="text")
 //	private String detail;
 
 	
@@ -94,6 +92,18 @@ public class Advertise  implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

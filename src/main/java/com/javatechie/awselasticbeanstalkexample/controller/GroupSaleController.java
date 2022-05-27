@@ -249,8 +249,12 @@ public class GroupSaleController {
 			List<Booking> bookingsBegun = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_0);
 	 	     model.addAttribute("bookingBegunList",bookingsBegun);
 		
-			  Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);	    
-	
+			  Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+			  if(Objects.nonNull(advertiseMobile)) {
+				  model.addAttribute("advertiseMobileExists",true);
+				  model.addAttribute("advertise",advertiseMobile);
+			  }	
 		  ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
 		  List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
 		  if(Objects.nonNull(contactAtooly)){
@@ -261,10 +265,7 @@ public class GroupSaleController {
 			 model.addAttribute("partnerExist",true);
 			 model.addAttribute("partnerList",partnerAtoolies);
 		 }
-			  if(Objects.nonNull(advertise)) {
-				  model.addAttribute("advertiseExists",true);
-				  model.addAttribute("advertise",advertise);
-			  }
+			
 			  Category category = categoryService.findById(Long.parseLong("3"));
 			 List<Product> groupSales        = productService.findByCategory(category); 
 			 

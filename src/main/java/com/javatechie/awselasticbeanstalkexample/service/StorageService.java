@@ -81,19 +81,39 @@ public class StorageService {
        if(bucketFolder.equals(AppConstants.bucket_shop)) {
     	   s3Client.putObject(new PutObjectRequest(bucketShop, fileName, fileObj));
     }
-       if(bucketFolder.equals(AppConstants.bucket_advertise)) {
-      	   s3Client.putObject(new PutObjectRequest(bucketAdvertise, fileName, fileObj));
-       }
+     
        if(bucketFolder.equals(AppConstants.bucket_catalog)) {
       	   s3Client.putObject(new PutObjectRequest(bucketCatalog, fileName, fileObj));
        }
        if(bucketFolder.equals(AppConstants.bucket_partner)) {
         s3Client.putObject(new PutObjectRequest(bucketPartner, fileName, fileObj));
-  }
+       }
         fileObj.delete();
         return "File uploaded : " + fileName;
     }
     
+    public String uploadRestFileAdvertiseInAws(String bucketFolder, Long idGalery, MultipartFile file,String typeDevice)  throws IOException{
+        File fileObj = convertMultiPartFileToFile(file);
+        String fileName="";
+        
+       if(bucketFolder.equals(AppConstants.bucket_advertise)) {
+           
+            if(typeDevice.equals(AppConstants.pc)){
+              fileName =  idGalery + "/pc/" +file.getOriginalFilename(); 
+              s3Client.putObject(new PutObjectRequest(bucketAdvertise, fileName, fileObj));      
+           }
+           if(typeDevice.equals(AppConstants.tablet)){
+             fileName =  idGalery + "/tablet/" +file.getOriginalFilename(); 
+             s3Client.putObject(new PutObjectRequest(bucketAdvertise, fileName, fileObj));      
+           }
+           if(typeDevice.equals(AppConstants.mobile)){
+            fileName =  idGalery + "/mobile/" +file.getOriginalFilename(); 
+            s3Client.putObject(new PutObjectRequest(bucketAdvertise, fileName, fileObj));      
+           }
+        }     
+        fileObj.delete();
+        return "File uploaded : " + fileName;
+     }
     public boolean deleteFileInAws(String bucketFolder, Long idGalery ,String fileName) {
    
         if(bucketFolder.equals(AppConstants.bucket_groupsale)) {

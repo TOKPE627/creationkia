@@ -42,6 +42,7 @@ public class RestUploadAdvertiseController {
     
 	private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
 	
+	//PC
     @PostMapping("/single")
     public ResponseEntity<?> uploadFile(
             @RequestParam("files") MultipartFile[] uploadfiles,Principal principal) {
@@ -63,19 +64,20 @@ public class RestUploadAdvertiseController {
       			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
       			if(count == 0) {
       				if(extraMultipart.getSize()>0) {
-      					if(advertiseService.findByUser(user) !=null) {
+      					if(advertiseService.findByType(AppConstants.pc) !=null) {
       			        	return new ResponseEntity("Affiche déjà enregistrée!!", HttpStatus.OK);
       					}
       					else {
       					    Advertise advertise=new Advertise();
           		            advertise.setUser(user);
-          		            Advertise advertiseSaved=advertiseService.save(advertise);  
+          		            advertise.setType(AppConstants.pc);
+							Advertise advertiseSaved=advertiseService.save(advertise);  
           		            //TODO
           				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
           		            if(advertiseSaved!=null) {
           		            	advertiseSaved.setImage(extraImageName);
-          		              advertiseService.update(advertiseSaved);
-          		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId());
+          		                advertiseService.update(advertiseSaved);
+          		                saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.pc);
                              }
       					}
       				
@@ -91,19 +93,7 @@ public class RestUploadAdvertiseController {
         return new ResponseEntity("Fichier téléversé avec succès. - "
                 + uploadedFileName, HttpStatus.OK);
     }
-    private void saveUploadedFiles(List<MultipartFile> files,Long id) throws IOException {
-
-        for (MultipartFile file : files) {
-
-            if (file.isEmpty()) {
-                continue; //next pls
-            }
-            
-            storageService.uploadRestFileInAws(AppConstants.bucket_advertise, id,file);
-        }
-
-    }
-    
+  
     
     @PostMapping("/update")
     public ResponseEntity<?> updateFile(
@@ -132,13 +122,14 @@ public class RestUploadAdvertiseController {
       				if(extraMultipart.getSize()>0) { 
       		            Advertise advertise = advertiseService.findById(Long.parseLong(extraField));
       		            advertise.setUser(user);
+						advertise.setType(AppConstants.pc);
       		            Advertise advertiseUpdated=advertiseService.update(advertise);
                 		//TODO:delete the file on AWS Bucket Advertise
       				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
       		            if(advertiseUpdated!=null) {
       		              advertise.setImage(extraImageName);
       		              advertiseService.update(advertiseUpdated);
-      		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId());
+      		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.pc);
                          }
       				 }  
       			 }
@@ -150,6 +141,225 @@ public class RestUploadAdvertiseController {
 
         return new ResponseEntity("Fichier modifié avec succès - " +
                 uploadedFileName, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+
+	//Tablet
+	
+    @PostMapping("/tablet/single")
+    public ResponseEntity<?> uploadFileTablet(
+            @RequestParam("files") MultipartFile[] uploadfiles,Principal principal) {
+		  User user = userService.findByUsername(principal.getName());
+
+        logger.debug("Single file upload!");
+
+        String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
+                .filter(x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , "));
+
+        
+        if (uploadedFileName.isEmpty()) {
+        	return new ResponseEntity("Veuillez sélectionner un fichier!!", HttpStatus.OK);
+        }
+
+        try {
+            int count=0;
+      		for(MultipartFile extraMultipart : uploadfiles) {
+      			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+      			if(count == 0) {
+      				if(extraMultipart.getSize()>0) {
+      					if(advertiseService.findByType(AppConstants.tablet) !=null) {
+      			        	return new ResponseEntity("Affiche déjà enregistrée!!", HttpStatus.OK);
+      					}
+      					else {
+      					    Advertise advertise=new Advertise();
+          		            advertise.setUser(user);
+          		            advertise.setType(AppConstants.tablet);
+							Advertise advertiseSaved=advertiseService.save(advertise);  
+          		            //TODO
+          				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
+          		            if(advertiseSaved!=null) {
+          		            	advertiseSaved.setImage(extraImageName);
+          		                advertiseService.update(advertiseSaved);
+          		                saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.tablet);
+                             }
+      					}
+      				
+      				 }  
+      			 }
+      		   }
+        
+                 
+
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity("Fichier téléversé avec succès. - "
+                + uploadedFileName, HttpStatus.OK);
+    }
+  
+    
+    @PostMapping("/tablet/update")
+    public ResponseEntity<?> updateFileTablet(
+            @RequestParam("extraField") String extraField,
+            @RequestParam("files") MultipartFile[] uploadfiles,
+            Principal principal) {
+		  User user = userService.findByUsername(principal.getName());
+
+        logger.debug("Single file upload!");
+
+        String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
+                .filter(x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , "));
+
+        
+        if (uploadedFileName.isEmpty()) {
+        	return new ResponseEntity("Veuillez sélectionner un fichier!!", HttpStatus.OK);
+        }
+
+        try {
+           
+            
+            int count=0;
+      		for(MultipartFile extraMultipart : uploadfiles) {
+      			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+      			if(count == 0) {
+      				if(extraMultipart.getSize()>0) { 
+      		            Advertise advertise = advertiseService.findById(Long.parseLong(extraField));
+      		            advertise.setUser(user);
+						advertise.setType(AppConstants.tablet);
+      		            Advertise advertiseUpdated=advertiseService.update(advertise);
+                		//TODO:delete the file on AWS Bucket Advertise
+      				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
+      		            if(advertiseUpdated!=null) {
+      		              advertise.setImage(extraImageName);
+      		              advertiseService.update(advertiseUpdated);
+      		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.tablet);
+                         }
+      				 }  
+      			 }
+      		   }
+
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity("Fichier modifié avec succès - " +
+                uploadedFileName, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+	//Mobile
+    @PostMapping("/mobile/single")
+    public ResponseEntity<?> uploadFileMobile(
+            @RequestParam("files") MultipartFile[] uploadfiles,Principal principal) {
+		  User user = userService.findByUsername(principal.getName());
+
+        logger.debug("Single file upload!");
+
+        String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
+                .filter(x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , "));
+
+        
+        if (uploadedFileName.isEmpty()) {
+        	return new ResponseEntity("Veuillez sélectionner un fichier!!", HttpStatus.OK);
+        }
+
+        try {
+            int count=0;
+      		for(MultipartFile extraMultipart : uploadfiles) {
+      			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+      			if(count == 0) {
+      				if(extraMultipart.getSize()>0) {
+      					if(advertiseService.findByType(AppConstants.mobile) !=null) {
+      			        	return new ResponseEntity("Affiche déjà enregistrée!!", HttpStatus.OK);
+      					}
+      					else {
+      					    Advertise advertise=new Advertise();
+          		            advertise.setUser(user);
+          		            advertise.setType(AppConstants.mobile);
+							Advertise advertiseSaved=advertiseService.save(advertise);  
+          		            //TODO
+          				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
+          		            if(advertiseSaved!=null) {
+          		            	advertiseSaved.setImage(extraImageName);
+          		                advertiseService.update(advertiseSaved);
+          		                saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.mobile);
+                             }
+      					}
+      				
+      				 }  
+      			 }
+      		   }
+        
+                 
+
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity("Fichier téléversé avec succès. - "
+                + uploadedFileName, HttpStatus.OK);
+    }
+  
+    
+    @PostMapping("/mobile/update")
+    public ResponseEntity<?> updateFileMobile(
+            @RequestParam("extraField") String extraField,
+            @RequestParam("files") MultipartFile[] uploadfiles,
+            Principal principal) {
+		  User user = userService.findByUsername(principal.getName());
+
+        logger.debug("Single file upload!");
+
+        String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
+                .filter(x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , "));
+
+        
+        if (uploadedFileName.isEmpty()) {
+        	return new ResponseEntity("Veuillez sélectionner un fichier!!", HttpStatus.OK);
+        }
+
+        try {
+           
+            
+            int count=0;
+      		for(MultipartFile extraMultipart : uploadfiles) {
+      			String extraImageName = StringUtils.cleanPath(extraMultipart.getOriginalFilename());
+      			if(count == 0) {
+      				if(extraMultipart.getSize()>0) { 
+      		            Advertise advertise = advertiseService.findById(Long.parseLong(extraField));
+      		            advertise.setUser(user);
+						advertise.setType(AppConstants.mobile);
+      		            Advertise advertiseUpdated=advertiseService.update(advertise);
+                		//TODO:delete the file on AWS Bucket Advertise
+      				   //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage1());
+      		            if(advertiseUpdated!=null) {
+      		              advertise.setImage(extraImageName);
+      		              advertiseService.update(advertiseUpdated);
+      		              saveUploadedFiles(Arrays.asList(uploadfiles),advertise.getId(),AppConstants.mobile);
+                         }
+      				 }  
+      			 }
+      		   }
+
+        } catch (IOException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity("Fichier modifié avec succès - " +
+                uploadedFileName, new HttpHeaders(), HttpStatus.OK);
+    }
+    
+
+	//
+	private void saveUploadedFiles(List<MultipartFile> files,Long id, String typeDevice) throws IOException {
+
+        for (MultipartFile file : files) {
+
+            if (file.isEmpty()) {
+                continue; //next pls
+            }
+            
+            storageService.uploadRestFileAdvertiseInAws(AppConstants.bucket_advertise, id,file,typeDevice);
+        }
+
     }
     
 }

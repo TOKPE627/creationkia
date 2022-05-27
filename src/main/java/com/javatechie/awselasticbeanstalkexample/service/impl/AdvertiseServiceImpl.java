@@ -3,6 +3,8 @@ package com.javatechie.awselasticbeanstalkexample.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.repository.AdvertiseRepository;
@@ -37,6 +39,16 @@ public class AdvertiseServiceImpl implements AdvertiseService{
 	@Override
 	public Advertise findByName(String name) {
 		return advertiseRepository.findByName(name);
+	}
+
+	@Override
+	public Advertise findByType(String type) {
+		return advertiseRepository.findByType(type);
+	}
+
+	@Override
+	public List<Advertise> findAll() {
+		return advertiseRepository.findAll();
 	}
 
 }

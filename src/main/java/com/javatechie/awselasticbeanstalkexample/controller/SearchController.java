@@ -68,11 +68,15 @@ public class SearchController {
 	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
 	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-		Advertise advertise = advertiseService.findByName(AppConstants.APP_NAME);
-        if(Objects.nonNull(advertise)) {
-            model.addAttribute("advertiseExists",true);
-            model.addAttribute("advertise",advertise);
-        }	
+        model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+
+       
+        Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
+
+		if(Objects.nonNull(advertiseMobile)) {
+			model.addAttribute("advertiseMobileExists",true);
+			model.addAttribute("advertise",advertiseMobile);
+		}       
 
         Product product = productService.findById(id);
         Category category = product.getCategory();

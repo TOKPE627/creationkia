@@ -532,10 +532,11 @@
 </div> 
 <div class="row">
     <div class="col-xs-12 advertiseContainer">
-        <div th:if="${advertiseMobileExists==true}" class="advertiseDiv">
+        <div th:if="${advertisePcExists == true }" class="advertiseDiv">
+             
 	    	<img style="object-fit: cover;"
-	    	   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/mobile/'+${advertise.image}}" alt=""  
-		     >
+	    	   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/pc/'+${advertise.image}}" alt=""  
+		     > 
        <div class="row container categoryTypeContainer" 
           style="position: relative !important; margin-left: 6% !important;">
          <div class="col-xs-12 categoryTypeDiv catTypeShop"  style="
@@ -612,15 +613,17 @@
 	console.log("Width: " +w);
 	console.log("Height: " +h);
   
- 
-  if(w>767 && w<1025){
-    console.log("Tablet device detected");
+  // if(w > 1024) {
+  //   console.log("Personal Computer detected");
+  //   advertisePc();
+  // }
+  if(w>767 && w < 1025){
+    console.log("Tablet Device detected");
     advertiseTablet();
   }
-
-  if(w>1024){
-    console.log("PC Device detected");
-    advertisePc();
+  if(w<768){
+    console.log("Mobile phone detected");
+    advertiseMobile();
   }
 
   function advertiseTablet(){
@@ -633,6 +636,11 @@
 			  cache: false,
 			  timeout: 600000,
 			  success: function (data) {
+          //  $(".advertiseDiv").append(
+          //      '<img style="object-fit: cover;"'
+          //         +'src='+data.image+' alt=""+'  
+          //    +'>'
+          //  );
           $(".advertiseDiv img").attr("src",data.image);   
 			  },
 			  error: function (e) {
@@ -641,11 +649,11 @@
 		  }); 
 		}
   
-    function advertisePc(){
+    function advertiseMobile(){
 		  $.ajax({
 			  type: "GET",
 			  contentType: "application/json",
-			  url: '/advertise/rest/pc',
+			  url: '/advertise/rest/mobile',
 			  data: {},
 			  dataType: 'json',
 			  cache: false,

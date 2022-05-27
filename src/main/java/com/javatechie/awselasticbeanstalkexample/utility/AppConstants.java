@@ -11,6 +11,11 @@ public class AppConstants {
    public static final String ROLE_4 = "ROLE_CUSTOMER";
    public static final String ROLE_5 = "ROLE_CUSTOMER_COMPANY";
    
+   //Advertise devices
+   public static String pc = "pc";
+   public static String tablet = "tablet";
+   public static String mobile = "mobile";
+
    //
    public static String companyImage= "companyimage";
    public static String geolocate1= "geolocate1";

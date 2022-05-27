@@ -55,44 +55,56 @@
    <div th:replace="dashboard/navbar"></div>
    <div th:replace="dashboard/mainsidebar"></div> 
    <div class="content-wrapper">
-      <div th:replace="dashboard/header"></div>
+        <div th:replace="dashboard/header"></div>
+          <span
+			style="color: #6FB70F ; margin-left: 20%;" th:if="${advertiseExists==false}">Aucune affiche
+			retrouv&eacute;e
+		</span> 
             <!-- Main content -->
-	    
-      <form method="POST" enctype="multipart/form-data" id="fileUploadForm">	
-				<!-- upload image -->
-				<div class="form-group">
-					 <label class="col-md-2 control-label">* Image</label>
-                        <div class="col-md-6">
-                          <p>
-                              <img alt="" id="thumbnail0"  style="width: 17rem;height: 15rem;object-fit: cover;"/>
-                           </p>
-                           <div class="col-xs-3">
-                               <input type="file"
-                                  name="files" /> 
-                           </div>
-                         </div>
-			    </div>
-				
+		 <section th:if="${advertiseExists==true}" class="content">
+		     <div class="container-fluid">
+		      	<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+		           <input type="hidden" th:value="${advertise.id}" name="extraField"/>
+		
+			        <div class="form-group">
+						<label class="col-md-2 control-label">* Image</label>
+						  
+			               <div class="col-md-6">
+				              <img
+						        id="thumbnail0"
+						        class="img-responsive center-block" style="height: 350px;width: 100%;
+                    object-fit: contain;"
+				                   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/mobile/'+${advertise.image}}" alt=""  
+						   	   />
+			                   <div class="col-xs-3">
+			                  	   <input type="file" name="files"/><br/><br/>
+			                  	    
+			                   </div>
+			                </div>
+					 </div>
+				     <div class="row" style="margin-left: 10%;">
+					   <div class="form-group">
+							      <span style="color: black;" id="result"></span>
+					   </div>
+				     </div>
+					  <div class="form-group">
+						<label class="col-md-2 control-label"></label>
+			              <div class="col-md-6">
+			              	    <input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
+			               </div>
+					 </div>
+					 
+				</form>
 			
-		<!-- 		<div class="form-group">
-					<label class="col-md-2 control-label" for="detail">* D&eacute;tails:</label>
-					<div class="col-md-8">
-						<textarea name="detail" rows="5" class="form-control"
-							placeholder="D&eacute;tails:" required="required"></textarea>
-					</div>
-				</div> -->
-			<div class="row" style="margin-left: 10%;">
-			    <span style="color: #6FB70F;" id="result"></span>
-			</div>			
-		    <div class="form-group">
-				<label class="col-md-2 control-label"></label>
-	              <div class="col-md-6">
-	              	    <input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
-	               </div>
-			 </div>
-			
-		</form>
-	
+			   <div></div><br>
+   			   <div></div><br>
+   			   <div></div><br>
+   			   <div></div><br>
+   			   <div></div><br>
+			   
+			   
+		 </div>
+	  </section>
     </div>
   <aside class="control-sidebar control-sidebar-dark">
   </aside>
@@ -132,7 +144,7 @@
 <!-- AdminLTE for demo purposes -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script th:src="@{/adminlte/dist/js/pages/dashboard.js}"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function() {
 		 	$("input[name='files']").each(function(index){
 				$(this).change(function(){
@@ -182,19 +194,18 @@ function fire_ajax_submit() {
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
-        url: "/uploadAdvertise/single",
+        url: "/uploadAdvertise/mobile/update",
         data: data,
-        //http://api.jquery.com/jQuery.ajax/
-        //https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects
-        processData: false, //prevent jQuery from automatically transforming the data into a query string
+        processData: false, 
         contentType: false,
         cache: false,
         timeout: 600000,
         success: function (data) {
-            window.location.href = '/advertise/update';
+
             $("#result").text(data);
             console.log("SUCCESS : ", data);
             $("#btnSubmit").prop("disabled", false);
+
         },
         error: function (e) {
 
@@ -207,6 +218,7 @@ function fire_ajax_submit() {
 
 }
 </script>
+
 
 </body>
 </html>

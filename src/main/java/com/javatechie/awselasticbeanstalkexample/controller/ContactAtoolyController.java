@@ -217,13 +217,40 @@ public class ContactAtoolyController {
 		return "front/company/contact";
 	}
 
-	@RequestMapping(value="/atooly/readMoreRule", method=RequestMethod.GET)
-	public ResponseEntity<?> getSpecialities(Model model) throws UnknownHostException {
+	// @RequestMapping(value="/atooly/readMoreRule", method=RequestMethod.GET)
+	// public ResponseEntity<?> getSpecialities(Model model) throws UnknownHostException {
+	// 	ContactAtooly contactAtooly = contactAtoolyService.findByName(AppConstants.APP_NAME);
+	//     String initialPart =  contactAtooly.getRule().substring(480);
+	// 	CharSequence finalPart = contactAtooly.getRule().subSequence(initialPart.length()+1, contactAtooly.getRule().length());
+	// 	AjaxResponseBody result = new AjaxResponseBody();
+	// 	result.setContactrule(finalPart);	
+	//     return ResponseEntity.ok(result);
+	// }
+
+
+	@RequestMapping("/readMoreRule")
+	public String readMoreRule(Model model) throws UnknownHostException {
+		
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+		
 		ContactAtooly contactAtooly = contactAtoolyService.findByName(AppConstants.APP_NAME);
-	    String initialPart =  contactAtooly.getRule().substring(480);
+		String initialPart =  contactAtooly.getRule().substring(480);
 		CharSequence finalPart = contactAtooly.getRule().subSequence(initialPart.length()+1, contactAtooly.getRule().length());
-		AjaxResponseBody result = new AjaxResponseBody();
-		result.setContactrule(finalPart);	
-	    return ResponseEntity.ok(result);
+		
+		if(Objects.nonNull(contactAtooly)){
+			model.addAttribute("contactExists", true);
+		    model.addAttribute("contact", contactAtooly);
+			model.addAttribute("initialPart", initialPart);
+			model.addAttribute("finalPart", finalPart);
+		}
+	
+		return "front/rule";
 	}
 }
