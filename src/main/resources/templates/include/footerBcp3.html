@@ -6,12 +6,15 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-4">
-							<div class="company-info">
+							<div class="company-info"  th:if="${contactExists == true}">
 								<img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="logo" />
-								<p>Dakar/SENEGAL</p>
-								<p>Gilbratar I (Auchan)</p>
-								<p>Tel: 001-1234-88888</p>
-								<p>Email: info.deercreative@gmail.com</p>
+								<p>
+									<span class="fontWord" th:text="${contact.town}"></span> /
+					             	<span class="fontWord" th:text="${contact.country}"></span>
+								</p>
+								<p  th:text="${contact.address}"></p>
+								<p>Tel: <span  th:text="${contact.phone}"></span></p>
+								<p>Email: <span  th:text="${contact.email}"></span></p>
 							</div>
 							<div class="social-icons style-2 style-4">
 								<strong>Retrouver nous sur !</strong>

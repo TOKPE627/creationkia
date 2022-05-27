@@ -12,33 +12,69 @@
  -->
  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
+	<!-- <link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}"> -->
 
     <title>Atooly</title>
 </head>
+<style>
+	@media (min-width: 576px) and (max-width: 767px){
+		.subscribe-text p {
+			width: 29rem !important;
+		}
+	}
+	@media (min-width: 481px) and (max-width: 575px){
+		.subscribe-text p {
+			width: 28rem !important;
+		}
+	}
+	@media (min-width: 401px) and (max-width: 480px){
+		.subscribe-text p {
+			width: 23rem !important;
+		}
+	}
+	@media (min-width: 381px) and (max-width:400px){
+		.subscribe-text p {
+			width: 22.5rem !important;
+		}
+	}
+	@media (min-width: 361px) and (max-width:380px){
+		.subscribe-text p {
+			width: 20.5rem !important;
+		}
+	}
+	@media (min-width: 320px) and (max-width: 360px){
+		.subscribe-text p {
+			width: 19.5rem !important;
+		}
+	}
+</style>
 <body>
 		
 	<footer>
 	    <div class="footer-area">
 			<div class="container footerAreaDiv">
 				<div class="row">
-					<div class="company-info contactInfo" 
-					    th:if="${contactExists == true}">
-						<img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="logo" />
-						<p>
-						<span class="fontWord" th:text="${contact.town}"></span> /
-						<span class="fontWord" th:text="${contact.country}"></span>
-						</p>
-						<p>
-							<span class="fontWord" th:text="${contact.address}"></span>
-						</p>
-						<p class="fontWord">Tel:   
-							<span  th:text="${contact.phone}"></span>
-						</p>
-						<p class="fontWord">Email: 
-							<span  th:text="${contact.email}"></span>
-						</p>
+					<div class="col-lg-4">
+						<div class="company-info contactInfo" 
+							  th:if="${contactExists == true}">
+							<img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="logo" />
+							<p>
+							  <span class="fontWord" th:text="${contact.town}"></span> /
+							  <span class="fontWord" th:text="${contact.country}"></span>
+							</p>
+							<p>
+							  <span class="fontWord" th:text="${contact.address}"></span>
+							</p>
+							<p class="fontWord">Tel:   
+								<span  th:text="${contact.phone}"></span>
+							</p>
+							<p class="fontWord">Email: 
+								<span  th:text="${contact.email}"></span>
+							</p>
+						</div>
+						
 					</div>
+				    
 					<div class="container footerRetourContainer" style="margin-top: -1rem;">
 						<a th:href="@{/}" style="float: right;">
 							<span class="badge badge-success fontWord"
@@ -48,16 +84,19 @@
 						</a>
 					</div>
 				</div>
-				<hr class="footerHr"
+				<!-- <hr class="footerHr"
 					style="max-width: 130rem; margin-left: -0.7rem;
 						background-color: white;
 						font-size: 25px;
 							"
-					>
-				<div class="container findUsContainer">
-					<span class="fontWord">
-						<span class="findUsOn"><strong style="text-transform: uppercase; color: white;">
-							Retrouver nous sur ! </strong></span></span>
+					> -->
+					<!-- <div class="social-icons style-2 style-4">
+						<strong>Retrouver nous sur !</strong>
+						<a href="http://www.facebook.com/Attoly-365765610857137/"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+					</div>  -->
+				<div class="social-icons style-2 style-4">
+					<strong >Retrouver nous sur ! </strong>
 					<a style="margin-left: 5px;" href="http://www.facebook.com/Attoly-365765610857137/">
 						<img th:src="@{${awsBucketIcon}+'facebook.png'}"  alt="logo" />
 					</a>
@@ -92,7 +131,7 @@
 		<!--subscribe-area-end-->
 		
 		<!--copyright-area start-->
-		<div class="copyright-area pd-20">
+		<!-- <div class="copyright-area pd-20">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-4 col-md-4">
@@ -109,8 +148,31 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div>  -->
 		<!--copyright-area end-->
+		<div class="copyright-area pd-20">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-6 col-md-6">
+						<div class="copyright style-2">
+							<p>Copyright 2019 &copy; <a href="https://www.atooly.com">Atooly</a>. Tout droit reservé.</p>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6" th:if="${partnerExist == true }" >
+						<div class="payment-gateways pull-right" data-th-each="partner : ${partnerList}">
+							<img 
+							style="width: 4rem !important; height: 3rem; margin-left: 10px; object-fit: cover;"
+							  th:src="@{${awsBucketPartner}+${partner.id}+'/'+${partner.brand}}" alt="" />
+							<!-- <img src="assets/images/footer/p2.png" alt="" />
+							<img src="assets/images/footer/p3.png" alt="" />
+							<img src="assets/images/footer/p4.png" alt="" />
+							<img src="assets/images/footer/p5.png" alt="" />
+							<img src="assets/images/footer/p6.png" alt="" /> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</footer>
 </body>
 </html>
