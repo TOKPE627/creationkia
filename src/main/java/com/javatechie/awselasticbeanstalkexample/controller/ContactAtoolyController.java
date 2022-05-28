@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
 import com.javatechie.awselasticbeanstalkexample.domain.Company;
@@ -241,14 +242,22 @@ public class ContactAtoolyController {
 		model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 		
 		ContactAtooly contactAtooly = contactAtoolyService.findByName(AppConstants.APP_NAME);
-		String initialPart =  contactAtooly.getRule().substring(480);
-		CharSequence finalPart = contactAtooly.getRule().subSequence(initialPart.length()+1, contactAtooly.getRule().length());
-		
+	
+		List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
+	
+	
+		if(!bookingsAddedToCart.isEmpty()) {
+	    	 model.addAttribute("bookingAddedToCartExist",true);
+	    	 model.addAttribute("bookingAddedToCartList",bookingsAddedToCart);
+		}
 		if(Objects.nonNull(contactAtooly)){
 			model.addAttribute("contactExists", true);
 		    model.addAttribute("contact", contactAtooly);
-			model.addAttribute("initialPart", initialPart);
-			model.addAttribute("finalPart", finalPart);
+			// String initialPart =  contactAtooly.getRule().substring(480);
+			// CharSequence finalPart = contactAtooly.getRule().subSequence(initialPart.length()+1, contactAtooly.getRule().length());
+			
+			// model.addAttribute("initialPart", initialPart);
+			// model.addAttribute("finalPart", finalPart);
 		}
 	
 		return "front/rule";

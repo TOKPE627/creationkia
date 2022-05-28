@@ -533,7 +533,7 @@
 <div class="row">
     <div class="col-xs-12 advertiseContainer">
         <div th:if="${advertiseMobileExists==true}" class="advertiseDiv">
-	    	<img style="object-fit: cover;"
+	    	<img id="advertiseMainImg" style="object-fit: cover;"
 	    	   th:src="@{${awsBucketAdvertise}+${advertise.id}+'/mobile/'+${advertise.image}}" alt=""  
 		     >
        <div class="row container categoryTypeContainer" 
@@ -633,7 +633,7 @@
 			  cache: false,
 			  timeout: 600000,
 			  success: function (data) {
-          $(".advertiseDiv img").attr("src",data.image);   
+          $("#advertiseMainImg").attr("src",data.image);   
 			  },
 			  error: function (e) {
 				  console.log("ERROR : ", e);
@@ -651,7 +651,7 @@
 			  cache: false,
 			  timeout: 600000,
 			  success: function (data) {
-          $(".advertiseDiv img").attr("src",data.image);   
+          $("#advertiseMainImg").attr("src",data.image);   
 			  },
 			  error: function (e) {
 				  console.log("ERROR : ", e);

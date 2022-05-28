@@ -13,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 
@@ -28,6 +32,13 @@ public class SearchController {
 
     @Autowired
     private AdvertiseService advertiseService;
+
+    @Autowired
+	private ContactAtoolyService contactAtoolyService;
+
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
+	
 
 	@RequestMapping(value = "/products")
 	public ResponseEntity<?> showInfo(@ModelAttribute("keyword") String keyword) {
@@ -70,7 +81,16 @@ public class SearchController {
 		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
         model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 
-       
+        ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		 List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		 if(Objects.nonNull(contactAtooly)){
+			model.addAttribute("contactExists",true);
+		    model.addAttribute("contact",contactAtooly); 
+		}
+		if(!partnerAtoolies.isEmpty()){
+			model.addAttribute("partnerExist",true);
+			model.addAttribute("partnerList",partnerAtoolies);
+		}
         Advertise advertiseMobile = advertiseService.findByType(AppConstants.mobile);	    
 
 		if(Objects.nonNull(advertiseMobile)) {

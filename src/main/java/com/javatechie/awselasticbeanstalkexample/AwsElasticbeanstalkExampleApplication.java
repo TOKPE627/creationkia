@@ -160,10 +160,7 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			 model.addAttribute("groupSaleExist",true);
 			 model.addAttribute("groupSaleList",groupSales);			 
 		 }
-		 System.out.println("Device:");
-		
-	
-		
+		 
 		return "welcome";
 	}
 	

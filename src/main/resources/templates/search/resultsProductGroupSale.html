@@ -7,7 +7,7 @@
 <body style="background-color: #e8e8e8;">	
     <!--header-->
    <div th:replace="include/navbar"></div>
-   <div th:replace="include/headerMenu"></div>
+   <!-- <div th:replace="include/headerMenu"></div> -->
 
 	<div class="row" style="margin-top: 2rem;">
 		<div class="col-xs-12" >
@@ -58,7 +58,7 @@
 				 <div class="product-meta">
 					 <ul class="list-none">
 						<li th:if="${product.category.name=='groupSale'}">Catégorie:
-							 <a href="#">Vente groupée</a>
+							 <a href="#" style="color:  #6FB70F ;">Vente groupée</a>
 						</li>
 					</ul>
 					
