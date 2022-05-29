@@ -105,14 +105,14 @@
 							              </strong>
 				    	            </div>	
 						            <div class="container" style="margin-left: 7rem;margin-top: 2rem;">
-	                                 <a th:href="@{/cart/remove(id=${booking.id})}" style="margin-left: 10px;">
-	      					              <i class="fa fa-trash colorText" style="text-transform: uppercase;">Supprimer</i>                             
+	                                 <a th:href="@{/cart/remove(id=${booking.id})}" style="margin-left: 10px;color: #6FB70F;">
+	      					              <i class="fa fa-trash" style="text-transform: uppercase;">Supprimer</i>                             
 	                                 </a>
 						            </div>  
 						        </div>
 						     </td>
 							<td><a th:href="@{/product/productInfo(id=${booking.product.id})}">
-							  <span th:text="${booking.quantity}" class="colorText"></span></a>
+							  <span th:text="${booking.quantity}" style="color: #6FB70F;"></span></a>
 							</td>
 							<td th:text="${booking.product.price}"></td>	
 						</tr>

@@ -9,14 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.javatechie.awselasticbeanstalkexample.domain.Booking;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.Town;
+import com.javatechie.awselasticbeanstalkexample.domain.TownAvailable;
 import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.TownAvailableService;
 import com.javatechie.awselasticbeanstalkexample.service.TownService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
@@ -41,6 +44,9 @@ public class CartController {
 
    @Autowired
    private PartnerAtoolyService partnerAtoolyService;
+
+   @Autowired
+   private TownAvailableService townAvailableService;
    
 	@RequestMapping("/all")
 	public String cart(Model model) throws UnknownHostException {
@@ -98,7 +104,7 @@ public class CartController {
    
 	    List<Booking> bookingsAddedToCart = 
 	    		bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
-	    List<Town> towns = townService.findAll();
+	    // List<Town> towns = townService.findAll();
 
 	    if(!bookingsAddedToCart.isEmpty()) {
 	    	 model.addAttribute("bookingAddedToCartExist",true);
@@ -106,8 +112,13 @@ public class CartController {
 		}		
 		Product product=productService.findById(id);
 		model.addAttribute("product", product);
-		model.addAttribute("townList", towns);
+		// model.addAttribute("townList", towns);
 
+		// model.addAttribute("product", product);
+        Category category= product.getCategory();
+        model.addAttribute("category",category);
+		List<TownAvailable> townAvailables = townAvailableService.findByUser(product.getUser());
+		model.addAttribute("townList",townAvailables); 
 		return "booking/add";
 	}
 	

@@ -2,7 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
 <link rel="stylesheet" th:href="@{/assets/css/styleService.css}">
+<style>
 
+.badge-success, .btn-success {
+  background-color: #6FB70F !important;
+  border-color: #6FB70F !important;
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited,
+.btn-success:focus {
+background-color: #6FB70F !important;
+border-color: #6FB70F !important;
+} 
+</style>
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
@@ -25,8 +38,8 @@
                     <a 
                       th:href="@{/company/hasAccountBookingCompany?company_id=}+${company.id}"
                     > 
-                      <span class="colorText">
-                       <strong>
+                      <span>
+                       <strong style="color: #6FB70F;">
                         <i class="fa fa-user"></i>
                         Je possède déjà un compte client</strong>
                       </span>           

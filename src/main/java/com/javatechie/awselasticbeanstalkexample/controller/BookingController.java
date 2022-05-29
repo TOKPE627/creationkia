@@ -266,7 +266,10 @@ public class BookingController {
 			model.addAttribute("usernameExists", true);
 			return "booking/add";
 		}
-		
+		if (userService.findByEmail(userEmail) != null) {
+			model.addAttribute("emailExists", true);
+			return "booking/add";
+		}
 		if (bookingService.findByEmail(userEmail) != null) {
 			model.addAttribute("emailExists", true);
 			return "booking/add";
