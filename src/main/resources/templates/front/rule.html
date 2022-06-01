@@ -76,11 +76,12 @@
 	<div th:replace="include/navbar"></div>
 	<!-- <div th:replace="include/headerMenu"></div> -->
    	<!--subscribe-area-start-->
-		<div class="subscribe-area rule-area pd-25">
+		<div class="rule-area pd-25">
 			<div class="container">
 				<div class="row align-items-center">
 					<div class="col-lg-12">
-						<div class="subscribe-text" th:if="${contactExists == true}">
+						<div th:if="${contactExists == true}"
+						  style="background-color:  #e8e8e8;">
 							<h3 class="fontWord">
 								<span><strong>Règles et fonctionnements</strong></span>
 							</h3>

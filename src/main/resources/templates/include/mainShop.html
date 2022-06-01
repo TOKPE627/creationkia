@@ -16,7 +16,7 @@
 					<div class="row product-carousel cv-visible">
 						<div class="col-lg-12 shopContainer" data-th-each="product : ${shopList}">
 							<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !=''}"	
-							 class="product-single" style="background-color: white !important;">
+							 class="product-single" style="background-color:  #e8e8e8 !important;">
 								<div class="product-title">
 								 
 								   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,18)}"></h4>                                      
