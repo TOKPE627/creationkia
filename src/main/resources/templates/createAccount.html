@@ -2,6 +2,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">	
 <head th:replace="include/head"></head>
+
+<link rel="stylesheet" th:href="@{/assets/css/styleNavbar.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
  <style type="text/css">
  	.btn-success {
 	  background-color: #6FB70F !important;
@@ -158,6 +161,10 @@
 	     </form> 
 	    </div>
 	  </div>
+	  <div th:replace="include/footer"></div>
+
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
 <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
 	<!-- jquery-3.3.1 version -->
 	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
@@ -181,7 +188,8 @@
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
 	<script th:src="@{/assets/js/main.js}"></script>
-	
+	<script th:src="@{/js/mainFrontScript.js}"></script>
+
    <script type="text/javascript">
     function checkPasswordMatch() {
  	  // alert("hommmmmm");

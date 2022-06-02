@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
+import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
@@ -48,6 +50,8 @@ import com.javatechie.awselasticbeanstalkexample.service.BookingService;
 import com.javatechie.awselasticbeanstalkexample.service.CatalogService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
+import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
+import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.RoleService;
 import com.javatechie.awselasticbeanstalkexample.service.SpecialityService;
@@ -118,6 +122,12 @@ public class HomeController {
 	@Autowired
 	private BookingCompanyService bookingCompanyService;
 
+	@Autowired
+	private ContactAtoolyService contactAtoolyService;
+
+	@Autowired
+	private PartnerAtoolyService partnerAtoolyService;
+	
 	@RequestMapping("/login-admin")
 	public String loginAdmin() {
 		return "loginAdmin";
@@ -161,7 +171,17 @@ public class HomeController {
 	@RequestMapping("/createAccount")
 	public String createAccount(Model model) throws UnknownHostException{
 		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
-
+		ContactAtooly contactAtooly         = contactAtoolyService.findByName(AppConstants.APP_NAME);
+		List<PartnerAtooly> partnerAtoolies = partnerAtoolyService.findAllPartners();
+		if(Objects.nonNull(contactAtooly)){
+		   model.addAttribute("contactExists",true);
+		   model.addAttribute("contact",contactAtooly); 
+	   }
+	   if(!partnerAtoolies.isEmpty()){
+		   model.addAttribute("partnerExist",true);
+		   model.addAttribute("partnerList",partnerAtoolies);
+	   }
+		
 	     List<Booking> bookingsAddedToCart = bookingService.findByIpAddressAndStatus(AppHosts.currentHostIpAddress(),AppConstants.ORDER_STATUS_ADDED_TO_CART);
 			if(!bookingsAddedToCart.isEmpty()) {
 		    	 model.addAttribute("bookingAddedToCartExist",true);

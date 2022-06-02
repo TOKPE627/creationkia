@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
 
+<link rel="stylesheet" th:href="@{/assets/css/styleNavbar.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
 <link rel="stylesheet" th:href="@{/assets/css/styleWelcome.css}">
 <link rel="stylesheet" th:href="@{/assets/css/styleSearch.css}">
 <body style="background-color: #e8e8e8;">	
@@ -195,29 +197,33 @@
 		<!--footer-area start-->
 		<footer th:replace="include/footer"></footer>
 
-		<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
-			<!-- jquery-3.3.1 version -->
-			<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
-			<!-- bootstra.min js -->
-			<script th:src="@{/assets/js/bootstrap.min.js}"></script>
-			<!-- mmenu js -->
-			<script th:src="@{/assets/js/jquery.mmenu.js}"></script>
-			<!-- easing js -->
-			<script th:src="@{/assets/js/jquery.easing.min.js}"></script>
-			<!---slick-js-->
-			<script th:src="@{/assets/js/slick.min.js}"></script>
-			<!---letteranimation-js-->
-			<script th:src="@{/assets/js/letteranimation.min.js}"></script>
-			<!-- jquery-ui js -->
-			<script th:src="@{/assets/js/jquery-ui.min.js}"></script>
-			<!-- jquery.countdown js -->
-			<script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
-			<!-- venobox js -->
-			<script th:src="@{/assets/js/venobox.min.js}"></script>
-			<!-- plugins js -->
-			<script th:src="@{/assets/js/plugins.js}"></script>
-			<!-- main js -->
-			<script th:src="@{/assets/js/main.js}"></script>	
+		
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+	<script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+ <!-- jquery-3.3.1 version -->
+ <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+ <!-- bootstra.min js -->
+ <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+ <!-- mmenu js -->
+ <script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+ <!-- easing js -->
+ <script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+ <!---slick-js-->
+ <script th:src="@{/assets/js/slick.min.js}"></script>
+ <!---letteranimation-js-->
+ <script th:src="@{/assets/js/letteranimation.min.js}"></script>
+ <!-- jquery-ui js -->
+ <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+ <!-- jquery.countdown js -->
+ <script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+ <!-- venobox js -->
+ <script th:src="@{/assets/js/venobox.min.js}"></script>
+ <!-- plugins js -->
+ <script th:src="@{/assets/js/plugins.js}"></script>
+ <!-- main js -->
+ <script th:src="@{/assets/js/main.js}"></script>	
+ <script th:src="@{/js/mainFrontScript.js}"></script>
 			<script>
 				var productId;
 				$(document).ready(function(){

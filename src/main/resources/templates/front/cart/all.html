@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
+
+<link rel="stylesheet" th:href="@{/assets/css/styleNavbar.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
 <style type="text/css">
    .btn-success {
 	  background-color: #6FB70F !important;
@@ -122,7 +125,8 @@
 			</div>
 		</div>			
 	    </section>
-       
+		<div th:replace="include/footer"></div>
+
 <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
 	<!-- jquery-3.3.1 version -->
 	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
@@ -146,6 +150,6 @@
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
 	<script th:src="@{/assets/js/main.js}"></script>	
-		<!--footer-area end-->
+	<script th:src="@{/js/mainFrontScript.js}"></script>
 </body>
 </html>

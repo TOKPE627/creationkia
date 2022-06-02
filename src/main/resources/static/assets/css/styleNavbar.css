@@ -1,0 +1,59 @@
+.navbar-toggler{
+    background-color: #6FB70F !important;
+      border-radius: 13px;
+  } 
+ .dropdown-item:hover{
+       transition: 3s;
+          	font-size:14px;
+	        font-weight:500;
+	        color: #6FB70F !important;
+ }
+ .nav-link{
+    	text-transform:uppercase;
+            transition: 3s;
+          	font-size:14px;
+	        font-weight:500;
+	        color: #ffffff !important;
+  }
+  .nav-link:hover{
+   	background-color:#6FB70F;
+ }
+  .searchBar > input{
+    border-radius: 13px;
+  }
+
+  @media screen and (min-width:1025px) {
+     .nav-item dropdown{
+      text-align: right; 
+    }
+   
+   .welcome {
+      margin-left: 3rem;
+    }
+   .searchBar{
+     width: 30rem !important;
+      margin-left: 5rem;  
+    }
+    
+   .contact{
+     margin-left: 2rem;  
+    }
+   .myAccount{
+         margin-left: 8.6rem;
+     } 
+     
+  
+    .shopping-cart{
+       margin-left: 6rem;
+     }
+  }
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .searchBar{
+      width: 30rem;
+    }
+  }
+  @media screen and (max-width:456px) {
+    .nav-item dropdown{
+      text-align: left; 
+    }
+  }

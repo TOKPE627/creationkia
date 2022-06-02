@@ -2,6 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
 <link rel="stylesheet" th:href="@{/assets/css/styleService.css}">
+
+<link rel="stylesheet" th:href="@{/assets/css/styleWelcome.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleNavbar.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleHeaderMenu.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
 <style>
 
 .badge-success, .btn-success {
@@ -155,7 +160,7 @@ border-color: #6FB70F !important;
         </div>  
     </div>
      <div style="margin-top: 3rem;"></div>
-         
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
             
        <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
 	<!-- jquery-3.3.1 version -->
@@ -180,7 +185,10 @@ border-color: #6FB70F !important;
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
 	<script th:src="@{/assets/js/main.js}"></script>	
-	<!--footer-area start-->
+  <script th:src="@{/js/mainFrontScript.js}"></script>
+
+  
+  <!--footer-area start-->
 	<footer th:replace="include/footer"></footer>
 	
 		<!--footer-area end-->

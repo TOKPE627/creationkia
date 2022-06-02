@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
 <head th:replace="include/head"></head>
 <link rel="stylesheet" th:href="@{/assets/css/styleContact.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleNavbar.css}">
+<link rel="stylesheet" th:href="@{/assets/css/styleFooter.css}">
 
 <body style="background-color: #e8e8e8 !important; ">	
      <div th:replace="include/navbar"></div>
@@ -48,7 +50,11 @@
 			 </div>
          </div>
        </div>
-       
+        <!--footer-area start-->
+	<footer th:replace="include/footer"></footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
        <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
 	<!-- jquery-3.3.1 version -->
 	<script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
@@ -72,9 +78,9 @@
 	<script th:src="@{/assets/js/plugins.js}"></script>
 	<!-- main js -->
 	<script th:src="@{/assets/js/main.js}"></script>	
-	<!--footer-area start-->
-	<footer th:replace="include/footer"></footer>
+	<script th:src="@{/js/mainFrontScript.js}"></script>
 	
-		<!--footer-area end-->
+	
+   
 </body>
 </html>
