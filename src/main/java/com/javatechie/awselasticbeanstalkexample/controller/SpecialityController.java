@@ -45,6 +45,12 @@ public class SpecialityController {
 	
 	@RequestMapping("/specialityInfo")
 	public String specialityInfo(@RequestParam("id") Long id,Model model,Principal principal) {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+		
 		User user = userService.findByUsername(principal.getName());
 		Speciality speciality = specialityService.findById(id);
 		model.addAttribute("user", user);
@@ -63,6 +69,12 @@ public class SpecialityController {
 	
 	@RequestMapping("/add")
 	public String add(Model model, Principal principal) {
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+
 		User user = userService.findByUsername(principal.getName());
 		List<Speciality> specialities = specialityService.findByUser(user);
 		model.addAttribute("user", user);
@@ -97,6 +109,12 @@ public class SpecialityController {
 	
 	  @RequestMapping(value = "/specialityList", method = RequestMethod.GET)
 	  public String all(Model model,Principal principal) throws IOException{
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+
 		     User user = userService.findByUsername(principal.getName());
 			 model.addAttribute("user", user);
 			 Company company=companyService.findByUser(user);
@@ -116,6 +134,12 @@ public class SpecialityController {
 	  
 		@RequestMapping("/updateSpeciality")
 		public String updateSpeciality(@RequestParam("id") Long id, Model model) {
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		    model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+
 			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Speciality speciality = specialityService.findById(id);
 			User user = userService.findByUsername(userDetails.getUsername());
@@ -155,6 +179,14 @@ public class SpecialityController {
 		//Front
 		@RequestMapping("/info")
 		public String Info(@RequestParam("id") Long id,Model model) {
+			model.addAttribute("url",AppConstants.url);
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+			model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+			model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+			model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+			model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 		   Speciality speciality = specialityService.findById(id);
 		   Company company = companyService.findByUser(speciality.getUser());
 		   model.addAttribute("speciality",speciality);

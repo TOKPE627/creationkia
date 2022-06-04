@@ -31,7 +31,15 @@ public class SubCategoryController {
 
 	@RequestMapping("/add")
     public String add(@RequestParam("idCategory") Long idCategory,Model model, Principal principal) {
-		  User user = userService.findByUsername(principal.getName());
+		model.addAttribute("url",AppConstants.url);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+	    model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+        model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
+		User user = userService.findByUsername(principal.getName());
 		  Category category = categoryService.findById(idCategory);
 		  model.addAttribute("user", user.getUsername());
 		  model.addAttribute("userRole1",AppConstants.ROLE_1);
@@ -56,6 +64,14 @@ public class SubCategoryController {
 	  @RequestMapping("/subCategoryList")
 	  public String all(@RequestParam("idCategory") Long idCategory,
                   Model model,Principal principal){
+					model.addAttribute("url",AppConstants.url);
+					model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+					model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+					model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+					model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+					model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+					model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+					model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
 			  User user = userService.findByUsername(principal.getName());
 				Category category = categoryService.findById(idCategory);
 
@@ -68,6 +84,14 @@ public class SubCategoryController {
 	  
 	  @RequestMapping("/subCategoryInfo")
 		public String info(@RequestParam("id") Long id, Model model,Principal principal) {
+			model.addAttribute("url",AppConstants.url);
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+			model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+			model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+			model.addAttribute("awsBucketAdvertise",AppConstants.awsBucketAdvertise);
+			model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+			model.addAttribute("awsBucketPartner", AppConstants.awsBucketPartner);
        	    User user = userService.findByUsername(principal.getName());
 	     
 			SubCategory subCategory = subCategoryService.findById(id);				

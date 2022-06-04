@@ -87,6 +87,7 @@ public class StoreController {
 	
 	@GetMapping("/update")
 	public String update(Model model) {
+		
 	  return "dashboard/store/update";
 	}	
 }

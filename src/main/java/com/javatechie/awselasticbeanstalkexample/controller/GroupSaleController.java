@@ -88,9 +88,12 @@ public class GroupSaleController {
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
 
-	    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+
 		  User user = userService.findByUsername(principal.getName());
           model.addAttribute("user", user);
 		  UserRole userRole =userRoleService.findByUser(user);
@@ -144,9 +147,11 @@ public class GroupSaleController {
 	@RequestMapping("/update")
 	public String update(@RequestParam("id") Long id, Model model,Principal principal) {
 
-	    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-	    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-	    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
 
 		User user = userService.findByUsername(principal.getName());
 	    Product product = productService.findById(id);
@@ -187,6 +192,11 @@ public class GroupSaleController {
 	
 	  @RequestMapping(value = "/groupSaleList", method = RequestMethod.GET)
 	  public String all(Model model,Principal principal) throws IOException{
+		model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
+		model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
+		model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
 		    User user = userService.findByUsername(principal.getName());
 		    Company company = companyService.findByUser(user);
 			model.addAttribute("user", user);
@@ -197,10 +207,7 @@ public class GroupSaleController {
 			model.addAttribute("productList",products); 
 			UserRole userRole =userRoleService.findByUser(user);
 
-		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
-		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-		    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-			
+	
 	        
 			if(userRole.getRole().getName().equals(AppConstants.ROLE_1)) {
 			   model.addAttribute("userRole1",AppConstants.ROLE_1);
@@ -212,10 +219,12 @@ public class GroupSaleController {
 	  @RequestMapping("/groupSaleInfo")
 		public String storeInfo(@RequestParam("id") Long id,Model model,Principal principal) throws UnknownHostException {
 
-		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);
+			model.addAttribute("awsBucketIcon", AppConstants.awsBucketIcon);
+		    model.addAttribute("awsBucketCompany", AppConstants.awsBucketCompany);
 		    model.addAttribute("awsBucketProduct", AppConstants.awsBucketProduct);
-		    model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
-		    
+			model.addAttribute("awsBucketGroupSale", AppConstants.awsBucketGroupSale);
+		    model.addAttribute("awsBucketShop", AppConstants.awsBucketShop);  
+			
 			User user = userService.findByUsername(principal.getName());
 			Company company = companyService.findByUser(user);
 			Product product = productService.findById(id);
