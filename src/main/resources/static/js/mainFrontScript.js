@@ -9,79 +9,92 @@
            $.ajax({
             type: "GET",
 	          contentType: "application/json",
-	          url: '/search/products?keyword='+query,
+	          url: '/search/productOrServiceOrStore?keyword='+query,
 	          data: {},
 	          dataType: 'json',
 	          cache: false,
 	          timeout: 600000,
 	          success: function (data) {
-              var json = data.result;
-              console.log(json);
-              $.each(json,function(index,product){
-                if(product.galery !=null && product.category.title =='service'){
-                  $('#dumppy').html('');    
-                  $("nav div").hide();
-                  $('#dumppy').append(
-                  '<div class="row" style="margin-top:4.5rem;">'+ 
-                      '<div class="col-xs-12">'
-                      +'<img class="rounded-circle" style="width:80px; height:8px" src='+ data.awsBucketProduct+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
-                    +'</div>'   
-                    +'<div class="col-xs-12" style="display:inline;margin-left:1rem; cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
-                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
-                      +'<span class="text-danger">' +product.price+ ' xof'+'</span>' 
-                    +'</div>'
-                  +"</div>"   
-                 );
-                }
-                if(product.galery !=null && product.category.title =='store'){
-                  $('#dumppy').html('');    
-                  $("nav div").hide();
-                  $('#dumppy').append( 
-                  '<div class="row" style="margin-top:4.5rem;">'+ 
-                      '<div class="col-xs-12">'
-                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketProduct+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
-                      +'</div>'   
-                      +'<div class="col-xs-12" style="display:inline;margin-left:1rem;cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
-                        +'<span class="text-success">' + product.name+'</span>'+'<br>'
-                        +'<span class="text-danger">' +product.price+' xof'+'</span>'
-                      +'</div>'
-                    +"</div>"   
-                   
-                 );
-                }
-                if(product.galery !=null && product.category.title =='shop'){
-                  $('#dumppy').html('');    
-                  $("nav div").hide();
-                  $('#dumppy').append(
-                  '<div class="row" style="margin-top:4.5rem;">'+ 
-                      '<div class="col-xs-12">'
-                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketShop+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
-                    +'</div>'   
-                    +'<div class="col-xs-12" style="display:inline;margin-left:1rem;cursor: pointer;" onclick="getResultDumppy('+product.id+')">'
-                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
-                      +'<span class="text-danger">' +product.price+' xof'+'</span>' 
-                    +'</div>'
-                   
-                  +"</div>"   
-               );
-              }
-              if(product.galery !=null && product.category.title == 'groupSale'){
-                $('#dumppy').html('');    
-                $("nav div").hide();
-                  $('#dumppy').append(
-                  '<div class="row" style="margin-top:4.5rem;">'+ 
-                      '<div class="col-xs-12">'
-                      +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketGroupSale+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
-                    +'</div>'   
-                    +'<div class="col-xs-12" style="display:inline; margin-left:1rem; cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
-                      +'<span class="text-success">' + product.name+'</span>'+'<br>'
-                      +'<span class="text-danger">' +product.price+' xof'+'</span>' 
-                    +'</div>'  
-                  +"</div>"   
-               );
-              }
-              
-            });
+              console.log(data);
+              var jsonProduct = data.result;
+              var jsonCompany = data.companies;
+            console.log("Products");  
+            console.log(jsonProduct);
+            console.log("Companies:");
+           console.log(jsonCompany);
+           //Products
+            //if(jsonProduct.length > 0){
+                $.each(jsonProduct,function(index,product){
+                    if(product.galery !=null && product.category.title =='shop'){
+                      $('#dumppy').html('');   
+                      $("nav div").hide();
+                      $('#dumppy').append(
+                       '<div class="row" style="margin-top:4.5rem;">'+ 
+                          '<div class="col-xs-12">'
+                          +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketShop+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                        +'</div>'   
+                        +'<div class="col-xs-12" style="display:inline;margin-left:1rem;cursor: pointer;" onclick="getResultDumppy('+product.id+')">'
+                          +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                          +'<span class="text-danger">' +product.price+' xof'+'</span>' 
+                        +'</div>'
+                      +"</div>"   
+                   );
+                  }
+                  if(product.galery !=null && product.category.title == 'groupSale'){
+                  
+                    $('#dumppy').html('');   
+                    $("nav div").hide();
+                      $('#dumppy').append(
+                      '<div class="row" style="margin-top:4.5rem;">'+ 
+                          '<div class="col-xs-12">'
+                          +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketGroupSale+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
+                        +'</div>'   
+                        +'<div class="col-xs-12" style="display:inline; margin-left:1rem; cursor:pointer;" onclick="getResultDumppy('+product.id+')">'
+                          +'<span class="text-success">' + product.name+'</span>'+'<br>'
+                          +'<span class="text-danger">' +product.price+' xof'+'</span>' 
+                        +'</div>'  
+                      +"</div>"   
+                   );
+                  }
+                  
+                });
+           // }
+            
+            //Companies
+           // if(jsonCompany.length > 0){
+                
+                $.each(jsonCompany,function(index,company){
+                    if(company.companyType == 'SERVICE' && company.galery !=null && company.galery.companyImage !=''){
+                        $('#dumppy').html('');   
+                        $("nav div").hide();
+                          $('#dumppy').append(
+                          '<div class="row" style="margin-top:4.5rem;">'+ 
+                              '<div class="col-xs-12">'
+                              +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketCompany+company.galery.id + '/'+ company.galery.companyImage +' alt="picture">'
+                            +'</div>'   
+                            +'<div class="col-xs-12" style="display:inline; margin-left:1rem; cursor:pointer;" onclick="getResultDumppyCompany('+company.id+')">'
+                              +'<span class="text-success">' + company.name+'</span>'+'<br>'
+                            +'</div>'  
+                          +"</div>"   
+                       );
+                    }
+                    if(company.companyType == 'STORE' && company.galery !=null && company.galery.companyImage !=''){
+                        $('#dumppy').html('');   
+                        $("nav div").hide();
+                          $('#dumppy').append(
+                          '<div class="row" style="margin-top:4.5rem;">'+ 
+                              '<div class="col-xs-12">'
+                              +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketCompany+company.galery.id + '/'+ company.galery.companyImage +' alt="picture">'
+                            +'</div>'   
+                            +'<div class="col-xs-12" style="display:inline; margin-left:1rem; cursor:pointer;" onclick="getResultDumppyCompany('+company.id+')">'
+                              +'<span class="text-success">' + company.name+'</span>'+'<br>'
+                            +'</div>'  
+                          +"</div>"   
+                       );
+                    }
+                });
+          ///  }
+       
           },
              
 	          error: function (e) {
@@ -112,7 +125,25 @@
 	        }
 		});  
      }
-
+     function getResultDumppyCompany(companyId){
+    	$.ajax({
+			type: "GET",
+	        contentType: "application/json",
+	        url: '/search/findCompany?company_id='+companyId,
+	        data: {},
+	        dataType: 'json',
+	        cache: false,
+	        timeout: 600000,
+	        success: function (data) {
+                console.log("company researched");
+                console.log(data);
+                window.location.href = '/company/info/'+data.id;
+	        },
+	        error: function (e) {
+	            console.log("ERROR : ", e);
+	        }
+		});  
+     }
 
 //End Script Navbar
 

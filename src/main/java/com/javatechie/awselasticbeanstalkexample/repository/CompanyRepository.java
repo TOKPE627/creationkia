@@ -18,5 +18,6 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 	  Company findByGalery(CompanyGalery companyGalery);
 	  @Query("SELECT c from company c WHERE  c.companyType= :companyType AND c.subCategory = :subCategory")
 	  List<Company> findByCompanyTypeBySubCategory(CompanyType companyType, SubCategory subCategory);
-	  
+	  List<Company> findByNameContainingIgnoreCase(String keyword);
+
 }

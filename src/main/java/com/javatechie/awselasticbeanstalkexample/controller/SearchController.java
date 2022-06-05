@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.javatechie.awselasticbeanstalkexample.domain.Advertise;
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.ContactAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.PartnerAtooly;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.SubCategory;
 import com.javatechie.awselasticbeanstalkexample.service.AdvertiseService;
+import com.javatechie.awselasticbeanstalkexample.service.CompanyService;
 import com.javatechie.awselasticbeanstalkexample.service.ContactAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.PartnerAtoolyService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
@@ -39,23 +41,40 @@ public class SearchController {
 	@Autowired
 	private PartnerAtoolyService partnerAtoolyService;
 	
+    
 
-	@RequestMapping(value = "/products")
+    @Autowired
+    private CompanyService companyService;
+
+	@RequestMapping(value = "/productOrServiceOrStore")
 	public ResponseEntity<?> showInfo(@ModelAttribute("keyword") String keyword) {
-        AjaxResponseBody result = new AjaxResponseBody();
+        AjaxResponseBody resultProducts = new AjaxResponseBody();
+        AjaxResponseBody resultCompanies = new AjaxResponseBody();
 		List<Product> products = productService.findByNameLike(keyword);
-		
-        if (products.isEmpty()) {
-            result.setMsg("no_result");
-        } else {
-            result.setMsg("success");
+		List<Company> companies = companyService.findByNameLike(keyword);
+        
+        if (products.isEmpty()) {//shop-groupSale
+            resultProducts.setMsg("no_result_products");
+        } 
+        if(companies.isEmpty()){//service-store
+            resultCompanies.setMsg("no_result_companies");
         }
-        result.setResult(products);	
-        result.setAwsBucketProduct(AppConstants.awsBucketProduct);
-        result.setAwsBucketGroupSale(AppConstants.awsBucketGroupSale);
-        result.setAwsBucketShop(AppConstants.awsBucketShop);
-        System.out.println(result);
-	    return ResponseEntity.ok(result);
+        if(!products.isEmpty()){
+            resultProducts.setMsg("success_products");
+            resultProducts.setResult(products);	
+            resultProducts.setAwsBucketProduct(AppConstants.awsBucketProduct);
+            resultProducts.setAwsBucketGroupSale(AppConstants.awsBucketGroupSale);
+            resultProducts.setAwsBucketShop(AppConstants.awsBucketShop);
+            System.out.println(resultProducts);
+            return ResponseEntity.ok(resultProducts);
+        }
+        if(!companies.isEmpty()){
+            resultCompanies.setMsg("success_companies");
+            resultCompanies.setCompanies(companies);	
+            resultCompanies.setAwsBucketCompany(AppConstants.awsBucketCompany);
+            System.out.println(resultCompanies);
+        } 
+	    return ResponseEntity.ok(resultCompanies);
 	}
 
     @RequestMapping(value="/findProduct")
@@ -64,6 +83,15 @@ public class SearchController {
         Product productFind = productService.findById(Long.parseLong(product_id));
         result.setName(productFind.getName());
         result.setId(productFind.getId());
+		return ResponseEntity.ok(result);
+    }
+
+    @RequestMapping(value="/findCompany")
+    public ResponseEntity<?> findCompany(@ModelAttribute("company_id") String company_id){
+        Company result=new Company();
+        Company companyFind = companyService.findById(Long.parseLong(company_id));
+        result.setName(companyFind.getName());
+        result.setId(companyFind.getId());
 		return ResponseEntity.ok(result);
     }
     @RequestMapping(value="/resultsProduct/{id}/{name}")

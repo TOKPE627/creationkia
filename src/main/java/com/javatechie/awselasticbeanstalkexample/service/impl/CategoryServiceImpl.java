@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.Company;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.repository.CategoryRepository;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
@@ -59,5 +60,6 @@ public class CategoryServiceImpl implements CategoryService{
 	public List<Category> findAllBytTitle1Title2(String title1, String title2) {
 		return categoryRepository.findAllBytTitle1Title2(title1, title2);
 	}
+
 
 }

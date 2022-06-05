@@ -10,6 +10,7 @@ public class AjaxResponseBody {
 	String awsBucketGroupSale;
 	String awsBucketShop;
 	String awsBucketAdvertise;
+	String awsBucketCompany;
 	List<Company> companies;
 	List<Speciality> specialities;
 	Long companyId;
@@ -106,6 +107,13 @@ public class AjaxResponseBody {
 		this.awsBucketAdvertise = awsBucketAdvertise;
 	}
 
+	public String getAwsBucketCompany() {
+		return awsBucketCompany;
+	}
+
+	public void setAwsBucketCompany(String awsBucketCompany) {
+		this.awsBucketCompany = awsBucketCompany;
+	}
 
 
 }

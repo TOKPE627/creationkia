@@ -56,7 +56,10 @@ public class CompanyServiceImpl implements CompanyService {
 	}
 
 
-
+	@Override
+	public List<Company> findByNameLike(String keyword) {
+		return companyRepository.findByNameContainingIgnoreCase(keyword);
+	}
 
 	
 }

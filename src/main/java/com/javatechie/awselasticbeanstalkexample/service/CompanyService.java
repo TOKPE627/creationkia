@@ -15,5 +15,6 @@ public interface CompanyService {
 	List<Company> findAllByType(CompanyType companyType);
     Company findByGalery(CompanyGalery companyGalery);
 	List<Company> findByCompanyTypeBySubCategory(CompanyType companyType, SubCategory subCategory);
+    List<Company> findByNameLike(String keyword);
 
 }
