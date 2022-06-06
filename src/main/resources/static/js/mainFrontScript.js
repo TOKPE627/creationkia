@@ -1,11 +1,36 @@
+// Script Header Menu
+
+var w = window.innerWidth;
+var h = window.innerHeight;
+
+console.log("Width: " +w);
+console.log("Height: " +h);
+
+
+
+if(w>767 && w<1025){
+console.log("Tablet device detected");
+advertiseTablet();
+}
+
+if(w>1024){
+console.log("PC Device detected");
+advertisePc();
+}
+
 // Script Navbar
 
   $(document).ready(function(){
       $("#search").keyup(function(){
-      
-      var query=$(this).val();
-      if(query!='')
-      {
+        if(w < 992){
+            console.log("Small device detected");
+            $("nav > .navbar-collapse > ul > li").hide();
+        }
+        $('#dumppy').html('');   
+        var query=$(this).val();
+        if(query!='')
+        {
+            $('#dumppy').html('');   
            $.ajax({
             type: "GET",
 	          contentType: "application/json",
@@ -15,21 +40,17 @@
 	          cache: false,
 	          timeout: 600000,
 	          success: function (data) {
-              console.log(data);
+           
               var jsonProduct = data.result;
               var jsonCompany = data.companies;
-            console.log("Products");  
-            console.log(jsonProduct);
-            console.log("Companies:");
-           console.log(jsonCompany);
-           //Products
-            //if(jsonProduct.length > 0){
+       
+                $('#dumppy').html('');   
                 $.each(jsonProduct,function(index,product){
+                  
                     if(product.galery !=null && product.category.title =='shop'){
-                      $('#dumppy').html('');   
-                      $("nav div").hide();
+                    
                       $('#dumppy').append(
-                       '<div class="row" style="margin-top:4.5rem;">'+ 
+                       '<div class="row rowDumppyResult">'+ 
                           '<div class="col-xs-12">'
                           +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketShop+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
                         +'</div>'   
@@ -42,10 +63,9 @@
                   }
                   if(product.galery !=null && product.category.title == 'groupSale'){
                   
-                    $('#dumppy').html('');   
-                    $("nav div").hide();
+                   
                       $('#dumppy').append(
-                      '<div class="row" style="margin-top:4.5rem;">'+ 
+                      '<div class="row rowDumppyResult">'+ 
                           '<div class="col-xs-12">'
                           +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketGroupSale+product.galery.id + '/'+ product.galery.image1 +' alt="picture">'
                         +'</div>'   
@@ -58,17 +78,13 @@
                   }
                   
                 });
-           // }
-            
-            //Companies
-           // if(jsonCompany.length > 0){
-                
+          
                 $.each(jsonCompany,function(index,company){
+                    
                     if(company.companyType == 'SERVICE' && company.galery !=null && company.galery.companyImage !=''){
-                        $('#dumppy').html('');   
-                        $("nav div").hide();
+                        
                           $('#dumppy').append(
-                          '<div class="row" style="margin-top:4.5rem;">'+ 
+                          '<div class="row rowDumppyResult">'+ 
                               '<div class="col-xs-12">'
                               +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketCompany+company.galery.id + '/'+ company.galery.companyImage +' alt="picture">'
                             +'</div>'   
@@ -79,10 +95,9 @@
                        );
                     }
                     if(company.companyType == 'STORE' && company.galery !=null && company.galery.companyImage !=''){
-                        $('#dumppy').html('');   
-                        $("nav div").hide();
+                        
                           $('#dumppy').append(
-                          '<div class="row" style="margin-top:4.5rem;">'+ 
+                          '<div class="row rowDumppyResult">'+ 
                               '<div class="col-xs-12">'
                               +'<img class="rounded-circle" style="width:80px; height:80px" src='+ data.awsBucketCompany+company.galery.id + '/'+ company.galery.companyImage +' alt="picture">'
                             +'</div>'   
@@ -93,7 +108,7 @@
                        );
                     }
                 });
-          ///  }
+        
        
           },
              
@@ -147,24 +162,7 @@
 
 //End Script Navbar
 
-//Script Header Menu
-
-	var w = window.innerWidth;
-	var h = window.innerHeight;
-	
-	console.log("Width: " +w);
-	console.log("Height: " +h);
-  
- 
-  if(w>767 && w<1025){
-    console.log("Tablet device detected");
-    advertiseTablet();
-  }
-
-  if(w>1024){
-    console.log("PC Device detected");
-    advertisePc();
-  }
+//Devices
 
   function advertiseTablet(){
 		  $.ajax({

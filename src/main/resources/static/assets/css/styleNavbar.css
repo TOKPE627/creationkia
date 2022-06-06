@@ -57,3 +57,13 @@
       text-align: left; 
     }
   }
+  
+  /* search Bar */
+  @media (min-width: 360px) and (max-width: 991px){
+    #dumppy{
+      margin-top: 6.2rem !important;
+    }
+  }
+  .rowDumppyResult{
+    margin-top: 5px;
+  }
