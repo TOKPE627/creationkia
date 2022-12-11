@@ -7,15 +7,11 @@ public class AjaxResponseBody {
 	String msg;
 	List<Product> result;
 	String awsBucketProduct;
-	String awsBucketGroupSale;
-	String awsBucketShop;
-	String awsBucketAdvertise;
-	String awsBucketCompany;
-	List<Company> companies;
-	List<Speciality> specialities;
-	Long companyId;
-	int numberLikes;
-    CharSequence contactrule;
+	String awsBucketBrand;
+	String awsBucketStyle;
+	String awsBucketUnivers;
+	String awsBucketCategory;
+
 	
 	public String getMsg() {
 		return msg;
@@ -41,79 +37,38 @@ public class AjaxResponseBody {
 		this.awsBucketProduct = awsBucketProduct;
 	}
 
-	public String getAwsBucketGroupSale() {
-		return awsBucketGroupSale;
-	}
+    public String getAwsBucketBrand() {
+        return awsBucketBrand;
+    }
 
-	public void setAwsBucketGroupSale(String awsBucketGroupSale) {
-		this.awsBucketGroupSale = awsBucketGroupSale;
-	}
+    public void setAwsBucketBrand(String awsBucketBrand) {
+        this.awsBucketBrand = awsBucketBrand;
+    }
 
-	public String getAwsBucketShop() {
-		return awsBucketShop;
-	}
+    public String getAwsBucketStyle() {
+        return awsBucketStyle;
+    }
 
-	public void setAwsBucketShop(String awsBucketShop) {
-		this.awsBucketShop = awsBucketShop;
-	}
+    public void setAwsBucketStyle(String awsBucketStyle) {
+        this.awsBucketStyle = awsBucketStyle;
+    }
 
-	public List<Company> getCompanies() {
-		return companies;
-	}
+    public String getAwsBucketUnivers() {
+        return awsBucketUnivers;
+    }
 
-	public void setCompanies(List<Company> companies) {
-		this.companies = companies;
-	}
+    public void setAwsBucketUnivers(String awsBucketUnivers) {
+        this.awsBucketUnivers = awsBucketUnivers;
+    }
 
-	public List<Speciality> getSpecialities() {
-		return specialities;
-	}
+    public String getAwsBucketCategory() {
+        return awsBucketCategory;
+    }
 
-	public void setSpecialities(List<Speciality> specialities) {
-		this.specialities = specialities;
-	}
+    public void setAwsBucketCategory(String awsBucketCategory) {
+        this.awsBucketCategory = awsBucketCategory;
+    }
 
 	
-
-	public int getNumberLikes() {
-		return numberLikes;
-	}
-
-	public void setNumberLikes(int numberLikes) {
-		this.numberLikes = numberLikes;
-	}
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
-	public CharSequence getContactrule() {
-		return contactrule;
-	}
-
-	public void setContactrule(CharSequence contactrule) {
-		this.contactrule = contactrule;
-	}
-
-	public String getAwsBucketAdvertise() {
-		return awsBucketAdvertise;
-	}
-
-	public void setAwsBucketAdvertise(String awsBucketAdvertise) {
-		this.awsBucketAdvertise = awsBucketAdvertise;
-	}
-
-	public String getAwsBucketCompany() {
-		return awsBucketCompany;
-	}
-
-	public void setAwsBucketCompany(String awsBucketCompany) {
-		this.awsBucketCompany = awsBucketCompany;
-	}
-
 
 }

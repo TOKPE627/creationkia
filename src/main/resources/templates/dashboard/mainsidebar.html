@@ -13,10 +13,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <a th:href="@{/}">
-            <img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="Attoly Logo" class="brand-image"
+        <!--   <a th:href="@{/}">
+            <img th:src="@{${awsBucketIcon}+'logo.png'}"  alt="KIA CREATION Logo" class="brand-image"
                style="width: 65%; cursor: pointer;">
-          </a>
+          </a> -->
            <!--    <img src="/assets/images/logos/logo.png" alt="Attoly Logo" 
                              
                class="brand-image"
@@ -69,30 +69,122 @@
               </li>
             </ul> -->
           </li>
-          <li  class="nav-item">
+              <li  class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
-                Villes de livraison
+                Produits
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-	                <a th:href="@{/townAvailable/add}" class="nav-link">
+	                <a th:href="@{/product/add}" class="nav-link">
 	                  <i class="far fa-circle nav-icon"></i>
-	                  <p>Ajouter une ville de livraison</p>
+	                  <p>Ajouter un produit</p>
 	                </a>
                 </li> 
 	            <li class="nav-item">
-	                <a th:href="@{/townAvailable/all}" class="nav-link">
+	                <a th:href="@{/product/all}" class="nav-link">
 	                  <i class="far fa-circle nav-icon"></i>
-	                  <p>Les villes de livraison </p>
+	                  <p>Tous les produits </p>
 	                </a>
 	            </li>
              </ul>
           </li>
-           <li class="nav-item">
+          <li  class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Categories
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+	                <a th:href="@{/category/add}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Ajouter une categorie</p>
+	                </a>
+                </li> 
+	            <li class="nav-item">
+	                <a th:href="@{/category/all}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Toutes les categories </p>
+	                </a>
+	            </li>
+             </ul>
+          </li>
+            <li  class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Marques
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+	                <a th:href="@{/brand/add}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Ajouter une marque</p>
+	                </a>
+                </li> 
+	            <li class="nav-item">
+	                <a th:href="@{/brand/all}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Toutes les marques </p>
+	                </a>
+	            </li>
+             </ul>
+          </li>
+            <li  class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Styles
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+	                <a th:href="@{/style/add}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Ajouter un style</p>
+	                </a>
+                </li> 
+	            <li class="nav-item">
+	                <a th:href="@{/style/all}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Tous les styles </p>
+	                </a>
+	            </li>
+             </ul>
+          </li>
+            <li  class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Univers
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+	                <a th:href="@{/univers/add}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Ajouter un univers</p>
+	                </a>
+                </li> 
+	            <li class="nav-item">
+	                <a th:href="@{/univers/all}" class="nav-link">
+	                  <i class="far fa-circle nav-icon"></i>
+	                  <p>Tous les univers </p>
+	                </a>
+	            </li>
+             </ul>
+          </li>
+        <!--    <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
@@ -114,239 +206,12 @@
                 </a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Boutique
-                <i class="fas fa-angle-left right"></i>
-<!--                 <span class="badge badge-info right">6</span>
- -->          </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/shop/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un produit</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/shop/shopList}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tous les produits</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Achat groupé
-                <i class="fas fa-angle-left right"></i>
-<!--                 <span class="badge badge-info right">6</span>
- -->          </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/groupSale/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un achat</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/groupSale/groupSaleList}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tous les achats groupés</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Affiche PC
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                 <li class="nav-item">
-                <a th:href="@{/advertise/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter une affiche</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/advertise/update}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Voir l'affiche</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Affiche Tablet
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                 <li class="nav-item">
-                <a th:href="@{/advertise/tablet/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter une affiche</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/advertise/tablet/update}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Voir l'affiche</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Affiche Mobile
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                 <li class="nav-item">
-                <a th:href="@{/advertise/mobile/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter une affiche</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/advertise/mobile/update}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Voir l'affiche</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Contacts-Règles
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/contact/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Contact</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Partenaires
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/partner/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un partnenaire</p>
-                </a>
-              </li>
-            
-              <li class="nav-item">
-                <a th:href="@{/partner/partnerList}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Partenaires</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-        </ul>
-      
-        
-        <ul th:if="${userRole2}" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li  class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Tableau de bord
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-      <!--       <ul th:if="${company !=null and company.galery !=null}"  class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/company/companyInfo}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Magasin</p>
-                </a>
-              </li>
-            </ul> -->
-          </li>
-          <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Villes de livraison
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-	                <a th:href="@{/townAvailable/add}" class="nav-link">
-	                  <i class="far fa-circle nav-icon"></i>
-	                  <p>Ajouter une ville de livraison</p>
-	                </a>
-                </li> 
-	            <li class="nav-item">
-	                <a th:href="@{/townAvailable/all}" class="nav-link">
-	                  <i class="far fa-circle nav-icon"></i>
-	                  <p>Les villes de livraison </p>
-	                </a>
-	            </li>
-             </ul>
-          </li>
-           <li th:if="${company !=null and company.galery !=null}" class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Horaires de travail
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview"> 
-               <li class="nav-item">
-                <a th:href="@{/workingHour/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un horaire de travail</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a th:href="@{/workingHour/all}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Horaires de travail </p>
-                </a>
-              </li> 
-           </ul> 
-          </li>  
-          <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
-              <p>
-                Produits
                 <i class="fas fa-angle-left right"></i>
 <!--                 <span class="badge badge-info right">6</span>
  -->          </p>
@@ -359,159 +224,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a th:href="@{/product/productList}" class="nav-link">
+                <a th:href="@{/product/all}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tous les produits</p>
                 </a>
               </li>
             </ul>
           </li>
-       
-           <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Commandes
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/order/all}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Toutes les commandes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/order/historical}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Historique des commandes</p>
-                </a>
-              </li>
-            </ul>
-          </li>     
         </ul>
-        
-        <ul th:if="${userRole3}" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Tableau de bord
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-          <!--   <ul th:if="${company !=null and company.galery !=null}"  class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/company/companyInfo}" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Service</p>
-                </a>
-              </li>
-            </ul> -->
-          </li>
-  
-           <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Catalogues
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/catalog/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter un article</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/catalog/catalogList}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tous les articles</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-          
-          <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Spécialités
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/speciality/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ajouter une Spécialité</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/speciality/specialityList}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Toutes les Spécialités</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-              
-         
-          
-           <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Rendez-vous
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/order/all}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tous les rendez-vous</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/order/historical}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Historique</p>
-                </a>
-              </li>
-            </ul>
-          </li> 
-           <li th:if="${company !=null and company.galery !=null}"  class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-chart-pie"></i>
-              <p>
-                Agenda
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-               <li class="nav-item">
-                <a th:href="@{/agenda/add}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Modifier l'agenda</p>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a th:href="@{/agenda/all}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Tout l'agenda</p>
-                </a>
-              </li>
-            </ul>
-            
-          </li> 
-          
-        </ul>
+      
         <!-- CUSTOMER -->
        <!--    <ul th:if="${userRole4}" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           Add icons to the links using the .nav-icon class

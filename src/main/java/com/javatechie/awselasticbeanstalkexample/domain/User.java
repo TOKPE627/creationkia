@@ -45,10 +45,6 @@ public class User implements UserDetails{
 	private String lastName;
     private String photo;
 	
-    //Address
-	@ManyToOne
-	@JoinColumn(name = "country_id")
-	private Country country;
 	private String town;
 	
 	private String district;
@@ -80,47 +76,7 @@ public class User implements UserDetails{
 	private Set<UserRole> userRoles = new HashSet<>();
 	
 	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-	@JsonIgnore()
-	private Company company;
 	
-
-	
-	@OneToMany(mappedBy="user")
-	@JsonIgnore()
-	private List<Catalog> catalogList;
-	
-	
-	@OneToMany(mappedBy="sender")
-	@JsonIgnore()
-	private List<MailVisitor> senderMessages;
-
-	@OneToMany(mappedBy="receiver")
-	@JsonIgnore()
-	private List<MailVisitor> receiverMessages;
-	
-	@OneToMany(mappedBy="user")
-	@JsonIgnore()
-	private List<Speciality> specialities;
-	
-	public List<Speciality> getSpecialities() {
-		return specialities;
-	}
-	public void setSpecialities(List<Speciality> specialities) {
-		this.specialities = specialities;
-	}
-	public List<MailVisitor> getSenderMessages() {
-		return senderMessages;
-	}
-	public void setSenderMessages(List<MailVisitor> senderMessages) {
-		this.senderMessages = senderMessages;
-	}
-	public List<MailVisitor> getReceiverMessages() {
-		return receiverMessages;
-	}
-	public void setReceiverMessages(List<MailVisitor> receiverMessages) {
-		this.receiverMessages = receiverMessages;
-	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -177,13 +133,7 @@ public class User implements UserDetails{
 		this.userRoles = userRoles;
 	}
 	
-	public List<Catalog> getCatalogList() {
-		return catalogList;
-	}
-	public void setCatalogList(List<Catalog> catalogList) {
-		this.catalogList = catalogList;
-	}
-
+	
 
 	
 
@@ -221,12 +171,7 @@ public class User implements UserDetails{
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	public Country getCountry() {
-		return country;
-	}
-	public void setCountry(Country country) {
-		this.country = country;
-	}
+
 	public String getTown() {
 		return town;
 	}
@@ -264,14 +209,7 @@ public class User implements UserDetails{
 		this.twitter = twitter;
 	}
 
-	public Company getCompany() {
-		return company;
-	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
 
-	
 	
 	public String getDistrict() {
 		return district;

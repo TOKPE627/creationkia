@@ -1,23 +1,15 @@
 cloud:
   aws:
     credentials:
-      access-key: AKIAVZEDBFOEPCBN7UU7
-      secret-key:  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
+      access-key: AKIAU7OWTI6VZLNBJV34
+      secret-key: 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
     region:
-      static: us-east-1
+      static: eu-west-3
     stack:
       auto:false
 
 application:
  bucket: 
-   name: atoolystorage
-   icon: atoolyicon
-   user: atoolyuser
-   company: atoolycompany
-   product: atoolyproduct
-   shop: atoolyshop
-   groupsale: atoolygroupsale
-   advertise: atoolyad
-   catalog: atoolycatalog
-   partner: atoolypartner
+   category: kiacategory
+  
 

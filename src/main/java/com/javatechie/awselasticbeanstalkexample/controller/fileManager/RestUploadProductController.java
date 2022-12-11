@@ -40,7 +40,7 @@ public class RestUploadProductController {
 	@Autowired
     private StorageService storageService;
     
-	private final Logger logger = LoggerFactory.getLogger(RestUploadController.class);
+	private final Logger logger = LoggerFactory.getLogger(RestUploadProductController.class);
 
 	@PostMapping("/multi")
     public ResponseEntity<?> uploadFileMulti(

@@ -37,12 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/fonts/**",
 			"/search",
 			"/assets/**",
-			"/myAccount",
-			"/newUser",
-			"/updateUserInfo",
-			"/forgetPassword",
-			"/dashboard","/order","/service","/store","/contact",
-			"/company","/catalog","/speciality","/geolocate"
+			"/dashboard","/category","/style","/brand","/univers"
 			};
 	
 

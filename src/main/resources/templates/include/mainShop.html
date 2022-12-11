@@ -17,16 +17,13 @@
 							<div th:if="${product.galery !=null  and product.galery.image1 !='' and product.galery.image2 !='' and product.galery.image3 !='' and product.galery.image4 !=''}"	
 							 class="product-single" style="background-color:  #e8e8e8 !important;">
 								<div class="product-title">
-								 
 								   <h4 style="font-size: 12px; text-align: center;" th:text="${#strings.abbreviate(product.name,18)}"></h4>                                      
-							  
 								</div>
 								<div  class="product-thumb product-thumb-shop">
 									<a href="#">
 										 <img width="100%" height="150rem"
 											class="img-responsive" style="object-fit: cover;"
 										   th:src="@{${awsBucketShop}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
-							 
 												   th:data-id          = "${product.id}"
 												   th:data-name        = "${product.name}"
 												   th:data-detail      = "${product.detail}"

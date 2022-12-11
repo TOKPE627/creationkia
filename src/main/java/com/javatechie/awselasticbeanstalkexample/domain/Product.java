@@ -1,7 +1,6 @@
 package com.javatechie.awselasticbeanstalkexample.domain;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Table(name="product")
 @Entity(name="product")
@@ -22,226 +22,320 @@ public class Product  implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user; //Seller
-   //Product Commercial and MultiService
-	
-	
-	
-	   @ManyToOne
-	    @JoinColumn(name = "category_id")
-	    private Category category;
-	
-    @ManyToOne
-    @JoinColumn(name = "sub_category_id")
-    private SubCategory subCategory;
-    
-    
-    @ManyToOne(cascade = { CascadeType.REMOVE})
-	@JoinColumn(name = "galery_id")
-	private ProductGalery galery;
-//	@ManyToOne  
-//	@JoinColumn(name = "store_id")
-//	private Store store;
-	//@ManyToOne --Library
-	//@ManyToOne --Shop
-	private String name;
-	private String downsale; //Downsale:-$25
-	private Double upPrice;//Upselling price
-	//Description
-	private Double price;//Normal price
-	private String brand;//Brand
-	private Long quantity;	
-	@Column(columnDefinition="text")
-	private String detail;
-	private String publicationDate;
-    private String closedDate;
-    private double deliveryPrice;
-	private int currentBooking=0;
-	@OneToMany(mappedBy="product")
-	@JsonIgnore()
-	private List<MailVisitor> mailVisitorList;
-	 
-	//Product MultiService
-	@Column(columnDefinition="text")
-	private String specificity;
-	private String deliveryDelay;
-		
-	public String getDownsale() {
-		return downsale;
-	}
+	  @Id
+	     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	     private Long id;
+	     @Column(columnDefinition="text")
+	     private String name;
+	     private Double price;
+	     private Double oldPrice;
+	     private int availableQuantity;
+	     
+	     @Column(columnDefinition="text")
+	     private String mainImage;
+	    
+	     @JsonBackReference(value = "category")
+	     @ManyToOne
+	     private Category category;
+	    
+	     
+	     
+	     private String c1;
+	     private String c2;
+	     private String c3;
+	     private String c4;
+	     private String c5;
+	     private String c6;
+	     private String c7;
+	     private String c8;
+	     private String c9;
+	     private String c10;
+	    
+	     private String d1; 
+	     private String d2; 
+	     private String d3;
+	     private String d4;
+	     private String d5; 
+	     private String d6; 
+	     private String d7; 
+	     private String d8; 
+	     private String d9; 
+	     private String d10; 
+	     
+	     @ManyToOne(cascade = { CascadeType.REMOVE})
+	     @JoinColumn(name = "galery_id")
+	     private ProductGalery galery;
+	     
+	     @OneToOne
+	     private Brand brand;
+	     
+	     @OneToOne
+	     private Style style ;
+	     
+	     @OneToOne
+	     private Univers univers;
+	     
+	     @OneToOne
+	     private Gender gender;
 
-	public void setDownsale(String downsale) {
-		this.downsale = downsale;
-	}
+        public Long getId() {
+            return id;
+        }
 
-	
-	public Category getCategory() {
-		return category;
-	}
+        public void setId(Long id) {
+            this.id = id;
+        }
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
+        public String getName() {
+            return name;
+        }
 
-	public List<MailVisitor> getMailVisitorList() {
-		return mailVisitorList;
-	}
+        public void setName(String name) {
+            this.name = name;
+        }
 
-	public void setMailVisitorList(List<MailVisitor> mailVisitorList) {
-		this.mailVisitorList = mailVisitorList;
-	}
+        public Double getPrice() {
+            return price;
+        }
 
-	public String getSpecificity() {
-		return specificity;
-	}
+        public void setPrice(Double price) {
+            this.price = price;
+        }
 
-	public void setSpecificity(String specificity) {
-		this.specificity = specificity;
-	}
+        public Double getOldPrice() {
+            return oldPrice;
+        }
 
-	public String getDeliveryDelay() {
-		return deliveryDelay;
-	}
+        public void setOldPrice(Double oldPrice) {
+            this.oldPrice = oldPrice;
+        }
 
-	public void setDeliveryDelay(String deliveryDelay) {
-		this.deliveryDelay = deliveryDelay;
-	}
+        public int getAvailableQuantity() {
+            return availableQuantity;
+        }
 
-	public Long getId() {
-		return id;
-	}
+        public void setAvailableQuantity(int availableQuantity) {
+            this.availableQuantity = availableQuantity;
+        }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+        public String getMainImage() {
+            return mainImage;
+        }
 
+        public void setMainImage(String mainImage) {
+            this.mainImage = mainImage;
+        }
 
+        public Category getCategory() {
+            return category;
+        }
 
-	public User getUser() {
-		return user;
-	}
+        public void setCategory(Category category) {
+            this.category = category;
+        }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+        public String getC1() {
+            return c1;
+        }
 
-	public SubCategory getSubCategory() {
-		return subCategory;
-	}
+        public void setC1(String c1) {
+            this.c1 = c1;
+        }
 
-	public void setSubCategory(SubCategory subCategory) {
-		this.subCategory = subCategory;
-	}
+        public String getC2() {
+            return c2;
+        }
 
-//	public Store getStore() {
-//		return store;
-//	}
-//
-//	public void setStore(Store store) {
-//		this.store = store;
-//	}
+        public void setC2(String c2) {
+            this.c2 = c2;
+        }
 
-	public String getName() {
-		return name;
-	}
+        public String getC3() {
+            return c3;
+        }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+        public void setC3(String c3) {
+            this.c3 = c3;
+        }
 
-	
+        public String getC4() {
+            return c4;
+        }
 
-	public Double getPrice() {
-		return price;
-	}
+        public void setC4(String c4) {
+            this.c4 = c4;
+        }
 
-	public void setPrice(Double price) {
-		this.price = price;
-	}
+        public String getC5() {
+            return c5;
+        }
 
-	public String getBrand() {
-		return brand;
-	}
+        public void setC5(String c5) {
+            this.c5 = c5;
+        }
 
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
+        public String getC6() {
+            return c6;
+        }
 
-	public Long getQuantity() {
-		return quantity;
-	}
+        public void setC6(String c6) {
+            this.c6 = c6;
+        }
 
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
-	}
+        public String getC7() {
+            return c7;
+        }
 
-	public String getDetail() {
-		return detail;
-	}
+        public void setC7(String c7) {
+            this.c7 = c7;
+        }
 
-	public void setDetail(String detail) {
-		this.detail = detail;
-	}
+        public String getC8() {
+            return c8;
+        }
 
-	
+        public void setC8(String c8) {
+            this.c8 = c8;
+        }
 
-	public int getCurrentBooking() {
-		return currentBooking;
-	}
+        public String getC9() {
+            return c9;
+        }
 
-	public void setCurrentBooking(int currentBooking) {
-		this.currentBooking = currentBooking;
-	}
+        public void setC9(String c9) {
+            this.c9 = c9;
+        }
 
-	public String getPublicationDate() {
-		return publicationDate;
-	}
+        public String getC10() {
+            return c10;
+        }
 
-	public void setPublicationDate(String publicationDate) {
-		this.publicationDate = publicationDate;
-	}
-	
-	public String getClosedDate() {
-		return closedDate;
-	}
+        public void setC10(String c10) {
+            this.c10 = c10;
+        }
 
-	public void setClosedDate(String closedDate) {
-		this.closedDate = closedDate;
-	}
+        public String getD1() {
+            return d1;
+        }
 
-	public double getDeliveryPrice() {
-		return deliveryPrice;
-	}
+        public void setD1(String d1) {
+            this.d1 = d1;
+        }
 
-	public void setDeliveryPrice(double deliveryPrice) {
-		this.deliveryPrice = deliveryPrice;
-	}
+        public String getD2() {
+            return d2;
+        }
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+        public void setD2(String d2) {
+            this.d2 = d2;
+        }
 
-	public Double getUpPrice() {
-		return upPrice;
-	}
+        public String getD3() {
+            return d3;
+        }
 
-	public void setUpPrice(Double upPrice) {
-		this.upPrice = upPrice;
-	}
+        public void setD3(String d3) {
+            this.d3 = d3;
+        }
 
-	public ProductGalery getGalery() {
-		return galery;
-	}
+        public String getD4() {
+            return d4;
+        }
 
-	public void setGalery(ProductGalery galery) {
-		this.galery = galery;
-	}
+        public void setD4(String d4) {
+            this.d4 = d4;
+        }
 
+        public String getD5() {
+            return d5;
+        }
+
+        public void setD5(String d5) {
+            this.d5 = d5;
+        }
+
+        public String getD6() {
+            return d6;
+        }
+
+        public void setD6(String d6) {
+            this.d6 = d6;
+        }
+
+        public String getD7() {
+            return d7;
+        }
+
+        public void setD7(String d7) {
+            this.d7 = d7;
+        }
+
+        public String getD8() {
+            return d8;
+        }
+
+        public void setD8(String d8) {
+            this.d8 = d8;
+        }
+
+        public String getD9() {
+            return d9;
+        }
+
+        public void setD9(String d9) {
+            this.d9 = d9;
+        }
+
+        public String getD10() {
+            return d10;
+        }
+
+        public void setD10(String d10) {
+            this.d10 = d10;
+        }
+
+        public ProductGalery getGalery() {
+            return galery;
+        }
+
+        public void setGalery(ProductGalery galery) {
+            this.galery = galery;
+        }
+
+        public Brand getBrand() {
+            return brand;
+        }
+
+        public void setBrand(Brand brand) {
+            this.brand = brand;
+        }
+
+        public Style getStyle() {
+            return style;
+        }
+
+        public void setStyle(Style style) {
+            this.style = style;
+        }
+
+        public Univers getUnivers() {
+            return univers;
+        }
+
+        public void setUnivers(Univers univers) {
+            this.univers = univers;
+        }
+
+        public Gender getGender() {
+            return gender;
+        }
+
+        public void setGender(Gender gender) {
+            this.gender = gender;
+        }
+
+        public static long getSerialversionuid() {
+            return serialVersionUID;
+        }
 	
 }

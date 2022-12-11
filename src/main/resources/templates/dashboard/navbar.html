@@ -91,22 +91,9 @@
           <span class="badge badge-warning navbar-badge" th:if="${userRole1}">
             <h6>Compte Admin</h6>
           </span>
-          <span class="badge badge-warning navbar-badge" th:if="${userRole2}">
-               <h6>Compte Magasin</h6></span>
-          <span class="badge badge-warning navbar-badge" th:if="${userRole3}">
-              <h6>Compte Service</h6>
-          </span>        
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <div class="dropdown-divider"></div>
-          <a href="#" th:if="${userRole2}"  th:href="@{/company/update}"
-          class="dropdown-item dropdown-footer">
-            <i class="fas fa-edit"></i>             Modification
-          </a>
-          <a href="#" th:if="${userRole3}" th:href="@{/company/update}"
-           class="dropdown-item dropdown-footer">
-            <i class="fas fa-edit"></i>             Modification
-          </a>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer" th:href="@{/logout}" role="button">
             <i class='fas fa-sign-out-alt'></i> Déconnexion
