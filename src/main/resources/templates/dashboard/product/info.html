@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+  <link rel="icon" type="image/x-icon" th:href="@{${awsBucketIcon}+'logoHead.png'}">
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  
+  
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/jqvmap/jqvmap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/adminlte/dist/css/adminlte.min.css}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/daterangepicker/daterangepicker.css}">
+  <!-- summernote -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/summernote/summernote-bs4.min.css}">
+  <link rel="stylesheet" th:href="@{/assets/css/styleDashboard.css}">
+</head>
+<style>
+
+@media screen and (min-width:1025px) { 
+
+}
+
+@media screen and (max-width:456px) {
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .catalogImg{
+	  width: 100% !important;
+	  max-height: 3.5rem !important;
+  }
+}
+</style>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+   <div th:replace="dashboard/navbar"></div>
+   <div th:replace="dashboard/mainsidebar"></div> 
+   <div class="content-wrapper">
+        <div th:replace="dashboard/header"></div>
+            <!-- Main content -->
+	     <section class="content">
+		     <div class="container-fluid">
+		      	<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+		           <input type="hidden" th:value="${product.galery.id}" name="galery_id"/>
+		
+			        <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 1</label>
+						  
+			               <div class="col-md-6">
+				              <img th:if="${product.galery !=null and product.galery.image1 !=''}" 
+						        id="thumbnail0"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image1}}" alt=""  
+						   	   />
+			                   <div class="col-xs-3">
+			                  	   <input type="file" name="files"/><br/><br/>
+			                  	    
+			                   </div>
+			                </div>
+					 </div>
+				    <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 2</label>
+			               <div class="col-md-6">
+			                  <img th:if="${product.galery !=null and product.galery.image2 !=''}" 
+						        id="thumbnail1"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image2}}" alt=""  
+						   	   />
+			                 <div class="col-xs-3">
+			                  	   <input type="file" name="files"/><br/><br/>
+			                  	    
+			                  </div>
+			                </div>
+					 </div>
+				     <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 3</label>
+			               <div class="col-md-6">
+				              <img th:if="${product.galery !=null and product.galery.image3 !=''}" 
+						        id="thumbnail2"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image3}}" alt=""  
+						   	   />
+			                 <div class="col-xs-3">
+			                  	   <input type="file" name="files"/><br/><br/>
+			                  	    
+			                  </div>
+			                </div>
+					 </div>
+				     <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 4</label>
+			              <div class="col-md-6">
+				             <img th:if="${product.galery !=null and product.galery.image4 !=''}" 
+						        id="thumbnail3"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image4}}" alt=""  
+						   	   />
+			                <div class="col-xs-3">
+			                 	   <input type="file" name="files"/><br/><br/>
+			                 	    
+			                 </div>
+			               </div>
+					 </div>
+					    <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 5</label>
+			              <div class="col-md-6">
+				             <img th:if="${product.galery !=null and product.galery.image5 !=''}" 
+						        id="thumbnail4"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image5}}" alt=""  
+						   	   />
+			                <div class="col-xs-3">
+			                 	   <input type="file" name="files"/><br/><br/>
+			                 	    
+			                 </div>
+			               </div>
+					 </div>
+					    <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 6</label>
+			              <div class="col-md-6">
+				             <img th:if="${product.galery !=null and product.galery.image6 !=''}" 
+						        id="thumbnail5"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image6}}" alt=""  
+						   	   />
+			                <div class="col-xs-3">
+			                 	   <input type="file" name="files"/><br/><br/>
+			                 	    
+			                 </div>
+			               </div>
+					 </div>
+					    <div class="form-group">
+						<label class="col-md-2 control-label">* Photo 7</label>
+			              <div class="col-md-6">
+				             <img th:if="${product.galery !=null and product.galery.image7 !=''}" 
+						        id="thumbnail6"
+						        class="img-responsive center-block" 
+								style="height: 350px;width: 100%; object-fit: contain;"
+				                   th:src="@{${bProduct}+${product.galery.id}+'/'+${product.galery.image7}}" alt=""  
+						   	   />
+			                <div class="col-xs-3">
+			                 	   <input type="file" name="files"/><br/><br/>
+			                 	    
+			                 </div>
+			               </div>
+					 </div>
+					<div class="row" style="margin-left: 10%;">
+					      <span style="color: #6FB70F;" id="result"></span>					 
+		   	         </div>
+					  <div class="form-group">
+						<label class="col-md-2 control-label"></label>
+			              <div class="col-md-6">
+			              	    <input style="position: right; color:  #6FB70F;" type="submit" value="Valider" id="btnSubmit"/>
+			               </div>
+					 </div>
+				</form>
+		
+			
+		 </div>
+	  </section>
+	    <section class="content">
+	      <div class="container-fluid">
+	        <div class="container">
+	        <form class="form-horizontal" th:action="@{/product/update}" method="post">
+				<input type="hidden" name="id" th:value="${product.id}" />
+			    <input type="hidden" name="galery_id" th:value="${product.galery.id}" />	      
+				
+	            <div class="card" style="display: inline;">
+				   <fieldset style="margin-top: 2rem;">
+				   
+			         <legend style="font-size: medium;color: #6FB70F;">Modifier les Informations du produit</legend> 
+			         <div class="row">
+					    <div class="col-md-6">
+					       <label class="control-label">Categorie:</label>
+					      <input  class="form-control" 
+					        th:value="${product.category.name}" disabled="disabled">
+					    </div>
+						<div class="col-md-6">
+							<label class="control-label">Modifier la categorie</label>
+							<select name="category_id" class="form-control">
+						       <option data-th-each="c : ${categoryList}" th:value="${c.id}" th:text="${c.name}">
+						       </option>
+						    </select>
+						</div>
+			         </div>
+			           <div class="row">
+					    <div class="col-md-6">
+					       <label class="control-label">Marque:</label>
+					      <input  class="form-control" 
+					        th:value="${product.brand.name}" disabled="disabled">
+					    </div>
+						<div class="col-md-6">
+							<label class="control-label">Modifier la marque</label>
+							<select name="brand_id" class="form-control">
+						       <option data-th-each="b : ${brandList}" th:value="${b.id}" th:text="${b.name}">
+						       </option>
+						    </select>
+						</div>
+			         </div>
+			           <div class="row">
+					    <div class="col-md-6">
+					       <label class="control-label">Style:</label>
+					      <input  class="form-control" 
+					        th:value="${product.style.name}" disabled="disabled">
+					    </div>
+						<div class="col-md-6">
+							<label class="control-label">Modifier le style</label>
+							<select name="style_id" class="form-control">
+						       <option data-th-each="s : ${styleList}" th:value="${s.id}" th:text="${s.name}">
+						       </option>
+						    </select>
+						</div>
+			         </div>
+			         <div class="row">
+					    <div class="col-md-6">
+					       <label class="control-label">Univers:</label>
+					      <input  class="form-control" 
+					        th:value="${product.univers.name}" disabled="disabled">
+					    </div>
+						<div class="col-md-6">
+							<label class="control-label">Modifier l'univers</label>
+							<select name="univers_id" class="form-control">
+						       <option data-th-each="u : ${universList}" th:value="${u.id}" th:text="${u.name}">
+						       </option>
+						    </select>
+						</div>
+			         </div>
+			           <div class="row">
+					    <div class="col-md-6">
+					       <label class="control-label">Genre:</label>
+					      <input  class="form-control" 
+					        th:value="${product.gender}" disabled="disabled">
+					    </div>
+						<div class="col-md-6">
+							<label class="control-label">Modifier le genre</label>
+							<select name="gender" class="form-control">
+						      <option value="Homme">Homme</option>
+						      <option value="Femme">Femme</option>
+						      <option value="Tout le monde">Tout le monde</option>  
+						    </select>
+						</div>
+			         </div>
+			          <div class="form-group">
+					    <label class="col-md-2">Nom:</label>
+					    <div class="col-md-8">
+					      <input  class="form-control" 
+					        th:value="${product.name}" name="name">
+					    </div>
+					  </div>
+				
+					
+					<div class="form-group">
+						<label class="col-md-2 control-label"> Prix de vente(en £uro)</label>
+						<div class="col-md-8">
+							<input type="number" name="price" class="form-control" 
+							   th:value="${product.price}">
+						</div>
+					</div>
+			   	    <div class="form-group">
+					    <label class="col-md-2 control-label">Ancien Prix(en £uro)</label>
+					    <div class="col-md-8">
+					      <input type="number" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.oldPrice}" name="oldPrice">
+					    </div>
+					 </div>
+					 
+					  <div class="form-group">
+					    <label class="col-md-2 control-label">Quantit&eacute; disponible en stock</label>
+					    <div class="col-md-8">
+					       <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.availableQuantity}" name="availableQuantity">
+					    </div>
+					  </div>
+					       <div class="form-group">
+					    <label class="col-md-2 control-label">Caractéristique 1</label>
+					    <div class="col-md-8">
+					      <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.c1}" name="c1">
+					    </div>
+					 </div>
+					 <div class="form-group">
+					    <label class="col-md-2 control-label">Description 1</label>
+					    <div class="col-md-8">
+					      <textarea  class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.d1}" name="d1"></textarea>
+					    </div>
+					 </div>
+					  <div class="form-group">
+					    <label class="col-md-2 control-label">Caractéristique 2</label>
+					    <div class="col-md-8">
+					      <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.c2}" name="c2">
+					    </div>
+					 </div>
+					 <div class="form-group">
+					    <label class="col-md-2 control-label">Description 2</label>
+					    <div class="col-md-8">
+					      <textarea  class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.d2}" name="d2"></textarea>
+					    </div>
+					 </div>
+					  <div class="form-group">
+					    <label class="col-md-2 control-label">Caractéristique 3</label>
+					    <div class="col-md-8">
+					      <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.c3}" name="c3">
+					    </div>
+					 </div>
+					 <div class="form-group">
+					    <label class="col-md-2 control-label">Description 3</label>
+					    <div class="col-md-8">
+					      <textarea  class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.d3}" name="d3"></textarea>
+					    </div>
+					 </div>
+					  <div class="form-group">
+					    <label class="col-md-2 control-label">Caractéristique 4</label>
+					    <div class="col-md-8">
+					      <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.c4}" name="c4">
+					    </div>
+					 </div>
+					 <div class="form-group">
+					    <label class="col-md-2 control-label">Description 4</label>
+					    <div class="col-md-8">
+					      <textarea  class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.d4}" name="d4"></textarea>
+					    </div>
+					 </div>
+					  <div class="form-group">
+					    <label class="col-md-2 control-label">Caractéristique 5</label>
+					    <div class="col-md-8">
+					      <input type="text" class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.c5}" name="c5">
+					    </div>
+					 </div>
+					 <div class="form-group">
+					    <label class="col-md-2 control-label">Description 5</label>
+					    <div class="col-md-8">
+					      <textarea  class="form-control" id="exampleFormControlInput1" 
+					       th:value="${product.d5}" name="d5"></textarea>
+					    </div>
+					 </div>				 
+				   </fieldset> 
+	              </div>
+	              <div class="container">
+						<button type="submit" class="btn btn-success">Valider</button>
+				  </div>					
+			   </form>
+	        </div>
+	        <div style="margin-bottom: 3rem;"></div>
+	      </div>
+	    </section>
+	  
+  </div>
+  <aside class="control-sidebar control-sidebar-dark">
+  </aside>
+</div>
+
+ <script th:src="@{/adminlte/plugins/jquery/jquery.min.js}"></script>
+ 
+<!-- jQuery -->
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/adminlte/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- <script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script> -->
+<!-- Bootstrap 4 -->
+<script th:src="@{/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- ChartJS -->
+<script th:src="@{/adminlte/plugins/chart.js/Chart.min.js}"></script>
+<!-- Sparkline -->
+<script th:src="@{/adminlte/plugins/sparklines/sparkline.js}"></script>
+<!-- JQVMap -->
+<script th:src="@{/adminlte/plugins/jqvmap/jquery.vmap.min.js}"></script>
+<script th:src="@{/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script>
+<!-- jQuery Knob Chart -->
+<script th:src="@{/adminlte/plugins/jquery-knob/jquery.knob.min.js}"></script>
+<!-- daterangepicker -->
+<script th:src="@{/adminlte/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/adminlte/plugins/daterangepicker/daterangepicker.js}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script th:src="@{/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+<!-- Summernote -->
+<script th:src="@{/adminlte/plugins/summernote/summernote-bs4.min.js}"></script>
+<!-- overlayScrollbars -->
+<script th:src="@{/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/adminlte/dist/js/adminlte.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script th:src="@{/adminlte/dist/js/pages/dashboard.js}"></script>
+<script th:src="@{/js/bootbox.min.js}"></script>
+<script th:src="@{/js/scripts.js}"></script>
+
+
+<script type="text/javascript">
+		$(document).ready(function() {
+		 	$("input[name='files']").each(function(index){
+				$(this).change(function(){
+					showExtraImageThumbnail(this,index);
+				});
+			}); 
+
+			
+		  function showExtraImageThumbnail(fileInput,index){
+				file = fileInput.files[0];
+				reader = new FileReader();
+				
+				reader.onload = function(e){
+					$('#thumbnail'+index).attr('src',e.target.result);
+				}
+				reader.readAsDataURL(file);
+			} 
+			
+		});
+ </script>
+
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $("#btnSubmit").click(function (event) {
+
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+
+        fire_ajax_submit();
+
+    });
+
+});
+
+function fire_ajax_submit() {
+
+    // Get form
+    var form = $('#fileUploadForm')[0];
+
+    var data = new FormData(form);
+
+    data.append("CustomField", "This is some extra data, testing");
+
+    $("#btnSubmit").prop("disabled", true);
+
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "/uploadProduct/update",
+        data: data,
+        processData: false, 
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+
+            $("#result").text(data);
+            window.location.href = '/product/all';
+            console.log("SUCCESS : ", data);
+            $("#btnSubmit").prop("disabled", false);
+        },
+        error: function (e) {
+
+            $("#result").text(e.responseText);
+            console.log("ERROR : ", e);
+            $("#btnSubmit").prop("disabled", false);
+        }
+    });
+
+}
+</script>
+</body>
+</html>

@@ -15,9 +15,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Brand;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.Style;
+import com.javatechie.awselasticbeanstalkexample.domain.Univers;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.Role;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BrandService;
+import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
+import com.javatechie.awselasticbeanstalkexample.service.StyleService;
+import com.javatechie.awselasticbeanstalkexample.service.UniversService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.service.impl.UserSecurityService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -35,17 +43,33 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	@Autowired
 	private UserSecurityService userSecurityService;
 	
+	@Autowired
+	private CategoryService categoryService;
 
+	@Autowired
+	private StyleService styleService;
 	
-	// @GetMapping("/")
-	// public String indexGoogle(){
-	// 	return "google/loginStatus";
-	// }
+	@Autowired
+	private BrandService brandService;
+	
+	@Autowired
+	private UniversService universService;
+	
 	@GetMapping("/")
 	public String welcome(Model model) throws UnknownHostException {
 		model.addAttribute("url",AppConstants.url);
-	
-		return "welcome";
+		model.addAttribute("bCategory",AppConstants.awsBucketCategory);
+	    List<Category> categories = categoryService.findAll();
+	    List<Style> styles = styleService.findAll();
+	    List<Brand> brands = brandService.findAll();
+	    List<Univers> univers = universService.findAll();
+	    
+        model.addAttribute("categoryList",categories);
+        model.addAttribute("styleList",styles);
+        model.addAttribute("brandList",brands);
+        model.addAttribute("universList",univers);
+
+		return "index";
 	}
 	
 	public static void main(String[] args) {
@@ -55,20 +79,20 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	   @Override
 		public void run(String... args) throws Exception {
 		
-//			  User user = new User(); 
-//			  user.setId(Long.parseLong("1"));
-//			   user.setEmail("lamaisondecreationkia@yahoo.com"); 
-//			   user.setUsername("samba");
-//			   user.setLastName("Samb");
-//			   user.setFirstName("samba");
+			  User user = new User(); 
+			  user.setId(Long.parseLong("1"));
+			   user.setEmail("lamaisondecreationkia@yahoo.com"); 
+			   user.setUsername("samba");
+			   user.setLastName("Samb");
+			   user.setFirstName("samba");
 			   BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
 			   //user.setPassword(passwordEncoder.encode("Samba12345@")); 
-//	           user.setPassword(passwordEncoder.encode("passer")); 
-//			   Role roleR = new Role();
-//			   roleR.setRoleId(Long.parseLong("1")); 
-//			   roleR.setName(AppConstants.ROLE_1);//By Default
-//			   Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
-//			   UserRole(user, roleR)); 
-//			   userService.createUser(user, userRoles);
+	           user.setPassword(passwordEncoder.encode("passer")); 
+			   Role roleR = new Role();
+			   roleR.setRoleId(Long.parseLong("1")); 
+			   roleR.setName(AppConstants.ROLE_1);//By Default
+			   Set<UserRole> userRoles = new HashSet<>(); userRoles.add(new
+			   UserRole(user, roleR)); 
+			   userService.createUser(user, userRoles);
 		}
 }

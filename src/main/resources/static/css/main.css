@@ -1,0 +1,17 @@
+
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: linear-gradient(
+   to right,
+    #d1d8e0,
+    #d980fa,
+    #c8d6e5,
+    #9980fa
+  );
+  font-family: initial !important;
+  color: #222f3e;
+}
+

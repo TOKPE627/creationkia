@@ -1,5 +1,7 @@
 package com.javatechie.awselasticbeanstalkexample.controller;
 import java.net.UnknownHostException;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,9 +9,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Brand;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.Style;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
+import com.javatechie.awselasticbeanstalkexample.service.BrandService;
+import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.RoleService;
+import com.javatechie.awselasticbeanstalkexample.service.StyleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -28,7 +36,7 @@ public class HomeController {
 	
 	@Autowired 
 	RoleService roleService;
-		
+	
 	
 	
 	@RequestMapping("/dashboard")	
@@ -36,7 +44,7 @@ public class HomeController {
 	
 	    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		/*check username*/
-		
+	    
 		if (userService.findByUsername(userDetails.getUsername())!=null) {
 			User currentUser = userService.findByUsername(userDetails.getUsername());
 			UserRole userRole =userRoleService.findByUser(currentUser);

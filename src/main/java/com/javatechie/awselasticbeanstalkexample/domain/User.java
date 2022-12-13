@@ -217,10 +217,10 @@ public class User implements UserDetails{
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-	@Transient
-	public String getImagePath() {
-		if(id==null || photo == null) return null;
-		return AppConstants.userPath + id + "/" + photo;
-	}
+//	@Transient
+//	public String getImagePath() {
+//		if(id==null || photo == null) return null;
+//		return AppConstants.userPath + id + "/" + photo;
+//	}
 	
 }

@@ -11,5 +11,5 @@ cloud:
 application:
  bucket: 
    category: kiacategory
-  
+   product:  kiaproduct
 

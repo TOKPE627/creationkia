@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
+import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.domain.security.UserRole;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
+import com.javatechie.awselasticbeanstalkexample.service.ProductService;
 import com.javatechie.awselasticbeanstalkexample.service.UserRoleService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
@@ -31,6 +33,9 @@ public class CategoryController {
     
     @Autowired
     private CategoryService categoryService;
+    
+    @Autowired
+    private ProductService productService;
     
     @RequestMapping("/add")
     public String add(Model model, Principal principal) {
@@ -55,7 +60,17 @@ public class CategoryController {
             return "dashboard/category/all";  
       }
       
-      
+      //Frontend
+      @RequestMapping(value = "/products/{name}", method = RequestMethod.GET)
+      public String categoryProducts(@ModelAttribute("name") String name,
+              Model model,Principal principal) throws IOException{
+              model.addAttribute("bProduct",AppConstants.awsBucketProduct);
+
+             Category c=categoryService.findByName(name);
+             List<Product> products=productService.findByCategory(c);
+             model.addAttribute("productList", products); 
+            return "categoryProducts";  
+      }
        
 
 }

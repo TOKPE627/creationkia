@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- bootstrap v4.0.0 -->
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<!-- fontawesome-icons css -->
+<!-- <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" th:href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.css">
+<!-- themify-icons css -->
+<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/elegant.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery.mmenu.css}">
+<!-- jquery-ui.min css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+<!-- venobox css -->
+<link rel="stylesheet" th:href="@{/assets/css/venobox.css}">
+<!-- slick css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+<!-- slick-theme css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}">
+<!-- cssanimation css -->
+ <link rel="stylesheet" th:href="@{/assets/css/cssanimation.min.css}" />
+<!-- animate css -->
+<link rel="stylesheet" th:href="@{/assets/css/animate.css}" />	 
+<!-- helper css -->
+<link rel="stylesheet" th:href="@{/assets/css/helper.css}">
+
+
+<!-- Own styles -->
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/styleNavbar.css}">
+
+
+
+
+<body>
+   <div th:replace="include/navbar"></div>
+ 
+    <div class="container-fluid"  style="margin-top: 6rem;">
+      <div class="row" th:if="${not #lists.isEmpty(productList)}">
+        <div class="col-lg-3" data-th-each="p: ${productList}">
+            <div class="card">
+                  <div class="card-body">
+                    <a th:href="@{/product/details/}+${p.name}">
+                      <img class="card-img-top imgProduct"
+                       th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image1}}" alt="Product Image">
+                    </a> 
+                    <p th:href="@{/product/details/}+${p.name}" style="margin-top: 10px;">
+                      <span style="font-size: 20px;" th:text="${p.name}"></span>
+                    </p>
+                    <p>
+                    <span style="font-size: 25px;" class="text-dark" th:text="${p.price}"></span>
+                       <span style="margin-left: 15px; font-size: 20px;" class="text-dark" th:text="${p.oldPrice}"><del></del></span>
+                   <p style="margin-top: -10px;"  class="text-secondary">
+                    <span style="font-size: 15px;"><strong>Stock restant:</strong></span>
+                    <span><strong th:text="${p.availableQuantity}"></strong></span>
+                   </p>
+                  </div>
+                </div> 
+        </div>
+      </div>
+      
+    </div>
+
+    <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <!-- jquery-3.3.1 version -->
+    <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+    <!-- bootstra.min js -->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!-- mmenu js -->
+    <script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+    <!-- easing js -->
+    <script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+    <!---slick-js-->
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <!---letteranimation-js-->
+    <script th:src="@{/assets/js/letteranimation.min.js}"></script>
+    <!-- jquery-ui js -->
+    <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+    <!-- jquery.countdown js -->
+    <script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+    <!-- venobox js -->
+    <script th:src="@{/assets/js/venobox.min.js}"></script>
+    <!-- plugins js -->
+    <script th:src="@{/assets/js/plugins.js}"></script>
+
+    <!--End Front Script-->
+</body>
+</html>

@@ -23,9 +23,8 @@ public class StorageService {
     @Value("${application.bucket.category}")
     private String bucketCategory;
     
-//
-//    @Value("${application.bucket.product}")
-//    private String bucketProduct;    
+    @Value("${application.bucket.product}")
+    private String bucketProduct;    
 
     @Autowired
     private AmazonS3 s3Client;
@@ -42,9 +41,9 @@ public class StorageService {
         }
 
        
-//       if(bucketFolder.equals(AppConstants.bucket_product)) {
-//           s3Client.putObject(new PutObjectRequest(bucketProduct, fileName, fileObj));
-//       }
+       if(bucketFolder.equals(AppConstants.bucket_product)) {
+           s3Client.putObject(new PutObjectRequest(bucketProduct, fileName, fileObj));
+       }
 
      
         fileObj.delete();

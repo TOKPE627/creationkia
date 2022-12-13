@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- bootstrap v4.0.0 -->
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<!-- fontawesome-icons css -->
+<!-- <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" th:href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.css">
+<!-- themify-icons css -->
+<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/elegant.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery.mmenu.css}">
+<!-- jquery-ui.min css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+<!-- venobox css -->
+<link rel="stylesheet" th:href="@{/assets/css/venobox.css}">
+<!-- slick css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+<!-- slick-theme css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}">
+<!-- cssanimation css -->
+ <link rel="stylesheet" th:href="@{/assets/css/cssanimation.min.css}" />
+<!-- animate css -->
+<link rel="stylesheet" th:href="@{/assets/css/animate.css}" />	 
+<!-- helper css -->
+<link rel="stylesheet" th:href="@{/assets/css/helper.css}">
+
+
+<!-- Own styles -->
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/styleNavbar.css}">
+
+
+
+
+<body>
+   <div th:replace="include/navbar"></div>
+ 
+    <div class="container-fluid"  style="margin-top: 6rem;">
+        <div class="row">
+            <div class="col-md-1 productGalery" style="margin-top: 2.4rem;">
+                <img id="m1"  style="border-color: red;font-size: 2rem;"
+                   class="img-thumbnail selected"   
+                   th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image1}}"> 
+                <img id="m2"  style="border-color: none;font-size: 2rem;"
+                class="img-thumbnail selected"   
+                    th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image2}}"> 
+                <img id="m3"  style="border-color: none;font-size: 2rem;"
+                    class="img-thumbnail selected"   
+                   th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image3}}"> 
+                <img id="m4"  style="border-color: none;font-size: 2rem;"
+                class="img-thumbnail selected"   
+                   th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image4}}"> 
+                <img id="m5"  style="border-color: none;font-size: 2rem;"
+                class="img-thumbnail selected"   
+                    th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image5}}"> 
+                <img id="m6"  style="border-color: none;font-size: 2rem;"
+                class="img-thumbnail selected"   
+                    th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image6}}"> 
+                <img id="m7"  style="border-color: none;font-size: 2rem;"
+                class="img-thumbnail selected"   
+                   th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image7}}"> 
+            </div>
+            <div class="col-md-5 mainImage">
+                <img id="changeImg"  th:src="@{${bProduct}+${p.galery.id}+'/'+${p.galery.image1}}"
+                   (click)="openPopup($event)"
+                class="product img-thumbnail imgOpacity" alt="">
+                <div class="shareBtn">
+                  <button style="font-size:24px"> <i class="fa fa-share-alt"></i></button>
+                </div> 
+            </div>
+            <div class="col-md-5" style="margin-left: -9rem;">
+                <div style="margin-top: 38px;">
+                    <p class="h5" > <strong>Product Name</strong>
+                    </p>
+                    <hr>
+                  </div>
+                  <p> 
+                    <label for="">Marque:</label> <span style="margin-left: 10px;" th:text="${p.brand.name}"> </span>  </p>
+                  
+                  <p> 
+                    <label for="">Style:</label> <span style="margin-left: 10px;" th:text="${p.style.name}"> </span>  </p>
+                 
+                  <p> 
+                    <label for="">Univers:</label> <span style="margin-left: 10px;" th:text="${p.univers.name}"> </span>  </p>
+                 
+                  <p>
+                    <label for="">Catégorie: </label><span style="margin-left: 10px;" th:text="${p.category.name}">  </span> </p>
+                  <p>
+                    <label for="">En Stock:</label> <span th:text="${p.availableQuantity}"> </span>  </p>
+                
+                  <p> 
+                    <label for="">Utilisable par:</label> <span style="margin-left: 10px;" th:text="${p.gender}"> </span>  </p>
+                  
+                  <p>
+                    <label for="">Compagnie</label> 
+                    <img  href="/company"  style="height: 50px; width: 9%; margin-top: 3px;margin-left: 1rem;"
+                        class="img-thumbnail imgOpacity"
+                        th:src="@{/images/avatar/logo.jpg}">
+                  </p>
+                 
+                  <div>
+                    <p class="h5">
+                      <strong>Détails du produit</strong>
+                    </p>
+                      <ul>
+                        <li th:if="${p.c1 !='' and p.d1 !=''}"><span><strong class="text-uppercase" th:text="${p.c1}">  </strong></span> <span th:text="${p.d1}"> </span></li>
+                        <li th:if="${p.c2 !='' and p.d2 !=''}"><span><strong class="text-uppercase" th:text="${p.c2}"> </strong></span> <span th:text="${p.d2}"> </span></li>
+                        <li th:if="${p.c3 !='' and p.d3 !=''}"><span><strong class="text-uppercase" th:text="${p.c3}">  </strong></span> <span th:text="${p.d3}"> </span> </li>
+                        <li th:if="${p.c4 !='' and p.d4 !=''}"><span><strong class="text-uppercase" th:text="${p.c4}"> </strong></span> <span th:text="${p.d4}"> </span></li>
+                        <li th:if="${p.c5 !='' and p.d5 !=''}"><span><strong class="text-uppercase" th:text="${p.c5}"> </strong></span> <span th:text="${p.d5}"></span></li>
+                        
+                      </ul>
+                  </div>
+            </div>
+            <div class="col-md-1">
+                <div class="card" style="width: 13rem; margin-top: 38px;">
+                    <div class="card-body">
+                     <p>
+                     <span style="font-size: 25px;" class="text-dark"  th:text="${p.price}"> </span>
+                       <span style="margin-left: 15px; font-size: 20px;" class="text-dark"><del  th:text="${p.oldPrice}"> </del></span>
+                     </p>
+                    <p>
+                     <label for=""> Quantité disponible:  </label> <span  th:text="${p.availableQuantity}"> </span>
+                    </p>
+                     <button class="btn btn-warning btn-sm text-uppercase" 
+                      th:href="@{/cart/details/}+${p.name}"
+                       style="border-radius: 13px;" 
+                     > Ajouter au panier </button>
+                    </div>
+                   </div>
+                  <div> </div>
+            </div>
+       </div>
+      
+    </div>
+
+    <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <!-- jquery-3.3.1 version -->
+    <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+    <!-- bootstra.min js -->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!-- mmenu js -->
+    <script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+    <!-- easing js -->
+    <script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+    <!---slick-js-->
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <!---letteranimation-js-->
+    <script th:src="@{/assets/js/letteranimation.min.js}"></script>
+    <!-- jquery-ui js -->
+    <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+    <!-- jquery.countdown js -->
+    <script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+    <!-- venobox js -->
+    <script th:src="@{/assets/js/venobox.min.js}"></script>
+    <!-- plugins js -->
+    <script th:src="@{/assets/js/plugins.js}"></script>
+
+    <!--End Front Script-->
+</body>
+</html>

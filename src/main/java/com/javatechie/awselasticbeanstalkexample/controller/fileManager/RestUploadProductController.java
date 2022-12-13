@@ -73,12 +73,15 @@ public class RestUploadProductController {
 	    		    if(count == 1) galerySaved.setImage2(extraImageName);
 	    		    if(count == 2) galerySaved.setImage3(extraImageName);
 	    		    if(count == 3) galerySaved.setImage4(extraImageName);
+	    		    if(count == 4) galerySaved.setImage5(extraImageName);
+	    		    if(count == 5) galerySaved.setImage6(extraImageName);
+	    		    if(count == 6) galerySaved.setImage7(extraImageName);
     		        count++;
     		    } 	
 		 	    productGaleryService.update(galerySaved);
 	 	    	product.setGalery(galerySaved);
 	 	    	productService.update(product);
-	            saveUploadedFiles(Arrays.asList(uploadfiles),galery.getId());
+	            saveUploadedFiles(Arrays.asList(uploadfiles),galerySaved.getId());
 	 	    }
     	    	
         } catch (IOException e) {
@@ -109,7 +112,7 @@ public class RestUploadProductController {
     
     @PostMapping("/update")
     public ResponseEntity<?> updateFileMulti(
-            @RequestParam("extraField") String extraField,
+            @RequestParam("galery_id") String extraField,
             @RequestParam("files") MultipartFile[] uploadfiles,Principal principal) {
 
         logger.debug("Multiple file update!");
@@ -155,6 +158,21 @@ public class RestUploadProductController {
       			    //storageService.deleteFileInAws(AppConstants.bucket_groupsale,galery.getId(),galery.getId()+'/'+galery.getImage4());
     			  }
     			}
+    			if(count == 4) {
+                    if(extraMultipart.getSize()>0) { 
+                      galery.setImage5(extraImageName);
+                    }
+                  }
+    			if(count == 5) {
+                    if(extraMultipart.getSize()>0) { 
+                      galery.setImage6(extraImageName);
+                    }
+                  }
+    			if(count == 6) {
+                    if(extraMultipart.getSize()>0) { 
+                      galery.setImage7(extraImageName);
+                    }
+                  }
     		    count++;
     		} 	    	
 	 	    ProductGalery galeryUpdated = productGaleryService.update(galery);

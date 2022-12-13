@@ -10,5 +10,6 @@ public interface CategoryService {
     Category save(Category c);
     List<Category> findAll();
     void remove(Long id);
+    Category findByName(String name);
 
 }

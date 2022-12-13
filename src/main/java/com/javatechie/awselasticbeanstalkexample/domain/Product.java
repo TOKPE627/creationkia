@@ -29,38 +29,23 @@ public class Product  implements Serializable{
 	     private String name;
 	     private Double price;
 	     private Double oldPrice;
-	     private int availableQuantity;
-	     
-	     @Column(columnDefinition="text")
-	     private String mainImage;
-	    
+	     private int availableQuantity;  
 	     @JsonBackReference(value = "category")
 	     @ManyToOne
 	     private Category category;
-	    
-	     
-	     
+
 	     private String c1;
 	     private String c2;
 	     private String c3;
 	     private String c4;
 	     private String c5;
-	     private String c6;
-	     private String c7;
-	     private String c8;
-	     private String c9;
-	     private String c10;
 	    
 	     private String d1; 
 	     private String d2; 
 	     private String d3;
 	     private String d4;
 	     private String d5; 
-	     private String d6; 
-	     private String d7; 
-	     private String d8; 
-	     private String d9; 
-	     private String d10; 
+	   
 	     
 	     @ManyToOne(cascade = { CascadeType.REMOVE})
 	     @JoinColumn(name = "galery_id")
@@ -75,8 +60,7 @@ public class Product  implements Serializable{
 	     @OneToOne
 	     private Univers univers;
 	     
-	     @OneToOne
-	     private Gender gender;
+	     private String gender;
 
         public Long getId() {
             return id;
@@ -116,14 +100,6 @@ public class Product  implements Serializable{
 
         public void setAvailableQuantity(int availableQuantity) {
             this.availableQuantity = availableQuantity;
-        }
-
-        public String getMainImage() {
-            return mainImage;
-        }
-
-        public void setMainImage(String mainImage) {
-            this.mainImage = mainImage;
         }
 
         public Category getCategory() {
@@ -174,46 +150,6 @@ public class Product  implements Serializable{
             this.c5 = c5;
         }
 
-        public String getC6() {
-            return c6;
-        }
-
-        public void setC6(String c6) {
-            this.c6 = c6;
-        }
-
-        public String getC7() {
-            return c7;
-        }
-
-        public void setC7(String c7) {
-            this.c7 = c7;
-        }
-
-        public String getC8() {
-            return c8;
-        }
-
-        public void setC8(String c8) {
-            this.c8 = c8;
-        }
-
-        public String getC9() {
-            return c9;
-        }
-
-        public void setC9(String c9) {
-            this.c9 = c9;
-        }
-
-        public String getC10() {
-            return c10;
-        }
-
-        public void setC10(String c10) {
-            this.c10 = c10;
-        }
-
         public String getD1() {
             return d1;
         }
@@ -254,46 +190,6 @@ public class Product  implements Serializable{
             this.d5 = d5;
         }
 
-        public String getD6() {
-            return d6;
-        }
-
-        public void setD6(String d6) {
-            this.d6 = d6;
-        }
-
-        public String getD7() {
-            return d7;
-        }
-
-        public void setD7(String d7) {
-            this.d7 = d7;
-        }
-
-        public String getD8() {
-            return d8;
-        }
-
-        public void setD8(String d8) {
-            this.d8 = d8;
-        }
-
-        public String getD9() {
-            return d9;
-        }
-
-        public void setD9(String d9) {
-            this.d9 = d9;
-        }
-
-        public String getD10() {
-            return d10;
-        }
-
-        public void setD10(String d10) {
-            this.d10 = d10;
-        }
-
         public ProductGalery getGalery() {
             return galery;
         }
@@ -326,16 +222,18 @@ public class Product  implements Serializable{
             this.univers = univers;
         }
 
-        public Gender getGender() {
+        public String getGender() {
             return gender;
         }
 
-        public void setGender(Gender gender) {
+        public void setGender(String gender) {
             this.gender = gender;
         }
 
         public static long getSerialversionuid() {
             return serialVersionUID;
         }
+
+        
 	
 }

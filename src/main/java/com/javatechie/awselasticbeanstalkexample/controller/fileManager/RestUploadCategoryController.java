@@ -73,7 +73,7 @@ public class RestUploadCategoryController {
 	       			if(extraMultipart.getSize()>0) { 
 	   		           cSaved.setImage(extraImageName);
 	   	               categoryService.update(cSaved);
-	   	               saveUploadedFiles(Arrays.asList(uploadfiles),c.getId());
+	   	               saveUploadedFiles(Arrays.asList(uploadfiles),cSaved.getId());
 	         		 }  
 	       		  }
        		   }

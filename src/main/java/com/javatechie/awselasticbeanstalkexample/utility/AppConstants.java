@@ -16,7 +16,7 @@ public class AppConstants {
 //   public static String mobile = "mobile";
 
    //
-   public static String companyImage= "companyimage";
+//   public static String companyImage= "companyimage";
 //   public static String geolocate1= "geolocate1";
 //   public static String geolocate2= "geolocate2";
    public static String img1="image1";
@@ -26,8 +26,8 @@ public class AppConstants {
    
    //AWS Directories Paths prefixes
    public static final String bucket_category  =  "category";
-   public static final String bucket_user      =  "user";
-   public static final String bucket_company   =  "company";
+//   public static final String bucket_user      =  "user";
+//   public static final String bucket_company   =  "company";
    public static final String bucket_product   =  "product";
 //   public static final String bucket_shop      =  "shop";
 //   public static final String bucket_groupsale =  "groupsale";
@@ -45,8 +45,8 @@ public class AppConstants {
 
     //public static String awsBucketIcon="https://atoolyicon.s3.us-east-1.amazonaws.com/";
    public static String awsBucketCategory ="https://kiacategory.s3.eu-west-3.amazonaws.com/";
-    public static String awsBucketUser="";
-    public static String awsBucketProduct="";
+//    public static String awsBucketUser="";
+    public static String awsBucketProduct="https://kiaproduct.s3.eu-west-3.amazonaws.com/";
 
 //   @Value("${application.bucket.product}")
 //   public static String awsBucketProduct;
@@ -69,9 +69,9 @@ public class AppConstants {
    //AWS
 
    //Path
-   public static final String userPath      =  "/user/";
-   public static final String productPath   =  "/product/";
-   public static final String cateoryPath   =  "/category/";
+//   public static final String userPath      =  "/user/";
+//   public static final String productPath   =  "/product/";
+//   public static final String cateoryPath   =  "/category/";
 
   //public static  final String FILE_UPLOAD_USER_PATH="src/main/resources/static/image/user/";
 //   public static  final String FILE_UPLOAD_USER_PATH=      "/user/";

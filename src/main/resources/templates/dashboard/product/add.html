@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+  <link rel="icon" type="image/x-icon" th:href="@{${awsBucketIcon}+'logoHead.png'}">
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  
+  
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/fontawesome-free/css/all.min.css}">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+  <!-- iCheck -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
+  <!-- JQVMap -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/jqvmap/jqvmap.min.css}">
+  <!-- Theme style -->
+  <link rel="stylesheet" th:href="@{/adminlte/dist/css/adminlte.min.css}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/daterangepicker/daterangepicker.css}">
+  <!-- summernote -->
+  <link rel="stylesheet" th:href="@{/adminlte/plugins/summernote/summernote-bs4.min.css}">
+</head>
+<style>
+ 	.btn-success {
+	  background-color: #6FB70F !important;
+	  border-color: #6FB70F !important;
+	}
+   .btn-success:hover,
+    .btn-success:active,
+    .btn-success:visited,
+    .btn-success:focus {
+      background-color: #6FB70F !important;
+      border-color: #6FB70F !important;
+    }
+
+  @media screen and (min-width:1025px) { 
+
+  }
+ 
+ @media screen and (max-width:456px) {
+ 
+ }
+</style>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+   <div th:replace="dashboard/navbar"></div>
+   <div th:replace="dashboard/mainsidebar"></div> 
+   <div class="content-wrapper">
+        <div th:replace="dashboard/header"></div>
+            <!-- Main content -->
+	    <section class="content">
+	      <div class="container-fluid">
+	      	  <form class="form-horizontal" th:action="@{/product/add}" method="post">
+				<fieldset>
+					<legend class="center-block">
+						Ajout du produit					
+						<span style="font-size: small"> * Champ obligatoire</span>
+					</legend>
+ 					
+                   <div>
+	                  
+						
+                   </div>
+                   <div class="form-group">
+						<label class="control-label">* S&eacute;lectionner la categorie</label>
+						<div class="col-md-8">
+							<select name="category_id" class="form-control">
+						       <option data-th-each="c : ${categoryList}" th:value="${c.id}" th:text="${c.name}">
+						       </option>
+						    </select>
+						</div>
+				    </div>
+					
+				    <div class="form-group">
+						<label class="control-label">* Nom</label>
+						<div class="col-md-8">
+							<input type="text" name="name" class="form-control" 
+								placeholder="Preciser le nom du produit" required="required">
+							<span class="help-block">Nom du produit</span>
+						</div>
+					</div>
+					  <div class="form-group">
+						<label class="control-label">* S&eacute;lectionner la marque</label>
+						<div class="col-md-8">
+							<select name="brand_id" class="form-control">
+						       <option data-th-each="b : ${brandList}" th:value="${b.id}" th:text="${b.name}">
+						       </option>
+						    </select>
+						</div>
+				    </div>
+				    <div class="form-group">
+						<label class="control-label">* S&eacute;lectionner le style</label>
+						<div class="col-md-8">
+							<select name="style_id" class="form-control">
+						       <option data-th-each="s : ${styleList}" th:value="${s.id}" th:text="${s.name}">
+						       </option>
+						    </select>
+						</div>
+				    </div>
+				     <div class="form-group">
+						<label class="control-label">* S&eacute;lectionner l'univers</label>
+						<div class="col-md-8">
+							<select name="univers_id" class="form-control">
+						       <option data-th-each="u : ${universList}" th:value="${u.id}" th:text="${u.name}">
+						       </option>
+						    </select>
+						</div>
+				    </div>
+				     <div class="form-group">
+						<label class="control-label">* S&eacute;lectionner le genre</label>
+						<div class="col-md-8">
+							<select name="gender" class="form-control">
+						      <option value="Homme">Homme</option>
+						      <option value="Femme">Femme</option>
+						      <option value="Tout le monde">Tout le monde</option>
+						    </select>
+						</div>
+				    </div>
+				    <div class="form-group">
+						<label class="control-label">* Quantité disponible en stock</label>
+						<div class="col-md-8">
+							<input name="availableQuantity" class="form-control" 
+								placeholder="Preciser la quantité disponible" required="required">
+							<span class="help-block">Quantité disponible</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label">* Prix de vente(en £uro)</label>
+						<div class="col-md-8">
+							<input type="number" name="price" class="form-control" 
+								placeholder="Preciser le prix" required="required">
+							<span class="help-block">Prix de vente</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label">* Ancien Prix de vente(en £uro)</label>
+						<div class="col-md-8">
+							<input type="number" name="oldPrice" class="form-control" 
+								placeholder="Preciser le prix" required="required">
+							<span class="help-block">Ancien Prix de vente</span>
+						</div>
+					</div>
+					<div class="row">
+					  <label>Description du produit</label>
+					</div>
+			 	  	<div class="form-group">
+						<label class="control-label">* Caractéristique 1</label>
+						<div class="col-md-8">
+							<input type="text" name="c1" class="form-control" 
+								placeholder="Preciser la Caractéristique 1" required="required">
+							<span class="help-block">Caractéristique 1</span>
+						</div>
+					</div>
+					
+			        <div class="form-group">
+						<label class="control-label">* Description 1</label>
+						<div class="col-md-8">
+							<textarea name="d1" class="form-control" 
+								placeholder="Preciser la Caractéristique 1" required="required"></textarea>
+							<span class="help-block">Décrire la Caractéristique 1</span>
+						</div>
+					</div>
+                   <div class="form-group">
+						<label class="control-label">* Caractéristique 2</label>
+						<div class="col-md-8">
+							<input type="text" name="c2" class="form-control" 
+								placeholder="Preciser la Caractéristique 2" required="required">
+							<span class="help-block">Caractéristique 1</span>
+						</div>
+					</div>
+					
+			        <div class="form-group">
+						<label class="control-label">* Description 2</label>
+						<div class="col-md-8">
+							<textarea name="d2" class="form-control" 
+								placeholder="Preciser la Caractéristique 2" required="required"></textarea>
+							<span class="help-block">Décrire la Caractéristique 2</span>
+						</div>
+					</div>
+			    	<div class="form-group">
+						<label class="control-label">* Caractéristique 3</label>
+						<div class="col-md-8">
+							<input type="text" name="c3" class="form-control" 
+								placeholder="Preciser la Caractéristique 3" required="required">
+							<span class="help-block">Caractéristique 3</span>
+						</div>
+					</div>
+					
+			        <div class="form-group">
+						<label class="control-label">* Description 3</label>
+						<div class="col-md-8">
+							<textarea name="d3" class="form-control" 
+								placeholder="Preciser la Caractéristique 3" required="required"></textarea>
+							<span class="help-block">Décrire la Caractéristique 3</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label"> Caractéristique 4</label>
+						<div class="col-md-8">
+							<input type="text" name="c4" class="form-control" 
+								placeholder="Preciser la Caractéristique 4">
+							<span class="help-block">Caractéristique 4</span>
+						</div>
+					</div>
+					
+			        <div class="form-group">
+						<label class="control-label"> Description 4</label>
+						<div class="col-md-8">
+							<textarea name="d4" class="form-control" 
+								placeholder="Preciser la Caractéristique 4"></textarea>
+							<span class="help-block">Décrire la Caractéristique 4</span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Caractéristique 5</label>
+						<div class="col-md-8">
+							<input type="text" name="c5" class="form-control" 
+								placeholder="Preciser la Caractéristique 5">
+							<span class="help-block">Caractéristique 5</span>
+						</div>
+					</div>
+					
+			        <div class="form-group">
+						<label class="control-label">* Description 5</label>
+						<div class="col-md-8">
+							<textarea name="d5" class="form-control" 
+								placeholder="Preciser la Caractéristique 5"></textarea>
+							<span class="help-block">Décrire la Caractéristique 5</span>
+						</div>
+					</div>
+				<!-- 	End Contacts -->
+					<div class="form-group">
+						<div class="col-md-2"></div>
+						<div class="col-md-8">
+							<button type="submit" class="btn btn-success">Suivant</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		 </div>
+	  </section>
+    </div>
+  <aside class="control-sidebar control-sidebar-dark">
+  </aside>
+</div>
+
+
+<!-- jQuery -->
+<script th:src="@{/adminlte/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/adminlte/plugins/jquery-ui/jquery-ui.min.js}"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<!-- <script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script> -->
+<!-- Bootstrap 4 -->
+<script th:src="@{/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- ChartJS -->
+<script th:src="@{/adminlte/plugins/chart.js/Chart.min.js}"></script>
+<!-- Sparkline -->
+<script th:src="@{/adminlte/plugins/sparklines/sparkline.js}"></script>
+<!-- JQVMap -->
+<script th:src="@{/adminlte/plugins/jqvmap/jquery.vmap.min.js}"></script>
+<script th:src="@{/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js}"></script>
+<!-- jQuery Knob Chart -->
+<script th:src="@{/adminlte/plugins/jquery-knob/jquery.knob.min.js}"></script>
+<!-- daterangepicker -->
+<script th:src="@{/adminlte/plugins/moment/moment.min.js}"></script>
+<script th:src="@{/adminlte/plugins/daterangepicker/daterangepicker.js}"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script th:src="@{/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+<!-- Summernote -->
+<script th:src="@{/adminlte/plugins/summernote/summernote-bs4.min.js}"></script>
+<!-- overlayScrollbars -->
+<script th:src="@{/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/adminlte/dist/js/adminlte.js}"></script>
+<!-- AdminLTE for demo purposes -->
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script th:src="@{/adminlte/dist/js/pages/dashboard.js}"></script>
+
+
+
+</body>
+</html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.repository.ProductRepository;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
@@ -38,6 +39,16 @@ public Product update(Product product) {
 @Override
 public void remove(Long id) {
     productRepository.deleteById(id);
+}
+
+@Override
+public Product findByName(String name) {
+    return productRepository.findByName(name);
+}
+
+@Override
+public List<Product> findByCategory(Category c) {
+    return productRepository.findByCategory(c);
 }
 
  
