@@ -11,7 +11,7 @@ public class AjaxResponseBody {
 	String awsBucketStyle;
 	String awsBucketUnivers;
 	String awsBucketCategory;
-
+    OrderCustomer orderCustomer;
 	
 	public String getMsg() {
 		return msg;
@@ -67,6 +67,14 @@ public class AjaxResponseBody {
 
     public void setAwsBucketCategory(String awsBucketCategory) {
         this.awsBucketCategory = awsBucketCategory;
+    }
+
+    public OrderCustomer getOrderCustomer() {
+        return orderCustomer;
+    }
+
+    public void setOrderCustomer(OrderCustomer orderCustomer) {
+        this.orderCustomer = orderCustomer;
     }
 
 	

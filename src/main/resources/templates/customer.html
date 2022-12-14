@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- bootstrap v4.0.0 -->
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<!-- fontawesome-icons css -->
+<!-- <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" th:href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.css">
+<!-- themify-icons css -->
+<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/elegant.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery.mmenu.css}">
+<!-- jquery-ui.min css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+<!-- venobox css -->
+<link rel="stylesheet" th:href="@{/assets/css/venobox.css}">
+<!-- slick css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+<!-- slick-theme css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}">
+<!-- cssanimation css -->
+ <link rel="stylesheet" th:href="@{/assets/css/cssanimation.min.css}" />
+<!-- animate css -->
+<link rel="stylesheet" th:href="@{/assets/css/animate.css}" />	 
+<!-- helper css -->
+<link rel="stylesheet" th:href="@{/assets/css/helper.css}">
+
+
+<!-- Own styles -->
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/styleNavbar.css}">
+
+
+
+
+<body>
+   <div th:replace="include/navbar"></div>
+ 
+    <div class="container-fluid"  style="margin-top: 6rem;">
+      <form class="container"  th:action="@{/product/add}" method="post">
+       <!-- <form id="customerForm"> -->
+           <fieldset class="registration-border">
+                    <legend class="registration-border form-area"> Client </legend>
+                    <hr>
+                    <div class="md-form form-group" style="margin-top: 1rem;"> 
+                         <div class="row" style="margin-top: 1rem;">
+                            <div class="col-md-6">
+                                <label for="">Nom</label>
+                                <input  type="text" class="form-control" id="lastname" 
+                                placeholder="Nom" 
+                                name="lastname" required />
+                                <!-- <div *ngIf="f.submitted && lastname.invalid">
+                                   <div *ngIf="lastname" class="alert alert-danger" role="alert"> Le Nom est obligatoire</div>
+                                </div>
+                                <div *ngIf="errorLastname" class="alert alert-danger" role="alert" id="errorLastname"></div>  -->
+                            </div>
+                            <div class="col-md-6">
+                                <label for="">Prénom(s)</label>
+                                <input  type="text" class="form-control" id="firstname" 
+                                placeholder="Prénom(s)"
+                                name="firstname" required="required">
+                                <!-- <div *ngIf="f.submitted && firstname.invalid">
+                                  <div *ngIf="firstname" class="alert alert-danger" role="alert"> Le Prénom est obligatoire</div>
+                               </div>
+                               <div *ngIf="errorFirstname" class="alert alert-danger" role="alert" id="errorFirstname"></div>  -->
+                          </div>  
+                        </div> 
+                         <div class="row" style="margin-top: 1rem;">
+                            <div class="col-md-6">
+                                <label for="">Email</label>
+                                <input  type="email" class="form-control" id="email"
+                                name="email"  
+                                placeholder="Email" required="required">
+                                <!-- <div *ngIf="f.submitted && email.invalid">
+                                  <div *ngIf="email" class="alert alert-danger" role="alert"> L'Email est obligatoire</div>
+                               </div>
+                               <div *ngIf="errorEmail" class="alert alert-danger" role="alert" id="errorEmail"></div>  -->
+                            </div>    
+                        </div> 
+                  </div>
+                </fieldset>
+                 <hr>
+                 <fieldset class="registration-border">
+                  <legend class="registration-border form-area"> Adresse de livraison
+                  </legend>
+                  <hr>
+                 
+                  <div class="md-form form-group" style="margin-top: 1rem;"> 
+                      <div class="row" style="margin-top: 1rem;">
+                          <div class="col-md-4 form-group">
+                              <div><label>Pays </label></div>
+<!--                               
+                              <div *ngIf="f.submitted && shippingAddressCountry.invalid">
+                                <div *ngIf="shippingAddressCountry" class="alert alert-danger" role="alert"> Le Pays est obligatoire</div>
+                             </div>
+                             <div *ngIf="errorShippingCountry" class="alert alert-danger" role="alert" id="errorShippingCountry"></div> 
+                              -->
+                             <select name="shippingAddressCountry" style="height: 25px;" id="shippingAddressCountry" 
+                                 >
+                                <option value="">----------</option>
+                                <option  value="India">India</option>
+                                <option  value="France">France</option>
+                                <option  value="Togo">Togo</option>
+
+                              </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="">Etat ou Commune</label>
+                            <input  type="text" class="form-control" id="shippingAddressState" 
+                              placeholder="Etat ou Commune"
+                              name="shippingAddressState" required="required">
+                            <!--  
+                               <div *ngIf="f.submitted && shippingAddressState.invalid">
+                                <div *ngIf="shippingAddressState" class="alert alert-danger" role="alert"> L'Etat ou la Commune est obligatoire</div>
+                             </div>
+                             <div *ngIf="errorShippingState" class="alert alert-danger" role="alert" id="errorShippingState"></div> 
+                        -->
+                        </div> 
+                          <div class="col-md-4">
+                              <label for="">Ville</label>
+                                <input  type="text" class="form-control" id="shippingAddressCity" 
+                                placeholder="Ville"  
+                                name="shippingAddressCity"  required="required">
+                             <!--    <div *ngIf="f.submitted && shippingAddressCity.invalid">
+                                  <div *ngIf="shippingAddressCity" class="alert alert-danger" role="alert"> La ville est obligatoire</div>
+                               </div>
+                              <div *ngIf="errorShippingCity" class="alert alert-danger" role="alert" id="errorShippingCity"></div> 
+                          -->
+                          </div> 
+                      </div>
+                      <div class="row" style="margin-top: 1rem;">
+                          <div class="col-md-6">
+                              <label for="">Rue</label>
+                              <input  type="text" class="form-control" id="shippingAddressStreet" 
+                                placeholder="Rue" 
+                                name="shippingAddressStreet" required="required">
+                            <!--     <div *ngIf="f.submitted && shippingAddressStreet.invalid">
+                                  <div *ngIf="shippingAddressStreet" class="alert alert-danger" role="alert"> La Rue est obligatoire</div>
+                               </div>
+                               <div *ngIf="errorShippingStreet" class="alert alert-danger" role="alert" id="errorShippingStreet"></div> 
+                          -->
+                          </div>
+                          <div class="col-md-6">
+                            <label for="">Code postal</label>
+                            <input  type="text" class="form-control" id="shippingAddressZipCode" 
+                              placeholder="Code postal" 
+                              name="shippingAddressZipCode" required="required">
+                            <!--   <div *ngIf="f.submitted && shippingAddressZipCode.invalid">
+                                <div *ngIf="shippingAddressZipCode" class="alert alert-danger" role="alert"> Le code Postal est obligatoire</div>
+                             </div>
+                             <div *ngIf="errorShippingZipCode" class="alert alert-danger" role="alert" id="errorShippingZipCode"></div> 
+                        -->
+                        </div> 
+                      </div>
+                    </div>
+              </fieldset>
+             
+              <hr> 
+                 <fieldset class="registration-border">
+                  <legend class="registration-border form-area"> Adresse de facturation 
+                    <input style="margin-left: 2rem;" type="radio" id="check_address">  
+                    <span style="margin-left:5px" class="text-success">Même que l'adresse de livraison?</span> 
+                  </legend>
+                  <hr>
+                  
+                  <div class="md-form form-group" style="margin-top: 1rem;"> 
+                      <div class="row" style="margin-top: 1rem;">
+                          <div class="col-md-4 form-group">
+                              <div><label>Pays </label></div>
+                            
+                             <!--  <div *ngIf="f.submitted && billingAddressCountry.invalid">
+                                <div *ngIf="billingAddressCountry" class="alert alert-danger" role="alert"> Le Pays est obligatoire</div>
+                             </div> -->
+                              <select name="billingAddressCountry" id="billingAddressCountry"
+                               style="height: 25px;" 
+                              >
+                              <option value="">----------</option>
+                              <option  value="India">India</option>
+                              <option  value="France">France</option>
+                              <option  value="Togo">Togo</option>                           
+                             </select>
+                          </div>
+                          <div class="col-md-4">
+                            <label for="">Etat ou Commune</label>
+                            <input  type="text" class="form-control" 
+                              placeholder="Etat ou Commune"
+                              name="billingAddressState" id="billingAddressState" required="required">
+                           <!--    <div *ngIf="f.submitted && billingAddressState.invalid" >
+                                <div *ngIf="billingAddressState" class="alert alert-danger" role="alert"> LEtat ou la Commune est obligatoire</div>
+                             </div> -->
+                        </div> 
+                        <div class="col-md-4">
+                          <label for="">Ville</label>
+                          <input  type="text" class="form-control" 
+                            placeholder="Ville"
+                            name="billingAddressCity"  id="billingAddressCity" required="required">
+                           <!--  <div *ngIf="f.submitted && billingAddressCity.invalid">
+                              <div *ngIf="billingAddressCity" class="alert alert-danger" role="alert"> La Vile est obligatoire</div>
+                           </div> -->
+                        </div>
+                      </div>
+                      <div class="row" style="margin-top: 1rem;">
+                        <div class="col-md-6">
+                          <label for="">Rue</label>
+                          <input  type="text" class="form-control" 
+                            placeholder="Rue"  
+                            name="billingAddressStreet" id="billingAddressStreet" required="required">
+                           <!--  <div *ngIf="f.submitted && billingAddressStreet.invalid">
+                              <div *ngIf="billingAddressStreet" class="alert alert-danger" role="alert"> La Rue est obligatoire</div>
+                           </div> -->
+                        </div>
+                        <div class="col-md-6">
+                          <label for="">Code postal</label>
+                          <input  type="text" class="form-control"
+                            placeholder="Code postal"
+                            name="billingAddressZipCode" id="billingAddressZipCode" required="required" />
+                          <!--   <div *ngIf="f.submitted && billingAddressZipCode.invalid">
+                              <div *ngIf="billingAddressZipCode" class="alert alert-danger" role="alert"> Le Code Postal est obligatoire</div>
+                           </div> -->
+                        </div> 
+                      </div> 
+                </div>
+              </fieldset> 
+              <hr>
+<!--               <div id="isNotRegistered" *ngIf="isNotRegistered" style="margin-top: 10px; object-fit: contain;" class="alert alert-warning" role="alert"></div>
+ -->            
+              <button style="margin-top: 10px; margin-bottom: 4rem;" class="btn btn-danger pull-center btn-block">Submit</button>
+          </form>  
+      
+    </div>
+
+    <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <!-- jquery-3.3.1 version -->
+    <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+    <!-- bootstra.min js -->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!-- mmenu js -->
+    <script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+    <!-- easing js -->
+    <script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+    <!---slick-js-->
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <!---letteranimation-js-->
+    <script th:src="@{/assets/js/letteranimation.min.js}"></script>
+    <!-- jquery-ui js -->
+    <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+    <!-- jquery.countdown js -->
+    <script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+    <!-- venobox js -->
+    <script th:src="@{/assets/js/venobox.min.js}"></script>
+    <!-- plugins js -->
+    <script th:src="@{/assets/js/plugins.js}"></script>
+
+    <!--End Front Script-->
+</body>
+</html>

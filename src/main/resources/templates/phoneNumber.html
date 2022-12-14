@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>La MAISON DE CRÉATION KIA /THE DESIGN HOUSSE KIA</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- bootstrap v4.0.0 -->
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}">
+<!-- fontawesome-icons css -->
+<!-- <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" th:href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.3.0/css/all.css">
+<!-- themify-icons css -->
+<link rel="stylesheet" th:href="@{/assets/css/themify-icons.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/elegant.css}">
+<!-- elegant css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery.mmenu.css}">
+<!-- jquery-ui.min css -->
+<link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}">
+<!-- venobox css -->
+<link rel="stylesheet" th:href="@{/assets/css/venobox.css}">
+<!-- slick css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick.css}">
+<!-- slick-theme css -->
+<link rel="stylesheet" th:href="@{/assets/css/slick-theme.css}">
+<!-- cssanimation css -->
+ <link rel="stylesheet" th:href="@{/assets/css/cssanimation.min.css}" />
+<!-- animate css -->
+<link rel="stylesheet" th:href="@{/assets/css/animate.css}" />	 
+<!-- helper css -->
+<link rel="stylesheet" th:href="@{/assets/css/helper.css}">
+
+<!-- Phone Css -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+
+<!-- Own styles -->
+<link rel="stylesheet" th:href="@{/css/main.css}">
+<link rel="stylesheet" th:href="@{/css/styleNavbar.css}">
+
+<body>
+   <div th:replace="include/navbar"></div>
+ 
+     <div class="container container-fluid"  style="margin-top: .5rem;">
+        <form class="container" id="login"  onsubmit="process(event)">
+            <p>
+            <span>Entrez votre numéro de téléphone</span>
+            </p>
+            
+            <input id="phone" type="tel" name="phone" />
+            
+            <input type="submit" class="btn btn-sm btn-primary" style="height: 1.7rem;" value="Vérifier" />
+          </form>
+          <div *ngIf="isInvalidNumber" class="alert alert-danger"></div>
+    </div>  
+    <div style="margin-bottom: 5rem;"></div>
+    
+    
+    <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
+    <!-- jquery-3.3.1 version -->
+    <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
+    <!-- bootstra.min js -->
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <!-- mmenu js -->
+    <script th:src="@{/assets/js/jquery.mmenu.js}"></script>
+    <!-- easing js -->
+    <script th:src="@{/assets/js/jquery.easing.min.js}"></script>
+    <!---slick-js-->
+    <script th:src="@{/assets/js/slick.min.js}"></script>
+    <!---letteranimation-js-->
+    <script th:src="@{/assets/js/letteranimation.min.js}"></script>
+    <!-- jquery-ui js -->
+    <script th:src="@{/assets/js/jquery-ui.min.js}"></script>
+    <!-- jquery.countdown js -->
+    <script th:src="@{/assets/js/jquery.countdown.min.js}"></script>
+    <!-- venobox js -->
+    <script th:src="@{/assets/js/venobox.min.js}"></script>
+    <!-- plugins js -->
+    <script th:src="@{/assets/js/plugins.js}"></script>
+    
+   <script type="text/javascript">
+	  const phoneInputField = document.querySelector("#phone");
+	  this.phoneInput = window.intlTelInput(phoneInputField, {
+	     initialCountry: "in",
+	     geoIpLookup: getIp,
+	     utilsScript:
+	     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+	    });
+	 
+	  function getIp(callback:any) {
+	    fetch('https://ipinfo.io/json?token=16640bb335bc60', { headers: { 'Accept': 'application/json' }})
+	    .then((resp) => resp.json())
+	    .catch(() => {
+	        return {
+	        country: 'in',
+	        };
+		    })
+		    .then((resp) => callback(resp.country));
+		  }
+       }
+       process(event:any){
+	    if (this.phoneInput.isValidNumber()) {
+	        const phoneNumber = this.phoneInput.getNumber();
+	        console.log("Customer orderTrackingNumber:" +this.orderTrackingNumber);
+	        $.ajax({
+	            type: "GET",
+	            contentType: "application/json",
+	            url:  '/customer/checkPhoneNumber/'+ this.orderTrackingNumber +'/' +phoneNumber,
+	            data: {},
+	            dataType:"json",
+	            cache: false,
+	            timeout: 600000,
+	            success: function (data) {
+	              window.location.href = "/checkout/"+ data.orderTrackingNumber;
+	            },
+	            error: function (e) {
+	              console.log("ERROR : ", e);
+	            }
+	        });  
+	    } else {
+	        this.isInvalidNumber=true;
+	        $(function(){
+	          $('.alert-danger').html("Numéro de téléphone Invalide.");
+	        });
+	       
+	      }
+	  }
+   </script>
+    <!--End Front Script-->
+</body>
+</html>
