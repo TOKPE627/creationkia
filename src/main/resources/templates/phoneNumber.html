@@ -47,22 +47,25 @@
 
 <body>
    <div th:replace="include/navbar"></div>
+        
  
-     <div class="container container-fluid"  style="margin-top: .5rem;">
-        <form class="container" id="login"  onsubmit="process(event)">
+     <div class="container container-fluid"  style="margin-top: 6rem;">
+        <form class="container" onsubmit="process(event)">
+           
             <p>
-            <span>Entrez votre numéro de téléphone</span>
+              <span>Entrez votre numéro de téléphone</span>
             </p>
             
             <input id="phone" type="tel" name="phone" />
             
             <input type="submit" class="btn btn-sm btn-primary" style="height: 1.7rem;" value="Vérifier" />
-          </form>
-          <div *ngIf="isInvalidNumber" class="alert alert-danger"></div>
+         </form>
+         <div class="alert alert-danger"></div>
     </div>  
     <div style="margin-bottom: 5rem;"></div>
     
-    
+  
+
     <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
     <!-- jquery-3.3.1 version -->
     <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
@@ -85,16 +88,21 @@
     <!-- plugins js -->
     <script th:src="@{/assets/js/plugins.js}"></script>
     
+   
+    <script type="text/javascript">
+        $('.alert-danger').hide();
+    </script>
+   
    <script type="text/javascript">
-	  const phoneInputField = document.querySelector("#phone");
-	  this.phoneInput = window.intlTelInput(phoneInputField, {
+      const phoneInputField = document.querySelector("#phone");
+	  const phoneInput = window.intlTelInput(phoneInputField, {
 	     initialCountry: "in",
 	     geoIpLookup: getIp,
 	     utilsScript:
 	     "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
 	    });
 	 
-	  function getIp(callback:any) {
+	  function getIp(callback) {
 	    fetch('https://ipinfo.io/json?token=16640bb335bc60', { headers: { 'Accept': 'application/json' }})
 	    .then((resp) => resp.json())
 	    .catch(() => {
@@ -103,33 +111,31 @@
 	        };
 		    })
 		    .then((resp) => callback(resp.country));
-		  }
        }
-       process(event:any){
-	    if (this.phoneInput.isValidNumber()) {
-	        const phoneNumber = this.phoneInput.getNumber();
-	        console.log("Customer orderTrackingNumber:" +this.orderTrackingNumber);
+       
+      function process(event){ 
+        event.preventDefault();
+	    if (phoneInput.isValidNumber()) {
+	        const phoneNumber = phoneInput.getNumber();
+	       
 	        $.ajax({
 	            type: "GET",
 	            contentType: "application/json",
-	            url:  '/customer/checkPhoneNumber/'+ this.orderTrackingNumber +'/' +phoneNumber,
+	            url:  '/customer/checkPhoneNumber/' + `[[${orderCustomer.orderTrackingNumber}]]`  +'/' +phoneNumber,
 	            data: {},
 	            dataType:"json",
 	            cache: false,
 	            timeout: 600000,
 	            success: function (data) {
-	              window.location.href = "/checkout/"+ data.orderTrackingNumber;
+	              window.location.href = "/checkout/"+ data.msg;
 	            },
 	            error: function (e) {
 	              console.log("ERROR : ", e);
 	            }
 	        });  
 	    } else {
-	        this.isInvalidNumber=true;
-	        $(function(){
-	          $('.alert-danger').html("Numéro de téléphone Invalide.");
-	        });
-	       
+	    	 $('.alert-danger').show();
+	         $('.alert-danger').html("Numéro de téléphone Invalide.");
 	      }
 	  }
    </script>

@@ -6,7 +6,6 @@ import com.javatechie.awselasticbeanstalkexample.domain.OrderCustomer;
 import com.javatechie.awselasticbeanstalkexample.repository.OrderCustomerRepository;
 import com.javatechie.awselasticbeanstalkexample.service.OrderCustomerService;
 
-
 @Service
 public class OrderCustomerServiceImpl implements OrderCustomerService{
 
@@ -17,6 +16,16 @@ public class OrderCustomerServiceImpl implements OrderCustomerService{
     public OrderCustomer findByOrderTrackingNumber(String orderTrackingNumber) {
         return orderCustomerRepository.findByOrderTrackingNumber(orderTrackingNumber);
     }
+
+    @Override
+    public OrderCustomer add(OrderCustomer orderCustomer) {
+       return orderCustomerRepository.save(orderCustomer);
+    }
+
+    @Override
+    public OrderCustomer update(OrderCustomer orderCustomer) {
+        return orderCustomerRepository.saveAndFlush(orderCustomer);
+    }
     
-    
+   
 }

@@ -17,10 +17,15 @@ import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
 import com.javatechie.awselasticbeanstalkexample.domain.Cart;
 import com.javatechie.awselasticbeanstalkexample.domain.Customer;
 import com.javatechie.awselasticbeanstalkexample.domain.OrderCustomer;
+import com.javatechie.awselasticbeanstalkexample.domain.OrderItemCustomer;
 import com.javatechie.awselasticbeanstalkexample.service.CartService;
 import com.javatechie.awselasticbeanstalkexample.service.CustomerService;
 import com.javatechie.awselasticbeanstalkexample.service.OrderCustomerService;
+import com.javatechie.awselasticbeanstalkexample.service.OrderItemCustomerService;
+import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
+import com.javatechie.awselasticbeanstalkexample.utility.AppDates;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
+import com.javatechie.awselasticbeanstalkexample.utility.SecurityUtility;
 
 @Controller
 @RequestMapping("/customer")
@@ -35,8 +40,11 @@ public class CustomerController {
     @Autowired
     private OrderCustomerService orderCustomerService;
     
+    @Autowired
+    private OrderItemCustomerService orderItemCustomerService;
+    
     //Front
-    @RequestMapping("/add")
+    @RequestMapping("")
     public String add(Model model)  throws UnknownHostException
       {           
         List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
@@ -50,8 +58,54 @@ public class CustomerController {
            )  throws UnknownHostException
      {           
        List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
-       model.addAttribute("cartList",carts);
-       customerService.add(customer);
+       double total_amount=0;
+       for(Cart c: carts) {
+           double total = c.getTotal();
+           total_amount = total + total_amount;
+       }
+       //Add customer
+       Customer customerSaved = customerService.add(customer);
+
+       if(Objects.nonNull(customerSaved)) {
+           System.out.println("Customer registered");
+
+           //Add OrderCustomer
+           OrderCustomer orderCustomer=new OrderCustomer();
+           
+           orderCustomer.setOrderTrackingNumber(SecurityUtility.generateOrderTrackingNumber());
+           orderCustomer.setTotalQuantity(carts.size());
+           orderCustomer.setTotalAmount(total_amount);
+           orderCustomer.setDateCreated(AppDates.currentDateTime());
+           orderCustomer.setCustomer(customerSaved);
+           OrderCustomer orderCustomerSaved = orderCustomerService.add(orderCustomer);
+           
+           if(Objects.nonNull(orderCustomerSaved)) {
+               System.out.println("Order Customer registered");
+               model.addAttribute("orderCustomer",orderCustomerSaved);
+
+               OrderItemCustomer orderItemCustomer, orderItemCustomerSaved = null;
+               for(Cart c2: carts) {
+                   //Add OrderItemCustomer
+                   orderItemCustomer=new OrderItemCustomer();
+                   orderItemCustomer.setProduct(c2.getProduct());
+                   orderItemCustomer.setQuantity(c2.getQuantity());
+                   orderItemCustomer.setTotal(c2.getTotal());
+                   orderItemCustomer.setOrderCustomer(orderCustomerSaved); 
+                   orderItemCustomerSaved = orderItemCustomerService.add(orderItemCustomer);
+               }
+               if(Objects.nonNull(orderItemCustomerSaved)) {
+                   System.out.println("Order Item Customer registered");
+
+                   //Delete carts
+                   for(Cart c3:carts) {
+                       cartService.delete(c3.getId());
+                   }
+                   System.out.println("ALL CARTS OF CUSTOMER DELETED");
+               }
+           }
+       }
+       List<Cart> cartsUpdated=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
+       model.addAttribute("cartList",cartsUpdated);
        return "phoneNumber";       
    }
    
@@ -59,13 +113,14 @@ public class CustomerController {
    public ResponseEntity<?> checkPhoneNumber(@PathVariable(value="orderTrackingNumber") String orderTrackingNumber,
                                    @PathVariable(value="phoneNumber") String phoneNumber) throws UnknownHostException {
       OrderCustomer orderCustomer = orderCustomerService.findByOrderTrackingNumber(orderTrackingNumber);
+      System.out.println("Order Customer Phone Number: " + orderTrackingNumber);
       AjaxResponseBody result = new AjaxResponseBody();
       if(Objects.nonNull(orderCustomer)) {
           Customer customer = customerService.findById(orderCustomer.getCustomer().getId());
           customer.setPhoneNumber(phoneNumber);
           customerService.update(customer);
       }
-      result.setOrderCustomer(orderCustomer);
+      result.setMsg(orderTrackingNumber);
       return ResponseEntity.ok(result);
    }
    

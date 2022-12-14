@@ -1,12 +1,11 @@
 package com.javatechie.awselasticbeanstalkexample.domain;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+
+import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -18,31 +17,18 @@ public class OrderCustomer {
 
     private String orderTrackingNumber;
     private int totalQuantity;
-    private BigDecimal totalPrice;
-    private String status;
+    private double totalAmount;
+    private String status= AppConstants.ORDER_STATUS_0;
 
-    @CreationTimestamp
-    private Date dateCreated;
-
-    @UpdateTimestamp
-    private Date lastUpdated;
+   
+    private String dateCreated;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL , mappedBy = "order")
+    @OneToMany(cascade = CascadeType.ALL , mappedBy = "orderCustomer")
     private List<OrderItemCustomer> orderItems = new ArrayList<>();
-
-    public void add(OrderItemCustomer item){
-        if(item != null){
-            if(orderItems == null){
-                orderItems = new ArrayList<>();
-            }
-            orderItems.add(item);
-            item.setOrder(this);
-        }
-    }
 
     public Long getId() {
         return id;
@@ -68,12 +54,12 @@ public class OrderCustomer {
         this.totalQuantity = totalQuantity;
     }
 
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
+    public double getTotalAmount() {
+        return totalAmount;
     }
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setTotalAmount(double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public String getStatus() {
@@ -84,20 +70,12 @@ public class OrderCustomer {
         this.status = status;
     }
 
-    public Date getDateCreated() {
+    public String getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(String dateCreated) {
         this.dateCreated = dateCreated;
-    }
-
-    public Date getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(Date lastUpdated) {
-        this.lastUpdated = lastUpdated;
     }
 
     public Customer getCustomer() {
@@ -108,8 +86,6 @@ public class OrderCustomer {
         this.customer = customer;
     }
 
-   
-
     public List<OrderItemCustomer> getOrderItems() {
         return orderItems;
     }
@@ -117,5 +93,10 @@ public class OrderCustomer {
     public void setOrderItems(List<OrderItemCustomer> orderItems) {
         this.orderItems = orderItems;
     }
+   
+   
+
+
+  
 
 }

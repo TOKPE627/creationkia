@@ -2,6 +2,7 @@ package com.javatechie.awselasticbeanstalkexample.utility;
 
 import java.security.SecureRandom;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,4 +30,9 @@ public class SecurityUtility {
 		String saltStr = salt.toString();
 		return saltStr;
 	}
+	 public static String generateOrderTrackingNumber() {
+
+	        // generate a random UUID (UUID version-4)
+	        return UUID.randomUUID().toString();
+	    }
 }

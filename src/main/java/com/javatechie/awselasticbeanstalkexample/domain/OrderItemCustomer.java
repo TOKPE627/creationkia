@@ -1,6 +1,5 @@
 package com.javatechie.awselasticbeanstalkexample.domain;
 import javax.persistence.*;
-import java.math.BigDecimal;
 
 
 @Entity
@@ -9,16 +8,16 @@ public class OrderItemCustomer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private BigDecimal unitPrice;
-
+    
+    @OneToOne
+    private Product product;
     private int quantity;
-
-    private Long productId;
+    private double total;
+    
 
     @ManyToOne
     @JoinColumn(name = "order_customer_id")
-    private OrderCustomer order;
+    private OrderCustomer orderCustomer;
 
     public Long getId() {
         return id;
@@ -28,12 +27,12 @@ public class OrderItemCustomer {
         this.id = id;
     }
 
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public int getQuantity() {
@@ -44,21 +43,23 @@ public class OrderItemCustomer {
         this.quantity = quantity;
     }
 
-    public Long getProductId() {
-        return productId;
+    public double getTotal() {
+        return total;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    public OrderCustomer getOrder() {
-        return order;
+    public OrderCustomer getOrderCustomer() {
+        return orderCustomer;
     }
 
-    public void setOrder(OrderCustomer order) {
-        this.order = order;
+    public void setOrderCustomer(OrderCustomer orderCustomer) {
+        this.orderCustomer = orderCustomer;
     }
 
+ 
+   
 
 }

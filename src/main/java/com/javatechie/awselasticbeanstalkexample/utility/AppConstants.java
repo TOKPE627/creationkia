@@ -54,11 +54,9 @@ public class AppConstants {
    
   
    //ORDER_STATUS
-   public static final String ORDER_STATUS_ADDED_TO_CART = "ADDED_TO_CART";
-   public static final String ORDER_STATUS_0 = "BEGIN";
-   public static final String ORDER_STATUS_1 = "PENDING";
-   public static final String ORDER_STATUS_2 = "DELIVERED";
-   public static final String ORDER_STATUS_3 = "FAILED";
+   public static final String ORDER_STATUS_0 = "NOT_PAYED";
+   public static final String ORDER_STATUS_1 = "PAYED";
+
 	   
 
 

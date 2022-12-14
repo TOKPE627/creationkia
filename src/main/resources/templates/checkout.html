@@ -57,12 +57,7 @@
                   <img id="stripe" style="border-color: red;font-size: 2rem;" class="img-thumbnail"
                   th:src="@{/images/avatar/stripe.PNG}"   
                   >
-                </a>      
-                <a>
-                    <img id="paypal" 
-                     src="https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" class="img-thumbnail"
-                    alt="PayPal Logo">
-                </a>             
+                </a>            
               </div>
           </div>
         </fieldset>
@@ -140,7 +135,7 @@
     </div>
     </div>
     <div  style="background-color: black; margin-left: 1rem;margin-top: 4.5rem;" id="dumppy"></div>
-
+    
     <script th:src="@{/assets/js/vendor/modernizr-3.6.0.min.js}"></script>
     <!-- jquery-3.3.1 version -->
     <script th:src="@{/assets/js/vendor/jquery-3.2.1.min.js}"></script>
@@ -163,6 +158,9 @@
     <!-- plugins js -->
     <script th:src="@{/assets/js/plugins.js}"></script>
 
+    <script type="text/javascript">
+        $('.alert-danger').hide();
+    </script>
     <!--End Front Script-->
 </body>
 </html>
