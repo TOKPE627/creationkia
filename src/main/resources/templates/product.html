@@ -133,10 +133,12 @@
                     <p>
                      <label for=""> Quantité disponible:  </label> <span  th:text="${p.availableQuantity}"> </span>
                     </p>
-                     <button class="btn btn-warning btn-sm text-uppercase" 
-                      th:href="@{/cart/details/}+${p.name}"
+                     <a th:href="@{/cart/add-to-cart/}+${p.name}">
+                       <button class="btn btn-warning btn-sm text-uppercase" 
+                      
                        style="border-radius: 13px;" 
                      > Ajouter au panier </button>
+                     </a>
                     </div>
                    </div>
                   <div> </div>

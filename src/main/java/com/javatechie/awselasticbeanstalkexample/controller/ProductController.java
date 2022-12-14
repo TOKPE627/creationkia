@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javatechie.awselasticbeanstalkexample.domain.Brand;
+import com.javatechie.awselasticbeanstalkexample.domain.Cart;
 import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
 import com.javatechie.awselasticbeanstalkexample.domain.ProductGalery;
@@ -19,6 +20,7 @@ import com.javatechie.awselasticbeanstalkexample.domain.Style;
 import com.javatechie.awselasticbeanstalkexample.domain.Univers;
 import com.javatechie.awselasticbeanstalkexample.domain.User;
 import com.javatechie.awselasticbeanstalkexample.service.BrandService;
+import com.javatechie.awselasticbeanstalkexample.service.CartService;
 import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductGaleryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
@@ -26,6 +28,7 @@ import com.javatechie.awselasticbeanstalkexample.service.StyleService;
 import com.javatechie.awselasticbeanstalkexample.service.UniversService;
 import com.javatechie.awselasticbeanstalkexample.service.UserService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
+import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
 @Controller
 @RequestMapping("/product")
@@ -52,6 +55,9 @@ public class ProductController {
     
     @Autowired
     private ProductGaleryService productGaleryService;
+    
+    @Autowired
+    private CartService cartService;
     
 	@RequestMapping("/add")
     public String add(Model model, Principal principal) {
@@ -173,6 +179,10 @@ public class ProductController {
       public String categoryProducts(@ModelAttribute("name") String name,
               Model model,Principal principal) throws IOException{
             model.addAttribute("bProduct",AppConstants.awsBucketProduct);
+
+            List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
+            model.addAttribute("cartList",carts);
+            
              Product p=productService.findByName(name);
              model.addAttribute("p",p); 
             return "product";  
