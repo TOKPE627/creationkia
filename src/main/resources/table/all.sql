@@ -1,45 +1,208 @@
---INSERT INTO user(id,username,password,first_name,last_name,photo,country_id,town,district,address,phone,email,whatsapp,facebook,instagram,twitter)
---VALUES
---(1,'elysee',crypt('passer'),'elysee','Kouassi','mypicture.png',1,'Dakar','medina','rue 34 Angle 24','+22177937282','kouassielysee@gmail.com','+221778399392','myfacebook','myinstagram','mytwitter') RETURNING *;
---
---
-    INSERT INTO town(id,name) VALUES
-    (1,'Dakar'), (2,'Pikine'),(3,'Touba'),(4,'Guédiawaye'),(5,'Thies'),(6,'Kaolack'),(7,'Mbour'),
-    (8,'Saint-Louis'),(9,'Rufisque'),(10,'Ziguinchor'),(11,'Diourbel'),
-    (12,'Louga'),(13,'Tambacounda'),(14,'Mbacké'),(15,'Kolda');  
+  	 
+     INSERT INTO `roles`(name) VALUES
+    ('ROLE_USER'),('ROLE_PM'),('ROLE_ADMIN'),('ROLE_CUSTOMER'); 
+    
+        INSERT INTO `day`(id,name) VALUES
+        (1,'Monday'),
+	    (2,'Tuesday'),
+	    (3,'Wednesday'),
+	    (4,'Thursday'),
+	    (5,'Friday'),
+	    (6,'Saturday'),
+	    (7,'Sunday'); 
 
-
-INSERT INTO category(id,description,name,user_id,title) VALUES
-       (1,'Categorie Shop','Boutique',2,'shop'),
-       (2,'Categorie Service','Service',2,'service'),
-       (3,'Categorie ventes groupées','groupSale',2,'groupSale'),
-       (4,'Categorie Magasin','Magasin',2,'store');
-
-
-INSERT INTO sub_category(id,description,name,category_id,title) VALUES
-  (1,'Sous-categorie de Shop','Supermarché',1,'supermarket'),
-  (2,'Sous-categorie de Shop','Santé et Beauté',1,'healthBeauty'),
-  (3,'Sous-categorie de Shop','Téléphone et Tablete',1,'phone'),
-  (4,'Sous-categorie de Shop','Electronique',1,'electronic'),
-  (5,'Sous-categorie de Shop','Informatique',1,'informatic'),
-  (6,'Sous-categorie de Shop','Electroménager',1,'homeAppliance'),
-  (7,'Sous-categorie de Shop','Habillement',1,'cloth'),
-  (8,'Sous-categorie de Shop','Loisir',1,'hobby'),
-  (9,'Sous-categorie de Service','Couture',2,'sewing'),
-  (10,'Sous-categorie de Service','Coiffure',2,'hairdressing'),
-  (11,'Sous-categorie de Service','Ménuiserie',2,'carpentry'),
-  (12,'Sous-categorie de Service','Epiceries',2,'grocery'),
-  (13,'Sous-categorie de Service','Mécanique',2,'mechanical'),
-  (14,'Sous-categorie de Service','Réparation',2,'repair'),
-  (15,'Sous-categorie de Shop','Autre',1,'other'),
-  (16,'Sous-categorie de Service','Autre',2,'other')
- ;
-
-
+	   INSERT INTO `month`(id,name) VALUES
+        (1,'January'),
+	    (2,'February'),
+	    (3,'March'),
+	    (4,'April'),
+	    (5,'May'),
+	    (6,'June'),
+	    (7,'Jully'),
+	    (8,'August'),
+	    (9,'September'),
+	    (10,'October'),
+	    (11,'November'),
+	    (12,'December'); 
 	    
-INSERT INTO day(id,name) VALUES (1,'1 jour'),(2,'2 jour'),(3,'3 jours'),(4,'4 jours'),(5,'5 jours'),(6,'6 jours'),(7,'7 jours'),(8,'8 jours'),(9,'9 jours'),(10,'10 jours'),(11,'11 jours'),(12,'12 jours'),(13,'13 jours'), (14,'14 jours'),(15,'15 jours'),(16,'16 jours'),(17,'17 jours'),(18,'18 jours'),(19,'19 jours'),  (20,'20 jours'),	(21,'21 jours'),(22,'22 jours'),(23,'23 jours'),(24,'24 jours'),(25,'25 jours'),(26,'26 jours'), (27,'27 jours'),(28,'28 jours'), (29,'29 jours'),(30,'30 jours'),(31,'31 jours'); 
+	    INSERT INTO `year`(id,year) VALUES
+        (1,1960),
+	    (2,1961),
+	    (3,1962),
+	    (4,1963),
+	    (5,1964),
+	    (6,1965),
+	    (7,1966),
+	    (8,1967),
+	    (9,1968),
+	    (10,1969),
+	    (11,1970); 
 	    
-
-INSERT INTO hour(id,name) VALUES (1,'08 H'),(2,'09 H'),(3,'10 H'),(4,'11 H'),(5,'12 H'),(6,'13 H'),(7,'14 H'),(8,'15 H'),(9,'16 H'),(10,'17 H'),(11,'18 H'),(12,'19 H'),(13,'20 H'), (14,'21 H'),(15,'22 H'); 
-
-
+	 INSERT INTO `category`(id,name) VALUES
+        (1,'Tee-shirt'),
+	    (2,'Polos'),
+	    (3,'Islam Muslim United'),
+	    (4,'Prêt à porter')
+	    ;
+	    
+      INSERT INTO `gender`(id,name) VALUES
+        (1,'Homme'),
+	    (2,'Femme'),
+	    (3,'Enfant'),
+	    (4,'Tout le monde');
+	    
+	    INSERT INTO `style`(id,name) VALUES
+        (1,'Style Black Power'),
+	    (2,'Style White Power'),
+	    (3,'Style Super Power'),
+	    (4,'Style Arab Power'),
+	    (5,'Style Indian Power'),
+	    (6,'Style Métisse Power'),
+	    (7,'Style Antillais Power'),
+	    (8,'Style Africa Power'),
+	    (9,'Style Afrika United'),
+	    (10,'Style Black Panthers'),
+	    (11,'Style Negro Power');
+	    
+	    INSERT INTO `univers`(id,name) VALUES
+	    (1,'Africa Street'),
+	    (2,'France United'),
+	    (3,'European United'),
+	    (4,'American United')
+	    ;
+	   INSERT INTO `brand`(id,name) VALUES
+	    (1,'Histoire Validee, Histoire Validee paris'),
+	    (2,'Black Excellence'),
+	    (3,'Batou Excellence'),
+	    (4,'Afrika United et Africa United'),
+	    (5,'Africa Dream, Afrika Dream'),
+	    (6,'Vie de fou, vida loca'),
+	    (7,'The World United'),
+	    (8,'Amine, Amen c’est Dieu qui donne'),
+	    (9,'Mama Africa me no yidima, I love You'),
+	    (10,'Al Barqua'),
+	    (11,'Muslim United 1444'),
+	    (12,'Islam United 1444'),
+	    (13,'Negro United, Negro Power'),
+	    (14,'Aficain, Afrikain'),
+	    (15,'Africaine, Afrikaine'),
+	    (16,'Africaine, Afrikaine Unies/United'),
+	    (17,'Fier de ce que nous sommes'),
+	    (18,'Force à l’Afrique ce beau continent'),
+	    (19,'BALLANTHIAGA La Belle Dame'),
+	    (20,'Le Beau Gosse'),
+	    (21,'La Bel Gosse/La Belle Gosse'),
+	    (22,'BITCHTHIAGA Boys'),
+	    (23,'BITCHTHIAGA Girls'),
+	    (24,'KIA BOYS-KIA GIRL'),
+	    (25,'SAMBA HALlAR'),
+	    (26,'AL BARKA en arabe ou africain'),
+	    (27,'DIAMANT NOIR'),
+	    (28,'DIAMANT BLANC'),
+	    (29,'SENEGAL UNITED / SENEGAL UNIES'),
+	    (30,'SENEGAL FOREVER / Thiagaforever'),
+	    (31,'NEGRO UNITED / NEGRO POWER '),
+	    (32,'Histoire D’Amour/  LOVE STORY'),
+	    (33,'LA BELLE HISTOIRE D’AMOUR'),
+	    (34,'Bi Bou Bakh Bi Leu mon choix'),
+	    (35,'AMÉRICAN UNITED'),
+	    (36,'Allah je t’aime'),
+	    (37,'LES TROIS B BAMBOULA'),
+	    (38,'BABTOU BEUR UNIES/ United'),
+	    (39,'United / Unies'),
+	    (40,'JEUNE MILLI'),
+	    (41,'JEUNE MILLIE'),
+	    (42,'Black is beautiful le noir est'),
+	    (43,'White is beautiful le blanc est beau'),
+	    (44,'RJC RICH Joyeux Célèbre'),
+	    (45,'Africanisation Valide'),
+	    (46,'AFRICANISE'),
+	    (47,'Soldat noir et soldat blanc'),
+	    (48,'SOLDAT'),
+	    (49,'Black BaBy'),
+	    (50,'Bonbon caramel, Caramel Candy'),
+	    (51,'Révolution Africaine science conscience'),
+	    (52,'AFRIKADESIGN /AFRICADESIGN'),
+	    (53,'SENEDESIGN'),
+	    (54,'Tee-shirts personnalisé Prénom'),
+	    (55,'Baby Bbw GIRL'),
+	    (56,'ÉTIQUE TEXTILE'),
+	    (57,'LE MARABOUT / LE FÉTICHEUR'),
+	    (58,'MIAM MIAM'),
+	    (59,'Team Africa /AFRIKA'),
+	    (60,'Djine / RÂPE EuPEuLe'),
+	    (61,'TRANSPORTEUR/TRANSPORTATRICE'),
+	    (62,'WE LOVE EBONY GIRL'),
+	    (63,'93 city Gang'),
+	    (64,'L’homme au marteau'),
+	    (65,'NEKH BAYE FALL BEUGEU'),
+	    (66,'YAYE FALL'),
+	    (67,'Attention danger les schtroumpfs'),
+	    (68,'Rastafari'),
+	    (69,'Rasta Boys rasta girl'),
+	    (70,'TA CHATTE/ YOUR PUSSY'),
+	    (71,'TA GUELE / Shut up'),
+	    (72,'LE GENTLEMAN 2.0'),
+	    (73,'LE GALERIEN'),
+	    (74,'LA GALÈRIENNE'), 
+	    (75,'VENI VIDI VICI je suis venu j’ai vu et vécu'),
+	    (76,'Humble Africain, Européen, Américain, Asiatique'),
+	    (77,'G.A.L.S.E.N'),
+	    (78,'S.A.M.B.A.M.I.L.L.I'),
+	    (79,'Junkyland'),
+	    (80,'Louis Mamadou 14'),
+	    (81,'REUNITED familly'),
+	    (82,'LE SÉNÉGALAIS NE CONNAIT'),
+	    (83,'TONY MONTANA EL CHAPO'),
+	    (84,'PABLO ESCOBAR'),
+	    (85,'ALLAH, ALLAH AKBAR , HAMDOULILAH'),
+	    (86,'GUIDE SPIRITUELLE'),
+	    (87,'Sonne Life'),
+	    (88,'Noce Souli bouki'),
+	    (89,'Akalifourchon'),
+	    (90,'Black naturality/ renoi naturel'),
+	    (91,'Negresse naturel'),
+	    (92,'WHITY naturality'),
+	    (93,'Babtou naturel'),
+	    (94,'SOUTOURA discrétion'),
+	    (95,'LE SECRET Africain'),
+	    (96,'AFRICAIN BEAUTY / AFRICAN BEAUTY'),
+	    (97,'LADIES BEAUTY / EBONY BEAUTY/ EBONY BEAUTIFUL'),
+	    (98,'WELCOME RASTAFARI / RASTA/ RASTALAND'),
+	    (99,'LE DIPLOMATE / LA DIPLOMATIE'),
+	    (100,'Mes respect rastaboys - rastagirl'),
+	    (101,'WHITY boys whtty girl'),
+	    (102,'Black boys Black girl'),
+	    (103,'DIADEUF Serigne TOUBA'),
+	    (104,'Mes respect fall, renoi'),
+	    (105,'My Respect NiGGa'),
+	    (106,'AFRIKA / AFRICA Noir est fier de nos racines , black is proud'),
+	    (107,'ROI DU TEXTILE'),
+	    (108,'SO TEXTILE'),
+	    (109,'Africa / Afrika Sport / foot /UNIES / United'),
+	    (110,'ROYALE MAJESTY SO'),
+	    (111,'SO MAJESTY'),
+	    (112,'MAMA Africa /AFUNIES/ UNITED'),
+	    (113,'PAPA AFRICA /AFRIKA UNIES UNITED'),
+	    (114,'PAPA AFRICA /AFRIKA UNITED'),
+	    (115,'PAPA AFRICA ONE TWO THREE'),
+	    (116,'AFRIKA AFRICA UNITE /UNION'),
+	    (117,'AME LOU BAKH BEUGEU'),
+	    (118,'BLOU BAKH NEKH OGI GALSEN'), 
+	    (119,'Maroquinerie et Accessoires et Sous Vêtements(sac de femme et sac d’homme, portefeuille homme et femme, boxer, débardeur)'),
+	    (120,'COLLECTION LE MILLIONNAIRE /THE MILLIONNAIRE /THE BILLIONAIRE'),
+	    (121,'COLLECTION LE MILLIARDAIRE'),
+	    (122,'COLLECTION LA MILLIONNAIRE'),
+	    (123,'COLLECTION LA MILLIARDAIRE'),
+	    (124,'COLLECTION LA MILIEUSE'),
+	    (125,'COLLECTION LE MILIEU'),
+	    (126,'COLLECTION LE MILIEU MILLIARDAIRE'),
+	    (127,'COLLECTION LA MILIEUSE MILLIARDAIRE'),
+	    (128,'COLLECTION ONE TWO THREE MILLION '),
+	    (129,'COLLECTION ONE TWO THREE MILLIARDAIRE'),
+	    (130,'COLLECTION LE CHOCO MILLIONNAIRE /MILLIARDAIRE'),
+	    (131,'COLLECTION LE VOYOU  MILLIONNAIRE /MILLIARDAIRE'),
+	    (132,'COLLECTION LE WHITY  MILLIONNAIRE /MILLIARDAIRE'),
+	    (133,'COLLECTION ON NE MARCHE PAS DU MÊME PAS LES MILLIARDAIRES LES UN MILLIONNAIRES LES AUTRES')
+	    ; 
+	    

@@ -12,7 +12,7 @@
        <ul class="navbar-nav mr-auto" >
         <li class="nav-item">
             <a class="nav-link text-white navbarDropdown" th:href="@{/}">
-                <i class="fas fa-home">   <span class="spanSm">Accueil</span> </i>
+                <i class="fas fa-home"><span class="spanSm">Accueil</span> </i>
             </a>
         </li>
         
@@ -27,10 +27,9 @@
               <i  class="fas fa-tag" aria-hidden="true"><span class="spanSm">Catégories</span></i> 
             </a>
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <ul >
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>Cat1</span></a></li>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>Cat1</span></a></li>
+            <div class="dropdown-menu menuCategory" aria-labelledby="navbarDropdown" th:if="${not #lists.isEmpty(categoryList)}">
+             <ul data-th-each="c: ${categoryList}">
+                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span th:text="${c.name}"></span></a></li>
               </ul>
             </div>
           </li> 
@@ -40,9 +39,9 @@
               <i  class="fas fa-tshirt" aria-hidden="true"><span class="spanSm">Prêt à porter</span></i> 
             </a>
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <ul>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>Homme</span></a></li>
+            <div class="dropdown-menu menuReadyToWear" aria-labelledby="navbarDropdown" th:if="${not #lists.isEmpty(styleList)}">
+             <ul data-th-each="c: ${styleList}">
+                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span >Homme</span></a></li>
                 <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>Femme</span></a></li>
                 <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>Tout lemonde</span></a></li>
               </ul>
@@ -54,10 +53,9 @@
               <i class="fas fa-tshirt" aria-hidden="true"><span class="spanSm">Style de vêtements</span></i> 
             </a>
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <ul>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>s1</span></a></li>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>s2</span></a></li>
+            <div class="dropdown-menu menuStyle" aria-labelledby="navbarDropdown" th:if="${not #lists.isEmpty(styleList)}">
+             <ul data-th-each="s: ${styleList}">
+                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span  th:text="${s.name}"></span></a></li>
               </ul>
             </div>
         </li> 
@@ -67,10 +65,9 @@
               <i class="fas fa-tshirt" aria-hidden="true"><span class="spanSm">Marque de vêtements</span></i> 
             </a>
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <ul>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>m1</span></a></li>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>m2</span></a></li>
+            <div class="dropdown-menu menuBrand" aria-labelledby="navbarDropdown"  th:if="${not #lists.isEmpty(brandList)}">
+             <ul data-th-each="b: ${brandList}">
+                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span th:text="${b.name}"></span></a></li>
               </ul>
             </div>
         </li> 
@@ -80,10 +77,9 @@
               <i class="fas fa-map-marker" aria-hidden="true"><span class="spanSm">Zones</span></i> 
             </a>
             
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <ul>
-                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span>U1</span></a></li>
-                <li class="text-secondary"><a th:href="@{/}"><span class="text-secondary">U2</span></a></li>
+            <div class="dropdown-menu menuUnivers" aria-labelledby="navbarDropdown"  th:if="${not #lists.isEmpty(universList)}">
+             <ul  data-th-each="u: ${universList}">
+                <li class="text-secondary"><a th:href="@{/}" class="text-secondary"><span th:text="${u.name}"></span></a></li>
               </ul>
             </div>
         </li> 
