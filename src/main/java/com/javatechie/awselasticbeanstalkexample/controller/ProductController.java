@@ -178,11 +178,19 @@ public class ProductController {
       @RequestMapping(value = "/details/{name}", method = RequestMethod.GET)
       public String categoryProducts(@ModelAttribute("name") String name,
               Model model,Principal principal) throws IOException{
-            model.addAttribute("bProduct",AppConstants.awsBucketProduct);
-
-            List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
-            model.addAttribute("cartList",carts);
-            
+              model.addAttribute("bProduct",AppConstants.awsBucketProduct);
+              List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
+              model.addAttribute("cartList",carts);
+          
+              List<Category> categories = categoryService.findAll();
+              List<Style> styles = styleService.findAll();
+              List<Brand> brands = brandService.findAll();
+              List<Univers> univers = universService.findAll();
+              model.addAttribute("categoryList",categories);
+              model.addAttribute("styleList",styles);
+              model.addAttribute("brandList",brands);
+              model.addAttribute("universList",univers);
+             
              Product p=productService.findByName(name);
              model.addAttribute("p",p); 
             return "product";  

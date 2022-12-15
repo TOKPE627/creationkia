@@ -35,18 +35,7 @@ public class AppConstants {
 //   public static final String bucket_catalog   =  "catalog";
 //   public static final String bucket_partner   =  "partner";
 
-   //localhostUrl
-   //public static String url="http://localhost:8080/";
-   public static String url="https://lamaisondecreationkia.com/";
-   //awsUrl
-   
-   //public static String url="http://atooly-env.eba-vpnxtsst.us-east-1.elasticbeanstalk.com/";
-   
-
-    //public static String awsBucketIcon="https://atoolyicon.s3.us-east-1.amazonaws.com/";
-   public static String awsBucketCategory ="https://kiacategory.s3.eu-west-3.amazonaws.com/";
-//    public static String awsBucketUser="";
-    public static String awsBucketProduct="https://kiaproduct.s3.eu-west-3.amazonaws.com/";
+  
 
 //   @Value("${application.bucket.product}")
 //   public static String awsBucketProduct;

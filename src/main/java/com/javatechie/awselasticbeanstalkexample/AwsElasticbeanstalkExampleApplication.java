@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -56,6 +57,10 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 	
 	@GetMapping("/")
 	public String welcome(Model model) throws UnknownHostException {
+	    double screenWidth = AppHosts.screenWidth();
+	    System.out.println("Width: " + screenWidth);
+	    model.addAttribute("screenWidth", screenWidth);
+	    
 		model.addAttribute("url",AppConstants.url);
 		model.addAttribute("bCategory",AppConstants.awsBucketCategory);
 		List<Cart> carts = cartService.findByIpaddress(AppHosts.currentHostIpAddress());
@@ -98,4 +103,5 @@ public class AwsElasticbeanstalkExampleApplication implements CommandLineRunner{
 			   UserRole(user, roleR)); 
 			   userService.createUser(user, userRoles);
 		}
+	  
 }

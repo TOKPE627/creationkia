@@ -14,14 +14,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Objects;
 
 import com.javatechie.awselasticbeanstalkexample.domain.AjaxResponseBody;
+import com.javatechie.awselasticbeanstalkexample.domain.Brand;
 import com.javatechie.awselasticbeanstalkexample.domain.Cart;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Customer;
 import com.javatechie.awselasticbeanstalkexample.domain.OrderCustomer;
 import com.javatechie.awselasticbeanstalkexample.domain.OrderItemCustomer;
+import com.javatechie.awselasticbeanstalkexample.domain.Style;
+import com.javatechie.awselasticbeanstalkexample.domain.Univers;
+import com.javatechie.awselasticbeanstalkexample.service.BrandService;
 import com.javatechie.awselasticbeanstalkexample.service.CartService;
+import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.CustomerService;
 import com.javatechie.awselasticbeanstalkexample.service.OrderCustomerService;
 import com.javatechie.awselasticbeanstalkexample.service.OrderItemCustomerService;
+import com.javatechie.awselasticbeanstalkexample.service.StyleService;
+import com.javatechie.awselasticbeanstalkexample.service.UniversService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppDates;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
@@ -43,10 +51,31 @@ public class CustomerController {
     @Autowired
     private OrderItemCustomerService orderItemCustomerService;
     
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private StyleService styleService;
+    
+    @Autowired
+    private BrandService brandService;
+    
+    @Autowired
+    private UniversService universService;
+    
     //Front
     @RequestMapping("")
     public String add(Model model)  throws UnknownHostException
       {           
+        List<Category> categories = categoryService.findAll();
+        List<Style> styles = styleService.findAll();
+        List<Brand> brands = brandService.findAll();
+        List<Univers> univers = universService.findAll();
+        model.addAttribute("categoryList",categories);
+        model.addAttribute("styleList",styles);
+        model.addAttribute("brandList",brands);
+        model.addAttribute("universList",univers);
+        
         List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
         model.addAttribute("cartList",carts);
         return "customer";       
@@ -57,6 +86,15 @@ public class CustomerController {
                              Model model
            )  throws UnknownHostException
      {           
+       List<Category> categories = categoryService.findAll();
+       List<Style> styles = styleService.findAll();
+       List<Brand> brands = brandService.findAll();
+       List<Univers> univers = universService.findAll();
+       model.addAttribute("categoryList",categories);
+       model.addAttribute("styleList",styles);
+       model.addAttribute("brandList",brands);
+       model.addAttribute("universList",univers);
+       
        List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
        double total_amount=0;
        for(Cart c: carts) {

@@ -16,7 +16,7 @@
 <!-- Own styles -->
 <link rel="stylesheet" th:href="@{/css/main.css}">
 <link rel="stylesheet" th:href="@{/css/styleNavbar.css}">
-
+<link rel="stylesheet" th:href="@{/css/styleWelcome.css}">
 
 
 
@@ -25,19 +25,60 @@
    
     <div class="container-fluid"  style="margin-top: 6rem;">
       <div class="row" th:if="${not #lists.isEmpty(categoryList)}">
-        <div class="col-lg-3" data-th-each="c: ${categoryList}">
+        <div class="col col-lg-3" data-th-each="c: ${categoryList}">
           <div class="card">
            <div class="card-header">
-            <span style="font-size: 20px;"><strong th:text="${c.name}"></strong></span>
+            <span style="font-size: 20px; text-align: center;" th:with="len=${#strings.length(c.name)}">
+	            <strong 
+	               th:if="${screenWidth > 1301}"
+	               th:text=" ( ${len > 30} ) ? ${#strings.abbreviate(c.name,30)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth > 1179 and screenWidth < 1301}"
+	               th:text="(${len > 21}) ? ${#strings.abbreviate(c.name,21)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth > 1024 and screenWidth < 1180}"
+	               th:text="(${len > 21}) ? ${#strings.abbreviate(c.name,17)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth > 991 and screenWidth < 1025}"
+	               th:text="(${len > 23}) ? ${#strings.abbreviate(c.name,23)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth > 900 and screenWidth < 992}"
+	               th:text="(${len > 19}) ? ${#strings.abbreviate(c.name,19)} + '' : ${c.name}"
+	           ></strong>
+	             <strong 
+	               th:if="${screenWidth > 830 and screenWidth < 901}"
+	               th:text="(${len > 19}) ? ${#strings.abbreviate(c.name,19)} + '' : ${c.name}"
+	           ></strong>
+	             <strong 
+	               th:if="${screenWidth > 767 and screenWidth < 831}"
+	               th:text="(${len > 31}) ? ${#strings.abbreviate(c.name,31)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth > 699 and screenWidth < 768}"
+	               th:text="(${len > 27}) ? ${#strings.abbreviate(c.name,27)} + '' : ${c.name}"
+	           ></strong>
+	            <strong 
+	               th:if="${screenWidth >380 and screenWidth < 700}"
+	               th:text="(${len > 21}) ? ${#strings.abbreviate(c.name,21)} + '' : ${c.name}"
+	           ></strong>
+	              <strong 
+	               th:if="${screenWidth < 381}"
+	               th:text="(${len > 23}) ? ${#strings.abbreviate(c.name,23)} + '' : ${c.name}"
+	           ></strong>
+           </span>
             <span style="font-size: 20px;"><strong></strong></span>
            </div>
            <div class="card-body">
             <a th:href="@{/category/products/}+${c.name}">
-              <img class="card-img-top" style="max-width: 280px; height: 300px; cursor: pointer;"
+              <img class="card-img-top"
                 th:src="@{${bCategory}+${c.id}+'/'+${c.image}}"  alt="Category Image">
             </a> 
            </div>
-           <a th:href="@{/}" style="cursor: pointer;"> <h5 class="card-title text-success">Achetez maintenant</h5></a>
+           <a th:href="@{/}" style="cursor: pointer;"><h6 class="card-title text-success"><span>Achetez maintenant</span></h6></a>  </a>
           </div> 
         </div>
       </div>

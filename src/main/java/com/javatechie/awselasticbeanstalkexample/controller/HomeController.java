@@ -61,11 +61,7 @@ public class HomeController {
 		return "message/badRequest";
 	}
 	@RequestMapping("/login")
-    public String login(
-           
-            Model model) throws UnknownHostException{
-       
-
+    public String login(Model model){
           return "login";
     }
 

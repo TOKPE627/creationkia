@@ -9,10 +9,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.javatechie.awselasticbeanstalkexample.domain.Brand;
 import com.javatechie.awselasticbeanstalkexample.domain.Cart;
+import com.javatechie.awselasticbeanstalkexample.domain.Category;
 import com.javatechie.awselasticbeanstalkexample.domain.Product;
+import com.javatechie.awselasticbeanstalkexample.domain.Style;
+import com.javatechie.awselasticbeanstalkexample.domain.Univers;
+import com.javatechie.awselasticbeanstalkexample.service.BrandService;
 import com.javatechie.awselasticbeanstalkexample.service.CartService;
+import com.javatechie.awselasticbeanstalkexample.service.CategoryService;
 import com.javatechie.awselasticbeanstalkexample.service.ProductService;
+import com.javatechie.awselasticbeanstalkexample.service.StyleService;
+import com.javatechie.awselasticbeanstalkexample.service.UniversService;
 import com.javatechie.awselasticbeanstalkexample.utility.AppConstants;
 import com.javatechie.awselasticbeanstalkexample.utility.AppHosts;
 
@@ -24,16 +32,33 @@ public class CartController {
     
     @Autowired
     private CartService cartService;
-  
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private StyleService styleService;
+    
+    @Autowired
+    private BrandService brandService;
+    
+    @Autowired
+    private UniversService universService;
     //Frontend
     
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String cart(Model model) throws UnknownHostException{
-         model.addAttribute("bProduct",AppConstants.awsBucketProduct);
-   
-         List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
-         model.addAttribute("cartList",carts);
-         
+        model.addAttribute("bProduct",AppConstants.awsBucketProduct);
+        List<Cart> carts=cartService.findByIpaddress(AppHosts.currentHostIpAddress());
+        model.addAttribute("cartList",carts);
+        List<Category> categories = categoryService.findAll();
+        List<Style> styles = styleService.findAll();
+        List<Brand> brands = brandService.findAll();
+        List<Univers> univers = universService.findAll();
+        model.addAttribute("categoryList",categories);
+        model.addAttribute("styleList",styles);
+        model.addAttribute("brandList",brands);
+        model.addAttribute("universList",univers);
+    
          if(!carts.isEmpty()) {
              double total_amount=0;
              for(Cart c: carts) {
